@@ -1,0 +1,107 @@
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container chính */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+
+/* Tiêu đề trang */
+.title {
+    font-size: 3rem; /* Kích thước chữ */
+    color: #ff4500; /* Màu chữ */
+    text-align: center;
+    text-transform: uppercase; /* Viết hoa toàn bộ */
+    animation: glow 2s infinite; /* Tên hiệu ứng, thời gian, lặp vô hạn */
+    font-family: 'Arial', sans-serif; /* Kiểu chữ */
+
+}
+
+
+/* Lưới tin tức */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding-bottom: 20px;
+}
+
+/* Mỗi mục tin tức */
+.news-item {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.news-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Hình ảnh */
+.news-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Tiêu đề mỗi bài */
+.news-item h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1d3557;
+    margin: 15px 10px 5px;
+    text-align: left;
+}
+.news-item a {
+    text-decoration: none; /* Xóa gạch chân */
+    color: inherit; /* Giữ màu chữ như nội dung */
+}
+
+.news-item a:hover {
+    color: #007bff; /* Màu khi hover (tùy chọn) */
+    text-decoration: none; /* Đảm bảo không có gạch chân khi hover */
+}
+
+/* Mô tả ngắn */
+.news-item p {
+    font-size: 16px;
+    color: #666;
+    margin: 0 10px 15px;
+    text-align: left;
+    line-height: 1.5;
+}
+
+/* Hiệu ứng khi hover */
+.news-item:hover h3 {
+    color: #e63946;
+}
+
+/* Định dạng phần chữ in đậm */
+strong {
+    color: #e63946;
+}
+.slider{
+    width: 100%;
+}
