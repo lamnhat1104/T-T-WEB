@@ -117,20 +117,20 @@
     <div class="sidebar-menu">
         <ul>
             <li>
-                <a href="/T-T-WEB/admin?action=dashboard" class="dashboard-active">
+                <a href="/demo/admin?action=dashboard" class="dashboard-active">
                     <span class="las la-igloo"></span>
                     <span>Dashboard</span></a>
             </li>
             <li>
-                <a href="/T-T-WEB/admin?action=managerCustomer"><span class="las la-users"></span>
+                <a href="/demo/admin?action=managerCustomer"><span class="las la-users"></span>
                     <span>Quản lý khách hàng</span></a>
             </li>
             <li>
-                <a href="/T-T-WEB/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
+                <a href="/demo/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
                     <span>Quản lý xe máy</span></a>
             </li>
             <li>
-                <a href="/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
+                <a href="/demo/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
                     <span>Quản lý đơn hàng</span></a>
             </li>
             <li>

@@ -10,168 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="fix lỗi chuyển trang">
-      <change afterPath="$PROJECT_DIR$/DoAnCuoiKi/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/HelloServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/Add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ContactController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ContactController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ForgotPasswordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/Logout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/NumberPlateControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/NumberPlateControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/NumberPlateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/NumberPlateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/PagingProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/PagingProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ProductBestSeller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ProductBestSeller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ProductDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ProductNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ProductNew.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ResetPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ResetPasswordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/SearchControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/SearchControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ShopingCartCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ShopingCartCL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/SignInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/Add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/ListProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/ListProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/Remove.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/Remove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/Show.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/cart/Update.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ContactDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ContactDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/db/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/db/DBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/db/JDBIConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/db/JDBIConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/db/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/db/Property.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/filter/AdminFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/filter/AdminFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/CartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Contact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/New.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/New.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/OrderDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/PageContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/PageContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Promotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Vehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/VehicleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/VehicleType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/cart/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/cart/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/cart/CartProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/cart/CartProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/service/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/service/IProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/service/ProductService2.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/service/ProductService2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/util/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/util/Email.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/util/Encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/util/Encrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/WEB-INF/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/account.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/biensoxe.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/biensoxe.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/customers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/customers.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/feedback.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/form_in_admin/capnhatKM.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/form_in_admin/capnhatKM.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/form_in_admin/capnhattt.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/form_in_admin/capnhattt.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/form_in_admin/qltintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/form_in_admin/qltintuc.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/form_in_admin/themKH.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/form_in_admin/themKH.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/form_in_admin/themKM.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/form_in_admin/themKM.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/form_in_admin/themxe.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/form_in_admin/themxe.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/form_in_admin/xemchitietsp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/form_in_admin/xemchitietsp.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/motorbikes.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/orders.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/promotion.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/qlbiensoxe.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/qlbiensoxe.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/qltintuc.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/setting.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/setting.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/stats_income.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/stats_income.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/stats_motors.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/admin/stats_motors.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/ContractUS.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/ContractUS.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/account.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/account.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/cart.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/policy.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/policy.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/product-detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/product-detail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/signin.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/css/signin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/header_footer/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/header_footer/footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/header_footer/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/header_footer/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/header_footer/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/header_footer/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/header_footer/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/header_footer/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/CH_Play.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/CH_Play.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/anh.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/anh.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/app_store.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/app_store.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/noCart.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/noCart.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/qr_code.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/qr_code.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/user.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/login_background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/login_background.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/logo_xemay.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/logo_xemay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/xe1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/xe1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/xe2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/xe2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/xe3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/xe3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/xe4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/xe4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/xe5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/xe5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/xe6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/xe6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/xe7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/xe7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/home_img/xe/xe8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/home_img/xe/xe8.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/product-img/Air-Blade.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/product-img/Air-Blade.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/product-img/Future-125.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/product-img/Future-125.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/product-img/Wave-110.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/product-img/Wave-110.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/product-img/Wave-RSX.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/product-img/Wave-RSX.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/img/product-img/Winner-X.png" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/img/product-img/Winner-X.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/ValidateAndCalculate.js" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/js/ValidateAndCalculate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/js/charts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/produc-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/js/produc-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/js/signin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/stats_motor.js" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/assets/js/stats_motor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/capnhaptintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/capnhaptintuc.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/cart.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/cart2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart3.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/cart3.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/change_password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/change_password.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chitiettintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/chitiettintuc.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/contact-us.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/contact-us.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/contactUS.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/contactUS.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/csschitiettintuc.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/csschitiettintuc.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/csssp.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/csssp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/csstintuc.css" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/csstintuc.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/don_dat_hang.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/don_dat_hang.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/forgot_password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/forgot_password.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fromthemKH.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/fromthemKH.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fromthemmaKM.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/fromthemmaKM.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fromthemxe.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/fromthemxe.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/lich-su-thue-xe.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/lich-su-thue-xe.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/page-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/page-product.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/policy.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/policy.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/product-bestseller.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/product-bestseller.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/product-detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/product-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/product-new.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resend_email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/resend_email.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/signin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/signin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/suamakm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/suamakm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/DoAnCuoiKi/src/main/webapp/trangtintuc.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/admin.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,26 +60,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Tomcat Server.Tomcat 11.0.0.executor": "Run",
-    "git-widget-placeholder": "22130195-MaiLamNhat",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "23",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130195-MaiLamNhat&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\HK1_2024\T-T-WEB\DoAnCuoiKi" />
@@ -373,7 +212,7 @@
       <workItem from="1741769182254" duration="1976000" />
       <workItem from="1741772193633" duration="1839000" />
       <workItem from="1741796927948" duration="3747000" />
-      <workItem from="1741880630804" duration="7345000" />
+      <workItem from="1741880630804" duration="7727000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -415,7 +254,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741887744975</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix lỗi chuyển trang">
+      <option name="closed" value="true" />
+      <created>1741889633597</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741889633597</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix lỗi chuyển trang">
+      <option name="closed" value="true" />
+      <created>1741889647356</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741889647356</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
