@@ -23,13 +23,13 @@ public class OrderDao {
         String sql2 = "INSERT INTO orderdetails (orderId, licensePlate, priceAtOrder) values(?,?,?)";
         if(licensePlate.equals(""))return false;
         try(Connection conn = new DBContext().getConnection();
-            PreparedStatement pre = conn.prepareStatement(sql1)){
+            PreparedStatement pre = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS)){
             pre.setInt(1, id);
             pre.setDate(2, rentalStartDate);
             pre.setDate(3, expectedReturnDate);
             pre.setString(4, location);
 
-            pre.executeUpdate();
+//            pre.executeUpdate();
 
             int rowsAffected1 = pre.executeUpdate();
 

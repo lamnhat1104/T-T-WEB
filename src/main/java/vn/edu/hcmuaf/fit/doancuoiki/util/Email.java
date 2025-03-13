@@ -12,8 +12,8 @@ import java.util.Date;
 import java.util.Properties;
 
 public class Email {
-    final static String email = "pn4503628@gmail.com";
-    final static String password = "kqrapxydkuszumcf";
+    final static String email = "nhatthpt940@gmail.com";
+    final static String password = "aerdfhzfcfmudjeg";
 
     public static void send(String to, String subject, String body) {
         Properties props = new Properties();
