@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="fix lỗi" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="chỉnh sửa đơn đặt hàng">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/VehicleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/VehicleType.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,7 +216,9 @@
       <workItem from="1741772193633" duration="1839000" />
       <workItem from="1741796927948" duration="3747000" />
       <workItem from="1741880630804" duration="9584000" />
-      <workItem from="1741943389979" duration="7864000" />
+      <workItem from="1741943389979" duration="8448000" />
+      <workItem from="1742055138737" duration="3313000" />
+      <workItem from="1742091047789" duration="12002000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -293,7 +300,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741975090141</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix lỗi">
+      <option name="closed" value="true" />
+      <created>1741975347907</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1741975347907</updated>
+    </task>
+    <task id="LOCAL-00012" summary="chỉnh sửa đơn đặt hàng">
+      <option name="closed" value="true" />
+      <created>1742116192191</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1742116192191</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,6 +329,7 @@
     <MESSAGE value="fix lỗi chuyển trang" />
     <MESSAGE value="css form đặt hàng" />
     <MESSAGE value="fix lỗi" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix lỗi" />
+    <MESSAGE value="chỉnh sửa đơn đặt hàng" />
+    <option name="LAST_COMMIT_MESSAGE" value="chỉnh sửa đơn đặt hàng" />
   </component>
 </project>

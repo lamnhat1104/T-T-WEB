@@ -18,7 +18,7 @@ public class VehicleTypeDao {
             PreparedStatement ps = conn.prepareStatement("select * from vehicletypes");){
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                VehicleType vehicleType = new VehicleType();
+                VehicleType vehicleType = new VehicleType(rs.getInt("id"), rs.getString("image"));
                 vehicleType.setId(rs.getInt("id"));
                 vehicleType.setName(rs.getString("name"));
                 vehicleType.setBrand(rs.getString("brand"));

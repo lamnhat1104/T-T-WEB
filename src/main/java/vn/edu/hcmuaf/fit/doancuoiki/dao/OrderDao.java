@@ -104,7 +104,11 @@ public class OrderDao {
         PreparedStatement pre = con.prepareStatement(sql)){
             ResultSet rs = pre.executeQuery();
             while(rs.next()){
-                OrderDetail orderDetail = new OrderDetail(rs.getInt("orderId"), rs.getString("licensePlate"), rs.getString("name"), rs.getDouble("priceAtOrder"));
+                OrderDetail orderDetail = new OrderDetail(
+                        rs.getInt("orderId"),
+                        rs.getString("licensePlate"),
+                        rs.getString("name"),
+                        rs.getDouble("priceAtOrder"));
 
                 VehicleType vehicleType = new VehicleType(
                         rs.getInt("id"),  // ID của VehicleType
@@ -122,7 +126,8 @@ public class OrderDao {
 
 
                 order.setOrderDetail(orderDetail);
-                 orders.add(order);
+                order.setVehicleType(vehicleType);
+                orders.add(order);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
