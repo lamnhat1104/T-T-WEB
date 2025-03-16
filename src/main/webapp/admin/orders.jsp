@@ -12,6 +12,79 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <style>
+        /* Định dạng form */
+        #editOrderForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            height: 80vh; /* Giới hạn chiều cao 80% màn hình */
+            overflow-y: auto; /* Thêm thanh cuộn dọc nếu nội dung quá dài */
+            z-index: 1000;
+        }
+
+
+        /* Định dạng các label */
+        #editOrderForm label {
+            display: block;
+            font-weight: bold;
+            margin: 8px 0 5px;
+        }
+
+        /* Định dạng input */
+        #editOrderForm input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Định dạng nút */
+        #editOrderForm button {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Nút cập nhật */
+        #editOrderForm button[type="submit"] {
+            background: #28a745;
+            color: white;
+        }
+
+        /* Nút hủy */
+        #editOrderForm button[type="button"] {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Hover cho nút */
+        #editOrderForm button:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-height: 700px) {
+            #editOrderForm {
+                top: 5%;
+                transform: translate(-50%, 0);
+                height: 90vh;
+            }
+        }
+
+
+    </style>
+
 </head>
 <body>
 <input type="checkbox" id="nav-toggle">
@@ -220,6 +293,8 @@
             }
         });
     });
+
+
 
 </script>
 

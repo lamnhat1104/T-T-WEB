@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
 import vn.edu.hcmuaf.fit.doancuoiki.model.OrderDetail;
+import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -103,17 +104,30 @@ public class OrderDao {
         PreparedStatement pre = con.prepareStatement(sql)){
             ResultSet rs = pre.executeQuery();
             while(rs.next()){
-                OrderDetail orderDetail = new OrderDetail(rs.getInt("orderId"), rs.getString("licensePlate"), rs.getString("name"), rs.getDouble("priceAtOrder"));
+                OrderDetail orderDetail = new OrderDetail(
+                        rs.getInt("orderId"),
+                        rs.getString("licensePlate"),
+                        rs.getString("name"),
+                        rs.getDouble("priceAtOrder"));
+
+                VehicleType vehicleType = new VehicleType(
+                        rs.getInt("id"),  // ID của VehicleType
+                        rs.getString("image") // Lấy hình ảnh từ cột image
+                );
+
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
                 order.setCustomerId(rs.getInt("customerId"));
                 order.setDeliveryAddress(rs.getString("deliveryAddress"));
+                order.setCreatedDate(rs.getDate("createdDate"));
                 order.setExpectedReturnDate(rs.getDate("expectedReturnDate"));
                 order.setRetalStarDate(rs.getDate("rentalStartDate"));
                 order.setStatus(rs.getString("status"));
 
+
                 order.setOrderDetail(orderDetail);
-                 orders.add(order);
+                order.setVehicleType(vehicleType);
+                orders.add(order);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

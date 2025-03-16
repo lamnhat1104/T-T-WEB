@@ -390,3 +390,7 @@ th {
     background-color: #fb6445;
     color: white;
 }
+
+body.modal-open {
+    overflow: hidden;
+}
