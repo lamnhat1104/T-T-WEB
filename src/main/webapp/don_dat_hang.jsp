@@ -1,4 +1,9 @@
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.dao.OrderDao" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.Order" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -13,6 +18,39 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #ff5b00;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+            transition: 0.3s;
+        }
+
+        td {
+            color: #333;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -20,47 +58,56 @@
 
 <!-- section 1 -->
 <header id="header"></header>
+<%
+    HttpSession sessionUser = request.getSession();
+    User user = (User) sessionUser.getAttribute("user");
+
+    if (user == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+
+    OrderDao orderDao = new OrderDao();
+    List<Order> orders = orderDao.getAllOrder();
+%>
 <div id="sec1">
     <hr>
     <div class="container border">
-        <h1><strong>Giỏ Hàng Của Bạn </strong></h1>
 
-        <!-- Giỏ hàng -->
+
+
         <div class="row">
 
             <!-- col left -->
             <div class="col-lefts">
                 <div class="cart-items">
                     <div class="cart-item__products">
-                        <h2>Giỏ hàng</h2>
-                        <a href="PagingProduct"><button class="btn btn-primary">Tiếp tục mua hàng</button></a>
-                        <table class="table">
-                            <thread>
-                                <tr>
-                                    <th scope="col">Ảnh</th>
-                                    <th scope="col">Sản phẩm</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Đơn giá</th>
-                                    <th scope="col">Tổng</th>
-                                </tr>
-                            </thread>
-                            <tbody>
-                            <c:forEach items="${sessionScope.cart.list}" var="cp">
-                                <tr>
-                                    <td><img class="cart-img" src="${cp.img}" style=""></td>
-                                    <td>
-                                        <p><strong>${cp.title}</strong></p>
-                                    </td>
-                                    <td>
-                                        <input type="number" class="form-control" value="${cp.quantity}" min="1" style="">
-                                    </td>
-                                    <td>${cp.price}VND</td>
-                                    <td>${cp.price * cp.quantity}VND</td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
+                        <h2>Đơn hàng của bạn</h2>
+                        <table border="1">
+                            <tr>
+                                <th>Mã đơn hàng</th>
+                                <th>Hình ảnh</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Ngày bắt đầu thuê</th>
+                                <th>Ngày dự kiến trả</th>
+                                <th>Giá</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            <% for (Order order : orders) { %>
+                            <tr>
+                                <td><%= order.getId() %></td>
+                                <td><% if (order.getVehicleType() != null && order.getVehicleType().getImage() != null) { %>
+                                    <img src="<%= order.getVehicleType().getImage() %>" alt="Vehicle Image" width="100">
+                                    <% } else { %>
+                                    Không có hình ảnh
+                                    <% } %></td>
+                                <td><%= order.getCreatedDate() %></td>
+                                <td><%= order.getRetalStarDate() %></td>
+                                <td><%= order.getExpectedReturnDate() %></td>
+                                <td><%= order.getOrderDetail().getPriceAtOrder() %> VND</td>
+                                <td><%= order.getStatus() %></td>
+                            </tr>
+                            <% } %>
                         </table>
 
 

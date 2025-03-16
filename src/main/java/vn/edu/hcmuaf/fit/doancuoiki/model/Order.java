@@ -16,7 +16,15 @@ public class Order {
     private double additionalFee;
     private String additionalFeeNote;
     private OrderDetail orderDetail;
+    private VehicleType vehicleType;
 
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
+    }
 
     public Order() {
     }
