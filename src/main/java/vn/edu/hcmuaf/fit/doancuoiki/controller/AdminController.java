@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.doancuoiki.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.doancuoiki.dao.CustomerDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.OrderDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.VehicleTypeDao;
@@ -57,6 +58,9 @@ public class AdminController extends HttpServlet {
                 break;
             case "updateOrder":
                 updateOrder(request, response);
+                break;
+            case "deleteCustomer":
+                deleteCustomer(request, response);
                 break;
         }
     }
@@ -130,6 +134,52 @@ public class AdminController extends HttpServlet {
         int role = Integer.parseInt(request.getParameter("roleId"));
         dao.changeRole(id, role);
         managerCustomer(request, response);
+    }
+
+    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String customerIdStr = request.getParameter("customerId");
+
+        if (customerIdStr == null || customerIdStr.trim().isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Customer ID is missing or invalid");
+            return;
+        }
+
+        try {
+            int customerId = Integer.parseInt(customerIdStr);
+            UserDao dao = new UserDao();
+            CustomerDao.deleteCustomer(customerId);
+            response.sendRedirect("admin/customers.jsp"); // Điều hướng về danh sách khách hàng
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Customer ID format");
+        }
+    }
+
+    private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Lấy các tham số từ form
+            int orderId = Integer.parseInt(request.getParameter("orderId")); // Lấy ID đơn hàng
+            int customerId = Integer.parseInt(request.getParameter("customerId")); // Lấy mã khách hàng
+            String deliveryAddress = request.getParameter("deliveryAddress"); // Lấy địa chỉ giao xe
+            String rentalStartDate = request.getParameter("rentalStartDate"); // Lấy ngày thuê
+            String expectedReturnDate = request.getParameter("expectedReturnDate"); // Lấy ngày trả dự kiến
+            String licensePlate = request.getParameter("licensePlate"); // Lấy biển số xe
+            double rentalPrice = Double.parseDouble(request.getParameter("rentalPrice")); // Lấy giá thuê xe
+            String status = request.getParameter("status"); // Lấy trạng thái đơn hàng
+
+            // Chuyển đổi ngày từ String sang Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
+            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
+            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+            OrderDao dao = new OrderDao();
+            // Cập nhật đơn hàng
+            dao.updateOrder(orderId, customerId, deliveryAddress, startDate, endDate, licensePlate, rentalPrice, status);
+            managerOrder(request,response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+        }
     }
 
     private void managerVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
