@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="fix lai trang sp moi nhat">
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" afterDir="false" />
-    </list>
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="fix lai trang sp ban chạy" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -240,7 +238,7 @@
       <workItem from="1742091047789" duration="12002000" />
       <workItem from="1742346182386" duration="1832000" />
       <workItem from="1742356287282" duration="1329000" />
-      <workItem from="1742439158636" duration="1981000" />
+      <workItem from="1742439158636" duration="2340000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -354,7 +352,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742440931062</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix lai trang sp ban chạy">
+      <option name="closed" value="true" />
+      <created>1742441446974</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1742441446974</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,6 +376,7 @@
     <MESSAGE value="chỉnh sửa đơn đặt hàng" />
     <MESSAGE value="test commit" />
     <MESSAGE value="fix lai trang sp moi nhat" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix lai trang sp moi nhat" />
+    <MESSAGE value="fix lai trang sp ban chạy" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix lai trang sp ban chạy" />
   </component>
 </project>
