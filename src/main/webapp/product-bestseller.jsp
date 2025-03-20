@@ -10,6 +10,7 @@
     <title>Trang san pham moi </title>
     <link rel="stylesheet" href="csssp.css">
     <script src="../../js/locsanphamgiathapdencao.js"></script>
+<%--    abc--%>
     <script>
         function sortProducts() {
             const priceFilter = document.getElementById('price-filter').value;
