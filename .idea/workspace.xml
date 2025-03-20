@@ -9,11 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="fix lai trang sp ban chạy" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -235,10 +242,7 @@
       <workItem from="1741880630804" duration="9584000" />
       <workItem from="1741943389979" duration="8448000" />
       <workItem from="1742055138737" duration="3313000" />
-      <workItem from="1742091047789" duration="12002000" />
-      <workItem from="1742346182386" duration="1832000" />
-      <workItem from="1742356287282" duration="1329000" />
-      <workItem from="1742439158636" duration="2340000" />
+
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -336,31 +340,7 @@
       <option name="project" value="LOCAL" />
       <updated>1742116192191</updated>
     </task>
-    <task id="LOCAL-00013" summary="test commit">
-      <option name="closed" value="true" />
-      <created>1742439548907</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1742439548907</updated>
-    </task>
-    <task id="LOCAL-00014" summary="fix lai trang sp moi nhat">
-      <option name="closed" value="true" />
-      <created>1742440931062</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1742440931062</updated>
-    </task>
-    <task id="LOCAL-00015" summary="fix lai trang sp ban chạy">
-      <option name="closed" value="true" />
-      <created>1742441446974</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1742441446974</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,9 +354,6 @@
     <MESSAGE value="css form đặt hàng" />
     <MESSAGE value="fix lỗi" />
     <MESSAGE value="chỉnh sửa đơn đặt hàng" />
-    <MESSAGE value="test commit" />
-    <MESSAGE value="fix lai trang sp moi nhat" />
-    <MESSAGE value="fix lai trang sp ban chạy" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix lai trang sp ban chạy" />
+
   </component>
 </project>
