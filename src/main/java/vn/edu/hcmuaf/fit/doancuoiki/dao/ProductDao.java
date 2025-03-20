@@ -160,7 +160,7 @@ public Product getProductById(int id) {
 // product new
 public List<Product> getLast8Products() {
     List<Product> list = new ArrayList<>();
-    String query = "SELECT * FROM vehicletypes ORDER BY id DESC LIMIT 8";  // Adjust the query to fetch the last 8 products
+    String query = "SELECT * FROM vehicletypes WHERE isAvailable > 0 ORDER BY id DESC LIMIT 8";  // Adjust the query to fetch the last 8 products
 
     try {
         conn = new DBContext().getConnection();
@@ -170,13 +170,13 @@ public List<Product> getLast8Products() {
             list.add(new Product(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getInt("year"),
+                    0,
                     rs.getString("brand"),
-                    rs.getString("type"),
-                    rs.getDouble("price"),
+                    rs.getString("category"),
+                    rs.getDouble("rentalPrice"),
                     rs.getString("description"),
-                    rs.getString("img"),
-                    rs.getString("numberPlate")
+                    rs.getString("image"),
+                    rs.getInt("totalVehicles")
             ));
         }
     } catch (Exception e) {
@@ -599,5 +599,12 @@ public List<Product> searchUnbookedProductByName(String name) {
         return list;
     }
 
+    public static void main(String[] args) {
+        ProductDao dao = new ProductDao();
+        List<Product> list = dao.getLast8Products();
+        for (Product product : list) {
+            System.out.println(product);
+        }
+    }
 }
 
