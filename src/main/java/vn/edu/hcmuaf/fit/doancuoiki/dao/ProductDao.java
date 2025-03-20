@@ -184,10 +184,10 @@ public List<Product> getLast8Products() {
     }
     return list;
 }
-    // Fetch the 8 most expensive products
+    // san pham ban chay
     public List<Product> getMostExpensiveProducts() {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT * FROM products ORDER BY price DESC LIMIT 8";  // Fetch the 8 most expensive products
+        String query = "SELECT * FROM vehicletypes WHERE isAvailable > 0 ORDER BY rentalPrice DESC LIMIT 8";  // Fetch the 8 most expensive products
 
         try {
             conn = new DBContext().getConnection();
@@ -197,13 +197,13 @@ public List<Product> getLast8Products() {
                 list.add(new Product(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getInt("year"),
+                        0,
                         rs.getString("brand"),
-                        rs.getString("type"),
-                        rs.getDouble("price"),
+                        rs.getString("category"),
+                        rs.getDouble("rentalPrice"),
                         rs.getString("description"),
-                        rs.getString("img"),
-                        rs.getString("numberPlate")
+                        rs.getString("image"),
+                        rs.getInt("totalVehicles")
                 ));
             }
         } catch (Exception e) {
@@ -601,7 +601,7 @@ public List<Product> searchUnbookedProductByName(String name) {
 
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();
-        List<Product> list = dao.getLast8Products();
+        List<Product> list = dao.getMostExpensiveProducts();
         for (Product product : list) {
             System.out.println(product);
         }
