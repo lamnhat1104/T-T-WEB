@@ -250,6 +250,34 @@ public class UserDao {
             e.printStackTrace();
         }
     }
+    public void deleteCustomer(int customerId) {
+        String deleteUserDetailsQuery = "DELETE FROM userdetails WHERE id = ?";
+        String deleteUserQuery = "DELETE FROM users WHERE id = ?";
+
+        try (Connection conn = new DBContext().getConnection()) {
+            conn.setAutoCommit(false); // Bắt đầu transaction
+
+            // Xóa dữ liệu từ bảng userdetails
+            try (PreparedStatement ps1 = conn.prepareStatement(deleteUserDetailsQuery)) {
+                ps1.setInt(1, customerId);
+                ps1.executeUpdate();
+            }
+
+            // Xóa dữ liệu từ bảng users
+            try (PreparedStatement ps2 = conn.prepareStatement(deleteUserQuery)) {
+                ps2.setInt(1, customerId);
+                int rowsAffected = ps2.executeUpdate();
+                if (rowsAffected > 0) {
+                    conn.commit(); // Commit nếu thành công
+                } else {
+                    conn.rollback(); // Rollback nếu không có bản ghi nào bị ảnh hưởng
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) throws SQLException {
         UserDao dao = new UserDao();

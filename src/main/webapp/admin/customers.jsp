@@ -239,7 +239,7 @@
                           <button type="button">Sửa</button>
 <%--                          <button type="button" onclick="showEditForm('${v.id}', '${v.name}', '${v.brand}', '${v.category}', '${v.totalPrice}', '${v.description}', '${v.image}', '${v.totalVehicles}', '${v.available}')">Sửa</button>--%>
                                                                           <form action="admin?action=deleteCustomer" method="POST" style="display:inline;">
-                                                                              <input type="hidden" name="orderId" value="${u.id}"/>
+                                                                              <input type="hidden" name="customerId" value="${u.id}"/>
                                                                               <button type="submit" class="see-btn">Xóa</button>
                                                                           </form>
 <%--                          <button type="submit" class="see-btn">Xóa</button>--%>

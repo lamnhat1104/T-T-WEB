@@ -3,7 +3,7 @@ package vn.edu.hcmuaf.fit.doancuoiki.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.doancuoiki.dao.CustomerDao;
+
 import vn.edu.hcmuaf.fit.doancuoiki.dao.OrderDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.VehicleTypeDao;
@@ -147,8 +147,8 @@ public class AdminController extends HttpServlet {
         try {
             int customerId = Integer.parseInt(customerIdStr);
             UserDao dao = new UserDao();
-            CustomerDao.deleteCustomer(customerId);
-            response.sendRedirect("admin/customers.jsp"); // Điều hướng về danh sách khách hàng
+            dao.deleteCustomer(customerId);
+            managerCustomer(request,response);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Customer ID format");
         }
