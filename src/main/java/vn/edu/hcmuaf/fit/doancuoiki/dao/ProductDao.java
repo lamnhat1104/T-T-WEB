@@ -598,6 +598,24 @@ public List<Product> searchUnbookedProductByName(String name) {
         }
         return list;
     }
+//    xoa san pham
+public boolean deleteProduct(int productId) {
+    String query = "DELETE FROM vehicletypes WHERE id = ?";
+    try {
+        conn = new DBContext().getConnection();
+        ps = conn.prepareStatement(query);
+        ps.setInt(1, productId); // Gán ID sản phẩm vào câu truy vấn
+
+        int rowsAffected = ps.executeUpdate(); // Thực thi câu lệnh DELETE
+
+        // Kiểm tra xem có dòng nào bị xóa không
+        return rowsAffected > 0;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
 
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();

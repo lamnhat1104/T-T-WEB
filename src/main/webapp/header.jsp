@@ -61,7 +61,7 @@
 
                     <ul class="header__navbar-user-menu">
                         <li class="header__navbar-user-item">
-                            <a href="">Tài khoản của tôi</a>
+                            <a href="account.jsp?id=<%= user.getId() %>">Tài khoản của tôi</a>
                         </li>
                         <li class="header__navbar-user-item">
                             <a href="">Địa chỉ của tôi</a>

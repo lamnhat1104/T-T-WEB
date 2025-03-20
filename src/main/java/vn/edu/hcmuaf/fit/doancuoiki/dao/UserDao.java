@@ -250,10 +250,47 @@ public class UserDao {
             e.printStackTrace();
         }
     }
+// thay đổi thông tin user
+public boolean updateUser(int userId, String fullName,  String email , String address, String phone) {
+    String queryUser = "UPDATE users SET email = ? WHERE id = ?";
+    String queryUserInfo = "UPDATE userdetails SET fullName = ?, phoneNumber = ?, address = ? WHERE userId = ?";
+
+    try (Connection conn = new DBContext().getConnection()) {
+        // Cập nhật bảng users (email)
+        try (PreparedStatement psUser = conn.prepareStatement(queryUser)) {
+            psUser.setString(1, email);
+            psUser.setInt(2, userId);
+            psUser.executeUpdate();
+        }
+
+        // Cập nhật bảng userDetails (fullName, phone, address)
+        try (PreparedStatement psUserInfo = conn.prepareStatement(queryUserInfo)) {
+            psUserInfo.setString(1, fullName);
+            psUserInfo.setString(2, phone);
+            psUserInfo.setString(3, address);
+            psUserInfo.setInt(4, userId);
+            psUserInfo.executeUpdate();
+        }
+
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+
+
 
     public static void main(String[] args) throws SQLException {
         UserDao dao = new UserDao();
-        for(User u : dao.getUsers())
-            System.out.println(u);
+        boolean res = dao.updateUser(7,"chim",
+                "nhiihuynhh70@gamil.com","thu duc","0919323254");
+        if(res ){
+            System.out.println("thanh cong");
+
+        }else {
+            System.out.println("not thanh cong");
+        }
+
     }
 }
