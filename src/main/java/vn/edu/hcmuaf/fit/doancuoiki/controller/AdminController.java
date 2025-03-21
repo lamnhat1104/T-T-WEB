@@ -4,10 +4,9 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-import vn.edu.hcmuaf.fit.doancuoiki.dao.OrderDao;
-import vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao;
-import vn.edu.hcmuaf.fit.doancuoiki.dao.VehicleTypeDao;
+import vn.edu.hcmuaf.fit.doancuoiki.dao.*;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Promotion;
 import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
 
@@ -40,6 +39,9 @@ public class AdminController extends HttpServlet {
             case "managerOrder":
                 managerOrder(request, response);
                 break;
+            case "managerPromotion":
+                managerPromotion(request, response);
+                break;
         }
     }
 
@@ -70,6 +72,14 @@ public class AdminController extends HttpServlet {
                 break;
         }
     }
+
+    private void managerPromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PromotionDao promotionDao = new PromotionDao();
+        List<Promotion> promotions = promotionDao.getAllPromotion();
+        request.setAttribute("promotions", promotions);
+        request.getRequestDispatcher("admin/promotion.jsp").forward(request, response);
+    }
+
 
 
     private void managerOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
