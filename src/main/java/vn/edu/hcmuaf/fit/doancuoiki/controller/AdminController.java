@@ -65,6 +65,9 @@ public class AdminController extends HttpServlet {
             case "updateCustomer":
                 updateCustomer(request, response);
                 break;
+            case "deleteVehicleType":
+                deleteVehicleType(request, response);
+                break;
         }
     }
 
@@ -192,6 +195,13 @@ public class AdminController extends HttpServlet {
         List<VehicleType> vehicleTypeList = dao.getAllVehicleType();
         request.setAttribute("vehicleTypeList", vehicleTypeList);
         request.getRequestDispatcher("admin/motorbikes.jsp").forward(request, response);
+    }
+
+    private void deleteVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("vehicleId"));
+        VehicleTypeDao dao = new VehicleTypeDao();
+        dao.deleteVehicleType(id);
+        managerVehicleType(request, response);
     }
 
     private void updateVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
