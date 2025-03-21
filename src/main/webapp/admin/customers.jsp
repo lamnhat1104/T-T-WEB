@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -237,7 +238,7 @@
                       </td>
                       <td>
                           <button type="button">Sửa</button>
-<%--                          <button type="button" onclick="showEditForm('${v.id}', '${v.name}', '${v.brand}', '${v.category}', '${v.totalPrice}', '${v.description}', '${v.image}', '${v.totalVehicles}', '${v.available}')">Sửa</button>--%>
+<%--                          <button type="button" onclick="showEditForm('${u.id}', '${u.userInfo.fullName}', '${u.userInfo.phoneNumber}', '${u.userInfo.birthDay}', '${u.email}', '${u.userInfo.address}', '${u.roleId}', '${u.isActive}')">Sửa</button>--%>
                                                                           <form action="admin?action=deleteCustomer" method="POST" style="display:inline;">
                                                                               <input type="hidden" name="customerId" value="${u.id}"/>
                                                                               <button type="submit" class="see-btn">Xóa</button>
@@ -299,9 +300,67 @@
             <button type="submit" class="btn btn--primary">Thêm khách hàng</button>
         </div>
     </form>
-  </main>
+      <div id="editCustomerForm" style="display:none;">
+          <form action="admin?action=updateCustomer" method="post">
+              <label for="customerId">Mã khách hàng:</label>
+              <input type="text" id="customerId" name="customerId" readonly /><br/>
 
-  <script>
+              <label for="fullName">Họ và tên:</label>
+              <input type="text" id="fullName" name="fullName" required /><br/>
+
+              <label for="phoneNumber">Số điện thoại:</label>
+              <input type="text" id="phoneNumber" name="phoneNumber" required /><br/>
+
+              <label for="birthDayCus">Ngày sinh:</label>
+              <input type="date" id="birthDayCus" name="birthDay" value="<fmt:formatDate value='${u.userInfo.birthDay}' pattern='yyyy-MM-dd'/>" required />
+
+
+              <label for="emailCus">Email:</label>
+              <input type="email" id="emailCus" name="email" required /><br/>
+
+              <label for="addressCus">Địa chỉ:</label>
+              <input type="text" id="addressCus" name="address" required /><br/>
+
+              <label for="roleId">Vai trò:</label>
+              <select id="roleId" name="roleId" required>
+                  <option value="1">Khách hàng</option>
+                  <option value="2">Quản trị viên</option>
+              </select><br/>
+
+              <label for="isActive">Trạng thái:</label>
+              <select id="isActive" name="isActive" required>
+                  <option value="1">Hoạt động</option>
+                  <option value="0">Bị khóa</option>
+              </select><br/>
+
+              <button type="submit">Cập nhật khách hàng</button>
+              <button type="button" onclick="hideEditCustomerForm()">Hủy</button>
+          </form>
+      </div>
+
+      <script>
+          function showEditCustomerForm(id, fullName, phoneNumber, birthDay, email, address, roleId, isActive) {
+              // Điền thông tin vào form
+              document.getElementById("customerId").value = id; // Không cho chỉnh sửa
+              document.getElementById("fullName").value = fullName;
+              document.getElementById("phoneNumber").value = phoneNumber;
+              document.getElementById("birthDayCus").value = birthDay;
+              document.getElementById("emailCus").value = email;
+              document.getElementById("addressCus").value = address;
+              document.getElementById("roleId").value = roleId;
+              document.getElementById("isActive").value = isActive;
+
+              // Hiển thị form cập nhật khách hàng
+              document.getElementById("editCustomerForm").style.display = "block";
+          }
+
+          function hideEditCustomerForm() {
+              // Ẩn form khi hủy
+              document.getElementById("editCustomerForm").style.display = "none";
+          }
+      </script>
+
+      <script>
     function openConfig() {
       document.getElementById('configModal').style.display = 'flex';
     }

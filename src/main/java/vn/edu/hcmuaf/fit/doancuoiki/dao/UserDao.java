@@ -278,6 +278,48 @@ public class UserDao {
         }
     }
 
+    public boolean updateCustomer(int id, int userId, String fullName, String phoneNumber, Date birthDay, String email, String address, int roleId, int isActive) {
+        String sql1 = "UPDATE userdetails SET fullName = ?, phoneNumber = ?, birthDay = ?, address = ? WHERE userId = ?";
+        String sql2 = "UPDATE users SET email = ?, roleId = ?, isActive = ? WHERE id = ?";
+
+        try (Connection conn = new DBContext().getConnection()) {
+            conn.setAutoCommit(false); // Bắt đầu giao dịch
+
+            try (PreparedStatement pre1 = conn.prepareStatement(sql1)) {
+                pre1.setString(1, fullName);
+                pre1.setString(2, phoneNumber);
+                pre1.setDate(3, birthDay);
+                pre1.setString(4, address);
+                pre1.setInt(5, userId);
+                int rows1 = pre1.executeUpdate();
+
+                try (PreparedStatement pre2 = conn.prepareStatement(sql2)) {
+                    pre2.setString(1, email);
+                    pre2.setInt(2, roleId);
+                    pre2.setInt(3, isActive);
+                    pre2.setInt(4, id);
+                    int rows2 = pre2.executeUpdate();
+
+                    if (rows1 > 0 && rows2 > 0) {
+                        conn.commit(); // Nếu cả hai thành công, commit transaction
+                        return true;
+                    } else {
+                        conn.rollback(); // Nếu có lỗi, rollback
+                        return false;
+                    }
+                }
+            } catch (SQLException e) {
+                conn.rollback(); // Rollback nếu có lỗi
+                e.printStackTrace();
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 
     public static void main(String[] args) throws SQLException {
         UserDao dao = new UserDao();

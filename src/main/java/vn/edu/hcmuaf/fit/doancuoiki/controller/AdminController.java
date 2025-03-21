@@ -62,6 +62,9 @@ public class AdminController extends HttpServlet {
             case "deleteCustomer":
                 deleteCustomer(request, response);
                 break;
+            case "updateCustomer":
+                updateCustomer(request, response);
+                break;
         }
     }
 
@@ -157,24 +160,26 @@ public class AdminController extends HttpServlet {
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Lấy các tham số từ form
-            int orderId = Integer.parseInt(request.getParameter("orderId")); // Lấy ID đơn hàng
-            int customerId = Integer.parseInt(request.getParameter("customerId")); // Lấy mã khách hàng
-            String deliveryAddress = request.getParameter("deliveryAddress"); // Lấy địa chỉ giao xe
-            String rentalStartDate = request.getParameter("rentalStartDate"); // Lấy ngày thuê
-            String expectedReturnDate = request.getParameter("expectedReturnDate"); // Lấy ngày trả dự kiến
-            String licensePlate = request.getParameter("licensePlate"); // Lấy biển số xe
-            double rentalPrice = Double.parseDouble(request.getParameter("rentalPrice")); // Lấy giá thuê xe
-            String status = request.getParameter("status"); // Lấy trạng thái đơn hàng
+            int id = Integer.parseInt(request.getParameter("id"));
+            int userId = Integer.parseInt(request.getParameter("customerId"));
+            String fullName = request.getParameter("fullName");
+            String phoneNumber = request.getParameter("phoneNumber");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            int roleId = Integer.parseInt(request.getParameter("roleId"));
+            int isActive = Integer.parseInt(request.getParameter("isActive"));
+            String birthDayStr = request.getParameter("birthDay");
+            Date birthDay = null;
+            if (birthDayStr != null && !birthDayStr.isEmpty()) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                birthDay = new Date(dateFormat.parse(birthDayStr).getTime());
+            }
 
-            // Chuyển đổi ngày từ String sang Date
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
-            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
             // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
-            OrderDao dao = new OrderDao();
+            UserDao userDao = new UserDao();
             // Cập nhật đơn hàng
-            dao.updateOrder(orderId, customerId, deliveryAddress, startDate, endDate, licensePlate, rentalPrice, status);
-            managerOrder(request,response);
+            userDao.updateCustomer(id, userId, fullName, phoneNumber, birthDay, email, address, roleId, isActive);
+            managerCustomer(request,response);
 
         } catch (Exception e) {
             e.printStackTrace();
