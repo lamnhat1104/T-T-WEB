@@ -144,7 +144,7 @@
                     <span>Phản hồi khách hàng</span></a>
             </li>
             <li>
-                <a href="promotion.jsp"><span class="las la-ticket-alt"></span>
+                <a href="/demo/admin?action=managerPromotion"><span class="las la-ticket-alt"></span>
                     <span>Quản lý khuyến mãi</span></a>
             </li>
             <li>
@@ -220,11 +220,11 @@
                                         <td>${v.available==1? "Hien" : "An"}</td>
                                         <td>
                                             <button type="button" onclick="showEditForm('${v.id}', '${v.name}', '${v.brand}', '${v.category}', '${v.totalPrice}', '${v.description}', '${v.image}', '${v.totalVehicles}', '${v.available}')">Sửa</button>
-<%--                                            <form action="admin?action=deleteOrder" method="POST" style="display:inline;">--%>
-<%--                                                <input type="hidden" name="orderId" value="${o.id}"/>--%>
-<%--                                                <button type="submit" class="see-btn">Xóa</button>--%>
-<%--                                            </form>--%>
-                                            <button type="submit" class="see-btn">Xóa</button>
+                                            <form action="admin?action=deleteVehicleType" method="POST" style="display:inline;">
+                                                <input type="hidden" name="vehicleId" value="${v.id}"/>
+                                                <button type="submit" class="see-btn">Xóa</button>
+                                            </form>
+<%--                                            <button type="submit" class="see-btn">Xóa</button>--%>
                                         </td>
                                     </tr>
                                 </c:forEach>

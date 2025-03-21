@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.doancuoiki.dao;
 
 import vn.edu.hcmuaf.fit.doancuoiki.db.DBContext;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Promotion;
 import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
 
 import java.sql.Connection;
@@ -10,29 +11,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleTypeDao {
-
-    public List<VehicleType> getAllVehicleType () {
-        List<VehicleType> vehicleTypeList = new ArrayList<VehicleType>();
+public class PromotionDao {
+    public List<Promotion> getAllPromotion () {
+        List<Promotion> promotionList = new ArrayList<Promotion>();
         try(Connection conn = new DBContext().getConnection();
-            PreparedStatement ps = conn.prepareStatement("select * from vehicletypes");){
+            PreparedStatement ps = conn.prepareStatement("select * from promotions");){
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                VehicleType vehicleType = new VehicleType(rs.getInt("id"), rs.getString("image"));
-                vehicleType.setId(rs.getInt("id"));
-                vehicleType.setName(rs.getString("name"));
-                vehicleType.setBrand(rs.getString("brand"));
-                vehicleType.setCategory(rs.getString("category"));
-                vehicleType.setTotalPrice(rs.getInt("rentalPrice"));
-                vehicleType.setDescription(rs.getString("description"));
-                vehicleType.setImage(rs.getString("image"));
-                vehicleType.setTotalVehicles(rs.getInt("totalVehicles"));
-                vehicleType.setAvailable(rs.getInt("isAvailable"));
-                vehicleTypeList.add(vehicleType);
+                Promotion promotion = new Promotion();
+                promotion.setId(rs.getInt("id"));
+                promotion.setPromotionName(rs.getString("promotionName"));
+                promotion.setDescription(rs.getString("description"));
+                promotion.setDiscountValue(rs.getDouble("discountValue"));
+                promotion.setDiscountType(rs.getString("discountType"));
+                promotion.setStartDate(rs.getDate("startDate"));
+                promotion.setEndDate(rs.getDate("endDate"));
+                promotion.setIsActive(rs.getInt("isActive"));
+                promotionList.add(promotion);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } return vehicleTypeList;
+        } return promotionList;
     }
 
     public void deleteVehicleType(int id){
@@ -49,7 +48,7 @@ public class VehicleTypeDao {
     public void updateVehicleType(int id, String name, String brand, String category, double totalPrice, String description, String image, int totalVehicles,  int available ) {
         String squery = "UPDATE vehicletypes set id=?, name=?, brand = ?, category = ?, rentalPrice = ?, description = ?, image = ?, totalVehicles = ?, isAvailable = ? where id = ? ";
         try(Connection conn = new DBContext().getConnection();
-        PreparedStatement pre = conn.prepareStatement(squery)){
+            PreparedStatement pre = conn.prepareStatement(squery)){
             pre.setInt(1, id);
             pre.setString(2, name);
             pre.setString(3, brand);
@@ -81,13 +80,6 @@ public class VehicleTypeDao {
             pre.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public static void main(String[] args) {
-        VehicleTypeDao vehicleTypeDao = new VehicleTypeDao();
-        for(VehicleType vehicleType : vehicleTypeDao.getAllVehicleType()) {
-            System.out.println(vehicleType.getDescription());
         }
     }
 }

@@ -123,7 +123,7 @@
           <span>Phản hồi khách hàng</span></a>
       </li>
       <li>
-        <a href="promotion.jsp"><span class="las la-ticket-alt"></span>
+        <a href="/demo/admin?action=managerPromotion"><span class="las la-ticket-alt"></span>
           <span>Quản lý khuyến mãi</span></a>
       </li>
       <li>
@@ -246,6 +246,7 @@
           </div>
         </div>
       </div>
+    </div>
   </main>
 </div>
 
