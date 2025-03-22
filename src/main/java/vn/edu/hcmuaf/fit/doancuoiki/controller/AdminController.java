@@ -5,13 +5,11 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import vn.edu.hcmuaf.fit.doancuoiki.dao.*;
-import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
-import vn.edu.hcmuaf.fit.doancuoiki.model.Promotion;
-import vn.edu.hcmuaf.fit.doancuoiki.model.User;
-import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
+import vn.edu.hcmuaf.fit.doancuoiki.model.*;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -41,6 +39,21 @@ public class AdminController extends HttpServlet {
                 break;
             case "managerPromotion":
                 managerPromotion(request, response);
+                break;
+            case "managerContact":
+                managerContact(request, response);
+                break;
+            case "managerNew":
+                managerNew(request, response);
+                break;
+            case "managerStatMotor":
+                managerStatMotor(request, response);
+                break;
+            case "managerStatIncome":
+                managerStatIncome(request, response);
+                break;
+            case "managerSetting":
+                managerSetting(request, response);
                 break;
         }
     }
@@ -80,7 +93,49 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher("admin/promotion.jsp").forward(request, response);
     }
 
+    private void addPromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {;
+        String promotionName = request.getParameter("addName");
+        String description = request.getParameter("addDescription");
+        double discountValue = Double.parseDouble(request.getParameter("addDiscountValue"));
+        String startDatee = request.getParameter("addStartDate");
+        String endDatee = request.getParameter("addEndDate");
+        int isActive = Integer.parseInt(request.getParameter("addIsActive"));
+        int discountType = Integer.parseInt(request.getParameter("addDiscountType"));
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = new Date(dateFormat.parse(startDatee).getTime());
+        Date endDate = new Date(dateFormat.parse(endDatee).getTime());
+
+        PromotionDao promotionDao = new PromotionDao();
+        promotionDao.addPromotion(promotionName, description, discountValue, discountType, startDate, endDate, isActive);
+        managerVehicleType(request, response);
+    }
+
+    private void managerContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ContactDao contactDao = new ContactDao();
+        List<Contact> contacts = contactDao.getAllContact();
+        request.setAttribute("contacts", contacts);
+        request.getRequestDispatcher("admin/feedback.jsp").forward(request, response);
+    }
+
+    private void managerNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        NewDao newDao = new NewDao();
+        List<New> news = newDao.getAllNew();
+        request.setAttribute("news", news);
+        request.getRequestDispatcher("admin/qltintuc.jsp").forward(request, response);
+    }
+
+    private void managerStatMotor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("admin/stats_motors.jsp").forward(request, response);
+    }
+
+    private void managerStatIncome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("admin/stats_income.jsp").forward(request, response);
+    }
+
+    private void managerSetting(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("admin/setting.jsp").forward(request, response);
+    }
 
     private void managerOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderDao orderDao = new OrderDao();

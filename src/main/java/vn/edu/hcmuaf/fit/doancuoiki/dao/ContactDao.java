@@ -2,11 +2,14 @@ package vn.edu.hcmuaf.fit.doancuoiki.dao;
 
 import vn.edu.hcmuaf.fit.doancuoiki.db.DBContext;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Contact;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Promotion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static vn.edu.hcmuaf.fit.doancuoiki.db.DBContext.getConnection;
 
@@ -31,6 +34,25 @@ public class ContactDao {
             e.printStackTrace();
             return false;
         }
+    }
+    public List<Contact> getAllContact () {
+        List<Contact> contactList = new ArrayList<Contact>();
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from contacts");){
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Contact contact  = new Contact();
+                contact.setId(rs.getInt("id"));
+                contact.setFullName(rs.getString("fullName"));
+                contact.setEmail(rs.getString("email"));
+                contact.setMessage(rs.getString("subject"));
+                contact.setCreateDate(rs.getDate("createdDate").toLocalDate());
+                contact.setProcessingStatus(rs.getString("processingStatus"));
+                contactList.add(contact);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } return contactList;
     }
 
 }
