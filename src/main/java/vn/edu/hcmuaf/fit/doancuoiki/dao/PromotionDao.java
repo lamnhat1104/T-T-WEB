@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PromotionDao {
@@ -65,18 +66,17 @@ public class PromotionDao {
         }
     }
 
-    public void addVehicleType(String name, String brand, String category, double totalPrice, String description, String image, int totalVehicles, int available) {
-        String squery = "INSERT INTO vehicletypes (name, brand, category, rentalPrice, description, image, totalVehicles, isAvailable) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public void addPromotion(String promotionName, String description, double discountValue, int discountType, Date startDate, Date endDate, int isActive) {
+        String squery = "INSERT INTO promotions (promotionName, description, discountValue, startDate, endDate, isActive, discountType) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = new DBContext().getConnection();
              PreparedStatement pre = conn.prepareStatement(squery)) {
-            pre.setString(1, name);
-            pre.setString(2, brand);
-            pre.setString(3, category);
-            pre.setDouble(4, totalPrice);
-            pre.setString(5, description);
-            pre.setString(6, image);
-            pre.setInt(7, totalVehicles);
-            pre.setInt(8, available);
+            pre.setString(1, promotionName);
+            pre.setString(2, description);
+            pre.setDouble(3, discountValue);
+            pre.setDate(4, (java.sql.Date) startDate);
+            pre.setDate(5, (java.sql.Date) endDate);
+            pre.setInt(6, isActive);
+            pre.setInt(7, discountType);
             pre.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
