@@ -10,12 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="fix lỗi chuyển trang">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/admin.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/giohang.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/xemgiohang.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/xemgiohang.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Jsp File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -34,7 +45,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/lamnhat1104/T-T-WEB.git&quot;,
-    &quot;accountId&quot;: &quot;7d99f060-5728-4e30-bfc5-75a0805a6b03&quot;
+    &quot;accountId&quot;: &quot;2d98ba9b-cf9c-4d93-b35a-bc8a5e6f2a0f&quot;
   }
 }</component>
   <component name="LogFilters">
@@ -62,9 +73,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.341.executor&quot;: &quot;Run&quot;,
     &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;22130195-MaiLamNhat&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130145-TranThiThuyLinh&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -99,17 +114,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 11.0.0" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.0" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 10.1.341" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.341" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../../../Program Files/Java/jdk-23" nameIsGenerated="true">
+      <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="demo:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/demo" />
+            <option name="CONTEXT_PATH" value="/demo_war" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="740f90e1-0941-4234-aa65-0607bbfe9636" />
+        <option name="BASE_DIRECTORY_NAME" value="cb9db01a-979f-4452-abe3-9d1d8051b14d" />
+        <option name="JNDI_PORT" value="1098" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -117,7 +134,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="58317" />
+        <option name="DEBUG_PORT" value="49964" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -190,8 +207,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
     </attachedChunks>
   </component>
@@ -213,6 +230,9 @@
       <workItem from="1741772193633" duration="1839000" />
       <workItem from="1741796927948" duration="3747000" />
       <workItem from="1741880630804" duration="7727000" />
+      <workItem from="1742103661265" duration="7380000" />
+      <workItem from="1742357359749" duration="60000" />
+      <workItem from="1742653803273" duration="643000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -270,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741889647356</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix lỗi chuyển trang">
+      <option name="closed" value="true" />
+      <created>1742103870061</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742103870061</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
