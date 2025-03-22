@@ -28,7 +28,7 @@
                 width: 80%;
                 background-color: white;
                 padding: 20px;
-                border-radius: 8px;
+                border-radius: 9px;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             }
 
