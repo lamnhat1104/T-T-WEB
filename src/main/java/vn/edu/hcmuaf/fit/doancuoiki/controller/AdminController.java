@@ -5,13 +5,11 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import vn.edu.hcmuaf.fit.doancuoiki.dao.*;
-import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
-import vn.edu.hcmuaf.fit.doancuoiki.model.Promotion;
-import vn.edu.hcmuaf.fit.doancuoiki.model.User;
-import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
+import vn.edu.hcmuaf.fit.doancuoiki.model.*;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -42,6 +40,21 @@ public class AdminController extends HttpServlet {
             case "managerPromotion":
                 managerPromotion(request, response);
                 break;
+            case "managerContact":
+                managerContact(request, response);
+                break;
+            case "managerNew":
+                managerNew(request, response);
+                break;
+            case "managerStatMotor":
+                managerStatMotor(request, response);
+                break;
+            case "managerStatIncome":
+                managerStatIncome(request, response);
+                break;
+            case "managerSetting":
+                managerSetting(request, response);
+                break;
         }
     }
 
@@ -70,9 +83,18 @@ public class AdminController extends HttpServlet {
             case "deleteVehicleType":
                 deleteVehicleType(request, response);
                 break;
+            case "addPromotion":
+                addPromotion(request, response);
+                break;
+            case "deletePromotion":
+                deletePromotion(request, response);
+                break;
+            case "deleteContact":
+                deleteContact(request, response);
+                break;
         }
     }
-
+// Quản lý khuyến mãi
     private void managerPromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PromotionDao promotionDao = new PromotionDao();
         List<Promotion> promotions = promotionDao.getAllPromotion();
@@ -80,8 +102,75 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher("admin/promotion.jsp").forward(request, response);
     }
 
+    private void addPromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+        try {
+            String promotionName = request.getParameter("promo-name");
+            String description = request.getParameter("description");
+            double discountValue = Double.parseDouble(request.getParameter("discount-value"));
+            String startDatee = request.getParameter("start-date");
+            String endDatee = request.getParameter("end-date");
+            int isActive = Integer.parseInt(request.getParameter("is-active"));
+            int discountType = Integer.parseInt(request.getParameter("discount-type"));
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = new Date(dateFormat.parse(startDatee).getTime());
+            Date endDate = new Date(dateFormat.parse(endDatee).getTime());
+
+            PromotionDao promotionDao = new PromotionDao();
+            promotionDao.addPromotion(promotionName, description, discountValue, discountType, startDate, endDate, isActive);
+            managerPromotion(request, response);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void deletePromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("promo-id"));
+        PromotionDao promotionDao = new PromotionDao();
+        promotionDao.deletePromotion(id);
+        managerPromotion(request,response);
+    }
 
 
+// Quản lý phản hồi khách hàng
+    private void managerContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ContactDao contactDao = new ContactDao();
+        List<Contact> contacts = contactDao.getAllContact();
+        request.setAttribute("contacts", contacts);
+        request.getRequestDispatcher("admin/feedback.jsp").forward(request, response);
+    }
+    private void deleteContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("contact-id"));
+        ContactDao contactDao = new ContactDao();
+        contactDao.deleteContact(id);
+        managerContact(request,response);
+    }
+
+// Quản lý tin tức
+    private void managerNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        NewDao newDao = new NewDao();
+        List<New> news = newDao.getAllNew();
+        request.setAttribute("news", news);
+        request.getRequestDispatcher("admin/qltintuc.jsp").forward(request, response);
+    }
+
+
+
+    private void managerStatMotor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("admin/stats_motors.jsp").forward(request, response);
+    }
+
+    private void managerStatIncome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("admin/stats_income.jsp").forward(request, response);
+    }
+
+    private void managerSetting(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("admin/setting.jsp").forward(request, response);
+    }
+
+
+
+// Quanr lý đơn hàng
     private void managerOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderDao orderDao = new OrderDao();
         List<Order> orders = orderDao.getAllOrder();
@@ -129,6 +218,8 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher("admin/admin.jsp").forward(request, response);
     }
 
+
+// Quản lý khách hàng
     private void managerCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao dao = new UserDao();
         List<User> users = dao.getUsers();
@@ -200,6 +291,9 @@ public class AdminController extends HttpServlet {
         }
     }
 
+
+
+// Quản lý xe máy
     private void managerVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         VehicleTypeDao dao = new VehicleTypeDao();
         List<VehicleType> vehicleTypeList = dao.getAllVehicleType();

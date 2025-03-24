@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
   <title>Trang admin</title>
   <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
 </head>
 <body>
 <input type="checkbox" id="nav-toggle">
@@ -27,44 +29,44 @@
   <div class="sidebar-menu">
     <ul>
       <li>
-        <a href="admin.jsp">
+        <a href="/demo/admin?action=dashboard">
           <span class="las la-igloo"></span>
           <span>Dashboard</span></a>
       </li>
       <li>
-        <a href="customers.jsp"><span class="las la-users"></span>
+        <a href="/demo/admin?action=managerCustomer"><span class="las la-users"></span>
           <span>Quản lý khách hàng</span></a>
       </li>
       <li>
-        <a href="motorbikes.jsp"><span class="las la-motorcycle"></span>
+        <a href="/demo/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
           <span>Quản lý xe máy</span></a>
       </li>
       <li>
-        <a href="orders.jsp"><span class="las la-shopping-bag"></span>
+        <a href="/demo/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
           <span>Quản lý đơn hàng</span></a>
       </li>
       <li>
-        <a href="qltintuc.jsp"><span class="las la-newspaper"></span>
+        <a href="/demo/admin?action=managerNew"><span class="las la-newspaper"></span>
           <span>Quản lý tin tức</span></a>
       </li>
       <li>
-        <a href="feedback.jsp" class="feedback-active"><span class="las la-receipt"></span>
+        <a href="/demo/admin?action=managerContact" class="dashboard-active"><span class="las la-receipt"></span>
           <span>Phản hồi khách hàng</span></a>
       </li>
       <li>
-        <a href="promotion.jsp"><span class="las la-ticket-alt"></span>
+        <a href="/demo/admin?action=managerPromotion"><span class="las la-ticket-alt"></span>
           <span>Quản lý khuyến mãi</span></a>
       </li>
       <li>
-        <a href="stats_motors.jsp"><span class="las la-circle"></span>
+        <a href="/demo/admin?action=managerStatMotor"><span class="las la-circle"></span>
           <span>Thống kê xe máy</span></a>
       </li>
       <li>
-        <a href="stats_income.jsp"><span class="las la-clipboard-list"></span>
+        <a href="/demo/admin?action=managerStatIncome"><span class="las la-clipboard-list"></span>
           <span>Thống kê doanh thu</span></a>
       </li>
       <li>
-        <a href="setting.jsp"><span class="las la-cog"></span>
+        <a href="/demo/admin?action=managerSetting"><span class="las la-cog"></span>
           <span>Cài đặt</span></a>
       </li>
     </ul>
@@ -113,80 +115,35 @@
                 <th>Nội dung phản hồi</th>
                 <th>Ngày gửi</th>
                 <th>Trạng thái</th>
+                <th>Hành động</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>FB001</td>
-                <td>Nguyễn Văn A</td>
-                <td>vana@gmail.com</td>
-                <td>Dịch vụ rất tốt!</td>
-                <td>14/11/2023</td>
-                <td>Đã xử lý</td>
-              </tr>
-              <tr>
-                <td>FB002</td>
-                <td>Trần Thị B</td>
-                <td>thib@gmail.com</td>
-                <td>Xe sạch và mới, tôi rất hài lòng.</td>
-                <td>13/11/2023</td>
-                <td>Đang xử lý</td>
-              </tr>
-              <tr>
-                <td>FB001</td>
-                <td>Nguyễn Văn A</td>
-                <td>vana@gmail.com</td>
-                <td>Dịch vụ rất tốt!</td>
-                <td>14/11/2023</td>
-                <td>Đã xử lý</td>
-              </tr>
-              <tr>
-                <td>FB002</td>
-                <td>Trần Thị B</td>
-                <td>thib@gmail.com</td>
-                <td>Xe sạch và mới, tôi rất hài lòng.</td>
-                <td>13/11/2023</td>
-                <td>Đang xử lý</td>
-              </tr>
-              <tr>
-                <td>FB001</td>
-                <td>Nguyễn Văn A</td>
-                <td>vana@gmail.com</td>
-                <td>Dịch vụ rất tốt!</td>
-                <td>14/11/2023</td>
-                <td>Đã xử lý</td>
-              </tr>
-              <tr>
-                <td>FB002</td>
-                <td>Trần Thị B</td>
-                <td>thib@gmail.com</td>
-                <td>Xe sạch và mới, tôi rất hài lòng.</td>
-                <td>13/11/2023</td>
-                <td>Đang xử lý</td>
-              </tr>
-              <tr>
-                <td>FB001</td>
-                <td>Nguyễn Văn A</td>
-                <td>vana@gmail.com</td>
-                <td>Dịch vụ rất tốt!</td>
-                <td>14/11/2023</td>
-                <td>Đã xử lý</td>
-              </tr>
-              <tr>
-                <td>FB002</td>
-                <td>Trần Thị B</td>
-                <td>thib@gmail.com</td>
-                <td>Xe sạch và mới, tôi rất hài lòng.</td>
-                <td>13/11/2023</td>
-                <td>Đang xử lý</td>
-              </tr>
-
+              <c:forEach var="c" items="${contacts}">
+                <tr>
+                  <td>${c.id}</td>
+                  <td>${c.fullName}</td>
+                  <td>${c.email}</td>
+                  <td>${c.subject}</td>
+                  <td>${c.createdDate}</td>
+                  <td>${c.processingStatus}</td>
+                  <td>
+                    <button class="see-btn">sửa</button>
+                    <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
+                      <%--                  <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>--%>
+                    <form action="admin?action=deleteContact" method="POST" style="display:inline;">
+                      <input type="hidden" name="contact-id" value="${c.id}"/>
+                      <button type="submit" class="see-btn">Xóa</button>
+                    </form>
+                  </td>
+                </tr>
+              </c:forEach>
               </tbody>
             </table>
           </div>
         </div>
       </div>
-
+    </div>
   </main>
 
 </div>
