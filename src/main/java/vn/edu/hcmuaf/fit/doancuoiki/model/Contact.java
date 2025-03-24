@@ -2,19 +2,20 @@ package vn.edu.hcmuaf.fit.doancuoiki.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Contact implements Serializable {
     private int id;
     private String fullName;
     private String email;
     private String message;
-    private LocalDate createDate;
-    private String processingStatus;
+    private Date createDate;
+    private int processingStatus;
 
     public Contact() {
     }
 
-    public Contact(int id, String fullName, String email, String message, LocalDate createDate, String processingStatus ) {
+    public Contact(int id, String fullName, String email, String message, Date createDate, int processingStatus ) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -55,19 +56,19 @@ public class Contact implements Serializable {
         this.message = message;
     }
 
-    public LocalDate getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public String getProcessingStatus() {
+    public int getProcessingStatus() {
         return processingStatus;
     }
 
-    public void setProcessingStatus(String processingStatus) {
+    public void setProcessingStatus(int processingStatus) {
         this.processingStatus = processingStatus;
     }
 }

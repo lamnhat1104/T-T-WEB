@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,74 +115,29 @@
                 <th>Nội dung phản hồi</th>
                 <th>Ngày gửi</th>
                 <th>Trạng thái</th>
+                <th>Hành động</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>FB001</td>
-                <td>Nguyễn Văn A</td>
-                <td>vana@gmail.com</td>
-                <td>Dịch vụ rất tốt!</td>
-                <td>14/11/2023</td>
-                <td>Đã xử lý</td>
-              </tr>
-              <tr>
-                <td>FB002</td>
-                <td>Trần Thị B</td>
-                <td>thib@gmail.com</td>
-                <td>Xe sạch và mới, tôi rất hài lòng.</td>
-                <td>13/11/2023</td>
-                <td>Đang xử lý</td>
-              </tr>
-              <tr>
-                <td>FB001</td>
-                <td>Nguyễn Văn A</td>
-                <td>vana@gmail.com</td>
-                <td>Dịch vụ rất tốt!</td>
-                <td>14/11/2023</td>
-                <td>Đã xử lý</td>
-              </tr>
-              <tr>
-                <td>FB002</td>
-                <td>Trần Thị B</td>
-                <td>thib@gmail.com</td>
-                <td>Xe sạch và mới, tôi rất hài lòng.</td>
-                <td>13/11/2023</td>
-                <td>Đang xử lý</td>
-              </tr>
-              <tr>
-                <td>FB001</td>
-                <td>Nguyễn Văn A</td>
-                <td>vana@gmail.com</td>
-                <td>Dịch vụ rất tốt!</td>
-                <td>14/11/2023</td>
-                <td>Đã xử lý</td>
-              </tr>
-              <tr>
-                <td>FB002</td>
-                <td>Trần Thị B</td>
-                <td>thib@gmail.com</td>
-                <td>Xe sạch và mới, tôi rất hài lòng.</td>
-                <td>13/11/2023</td>
-                <td>Đang xử lý</td>
-              </tr>
-              <tr>
-                <td>FB001</td>
-                <td>Nguyễn Văn A</td>
-                <td>vana@gmail.com</td>
-                <td>Dịch vụ rất tốt!</td>
-                <td>14/11/2023</td>
-                <td>Đã xử lý</td>
-              </tr>
-              <tr>
-                <td>FB002</td>
-                <td>Trần Thị B</td>
-                <td>thib@gmail.com</td>
-                <td>Xe sạch và mới, tôi rất hài lòng.</td>
-                <td>13/11/2023</td>
-                <td>Đang xử lý</td>
-              </tr>
-
+              <c:forEach var="c" items="${contacts}">
+                <tr>
+                  <td>${c.id}</td>
+                  <td>${c.fullName}</td>
+                  <td>${c.email}</td>
+                  <td>${c.subject}</td>
+                  <td>${c.createdDate}</td>
+                  <td>${c.processingStatus}</td>
+                  <td>
+                    <button class="see-btn">sửa</button>
+                    <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
+                      <%--                  <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>--%>
+                    <form action="admin?action=deleteContact" method="POST" style="display:inline;">
+                      <input type="hidden" name="contact-id" value="${c.id}"/>
+                      <button type="submit" class="see-btn">Xóa</button>
+                    </form>
+                  </td>
+                </tr>
+              </c:forEach>
               </tbody>
             </table>
           </div>

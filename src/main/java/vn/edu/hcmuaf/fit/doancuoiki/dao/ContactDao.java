@@ -26,7 +26,7 @@ public class ContactDao {
             ps.setString(1, contact.getFullName());
             ps.setString(2, contact.getEmail());
             ps.setString(3, contact.getMessage());
-            ps.setString(4, contact.getProcessingStatus());
+            ps.setInt(4, contact.getProcessingStatus());
 
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;  // Trả về true nếu có ít nhất 1 dòng được chèn vào
@@ -46,13 +46,23 @@ public class ContactDao {
                 contact.setFullName(rs.getString("fullName"));
                 contact.setEmail(rs.getString("email"));
                 contact.setMessage(rs.getString("subject"));
-                contact.setCreateDate(rs.getDate("createdDate").toLocalDate());
-                contact.setProcessingStatus(rs.getString("processingStatus"));
+                contact.setCreateDate(rs.getDate("createdDate"));
+                contact.setProcessingStatus(rs.getInt("processingStatus"));
                 contactList.add(contact);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } return contactList;
+    }
+    public void deleteContact(int id){
+        String sql = "DELETE FROM contacts WHERE id = ?";
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(sql)){
+            pre.setInt(1, id);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

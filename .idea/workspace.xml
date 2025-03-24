@@ -9,11 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="liên kết admin, quản lý khuyến mãi">
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="chức năng thêm khuyến mãi, xóa khuyến mãi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ContactController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/ContactController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ContactDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ContactDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +238,7 @@
       <workItem from="1742605788577" duration="7155000" />
       <workItem from="1742659929769" duration="1482000" />
       <workItem from="1742745244516" duration="1207000" />
-      <workItem from="1742805697371" duration="6241000" />
+      <workItem from="1742805697371" duration="12520000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -398,11 +400,30 @@
       <option name="project" value="LOCAL" />
       <updated>1742660733033</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="chức năng thêm khuyến mãi, xóa khuyến mãi">
+      <option name="closed" value="true" />
+      <created>1742826364381</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1742826364381</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
@@ -418,6 +439,7 @@
     <MESSAGE value="chức năng xóa xe" />
     <MESSAGE value="quản lý khuyến mãi" />
     <MESSAGE value="liên kết admin, quản lý khuyến mãi" />
-    <option name="LAST_COMMIT_MESSAGE" value="liên kết admin, quản lý khuyến mãi" />
+    <MESSAGE value="chức năng thêm khuyến mãi, xóa khuyến mãi" />
+    <option name="LAST_COMMIT_MESSAGE" value="chức năng thêm khuyến mãi, xóa khuyến mãi" />
   </component>
 </project>

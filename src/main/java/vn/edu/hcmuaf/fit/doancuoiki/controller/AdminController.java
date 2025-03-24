@@ -89,6 +89,9 @@ public class AdminController extends HttpServlet {
             case "deletePromotion":
                 deletePromotion(request, response);
                 break;
+            case "deleteContact":
+                deleteContact(request, response);
+                break;
         }
     }
 // Quản lý khuyến mãi
@@ -136,7 +139,12 @@ public class AdminController extends HttpServlet {
         request.setAttribute("contacts", contacts);
         request.getRequestDispatcher("admin/feedback.jsp").forward(request, response);
     }
-
+    private void deleteContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("contact-id"));
+        ContactDao contactDao = new ContactDao();
+        contactDao.deleteContact(id);
+        managerContact(request,response);
+    }
 
 // Quản lý tin tức
     private void managerNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
