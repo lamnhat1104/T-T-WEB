@@ -35,8 +35,8 @@ public class PromotionDao {
         } return promotionList;
     }
 
-    public void deleteVehicleType(int id){
-        String sql = "DELETE FROM vehicletypes WHERE id = ?";
+    public void deletePromotion(int id){
+        String sql = "DELETE FROM promotions WHERE id = ?";
         try(Connection conn = new DBContext().getConnection();
             PreparedStatement pre = conn.prepareStatement(sql)){
             pre.setInt(1, id);

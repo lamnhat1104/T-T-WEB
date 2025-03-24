@@ -228,7 +228,12 @@
                 <td>${pm.startDate} - ${pm.endDate}</td>
                 <td>
                   <button class="see-btn">sửa</button>
-                  <button class="see-btn">xóa</button>
+                  <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
+<%--                  <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>--%>
+                  <form action="admin?action=deletePromotion" method="POST" style="display:inline;">
+                    <input type="hidden" name="promo-id" value="${pm.id}"/>
+                    <button type="submit" class="see-btn">Xóa</button>
+                  </form>
                 </td>
               </tr>
               </c:forEach>
@@ -241,9 +246,10 @@
         <div class="modal-content">
           <div class="admin-container">
             <div class="form-container">
+
               <h2>Thêm Khuyến Mãi</h2>
               <span class="close-btn" onclick="closeConfig()">&times;</span>
-              <form action="#" method="post" class="promotion-form">
+              <form action="admin?action=addPromotion" method="post" class="promotion-form">
                 <div class="form-group">
                   <label for="promo-code">Mã Khuyến Mãi:</label>
                   <input type="text" id="promo-code" name="promo-code" placeholder="Nhập mã khuyến mãi" required />
@@ -257,22 +263,34 @@
                   <textarea id="description" name="description" rows="3" placeholder="Mô tả chi tiết khuyến mãi"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="discount-value">Giá Trị Giảm (% hoặc VND):</label>
+                  <label for="discount-value">Giá Trị Giảm:</label>
                   <input type="number" id="discount-value" name="discount-value" placeholder="Nhập giá trị giảm" required />
                 </div>
                 <div class="form-group">
-                  <label for="time-period">Thời Gian:</label>
-                  <input type="datetime-local" id="time-period" name="time-period" required />
-                </div>
-                <div class="form-group">
-                  <label for="actions">Hành Động:</label>
-                  <select id="actions" name="actions" required>
-                    <option value="">-- Chọn hành động --</option>
-                    <option value="activate">Kích Hoạt</option>
-                    <option value="deactivate">Vô Hiệu Hóa</option>
+                  <label for="discount-type">% hoặc VND:</label>
+                  <select id="discount-type" name="discount-type" required>
+                    <option value="">-- Chọn Loại Giá Trị Giảm --</option>
+                    <option value="1">Phần Trăm (%)</option>
+                    <option value="2">Giá Trị Thực (VND)</option>
                   </select>
                 </div>
-                <button type="submit" class="submit-btn">Thêm Khuyến Mãi</button>
+                <div class="form-group">
+                  <label for="start-date">Thời Gian Bắt Đầu:</label>
+                  <input type="date" id="start-date" name="start-date" required />
+                </div>
+                <div class="form-group">
+                  <label for="end-date">Thời Gian Kết Thúc:</label>
+                  <input type="date" id="end-date" name="end-date" required />
+                </div>
+                <div class="form-group">
+                  <label for="is-active">Hành Động:</label>
+                  <select id="is-active" name="is-active" required>
+                    <option value="">-- Chọn Trạng Thái --</option>
+                    <option value="1">Kích Hoạt</option>
+                    <option value="2">Vô Hiệu Hóa</option>
+                  </select>
+                </div>
+                <button type="submit" class="submit-promotion">Thêm Khuyến Mãi</button>
               </form>
             </div>
           </div>
