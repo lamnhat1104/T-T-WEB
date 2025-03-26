@@ -9,15 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="fix tim kiem san pham">
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/UserInfo.java" afterDir="false" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="lam trang thong tin user và đổ dữ liệu lên">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/lich-su-thue-xe.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/lich-su-thue-xe.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +102,7 @@
       <recent name="D:\HK1_2024\T-T-WEB\DoAnCuoiKi" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UserDao">
+  <component name="RunManager" selected="Tomcat Server.tomcat">
     <configuration name="ProductDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="vn.edu.hcmuaf.fit.doancuoiki.dao.ProductDao" />
       <module name="demo" />
@@ -272,7 +269,7 @@
       <workItem from="1742356287282" duration="1329000" />
       <workItem from="1742439158636" duration="3360000" />
       <workItem from="1742442542994" duration="9856000" />
-      <workItem from="1742471742433" duration="1294000" />
+      <workItem from="1742471742433" duration="9067000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -402,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742441802217</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="lam trang thong tin user và đổ dữ liệu lên">
+      <option name="closed" value="true" />
+      <created>1742473378676</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1742473378676</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,6 +425,7 @@
     <MESSAGE value="fix lai trang sp moi nhat" />
     <MESSAGE value="fix lai trang sp ban chạy" />
     <MESSAGE value="fix tim kiem san pham" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tim kiem san pham" />
+    <MESSAGE value="lam trang thong tin user và đổ dữ liệu lên" />
+    <option name="LAST_COMMIT_MESSAGE" value="lam trang thong tin user và đổ dữ liệu lên" />
   </component>
 </project>

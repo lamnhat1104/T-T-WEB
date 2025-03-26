@@ -33,6 +33,7 @@
     function redirectToNewPage() {
       window.location.href = 'ProductNew';
     }
+
   </script>
 </head>
 <body>
@@ -59,26 +60,26 @@
     <h1>Hồ Sơ Của Tôi</h1>
     <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
 
-    <form class="profile-form">
+    <form class="profile-form" action="UpdateUser" method="post">
       <div class="form-group">
         <label for="username">Tên đăng nhập</label>
-        <input type="text" id="username" value="${user != null ? user.userInfo.fullName : ''}" >
+        <input type="text" id="username" value="${user != null ? user.userInfo.fullName : ''}" required>
         <span class="note">Tên đăng nhập chỉ có thể thay đổi một lần.</span>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" >
         <label for="email">Email</label>
-        <input type="email" id="email" value="${user != null ? user.email : ''}" >
+        <input type="email" id="email" value="${user != null ? user.email : ''}" required>
 
       </div>
 
       <div class="form-group">
         <label >Số điện thoại</label>
-        <input type="text" id="sdt" value="${user != null ? user.userInfo.phoneNumber : ''}" >
+        <input type="text" id="sdt" value="${user != null ? user.userInfo.phoneNumber : ''}" required>
       </div>
       <div class="form-group">
         <label >Địa chỉ</label>
-        <input type="text" id="address" value="${user != null ? user.userInfo.address : ''}" >
+        <input type="text" id="address" value="${user != null ? user.userInfo.address : ''}" required>
       </div>
 
       <div class="alert">
@@ -87,8 +88,10 @@
       </div>
       <button type="submit" class="save-button">Thây đổi thông tin</button>
     </form>
+
   </main>
 </div>
+// form
 <div id="footer"></div>
 </body>
 </html>

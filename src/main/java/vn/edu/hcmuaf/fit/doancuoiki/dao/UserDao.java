@@ -251,39 +251,38 @@ public class UserDao {
         }
     }
 // thay đổi thông tin user
-public boolean updateUser(int userId, String fullName,  String email , String address, String phone) {
-    String queryUser = "UPDATE users SET email = ? WHERE id = ?";
-    String queryUserInfo = "UPDATE userdetails SET fullName = ?, phoneNumber = ?, address = ? WHERE userId = ?";
+public boolean updateUser(int userId, String fullName, String email, String address, String phone) {
+    String query = """
+        UPDATE users u 
+        JOIN userdetails ud ON u.id = ud.userId
+        SET u.email = ?, ud.fullName = ?, ud.phoneNumber = ?, ud.address = ?
+        WHERE u.id = ?;
+    """;
 
-    try (Connection conn = new DBContext().getConnection()) {
-        // Cập nhật bảng users (email)
-        try (PreparedStatement psUser = conn.prepareStatement(queryUser)) {
-            psUser.setString(1, email);
-            psUser.setInt(2, userId);
-            psUser.executeUpdate();
-        }
+    try (Connection conn = new DBContext().getConnection();
+         PreparedStatement ps = conn.prepareStatement(query)) {
 
-        // Cập nhật bảng userDetails (fullName, phone, address)
-        try (PreparedStatement psUserInfo = conn.prepareStatement(queryUserInfo)) {
-            psUserInfo.setString(1, fullName);
-            psUserInfo.setString(2, phone);
-            psUserInfo.setString(3, address);
-            psUserInfo.setInt(4, userId);
-            psUserInfo.executeUpdate();
-        }
+        ps.setString(1, email);
+        ps.setString(2, fullName);
+        ps.setString(3, phone);
+        ps.setString(4, address);
+        ps.setInt(5, userId);
 
-        return true;
+        int rowsUpdated = ps.executeUpdate();
+        return rowsUpdated > 0; // Trả về true nếu có dòng nào được cập nhật
+
     } catch (SQLException e) {
         e.printStackTrace();
+        return false;
     }
-    return false;
 }
+
 
 
 
     public static void main(String[] args) throws SQLException {
         UserDao dao = new UserDao();
-        boolean res = dao.updateUser(7,"chim",
+        boolean res = dao.updateUser(7,"chimm",
                 "nhiihuynhh70@gamil.com","thu duc","0919323254");
         if(res ){
             System.out.println("thanh cong");

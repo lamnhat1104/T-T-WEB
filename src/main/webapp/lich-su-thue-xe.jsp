@@ -12,6 +12,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lịch Sử Thuê Xe Máy</title>
+  <script>
+    fetch('header.jsp')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+    // Chèn footer
+    fetch('footer.jsp')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    function filterBestSellers() {
+      window.location.href = 'ProductBestSeller';
+
+    }
+    function redirectToNewPage() {
+      window.location.href = 'ProductNew';
+    }
+
+  </script>
   <style>
     /* Tổng thể */
     body {
@@ -92,6 +110,7 @@
   </style>
 </head>
 <body>
+<header id="header"></header>
 <div class="container">
   <h1>Lịch Sử Thuê Xe Máy</h1>
   <div class="rental-history">
@@ -127,6 +146,7 @@
     </div>
   </div>
 </div>
+<div id="footer"></div>
 </body>
 </html>
 
