@@ -250,80 +250,20 @@ public class UserDao {
             e.printStackTrace();
         }
     }
-    public void deleteCustomer(int customerId) {
-        String deleteUserDetailsQuery = "DELETE FROM userdetails WHERE id = ?";
-        String deleteUserQuery = "DELETE FROM users WHERE id = ?";
 
-        try (Connection conn = new DBContext().getConnection()) {
-            conn.setAutoCommit(false); // Bắt đầu transaction
-
-            // Xóa dữ liệu từ bảng userdetails
-            try (PreparedStatement ps1 = conn.prepareStatement(deleteUserDetailsQuery)) {
-                ps1.setInt(1, customerId);
-                ps1.executeUpdate();
-            }
-
-            // Xóa dữ liệu từ bảng users
-            try (PreparedStatement ps2 = conn.prepareStatement(deleteUserQuery)) {
-                ps2.setInt(1, customerId);
-                int rowsAffected = ps2.executeUpdate();
-                if (rowsAffected > 0) {
-                    conn.commit(); // Commit nếu thành công
-                } else {
-                    conn.rollback(); // Rollback nếu không có bản ghi nào bị ảnh hưởng
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean updateCustomer(int id, int userId, String fullName, String phoneNumber, Date birthDay, String email, String address, int roleId, int isActive) {
-        String sql1 = "UPDATE userdetails SET fullName = ?, phoneNumber = ?, birthDay = ?, address = ? WHERE userId = ?";
-        String sql2 = "UPDATE users SET email = ?, roleId = ?, isActive = ? WHERE id = ?";
-
-        try (Connection conn = new DBContext().getConnection()) {
-            conn.setAutoCommit(false); // Bắt đầu giao dịch
-
-            try (PreparedStatement pre1 = conn.prepareStatement(sql1)) {
-                pre1.setString(1, fullName);
-                pre1.setString(2, phoneNumber);
-                pre1.setDate(3, birthDay);
-                pre1.setString(4, address);
-                pre1.setInt(5, userId);
-                int rows1 = pre1.executeUpdate();
-
-                try (PreparedStatement pre2 = conn.prepareStatement(sql2)) {
-                    pre2.setString(1, email);
-                    pre2.setInt(2, roleId);
-                    pre2.setInt(3, isActive);
-                    pre2.setInt(4, id);
-                    int rows2 = pre2.executeUpdate();
-
-                    if (rows1 > 0 && rows2 > 0) {
-                        conn.commit(); // Nếu cả hai thành công, commit transaction
-                        return true;
-                    } else {
-                        conn.rollback(); // Nếu có lỗi, rollback
-                        return false;
-                    }
-                }
-            } catch (SQLException e) {
-                conn.rollback(); // Rollback nếu có lỗi
-                e.printStackTrace();
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
 
 
     public static void main(String[] args) throws SQLException {
         UserDao dao = new UserDao();
-        for(User u : dao.getUsers())
-            System.out.println(u);
+        boolean res = dao.updateUser(7,"chimm",
+                "nhiihuynhh70@gamil.com","thu duc","0919323254");
+        if(res ){
+            System.out.println("thanh cong");
+
+        }else {
+            System.out.println("not thanh cong");
+        }
+
     }
 }
