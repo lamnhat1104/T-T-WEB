@@ -337,7 +337,31 @@ public class UserDao {
         }
     }
 
-    public boolean updateUser(int id, String fullName, String email, String address, String phone) {
+    public boolean updateUser(int userId, String fullName,  String email , String address, String phone) {
+        String queryUser = "UPDATE users SET email = ? WHERE id = ?";
+        String queryUserInfo = "UPDATE userdetails SET fullName = ?, phoneNumber = ?, address = ? WHERE userId = ?";
+
+        try (Connection conn = new DBContext().getConnection()) {
+            // Cập nhật bảng users (email)
+            try (PreparedStatement psUser = conn.prepareStatement(queryUser)) {
+                psUser.setString(1, email);
+                psUser.setInt(2, userId);
+                psUser.executeUpdate();
+            }
+
+            // Cập nhật bảng userDetails (fullName, phone, address)
+            try (PreparedStatement psUserInfo = conn.prepareStatement(queryUserInfo)) {
+                psUserInfo.setString(1, fullName);
+                psUserInfo.setString(2, phone);
+                psUserInfo.setString(3, address);
+                psUserInfo.setInt(4, userId);
+                psUserInfo.executeUpdate();
+            }
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
         return false;
-    }
-}
+    }}
