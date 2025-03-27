@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
   <title>Trang admin</title>
   <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
   <style>
     .modal {
       display: none; /* Hidden by default */
@@ -125,44 +127,44 @@
   <div class="sidebar-menu">
     <ul>
       <li>
-        <a href="admin.jsp">
+        <a href="/demo/admin?action=dashboard">
           <span class="las la-igloo"></span>
           <span>Dashboard</span></a>
       </li>
       <li>
-        <a href="customers.jsp"><span class="las la-users"></span>
+        <a href="/demo/admin?action=managerCustomer"><span class="las la-users"></span>
           <span>Quản lý khách hàng</span></a>
       </li>
       <li>
-        <a href="motorbikes.jsp"><span class="las la-motorcycle"></span>
+        <a href="/demo/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
           <span>Quản lý xe máy</span></a>
       </li>
       <li>
-        <a href="orders.jsp"><span class="las la-shopping-bag"></span>
+        <a href="/demo/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
           <span>Quản lý đơn hàng</span></a>
       </li>
       <li>
-        <a href="qltintuc.jsp"><span class="las la-newspaper"></span>
+        <a href="/demo/admin?action=managerNew"><span class="las la-newspaper"></span>
           <span>Quản lý tin tức</span></a>
       </li>
       <li>
-        <a href="feedback.jsp"><span class="las la-receipt"></span>
+        <a href="/demo/admin?action=managerContact"><span class="las la-receipt"></span>
           <span>Phản hồi khách hàng</span></a>
       </li>
       <li>
-        <a href="promotion.jsp"  class="promotion-active"><span class="las la-ticket-alt"></span>
+        <a href="/demo/admin?action=managerPromotion" class="dashboard-active"><span class="las la-ticket-alt"></span>
           <span>Quản lý khuyến mãi</span></a>
       </li>
       <li>
-        <a href="stats_motors.jsp"><span class="las la-circle"></span>
+        <a href="/demo/admin?action=managerStatMotor"><span class="las la-circle"></span>
           <span>Thống kê xe máy</span></a>
       </li>
       <li>
-        <a href="stats_income.jsp"><span class="las la-clipboard-list"></span>
+        <a href="/demo/admin?action=managerStatIncome"><span class="las la-clipboard-list"></span>
           <span>Thống kê doanh thu</span></a>
       </li>
       <li>
-        <a href="setting.jsp"><span class="las la-cog"></span>
+        <a href="/demo/admin?action=managerSetting"><span class="las la-cog"></span>
           <span>Cài đặt</span></a>
       </li>
     </ul>
@@ -217,18 +219,24 @@
               </tr>
               </thead>
               <tbody>
+              <c:forEach var="pm" items="${promotions}">
               <tr>
-                <td>KM01</td>
-                <td>Khuyến mãi Tết Nguyên Đáng</td>
-                <td>dành cho khách hàng thuê xe dịp Tết Nguyên Đáng</td>
-                <td>20%</td>
-                <td>25/01/2025 - 10/02/2025</td>
+                <td>${pm.id}</td>
+                <td>${pm.promotionName}</td>
+                <td>${pm.description}</td>
+                <td>${pm.discountValue}${pm.discountType == '1' ? '%' : 'VND'}</td>
+                <td>${pm.startDate} - ${pm.endDate}</td>
                 <td>
                   <button class="see-btn">sửa</button>
-                  <button class="see-btn">xóa</button>
+                  <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
+<%--                  <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>--%>
+                  <form action="admin?action=deletePromotion" method="POST" style="display:inline;">
+                    <input type="hidden" name="promo-id" value="${pm.id}"/>
+                    <button type="submit" class="see-btn">Xóa</button>
+                  </form>
                 </td>
               </tr>
-
+              </c:forEach>
               </tbody>
             </table>
           </div>
@@ -238,9 +246,10 @@
         <div class="modal-content">
           <div class="admin-container">
             <div class="form-container">
+
               <h2>Thêm Khuyến Mãi</h2>
               <span class="close-btn" onclick="closeConfig()">&times;</span>
-              <form action="#" method="post" class="promotion-form">
+              <form action="admin?action=addPromotion" method="post" class="promotion-form">
                 <div class="form-group">
                   <label for="promo-code">Mã Khuyến Mãi:</label>
                   <input type="text" id="promo-code" name="promo-code" placeholder="Nhập mã khuyến mãi" required />
@@ -254,27 +263,40 @@
                   <textarea id="description" name="description" rows="3" placeholder="Mô tả chi tiết khuyến mãi"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="discount-value">Giá Trị Giảm (% hoặc VND):</label>
+                  <label for="discount-value">Giá Trị Giảm:</label>
                   <input type="number" id="discount-value" name="discount-value" placeholder="Nhập giá trị giảm" required />
                 </div>
                 <div class="form-group">
-                  <label for="time-period">Thời Gian:</label>
-                  <input type="datetime-local" id="time-period" name="time-period" required />
-                </div>
-                <div class="form-group">
-                  <label for="actions">Hành Động:</label>
-                  <select id="actions" name="actions" required>
-                    <option value="">-- Chọn hành động --</option>
-                    <option value="activate">Kích Hoạt</option>
-                    <option value="deactivate">Vô Hiệu Hóa</option>
+                  <label for="discount-type">% hoặc VND:</label>
+                  <select id="discount-type" name="discount-type" required>
+                    <option value="">-- Chọn Loại Giá Trị Giảm --</option>
+                    <option value="1">Phần Trăm (%)</option>
+                    <option value="2">Giá Trị Thực (VND)</option>
                   </select>
                 </div>
-                <button type="submit" class="submit-btn">Thêm Khuyến Mãi</button>
+                <div class="form-group">
+                  <label for="start-date">Thời Gian Bắt Đầu:</label>
+                  <input type="date" id="start-date" name="start-date" required />
+                </div>
+                <div class="form-group">
+                  <label for="end-date">Thời Gian Kết Thúc:</label>
+                  <input type="date" id="end-date" name="end-date" required />
+                </div>
+                <div class="form-group">
+                  <label for="is-active">Hành Động:</label>
+                  <select id="is-active" name="is-active" required>
+                    <option value="">-- Chọn Trạng Thái --</option>
+                    <option value="1">Kích Hoạt</option>
+                    <option value="2">Vô Hiệu Hóa</option>
+                  </select>
+                </div>
+                <button type="submit" class="submit-promotion">Thêm Khuyến Mãi</button>
               </form>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </main>
   <script>
     function openConfig() {

@@ -7,12 +7,15 @@ public class Promotion {
     private String promotionName;
     private String description;
     private double discountValue;
-    private int discountType;
+    private String discountType;
     private Date startDate;
     private Date endDate;
     private int isActive;
 
-    public Promotion(int id, String promotionName, String description, double discountValue, int discountType, Date startDate, Date endDate, int isActive) {
+    public Promotion() {
+    }
+
+    public Promotion(int id, String promotionName, String description, double discountValue, String discountType, Date startDate, Date endDate, int isActive) {
         this.id = id;
         this.promotionName = promotionName;
         this.description = description;
@@ -55,11 +58,11 @@ public class Promotion {
         this.discountValue = discountValue;
     }
 
-    public int getDiscountType() {
+    public String getDiscountType() {
         return discountType;
     }
 
-    public void setDiscountType(int discountType) {
+    public void setDiscountType(String discountType) {
         this.discountType = discountType;
     }
 

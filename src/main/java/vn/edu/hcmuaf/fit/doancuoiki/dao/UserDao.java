@@ -250,32 +250,6 @@ public class UserDao {
             e.printStackTrace();
         }
     }
-// thay đổi thông tin user
-public boolean updateUser(int userId, String fullName, String email, String address, String phone) {
-    String query = """
-        UPDATE users u 
-        JOIN userdetails ud ON u.id = ud.userId
-        SET u.email = ?, ud.fullName = ?, ud.phoneNumber = ?, ud.address = ?
-        WHERE u.id = ?;
-    """;
-
-    try (Connection conn = new DBContext().getConnection();
-         PreparedStatement ps = conn.prepareStatement(query)) {
-
-        ps.setString(1, email);
-        ps.setString(2, fullName);
-        ps.setString(3, phone);
-        ps.setString(4, address);
-        ps.setInt(5, userId);
-
-        int rowsUpdated = ps.executeUpdate();
-        return rowsUpdated > 0; // Trả về true nếu có dòng nào được cập nhật
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return false;
-    }
-}
 
 
 

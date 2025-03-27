@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,49 +111,49 @@
   </div>
 
   <div class="sidebar-menu">
-    <ul>
-      <li>
-        <a href="/demo/admin?action=dashboard">
-          <span class="las la-igloo"></span>
-          <span>Dashboard</span></a>
-      </li>
-      <li>
-          <a href="/demo/admin?action=managerCustomer"><span class="las la-users"></span>
-              <span>Quản lý khách hàng</span></a>
-      </li>
-      <li>
-          <a href="/demo/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
-              <span>Quản lý xe máy</span></a>
-      </li>
-      <li>
-        <a href="/demo/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
-          <span>Quản lý đơn hàng</span></a>
-      </li>
-      <li>
-        <a href="qltintuc.jsp"><span class="las la-newspaper"></span>
-          <span>Quản lý tin tức</span></a>
-      </li>
-      <li>
-        <a href="feedback.jsp"><span class="las la-receipt"></span>
-          <span>Phản hồi khách hàng</span></a>
-      </li>
-      <li>
-        <a href="promotion.jsp"><span class="las la-ticket-alt"></span>
-          <span>Quản lý khuyến mãi</span></a>
-      </li>
-      <li>
-        <a href="stats_motors.jsp"><span class="las la-circle"></span>
-          <span>Thống kê xe máy</span></a>
-      </li>
-      <li>
-        <a href="stats_income.jsp"><span class="las la-clipboard-list"></span>
-          <span>Thống kê doanh thu</span></a>
-      </li>
-      <li>
-        <a href="setting.jsp"><span class="las la-cog"></span>
-          <span>Cài đặt</span></a>
-      </li>
-    </ul>
+      <ul>
+          <li>
+              <a href="/demo/admin?action=dashboard" >
+                  <span class="las la-igloo"></span>
+                  <span>Dashboard</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerCustomer" class="customers-active"><span class="las la-users"></span>
+                  <span>Quản lý khách hàng</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
+                  <span>Quản lý xe máy</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
+                  <span>Quản lý đơn hàng</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerNew"><span class="las la-newspaper"></span>
+                  <span>Quản lý tin tức</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerContact"><span class="las la-receipt"></span>
+                  <span>Phản hồi khách hàng</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerPromotion"><span class="las la-ticket-alt"></span>
+                  <span>Quản lý khuyến mãi</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerStatMotor"><span class="las la-circle"></span>
+                  <span>Thống kê xe máy</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerStatIncome"><span class="las la-clipboard-list"></span>
+                  <span>Thống kê doanh thu</span></a>
+          </li>
+          <li>
+              <a href="/demo/admin?action=managerSetting"><span class="las la-cog"></span>
+                  <span>Cài đặt</span></a>
+          </li>
+      </ul>
   </div>
 </div>
 
@@ -202,6 +203,7 @@
                   <th>Địa chỉ</th>
                   <th>Vai trò</th>
                   <th>Trạng thái</th>
+                  <th>Hành động</th>
                 </tr>
               </thead>
               <tbody>
@@ -234,6 +236,15 @@
                           </select>
                         </form>
                       </td>
+                      <td>
+                          <button type="button">Sửa</button>
+<%--                          <button type="button" onclick="showEditForm('${u.id}', '${u.userInfo.fullName}', '${u.userInfo.phoneNumber}', '${u.userInfo.birthDay}', '${u.email}', '${u.userInfo.address}', '${u.roleId}', '${u.isActive}')">Sửa</button>--%>
+                                                                          <form action="admin?action=deleteCustomer" method="POST" style="display:inline;">
+                                                                              <input type="hidden" name="customerId" value="${u.id}"/>
+                                                                              <button type="submit" class="see-btn">Xóa</button>
+                                                                          </form>
+<%--                          <button type="submit" class="see-btn">Xóa</button>--%>
+                      </td>
                     </tr>
                   </c:forEach>
                 </c:if>
@@ -249,6 +260,7 @@
       </div>
     </div>
 
+<%--    Thêm khách hàng--%>
     <form class="auth-form__group" method="post" action="SignIn" >
         <div class="auth-form__form">
             <div class="auth-form__group">
@@ -288,10 +300,71 @@
         <div class="auth-form__controls">
             <button type="submit" class="btn btn--primary">Thêm khách hàng</button>
         </div>
-    </form>
-  </main>
 
-  <script>
+<%--        Cập nhật khách hàng--%>
+    </form>
+      <div id="editCustomerForm" style="display:none;">
+          <form action="admin?action=updateCustomer" method="post">
+              <label for="customerId">Mã khách hàng:</label>
+              <input type="text" id="customerId" name="customerId" readonly /><br/>
+
+              <label for="fullName">Họ và tên:</label>
+              <input type="text" id="fullName" name="fullName" required /><br/>
+
+              <label for="phoneNumber">Số điện thoại:</label>
+              <input type="text" id="phoneNumber" name="phoneNumber" required /><br/>
+
+              <label for="birthDayCus">Ngày sinh:</label>
+              <input type="date" id="birthDayCus" name="birthDay" value="<fmt:formatDate value='${u.userInfo.birthDay}' pattern='yyyy-MM-dd'/>" required />
+
+
+              <label for="emailCus">Email:</label>
+              <input type="email" id="emailCus" name="email" required /><br/>
+
+              <label for="addressCus">Địa chỉ:</label>
+              <input type="text" id="addressCus" name="address" required /><br/>
+
+              <label for="roleId">Vai trò:</label>
+              <select id="roleId" name="roleId" required>
+                  <option value="1">Khách hàng</option>
+                  <option value="2">Quản trị viên</option>
+              </select><br/>
+
+              <label for="isActive">Trạng thái:</label>
+              <select id="isActive" name="isActive" required>
+                  <option value="1">Hoạt động</option>
+                  <option value="0">Bị khóa</option>
+              </select><br/>
+
+              <button type="submit">Cập nhật khách hàng</button>
+              <button type="button" onclick="hideEditCustomerForm()">Hủy</button>
+          </form>
+      </div>
+  </main>
+</div>
+      <script>
+          function showEditCustomerForm(id, fullName, phoneNumber, birthDay, email, address, roleId, isActive) {
+              // Điền thông tin vào form
+              document.getElementById("customerId").value = id; // Không cho chỉnh sửa
+              document.getElementById("fullName").value = fullName;
+              document.getElementById("phoneNumber").value = phoneNumber;
+              document.getElementById("birthDayCus").value = birthDay;
+              document.getElementById("emailCus").value = email;
+              document.getElementById("addressCus").value = address;
+              document.getElementById("roleId").value = roleId;
+              document.getElementById("isActive").value = isActive;
+
+              // Hiển thị form cập nhật khách hàng
+              document.getElementById("editCustomerForm").style.display = "block";
+          }
+
+          function hideEditCustomerForm() {
+              // Ẩn form khi hủy
+              document.getElementById("editCustomerForm").style.display = "none";
+          }
+      </script>
+
+      <script>
     function openConfig() {
       document.getElementById('configModal').style.display = 'flex';
     }
@@ -313,7 +386,7 @@
       });
 
   </script>
-</div>
+
 
 </body>
 </html>

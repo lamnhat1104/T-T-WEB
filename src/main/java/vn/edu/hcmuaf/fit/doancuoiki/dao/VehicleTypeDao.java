@@ -35,6 +35,17 @@ public class VehicleTypeDao {
         } return vehicleTypeList;
     }
 
+    public void deleteVehicleType(int id){
+        String sql = "DELETE FROM vehicletypes WHERE id = ?";
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(sql)){
+            pre.setInt(1, id);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void updateVehicleType(int id, String name, String brand, String category, double totalPrice, String description, String image, int totalVehicles,  int available ) {
         String squery = "UPDATE vehicletypes set id=?, name=?, brand = ?, category = ?, rentalPrice = ?, description = ?, image = ?, totalVehicles = ?, isAvailable = ? where id = ? ";
         try(Connection conn = new DBContext().getConnection();

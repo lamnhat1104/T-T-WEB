@@ -30,7 +30,7 @@ public class ContactController extends HttpServlet {
         contact.setFullName(fullName);
         contact.setEmail(email);
         contact.setMessage(message);
-        contact.setProcessingStatus("Chưa đọc");
+        contact.setProcessingStatus(1);
 
         ContactDao contactDao = new ContactDao();
         try {

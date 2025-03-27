@@ -134,27 +134,27 @@
                     <span>Quản lý đơn hàng</span></a>
             </li>
             <li>
-                <a href="qltintuc.jsp"><span class="las la-newspaper"></span>
+                <a href="/demo/admin?action=managerNew"><span class="las la-newspaper"></span>
                     <span>Quản lý tin tức</span></a>
             </li>
             <li>
-                <a href="feedback.jsp"><span class="las la-receipt"></span>
+                <a href="/demo/admin?action=managerContact"><span class="las la-receipt"></span>
                     <span>Phản hồi khách hàng</span></a>
             </li>
             <li>
-                <a href="promotion.jsp"><span class="las la-ticket-alt"></span>
+                <a href="/demo/admin?action=managerPromotion"><span class="las la-ticket-alt"></span>
                     <span>Quản lý khuyến mãi</span></a>
             </li>
             <li>
-                <a href="stats_motors.jsp"><span class="las la-circle"></span>
+                <a href="/demo/admin?action=managerStatMotor"><span class="las la-circle"></span>
                     <span>Thống kê xe máy</span></a>
             </li>
             <li>
-                <a href="stats_income.jsp"><span class="las la-clipboard-list"></span>
+                <a href="/demo/admin?action=managerStatIncome"><span class="las la-clipboard-list"></span>
                     <span>Thống kê doanh thu</span></a>
             </li>
             <li>
-                <a href="setting.jsp"><span class="las la-cog"></span>
+                <a href="/demo/admin?action=managerSetting"><span class="las la-cog"></span>
                     <span>Cài đặt</span></a>
             </li>
         </ul>

@@ -19,6 +19,10 @@ public class New {
         this.isActive = isActive;
     }
 
+    public New() {
+
+    }
+
     public int getId() {
         return id;
     }
