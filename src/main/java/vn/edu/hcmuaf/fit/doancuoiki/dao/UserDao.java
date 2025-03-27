@@ -58,7 +58,7 @@ public class UserDao {
                             rs.getString("password"),
                             ui,
                             rs.getInt("roleId"),
-                            rs.getBoolean("isActive"));
+                            rs.getInt("isActive"));
                 } else { return null;
                 }
             }
@@ -102,7 +102,7 @@ public class UserDao {
                 ps1.setString(1, user.getEmail());
                 ps1.setString(2, user.getPassword());
                 ps1.setInt(3, 2);
-                ps1.setBoolean(4, user.isActive());
+                ps1.setInt(4, user.isActive());
                 int rowsAffected1 = ps1.executeUpdate();
 
                 // Lấy user_id vừa được sinh ra
@@ -218,7 +218,7 @@ public class UserDao {
                         rs.getString("userEmail"),
                         userInfo,
                         rs.getInt("roleId"),
-                        rs.getBoolean("userStatus")));
+                        rs.getInt("userStatus")));
             }
 
         } catch (SQLException e) {
@@ -254,6 +254,7 @@ public class UserDao {
 
 
 
+
     public static void main(String[] args) throws SQLException {
         UserDao dao = new UserDao();
         boolean res = dao.updateUser(7,"chimm",
@@ -261,8 +262,7 @@ public class UserDao {
         if(res ){
             System.out.println("thanh cong");
 
-        }else {
-            System.out.println("not thanh cong");
+
         }
 
     }

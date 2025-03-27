@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: DELL
@@ -191,95 +194,36 @@
                 <th>Mã tin tức</th>
                 <th>Tiêu đề</th>
                 <th>Thông tin</th>
+                <th>Hình ảnh</th>
                 <th>Ngày tạo</th>
+                <th>Tạng thái</th>
+                <th>Hành động</th>
 
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>KH01</td>
-                <td>Mai Lâm Nhật</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
+              <c:if test="${not empty news}">
+                <c:forEach var="n" items="${news}">
+                  <tr>
+                    <td>${n.id}</td>
+                    <td>${n.title}</td>
+                    <td>${n.content}</td>
+                    <td>${n.image}</td>
+                    <td>${n.createdDate}</td>
+                    <td>${n.isActive}</td>
+                    <td>
+                      <button class="see-btn">Sửa</button>
+                      <form action="" method="POST" style="display:inline;">
+                        <button type="submit" class="see-btn">Xóa</button>
+                      </form>
+                    </td>
+                  </tr>
+                </c:forEach>
+              </c:if>
+              <c:if test="${empty news}">
+                <tr><td colspan="7">Không có tin tức nào!</td></tr>
+              </c:if>
 
-              </tr>
-              <tr>
-                <td>KH02</td>
-                <td>Nguyễn Hoàng Phúc</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH03</td>
-                <td>Nguyễn Bảo Nguyên</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH04</td>
-                <td>Mai Lâm Nhật</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH05</td>
-                <td>Nguyễn Hoàng Phúc</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH06</td>
-                <td>Nguyễn Bảo Nguyên</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH07</td>
-                <td>Mai Lâm Nhật</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH08</td>
-                <td>Nguyễn Hoàng Phúc</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH09</td>
-                <td>Nguyễn Bảo Nguyên</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH10</td>
-                <td>Mai Lâm Nhật</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH11</td>
-                <td>Nguyễn Hoàng Phúc</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
-              <tr>
-                <td>KH12</td>
-                <td>Nguyễn Bảo Nguyên</td>
-                <td>tin tức</td>
-                <td>11-04-2004</td>
-
-              </tr>
               </tbody>
             </table>
           </div>

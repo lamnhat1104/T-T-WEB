@@ -124,7 +124,7 @@
                   <td>${c.id}</td>
                   <td>${c.fullName}</td>
                   <td>${c.email}</td>
-                  <td>${c.subject}</td>
+                  <td>${c.message}</td>
                   <td>${c.createdDate}</td>
                   <td>${c.processingStatus}</td>
                   <td>

@@ -20,10 +20,10 @@ public class NewDao {
             while(rs.next()) {
                 New neww = new New();
                 neww.setId(rs.getInt("id"));
-                neww.setTittle(rs.getString("title"));
+                neww.setTitle(rs.getString("title"));
                 neww.setContent(rs.getString("content"));
                 neww.setImage(rs.getString("image"));
-                neww.setCreatedDate(rs.getDate("createDate"));
+                neww.setCreatedDate(rs.getDate("createdDate"));
                 neww.setIsActive(rs.getInt("isActive"));
                 newList.add(neww);
             }

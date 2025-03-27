@@ -70,7 +70,7 @@ public class SignInController extends HttpServlet {
 
         String passwordEncrypt = Encrypt.encrypt(password);
         UserInfo userInfo = new UserInfo(name, phone, address, birthday);
-        User user = new User(email, passwordEncrypt, userInfo, true);
+        User user = new User(email, passwordEncrypt, userInfo, 1);
         String message = "";
         if (userDao.addUser(user)) {
             String token = UUID.randomUUID().toString();
