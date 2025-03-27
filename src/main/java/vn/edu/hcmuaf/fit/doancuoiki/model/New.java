@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class New {
     private int id;
-    private String tittle;
+    private String title;
     private String content;
     private String image;
     private Date createdDate;
     private int isActive;
 
-    public New(int id, String tittle, String content, String image, Date createdDate, int isActive) {
+    public New(int id, String title, String content, String image, Date createdDate, int isActive) {
         this.id = id;
-        this.tittle = tittle;
+        this.title = title;
         this.content = content;
         this.image = image;
         this.createdDate = createdDate;
@@ -31,12 +31,12 @@ public class New {
         this.id = id;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {

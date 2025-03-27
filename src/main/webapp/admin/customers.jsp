@@ -231,14 +231,14 @@
                           <input type="hidden" name="action" value="changeStatusUser" />
                           <input type="hidden" name="userId" value="${u.id}" />
                           <select name="status" onchange="this.form.submit()">
-                            <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
-                            <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
+                              <option value="1" ${u.active==1 ? 'selected' : ''}>Đang hoạt động</option>
+                              <option value="0" ${u.active==0 ? 'selected' : ''}>Bị khoá</option>
                           </select>
                         </form>
                       </td>
                       <td>
-                          <button type="button">Sửa</button>
-<%--                          <button type="button" onclick="showEditForm('${u.id}', '${u.userInfo.fullName}', '${u.userInfo.phoneNumber}', '${u.userInfo.birthDay}', '${u.email}', '${u.userInfo.address}', '${u.roleId}', '${u.isActive}')">Sửa</button>--%>
+
+                          <button type="button" onclick="showEditCustomerForm('${u.id}', '${u.userInfo.fullName}', '${u.userInfo.phoneNumber}', '${u.userInfo.birthday}', '${u.email}', '${u.userInfo.address}', '${u.roleId}', '${u.active}')">Sửa</button>
                                                                           <form action="admin?action=deleteCustomer" method="POST" style="display:inline;">
                                                                               <input type="hidden" name="customerId" value="${u.id}"/>
                                                                               <button type="submit" class="see-btn">Xóa</button>
@@ -291,8 +291,8 @@
             </div>
             <div class="auth-form__group">
                 <select name="status">
-                    <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
-                    <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
+                    <option value="1" ${u.active==1 ? 'selected' : ''}>Đang hoạt động</option>
+                    <option value="0" ${u.active==0 ? 'selected' : ''}>Bị khoá</option>
                 </select>
             </div>
         </div>
@@ -305,8 +305,8 @@
     </form>
       <div id="editCustomerForm" style="display:none;">
           <form action="admin?action=updateCustomer" method="post">
-              <label for="customerId">Mã khách hàng:</label>
-              <input type="text" id="customerId" name="customerId" readonly /><br/>
+              <label for="id">Mã khách hàng:</label>
+              <input type="text" id="id" name="id" readonly /><br/>
 
               <label for="fullName">Họ và tên:</label>
               <input type="text" id="fullName" name="fullName" required /><br/>
@@ -314,26 +314,26 @@
               <label for="phoneNumber">Số điện thoại:</label>
               <input type="text" id="phoneNumber" name="phoneNumber" required /><br/>
 
-              <label for="birthDayCus">Ngày sinh:</label>
-              <input type="date" id="birthDayCus" name="birthDay" value="<fmt:formatDate value='${u.userInfo.birthDay}' pattern='yyyy-MM-dd'/>" required />
+              <label for="birthDateCus">Ngày sinh:</label>
+              <input type="date" id="birthDateCus" name="birthDateCus"  required />
 
 
               <label for="emailCus">Email:</label>
-              <input type="email" id="emailCus" name="email" required /><br/>
+              <input type="email" id="emailCus" name="emailCus" required /><br/>
 
               <label for="addressCus">Địa chỉ:</label>
-              <input type="text" id="addressCus" name="address" required /><br/>
+              <input type="text" id="addressCus" name="addressCus" required /><br/>
 
               <label for="roleId">Vai trò:</label>
               <select id="roleId" name="roleId" required>
-                  <option value="1">Khách hàng</option>
-                  <option value="2">Quản trị viên</option>
+                  <option value="2">Khách hàng</option>
+                  <option value="1">Quản trị viên</option>
               </select><br/>
 
-              <label for="isActive">Trạng thái:</label>
-              <select id="isActive" name="isActive" required>
-                  <option value="1">Hoạt động</option>
-                  <option value="0">Bị khóa</option>
+              <label for="status">Trạng thái:</label>
+              <select id="status"  name="status" required>
+                  <option value="1" ${u.active==1 ? 'selected' : ''}>Đang hoạt động</option>
+                  <option value="0" ${u.active==0 ? 'selected' : ''}>Bị khoá</option>
               </select><br/>
 
               <button type="submit">Cập nhật khách hàng</button>
@@ -343,16 +343,16 @@
   </main>
 </div>
       <script>
-          function showEditCustomerForm(id, fullName, phoneNumber, birthDay, email, address, roleId, isActive) {
+          function showEditCustomerForm(id, fullName, phoneNumber, birthday, email, address, roleId, active) {
               // Điền thông tin vào form
-              document.getElementById("customerId").value = id; // Không cho chỉnh sửa
+              document.getElementById("id").value = id; // Không cho chỉnh sửa
               document.getElementById("fullName").value = fullName;
               document.getElementById("phoneNumber").value = phoneNumber;
-              document.getElementById("birthDayCus").value = birthDay;
+              document.getElementById("birthDateCus").value = birthday;
               document.getElementById("emailCus").value = email;
               document.getElementById("addressCus").value = address;
               document.getElementById("roleId").value = roleId;
-              document.getElementById("isActive").value = isActive;
+              document.getElementById("status").value = active;
 
               // Hiển thị form cập nhật khách hàng
               document.getElementById("editCustomerForm").style.display = "block";

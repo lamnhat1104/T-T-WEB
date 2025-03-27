@@ -58,7 +58,7 @@ public class UserDao {
                             rs.getString("password"),
                             ui,
                             rs.getInt("roleId"),
-                            rs.getBoolean("isActive"));
+                            rs.getInt("isActive"));
                 } else { return null;
                 }
             }
@@ -102,7 +102,7 @@ public class UserDao {
                 ps1.setString(1, user.getEmail());
                 ps1.setString(2, user.getPassword());
                 ps1.setInt(3, 2);
-                ps1.setBoolean(4, user.isActive());
+                ps1.setInt(4, user.isActive());
                 int rowsAffected1 = ps1.executeUpdate();
 
                 // Lấy user_id vừa được sinh ra
@@ -218,7 +218,7 @@ public class UserDao {
                         rs.getString("userEmail"),
                         userInfo,
                         rs.getInt("roleId"),
-                        rs.getBoolean("userStatus")));
+                        rs.getInt("userStatus")));
             }
 
         } catch (SQLException e) {
@@ -278,19 +278,20 @@ public class UserDao {
         }
     }
 
-    public boolean updateCustomer(int id, int userId, String fullName, String phoneNumber, Date birthDay, String email, String address, int roleId, int isActive) {
-        String sql1 = "UPDATE userdetails SET fullName = ?, phoneNumber = ?, birthDay = ?, address = ? WHERE userId = ?";
+    public boolean updateCustomer(int id, int userId, String fullName, String phoneNumber, Date birthDate, String email, String address, int roleId, int isActive) {
+        String sql1 = "UPDATE userdetails SET userId = ?, fullName = ?, phoneNumber = ?, birthDate = ?, address = ? WHERE id = ?";
         String sql2 = "UPDATE users SET email = ?, roleId = ?, isActive = ? WHERE id = ?";
 
         try (Connection conn = new DBContext().getConnection()) {
             conn.setAutoCommit(false); // Bắt đầu giao dịch
 
             try (PreparedStatement pre1 = conn.prepareStatement(sql1)) {
-                pre1.setString(1, fullName);
-                pre1.setString(2, phoneNumber);
-                pre1.setDate(3, birthDay);
-                pre1.setString(4, address);
-                pre1.setInt(5, userId);
+                pre1.setInt(1, id);
+                pre1.setString(2, fullName);
+                pre1.setString(3, phoneNumber);
+                pre1.setDate(4, birthDate);
+                pre1.setString(5, address);
+                pre1.setInt(6, id);
                 int rows1 = pre1.executeUpdate();
 
                 try (PreparedStatement pre2 = conn.prepareStatement(sql2)) {

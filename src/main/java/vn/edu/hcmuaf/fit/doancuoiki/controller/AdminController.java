@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @WebServlet(name = "AdminController", value = "/admin")
@@ -150,6 +152,13 @@ public class AdminController extends HttpServlet {
     private void managerNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         NewDao newDao = new NewDao();
         List<New> news = newDao.getAllNew();
+
+        if (news == null || news.isEmpty()) {
+            System.out.println("Danh sách news rỗng!");
+        } else {
+            System.out.println("Danh sách news có: " + news.size() + " bản ghi.");
+        }
+
         request.setAttribute("news", news);
         request.getRequestDispatcher("admin/qltintuc.jsp").forward(request, response);
     }
@@ -268,21 +277,20 @@ public class AdminController extends HttpServlet {
             int userId = Integer.parseInt(request.getParameter("customerId"));
             String fullName = request.getParameter("fullName");
             String phoneNumber = request.getParameter("phoneNumber");
-            String email = request.getParameter("email");
-            String address = request.getParameter("address");
+            String email = request.getParameter("emailCus");
+            String address = request.getParameter("addressCus");
             int roleId = Integer.parseInt(request.getParameter("roleId"));
-            int isActive = Integer.parseInt(request.getParameter("isActive"));
-            String birthDayStr = request.getParameter("birthDay");
-            Date birthDay = null;
-            if (birthDayStr != null && !birthDayStr.isEmpty()) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                birthDay = new Date(dateFormat.parse(birthDayStr).getTime());
-            }
+            int isActive = Integer.parseInt(request.getParameter("status"));
+
+            String birthDayStr = request.getParameter("birthDateCus");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date birthDate = new Date(dateFormat.parse(birthDayStr).getTime());
+
 
             // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
             UserDao userDao = new UserDao();
             // Cập nhật đơn hàng
-            userDao.updateCustomer(id, userId, fullName, phoneNumber, birthDay, email, address, roleId, isActive);
+            userDao.updateCustomer(id, userId, fullName, phoneNumber, birthDate, email, address, roleId, isActive);
             managerCustomer(request,response);
 
         } catch (Exception e) {
