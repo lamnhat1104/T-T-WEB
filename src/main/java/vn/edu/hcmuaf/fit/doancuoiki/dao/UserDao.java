@@ -251,22 +251,6 @@ public class UserDao {
         }
     }
 
-
-
-
-
-    public static void main(String[] args) throws SQLException {
-//        UserDao dao = new UserDao();
-//        boolean res = dao.updateUser(7,"chimm",
-//                "nhiihuynhh70@gamil.com","thu duc","0919323254");
-//        if(res ){
-//            System.out.println("thanh cong");
-//
-//
-//        }
-
-    }
-
     public void deleteCustomer(int customerId) {
         String deleteUserDetailsQuery = "DELETE FROM userdetails WHERE id = ?";
         String deleteUserQuery = "DELETE FROM users WHERE id = ?";
@@ -364,4 +348,52 @@ public class UserDao {
 
         }
         return false;
-    }}
+    }
+    public void insertLoginLog(String email, String roleName, String ipAddress, String deviceInfo, String status, String failReason) throws SQLException {
+        String sql = "INSERT INTO login_logs (email, roleName, ip_address, device_info, activity, status, fail_reason) VALUES (?, ?, ?, ?, 'Login', ?, ?)";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.setString(2, roleName);
+            stmt.setString(3, ipAddress);
+            stmt.setString(4, deviceInfo);
+            stmt.setString(5, status);
+            stmt.setString(6, failReason);
+            stmt.executeUpdate();
+        }
+    }
+    public String getUserRole(String email) throws SQLException {
+        String sql = "SELECT r.roleName FROM users u JOIN roles r ON u.roleId = r.id WHERE u.email = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("roleName"); // Lấy roleName từ kết quả truy vấn
+            }
+        }
+        return "Unknown"; // Nếu không tìm thấy, trả về "Unknown"
+    }
+    public void updateLogoutTime(String email) throws SQLException {
+        String sql = "UPDATE login_logs SET logout_time = NOW() WHERE email = ? AND activity = 'Login' AND status = 'Success' ORDER BY login_time DESC LIMIT 1";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.executeUpdate();
+        }
+    }
+
+    public static void main(String[] args) throws SQLException {
+        UserDao userDao = new UserDao();
+        try {
+            String email = "nhiihuynhh70@gamil.com"; // Thay bằng email có trong database
+            String role = userDao.getUserRole(email);
+            System.out.println("Role của " + email + " là: " + role);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+}
