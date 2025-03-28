@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NewDao {
@@ -30,5 +31,44 @@ public class NewDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } return newList;
+    }
+    public void deleteNew(int id){
+        String sql = "DELETE FROM news WHERE id = ?";
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(sql)){
+            pre.setInt(1, id);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void addNew(String title, String content, String image, Date createdDate, int isActive) {
+        String squery = "INSERT INTO promotions (title, content, image, createdDate, isActive) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(squery)) {
+            pre.setString(1, title);
+            pre.setString(2, content);
+            pre.setString(3, image);
+            pre.setDate(4, (java.sql.Date) createdDate);
+            pre.setInt(6, isActive);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void updateNew(int id, String title, String content, String image, Date createdDate, int isActive) {
+        String squery = "UPDATE news set title=?, content = ?, image = ?, createdDate = ?, isActive = ? where id = ? ";
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement pre = conn.prepareStatement(squery)) {
+                pre.setString(1, title);
+                pre.setString(2, content);
+                pre.setString(3, image);
+                pre.setDate(4, (java.sql.Date) createdDate);
+                pre.setInt(6, isActive);
+                pre.setInt(7, id);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

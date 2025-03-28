@@ -12,9 +12,9 @@
     <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="thêm chức năng cập nhật khách hàng">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/NewDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/NewDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +42,12 @@
     &quot;assignee&quot;: &quot;lamnhat1104&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/lamnhat1104/T-T-WEB.git",
-    "accountId": "7d99f060-5728-4e30-bfc5-75a0805a6b03"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lamnhat1104/T-T-WEB.git&quot;,
+    &quot;accountId&quot;: &quot;7d99f060-5728-4e30-bfc5-75a0805a6b03&quot;
   }
-}]]></component>
+}</component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -244,6 +244,7 @@
       <workItem from="1742973882346" duration="11667000" />
       <workItem from="1743045131044" duration="5295000" />
       <workItem from="1743051350328" duration="334000" />
+      <workItem from="1743143451090" duration="4549000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -429,7 +430,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743049238774</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="thêm chức năng cập nhật khách hàng">
+      <option name="closed" value="true" />
+      <created>1743143502214</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1743143502214</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
