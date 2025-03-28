@@ -1,4 +1,5 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.Contact" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: DELL
   Date: 1/10/2025
@@ -119,25 +120,34 @@
               </tr>
               </thead>
               <tbody>
-              <c:forEach var="c" items="${contacts}">
-                <tr>
-                  <td>${c.id}</td>
-                  <td>${c.fullName}</td>
-                  <td>${c.email}</td>
-                  <td>${c.message}</td>
-                  <td>${c.createdDate}</td>
-                  <td>${c.processingStatus}</td>
-                  <td>
-                    <button class="see-btn">sửa</button>
-                    <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
-                      <%--                  <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>--%>
-                    <form action="admin?action=deleteContact" method="POST" style="display:inline;">
-                      <input type="hidden" name="contact-id" value="${c.id}"/>
-                      <button type="submit" class="see-btn">Xóa</button>
-                    </form>
-                  </td>
-                </tr>
-              </c:forEach>
+              <%
+                List<Contact> contactList = (List<Contact>) request.getAttribute("contacts");
+                if (contactList != null && !contactList.isEmpty()) {
+                  for (Contact c : contactList) {
+              %>
+              <tr>
+                <td><%= c.getId() %></td>
+                <td><%= c.getFullName() %></td>
+                <td><%= c.getEmail() %></td>
+                <td><%= c.getMessage() %></td>
+                <td><%= c.getCreateDate() %></td>
+                <td><%= c.getProcessingStatus() == 1 ? "chưa xử lý" : "đã xử lý" %></td>
+                <td>
+                  <button class="see-btn">sửa</button>
+                  <form action="admin?action=deleteContact" method="POST" style="display:inline;">
+                    <input type="hidden" name="contact-id" value="<%= c.getId() %>"/>
+                    <button type="submit" class="see-btn">Xóa</button>
+                  </form>
+                </td>
+              </tr>
+              <%
+                }
+              } else {
+              %>
+              <tr>
+                <td colspan="7">Không có phản hồi nào.</td>
+              </tr>
+              <% } %>
               </tbody>
             </table>
           </div>

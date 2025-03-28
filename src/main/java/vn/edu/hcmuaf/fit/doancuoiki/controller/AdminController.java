@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+
+
 @WebServlet(name = "AdminController", value = "/admin")
 public class AdminController extends HttpServlet {
     @Override
@@ -91,8 +93,14 @@ public class AdminController extends HttpServlet {
             case "deletePromotion":
                 deletePromotion(request, response);
                 break;
+            case "updatePromotion":
+                updatePromotion(request, response);
+                break;
             case "deleteContact":
                 deleteContact(request, response);
+                break;
+            case "deleteNew":
+                deleteNew(request, response);
                 break;
         }
     }
@@ -133,6 +141,34 @@ public class AdminController extends HttpServlet {
         managerPromotion(request,response);
     }
 
+    private void updatePromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Lấy các tham số từ form
+            int id = Integer.parseInt(request.getParameter("id")); // Lấy ID đơn hàng
+            String promotionName = request.getParameter("promotionName"); // Lấy mã khách hàng
+            String description = request.getParameter("descriptionName"); // Lấy địa chỉ giao xe
+            double discountValue = Double.parseDouble(request.getParameter("discountValue"));
+            String rentalStartDate = request.getParameter("startDate"); // Lấy ngày thuê
+            String expectedReturnDate = request.getParameter("endDate"); // Lấy ngày trả dự kiến
+            int isActive = Integer.parseInt(request.getParameter("isActive"));
+            int discountType = Integer.parseInt(request.getParameter("discountType"));
+
+            // Chuyển đổi ngày từ String sang Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
+            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
+            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+            PromotionDao promotionDao = new PromotionDao();
+            // Cập nhật đơn hàng
+            promotionDao.updatePromotion(id, promotionName, description, discountValue, startDate, endDate, isActive, discountType);
+            managerPromotion(request,response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+        }
+    }
+
 
 // Quản lý phản hồi khách hàng
     private void managerContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -151,19 +187,64 @@ public class AdminController extends HttpServlet {
 // Quản lý tin tức
     private void managerNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         NewDao newDao = new NewDao();
-        List<New> news = newDao.getAllNew();
-
-        if (news == null || news.isEmpty()) {
-            System.out.println("Danh sách news rỗng!");
-        } else {
-            System.out.println("Danh sách news có: " + news.size() + " bản ghi.");
-        }
-
-        request.setAttribute("news", news);
+        List<New> newsList = newDao.getAllNew();
+        request.setAttribute("news", newsList);
         request.getRequestDispatcher("admin/qltintuc.jsp").forward(request, response);
+
     }
 
+    private void deleteNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("new-id"));
+        NewDao newDao = new NewDao();
+        newDao.deleteNew(id);
+        managerNew(request,response);
+    }
 
+    private void addNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+        try {
+            String title = request.getParameter("title");
+            String content = request.getParameter("content");
+            String image = request.getParameter("image");
+            String startDate = request.getParameter("start-date");
+            int isActive = Integer.parseInt(request.getParameter("is-active"));
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date createdDate = new Date(dateFormat.parse(startDate).getTime());
+
+            NewDao newDao = new NewDao();
+            newDao.addNew(title, content, image, createdDate, isActive);
+            managerNew(request, response);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void updateNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Lấy các tham số từ form
+            int id = Integer.parseInt(request.getParameter("id")); // Lấy ID đơn hàng
+            String title = request.getParameter("title"); // Lấy mã khách hàng
+            String content = request.getParameter("content"); // Lấy địa chỉ giao xe
+            String image = request.getParameter("image"); // Lấy ngày thuê
+            String starDate = request.getParameter("starDate"); // Lấy ngày trả dự kiến
+            int isActive = Integer.parseInt(request.getParameter("isActive"));
+
+
+            // Chuyển đổi ngày từ String sang Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date ceatedDate = new Date(dateFormat.parse(starDate).getTime());
+
+            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+            NewDao newDao = new NewDao();
+            // Cập nhật đơn hàng
+            newDao.updateNew(id, title, content, image, ceatedDate, isActive);
+            managerNew(request,response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+        }
+    }
 
     private void managerStatMotor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("admin/stats_motors.jsp").forward(request, response);

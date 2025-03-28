@@ -1,6 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.New" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: DELL
@@ -202,27 +203,35 @@
               </tr>
               </thead>
               <tbody>
-              <c:if test="${not empty news}">
-                <c:forEach var="n" items="${news}">
-                  <tr>
-                    <td>${n.id}</td>
-                    <td>${n.title}</td>
-                    <td>${n.content}</td>
-                    <td>${n.image}</td>
-                    <td>${n.createdDate}</td>
-                    <td>${n.isActive}</td>
-                    <td>
-                      <button class="see-btn">Sửa</button>
-                      <form action="" method="POST" style="display:inline;">
-                        <button type="submit" class="see-btn">Xóa</button>
-                      </form>
-                    </td>
-                  </tr>
-                </c:forEach>
-              </c:if>
-              <c:if test="${empty news}">
-                <tr><td colspan="7">Không có tin tức nào!</td></tr>
-              </c:if>
+              <%
+                List<New> newsList = (List<New>) request.getAttribute("news");
+                if (newsList != null && !newsList.isEmpty()) {
+                  for (New n : newsList) {
+              %>
+              <tr>
+                <td><%= n.getId() %></td>
+                <td><%= n.getTitle() %></td>
+                <td><%= n.getContent() %></td>
+                <td><%= n.getImage() %></td>
+                <td><%= n.getCreatedDate() %></td>
+                <td><%= n.getIsActive() %></td>
+                <td>
+                  <button class="see-btn">Sửa</button>
+                  <form action="admin?action=deleteNew" method="POST" style="display:inline;">
+                    <input type="hidden" name="new-id" value="<%= n.getId() %>"/>
+                    <button type="submit" class="see-btn">Xóa</button>
+                  </form>
+                </td>
+              </tr>
+              <%
+                }
+              } else {
+              %>
+              <tr><td colspan="7">Không có tin tức nào!</td></tr>
+              <%
+                }
+              %>
+
 
               </tbody>
             </table>
