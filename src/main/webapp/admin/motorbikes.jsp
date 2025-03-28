@@ -220,7 +220,10 @@
                                         <td>${v.available==1? "Hien" : "An"}</td>
                                         <td>
                                             <button type="button" onclick="showEditForm('${v.id}', '${v.name}', '${v.brand}', '${v.category}', '${v.totalPrice}', '${v.description}', '${v.image}', '${v.totalVehicles}', '${v.available}')">Sửa</button>
-
+                                            <form action="admin?action=deleteVehicleType" method="POST" style="display:inline;">
+                                                <input type="hidden" name="vehicleId" value="${v.id}"/>
+                                                <button type="submit" class="see-btn">Xóa</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 </c:forEach>
