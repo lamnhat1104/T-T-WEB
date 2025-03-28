@@ -11,7 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="thêm chức năng cập nhật khách hàng">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="22130195-MaiLamNhat" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,12 +42,12 @@
     &quot;assignee&quot;: &quot;lamnhat1104&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/lamnhat1104/T-T-WEB.git&quot;,
-    &quot;accountId&quot;: &quot;a90c00fa-ccd9-4167-b5f4-a124eb5f6db7&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lamnhat1104/T-T-WEB.git",
+    "accountId": "7d99f060-5728-4e30-bfc5-75a0805a6b03"
   }
-}</component>
+}]]></component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -68,28 +71,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 11.0.0.executor": "Run",
-    "Tomcat Server.tomcat.executor": "Run",
-    "git-widget-placeholder": "22130195-MaiLamNhat2",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "23",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.tomcat.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130195-MaiLamNhat2&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\HK1_2024\T-T-WEB\DoAnCuoiKi" />
@@ -200,8 +203,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.39" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.39" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
       </set>
     </attachedChunks>
   </component>

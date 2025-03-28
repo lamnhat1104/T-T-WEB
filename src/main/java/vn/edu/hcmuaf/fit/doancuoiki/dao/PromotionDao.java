@@ -46,20 +46,18 @@ public class PromotionDao {
         }
     }
 
-    public void updateVehicleType(int id, String name, String brand, String category, double totalPrice, String description, String image, int totalVehicles,  int available ) {
-        String squery = "UPDATE vehicletypes set id=?, name=?, brand = ?, category = ?, rentalPrice = ?, description = ?, image = ?, totalVehicles = ?, isAvailable = ? where id = ? ";
+    public void updatePromotion(int id, String promotionName, String description, double discountValue, Date startDate, Date endDate, int isActive, int discountType) {
+        String squery = "UPDATE promotions set promotionName=?, description = ?, discountValue = ?, startDate = ?, endDate = ?, isActive = ?, discountType = ? where id = ? ";
         try(Connection conn = new DBContext().getConnection();
             PreparedStatement pre = conn.prepareStatement(squery)){
-            pre.setInt(1, id);
-            pre.setString(2, name);
-            pre.setString(3, brand);
-            pre.setString(4, category);
-            pre.setDouble(5, totalPrice);
-            pre.setString(6, description);
-            pre.setString(7, image);
-            pre.setInt(8, totalVehicles);
-            pre.setInt(9, available);
-            pre.setInt(10, id);
+            pre.setString(1, promotionName);
+            pre.setString(2, description);
+            pre.setDouble(3, discountValue);
+            pre.setDate(4, new java.sql.Date(startDate.getTime()));
+            pre.setDate(5, new java.sql.Date(endDate.getTime()));
+            pre.setInt(6, isActive);
+            pre.setInt(7, discountType);
+            pre.setInt(8, id);
             pre.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

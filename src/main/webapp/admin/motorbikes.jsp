@@ -336,7 +336,7 @@
                 tinymce.remove("#description"); // Xóa TinyMCE khi đóng form
             }
 
-             function openConfig() {
+            function openConfig() {
                 document.getElementById("configModal").style.display = "block";
             }
 

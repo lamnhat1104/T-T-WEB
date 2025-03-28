@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+
+
 @WebServlet(name = "AdminController", value = "/admin")
 public class AdminController extends HttpServlet {
     @Override
@@ -91,6 +93,9 @@ public class AdminController extends HttpServlet {
             case "deletePromotion":
                 deletePromotion(request, response);
                 break;
+            case "updatePromotion":
+                updatePromotion(request, response);
+                break;
             case "deleteContact":
                 deleteContact(request, response);
                 break;
@@ -131,6 +136,34 @@ public class AdminController extends HttpServlet {
         PromotionDao promotionDao = new PromotionDao();
         promotionDao.deletePromotion(id);
         managerPromotion(request,response);
+    }
+
+    private void updatePromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Lấy các tham số từ form
+            int id = Integer.parseInt(request.getParameter("id")); // Lấy ID đơn hàng
+            String promotionName = request.getParameter("promotionName"); // Lấy mã khách hàng
+            String description = request.getParameter("descriptionName"); // Lấy địa chỉ giao xe
+            double discountValue = Double.parseDouble(request.getParameter("discountValue"));
+            String rentalStartDate = request.getParameter("startDate"); // Lấy ngày thuê
+            String expectedReturnDate = request.getParameter("endDate"); // Lấy ngày trả dự kiến
+            int isActive = Integer.parseInt(request.getParameter("isActive"));
+            int discountType = Integer.parseInt(request.getParameter("discountType"));
+
+            // Chuyển đổi ngày từ String sang Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
+            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
+            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+            PromotionDao promotionDao = new PromotionDao();
+            // Cập nhật đơn hàng
+            promotionDao.updatePromotion(id, promotionName, description, discountValue, startDate, endDate, isActive, discountType);
+            managerPromotion(request,response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+        }
     }
 
 
