@@ -267,7 +267,7 @@
                 <td><%= n.getContent() %></td>
                 <td><%= n.getImage() %></td>
                 <td><%= n.getCreatedDate() %></td>
-                <td><%= n.getIsActive() %></td>
+                <td><%= n.getIsActive() == 0 ? "Vô hiệu":"Kích hoạt" %></td>
                 <td>
                     <button type="button" onclick="showEditNewForm(
                         <%= n.getId() %>,

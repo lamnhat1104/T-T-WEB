@@ -50,7 +50,7 @@ public class NewDao {
             pre.setString(2, content);
             pre.setString(3, image);
             pre.setDate(4, (java.sql.Date) createdDate);
-            pre.setInt(6, isActive);
+            pre.setInt(5, isActive);
             pre.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
