@@ -24,12 +24,15 @@ public class LoginController extends HttpServlet {
         String url = "login.jsp";
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String ipAddress = request.getRemoteAddr(); // Lấy IP
+        String deviceInfo = request.getHeader("User-Agent"); // Lấy thông tin thiết bị
         UserDao userDao = new UserDao();
 
         try {
             // Kiểm tra tài khoản có bị khoá không
             if (userDao.isActive(email) != 1) {
                 request.setAttribute("error", "Tài khoản bị khoá");
+                userDao.insertLoginLog(email, "Unknown", ipAddress, deviceInfo, "Failed", "Tài khoản bị khoá");
                 forwardToPage(request, response, url);
                 return;
             }
@@ -41,19 +44,25 @@ public class LoginController extends HttpServlet {
             User user = userDao.getUser(email, passwordEncrypt);
 
             if (user != null) {
+                String roleName = userDao.getUserRole(email);
                 // Đăng nhập thành công, lưu thông tin người dùng vào session
                 url = "index.jsp";
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
+                userDao.insertLoginLog(email, roleName, ipAddress, deviceInfo, "Success", null);
+
                 response.sendRedirect(url);
             } else {
                 // Nếu không tìm thấy người dùng, hiển thị thông báo lỗi
                 request.setAttribute("error", "Sai mật khẩu hoặc tên đăng nhập");
+                userDao.insertLoginLog(email, "Unknown", ipAddress, deviceInfo, "Failed", "Sai mật khẩu hoặc tên đăng nhập");
+
                 forwardToPage(request, response, url);
             }
         } catch (SQLException e) {
             // Nếu có lỗi trong quá trình truy vấn, hiển thị thông báo lỗi
             request.setAttribute("error", "Lỗi hệ thống: " + e.getMessage());
+
             forwardToPage(request, response, url);
         }
     }
