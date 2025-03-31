@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="thêm chức năng cập nhật khách hàng">
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="fix lỗi quản lý tin tức, quản lý phản hồi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/NewDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/NewDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -244,7 +242,8 @@
       <workItem from="1742973882346" duration="11667000" />
       <workItem from="1743045131044" duration="5295000" />
       <workItem from="1743051350328" duration="334000" />
-      <workItem from="1743143451090" duration="4549000" />
+      <workItem from="1743143451090" duration="5597000" />
+      <workItem from="1743306586590" duration="6752000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -438,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743143502214</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fix lỗi quản lý tin tức, quản lý phản hồi">
+      <option name="closed" value="true" />
+      <created>1743148071867</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1743148071867</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,6 +479,7 @@
     <MESSAGE value="chức năng thêm khuyến mãi, xóa khuyến mãi" />
     <MESSAGE value="thêm chức năng liên hệ, xóa liên hệ" />
     <MESSAGE value="thêm chức năng cập nhật khách hàng" />
-    <option name="LAST_COMMIT_MESSAGE" value="thêm chức năng cập nhật khách hàng" />
+    <MESSAGE value="fix lỗi quản lý tin tức, quản lý phản hồi" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix lỗi quản lý tin tức, quản lý phản hồi" />
   </component>
 </project>

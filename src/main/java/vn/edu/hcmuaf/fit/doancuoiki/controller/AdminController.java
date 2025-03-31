@@ -102,6 +102,12 @@ public class AdminController extends HttpServlet {
             case "deleteNew":
                 deleteNew(request, response);
                 break;
+            case "addNew":
+                addNew(request, response);
+                break;
+            case "updateNew":
+                updateNew(request, response);
+                break;
         }
     }
 // Quản lý khuyến mãi
@@ -205,7 +211,7 @@ public class AdminController extends HttpServlet {
             String title = request.getParameter("title");
             String content = request.getParameter("content");
             String image = request.getParameter("image");
-            String startDate = request.getParameter("start-date");
+            String startDate = request.getParameter("created-date");
             int isActive = Integer.parseInt(request.getParameter("is-active"));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -222,12 +228,12 @@ public class AdminController extends HttpServlet {
     private void updateNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Lấy các tham số từ form
-            int id = Integer.parseInt(request.getParameter("id")); // Lấy ID đơn hàng
-            String title = request.getParameter("title"); // Lấy mã khách hàng
-            String content = request.getParameter("content"); // Lấy địa chỉ giao xe
-            String image = request.getParameter("image"); // Lấy ngày thuê
-            String starDate = request.getParameter("starDate"); // Lấy ngày trả dự kiến
-            int isActive = Integer.parseInt(request.getParameter("isActive"));
+            int id = Integer.parseInt(request.getParameter("new-id")); // Lấy ID đơn hàng
+            String title = request.getParameter("new-title"); // Lấy mã khách hàng
+            String content = request.getParameter("new-content"); // Lấy địa chỉ giao xe
+            String image = request.getParameter("new-image"); // Lấy ngày thuê
+            String starDate = request.getParameter("new-createdDate"); // Lấy ngày trả dự kiến
+            int isActive = Integer.parseInt(request.getParameter("new-isActive"));
 
 
             // Chuyển đổi ngày từ String sang Date
