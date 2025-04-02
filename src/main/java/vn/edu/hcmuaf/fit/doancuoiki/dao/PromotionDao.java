@@ -80,4 +80,15 @@ public class PromotionDao {
             throw new RuntimeException(e);
         }
     }
+    public void updatePromotionStatus(int id, int isActive) {
+        String sql = "UPDATE promotions SET isActive = ? WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(sql)) {
+            pre.setInt(1, isActive);
+            pre.setInt(2, id);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

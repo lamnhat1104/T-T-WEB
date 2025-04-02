@@ -64,5 +64,17 @@ public class ContactDao {
             throw new RuntimeException(e);
         }
     }
+    public void updateContactStatus(int id, int status) {
+        String sql = "UPDATE contacts SET processingStatus = ? WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(sql)) {
+            pre.setInt(1, status);
+            pre.setInt(2, id);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

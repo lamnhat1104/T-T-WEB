@@ -103,6 +103,9 @@ public class AdminController extends HttpServlet {
             case "updatePromotion":
                 updatePromotion(request, response);
                 break;
+            case "changePromotionStatus":
+                changePromotionStatus(request, response);
+                break;
             case "deleteContact":
                 deleteContact(request, response);
                 break;
@@ -118,7 +121,9 @@ public class AdminController extends HttpServlet {
             case "changeNewsStatus":
                 changeNewsStatus(request, response);
                 break;
-
+            case "changeContactStatus":
+                changeContactStatus(request, response);
+                break;
         }
     }
 // Quản lý khuyến mãi
@@ -185,7 +190,14 @@ public class AdminController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
         }
     }
+    private void changePromotionStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int promoId = Integer.parseInt(request.getParameter("promotionId"));
+        int isActive = Integer.parseInt(request.getParameter("isActive"));
+        PromotionDao dao = new PromotionDao();
+        dao.updatePromotionStatus(promoId, isActive);
+        managerPromotion(request,response);
 
+    }
 
 // Quản lý phản hồi khách hàng
     private void managerContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -198,6 +210,13 @@ public class AdminController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("contact-id"));
         ContactDao contactDao = new ContactDao();
         contactDao.deleteContact(id);
+        managerContact(request,response);
+    }
+    private void changeContactStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int contactId = Integer.parseInt(request.getParameter("contactId"));
+        int status = Integer.parseInt(request.getParameter("status"));
+        ContactDao dao = new ContactDao();
+        dao.updateContactStatus(contactId, status);
         managerContact(request,response);
     }
 

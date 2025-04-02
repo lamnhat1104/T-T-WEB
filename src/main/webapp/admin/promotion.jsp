@@ -149,6 +149,22 @@
         margin-bottom: 10px;
       }
     }
+    table#promotionTable select {
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+      background-color: #fdfdfd;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    table#promotionTable select:hover {
+      border-color: #999;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      background-color: #f9f9f9;
+    }
 
   </style>
 </head>
@@ -243,11 +259,11 @@
           </div>
 
           <div class="card-body">
-            <table width="100%">
+            <table width="100%" id="promotionTable">
               <thead>
               <tr>
+
                 <th>Mã khuyến mãi</th>
-                <th>Tên khuyến mãi</th>
                 <th>Mô tả</th>
                 <th>Giá trị giảm</th>
                 <th>Thời gian</th>
@@ -259,12 +275,21 @@
               <tbody>
               <c:forEach var="pm" items="${promotions}">
               <tr>
-                <td>${pm.id}</td>
+
                 <td>${pm.promotionName}</td>
                 <td>${pm.description}</td>
                 <td>${pm.discountValue}${pm.discountType == '1' ? '%' : 'VND'}</td>
                 <td>${pm.startDate} - ${pm.endDate}</td>
-                <td>${pm.isActive == '1' ? 'Kích hoạt' : 'Vô hiệu hóa'}</td>
+                <td>
+                  <form action="admin" method="post">
+                    <input type="hidden" name="action" value="changePromotionStatus" />
+                    <input type="hidden" name="promotionId" value="${pm.id}" />
+                    <select name="isActive" onchange="this.form.submit()">
+                      <option value="1" ${pm.isActive == 1 ? 'selected' : ''}>Kích hoạt</option>
+                      <option value="0" ${pm.isActive == 0 ? 'selected' : ''}>Vô hiệu</option>
+                    </select>
+                  </form>
+                </td>
                 <td>
 
                   <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
