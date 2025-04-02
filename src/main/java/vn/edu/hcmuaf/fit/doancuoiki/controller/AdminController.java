@@ -81,6 +81,10 @@ public class AdminController extends HttpServlet {
             case "updateOrder":
                 updateOrder(request, response);
                 break;
+            case "updateOrderStatus":
+                updateOrderStatus(request, response);
+                break;
+
             case "deleteCustomer":
                 deleteCustomer(request, response);
                 break;
@@ -310,6 +314,15 @@ public class AdminController extends HttpServlet {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
         }
+    }
+
+    private void updateOrderStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        int status = Integer.parseInt(request.getParameter("status"));
+        OrderDao dao = new OrderDao();
+        dao.updateOrderStatus(orderId, status);
+
+        managerOrder(request,response);
     }
 
 

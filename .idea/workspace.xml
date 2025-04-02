@@ -9,14 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #29: cập nhật user và xóa user trong admin">
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -250,7 +247,7 @@
       <workItem from="1743143451090" duration="4549000" />
       <workItem from="1743493642778" duration="3869000" />
       <workItem from="1743524882349" duration="3771000" />
-      <workItem from="1743561421231" duration="1918000" />
+      <workItem from="1743561421231" duration="2912000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -452,7 +449,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743433182766</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
+      <option name="closed" value="true" />
+      <created>1743563627495</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1743563627495</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,6 +492,7 @@
     <MESSAGE value="thêm chức năng liên hệ, xóa liên hệ" />
     <MESSAGE value="thêm chức năng cập nhật khách hàng" />
     <MESSAGE value="Fixes #29: cập nhật user và xóa user trong admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #29: cập nhật user và xóa user trong admin" />
+    <MESSAGE value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
+    <option name="LAST_COMMIT_MESSAGE" value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
   </component>
 </project>
