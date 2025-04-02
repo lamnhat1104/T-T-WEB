@@ -38,6 +38,9 @@ public class AdminController extends HttpServlet {
             case "managerVehicleType":
                 managerVehicleType(request, response);
                 break;
+            case "changeStatusVehicle":
+                changeStatusVehicle(request, response);
+                break;
             case "managerOrder":
                 managerOrder(request, response);
                 break;
@@ -291,7 +294,7 @@ public class AdminController extends HttpServlet {
             String expectedReturnDate = request.getParameter("expectedReturnDate"); // Lấy ngày trả dự kiến
             String licensePlate = request.getParameter("licensePlate"); // Lấy biển số xe
             double rentalPrice = Double.parseDouble(request.getParameter("rentalPrice")); // Lấy giá thuê xe
-            String status = request.getParameter("status"); // Lấy trạng thái đơn hàng
+            int status = Integer.parseInt(request.getParameter("status")); // Lấy trạng thái đơn hàng
 
             // Chuyển đổi ngày từ String sang Date
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -431,6 +434,13 @@ public class AdminController extends HttpServlet {
 
         VehicleTypeDao dao = new VehicleTypeDao();
         dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available);
+        managerVehicleType(request, response);
+    }
+    private void changeStatusVehicle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        VehicleTypeDao dao = new VehicleTypeDao();
+        int id = Integer.parseInt(request.getParameter("vehicleId"));
+        int isAvailable = Integer.parseInt(request.getParameter("isAvailable"));
+        dao.updateAvailableStatus(id, isAvailable);
         managerVehicleType(request, response);
     }
 }

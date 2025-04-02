@@ -21,88 +21,133 @@
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <style>
         .modal {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            background-color: rgba(0,0,0,0.4);
         }
+
 
         .modal-content {
-            background-color: #fefefe;
-            margin: auto; /* Centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%; /* Smaller size */
-            max-width: 500px; /* Ensures it doesn't get too wide */
+            background-color: #fff;
+            margin: 50px auto;
+            padding: 25px 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
         }
 
+        .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-btn:hover {
+            color: #000;
+        }
 
+        /* Container bên trong modal */
+        .admin-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10px;
+        }
 
+        /* Form container dùng chung cho cả 2 */
         .form-container {
-            margin-top: 120px;
-            width: 150%;
-            max-width: 350px; /* Giảm chiều rộng form */
-            background: #fff;
-            padding: 10px; /* Giảm padding */
-            border-radius: 5px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        h3 {
-            text-align: center;
-            margin-bottom: 10px; /* Giảm khoảng cách tiêu đề */
-            color: #333;
-            font-size: 1em; /* Giảm kích thước chữ */
-        }
-
-        .form-group {
-            margin-bottom: 8px; /* Giảm khoảng cách giữa các trường */
-        }
-
-        label {
-            display: block;
-            font-size: 0.8em; /* Giảm kích thước chữ */
-            margin-bottom: 3px; /* Giảm khoảng cách giữa nhãn và input */
-            color: #555;
-        }
-
-        input, select, textarea {
             width: 100%;
-            padding: 5px; /* Giảm padding trong input */
-            font-size: 0.8em; /* Giảm kích thước chữ */
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 20px;
+        }
+
+        /* Input group */
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
             border: 1px solid #ccc;
-            border-radius: 3px;
             box-sizing: border-box;
         }
 
-        textarea {
-            resize: none;
+        .form-group textarea {
+            resize: vertical;
         }
 
-        button.submit-btn {
-            width: 100%;
-            background-color: #EE4D2D;
-            color: white;
+        /* Nút hành động */
+        button[type="submit"],
+        button[type="button"] {
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
             border: none;
-            padding: 8px; /* Giảm kích thước nút */
-            border-radius: 3px;
-            font-size: 0.9em; /* Giảm kích thước chữ nút */
+            border-radius: 4px;
             cursor: pointer;
+            margin-right: 8px;
+            transition: background-color 0.3s ease;
         }
 
-        button.submit-btn:hover {
-            background-color: #EE4D2D;
+        button[type="submit"] {
+            background-color: #ee4d2d;
+            color: #fff;
+        }
+        button[type="submit"]:hover {
+            background-color: #d74425;
         }
 
-        @media (max-width: 768px) {
-            .form-container {
-                padding: 8px; /* Giảm padding cho thiết bị nhỏ */
+        button[type="button"] {
+            background-color: #999;
+            color: #fff;
+        }
+        button[type="button"]:hover {
+            background-color: #777;
+        }
+
+        /* Responsive nhỏ hơn 500px */
+        @media (max-width: 500px) {
+            .modal-content {
+                padding: 20px;
+            }
+
+            .form-container h2 {
+                font-size: 18px;
+            }
+
+            button {
+                width: 100%;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -193,7 +238,6 @@
                     <div class="card-header">
                         <h3>Xe máy</h3>
                         <button onclick="openConfig()"> Thêm xe</button>
-                        <button class="card-header-btn"> Xóa xe</button>
                     </div>
 
                     <div class="card-body">
@@ -217,7 +261,17 @@
                                         <td>${v.category}</td>
                                         <td>${v.totalPrice}</td>
                                         <td>${v.totalVehicles}</td>
-                                        <td>${v.available==1? "Hien" : "An"}</td>
+                                        <td>
+                                            <form action="admin" method="get">
+                                            <input type="hidden" name="action" value="changeStatusVehicle"/>
+                                            <input type="hidden" name="vehicleId" value="${v.id}"/>
+                                            <select name="isAvailable" onchange="this.form.submit()">
+                                                <option value="1" ${v.available == 1 ? 'selected' : ''}>Có sẵn</option>
+                                                <option value="0" ${v.available == 0 ? 'selected' : ''}>Không có sẵn</option>
+                                            </select>
+                                        </form>
+
+                                        </td>
                                         <td>
                                             <button type="button" onclick="showEditForm('${v.id}', '${v.name}', '${v.brand}', '${v.category}', '${v.totalPrice}', '${v.description}', '${v.image}', '${v.totalVehicles}', '${v.available}')">Sửa</button>
                                             <form action="admin?action=deleteVehicleType" method="POST" style="display:inline;">
@@ -268,48 +322,61 @@
                             <option value="0">Không có sẵn</option>
                         </select><br/>
 
-                        <button type="submit">Thêm</button>
-                        <button type="button" onclick="hideEditForm()">Hủy</button>
+                        <button type="submit">Thêm Xe</button>
+                        <button type="button" onclick="closeConfig()">Hủy</button>
                     </form>
-                    </form>
+
                 </div>
             </div>
         </div>
-        <!-- Form sửa thông tin -->
-        <div id="editForm" style="display:none;">
-            <form action="admin?action=updateVehicleType" method="post">
-                <input type="hidden" name="id" id="id" />
-                <label for="name">Tên xe:</label>
-                <input type="text" id="name" name="name" /><br/>
+        <div id="configModal2" class="modal">
+            <div class="modal-content">
+                <div class="admin-container">
+                    <div class="form-container">
 
-                <label for="brand">Hãng xe:</label>
-                <input type="text" id="brand" name="brand" /><br/>
+                        <!-- Form sửa thông tin -->
+                        <div id="editForm" style="display:none;">
+                            <span class="close-btn" onclick="hideEditForm2()">&times;</span>
+                            <h3>Chỉnh sửa Xe</h3>
+                            <form action="admin?action=updateVehicleType" method="post">
+                                <input type="hidden" name="id" id="id" />
+                                <label for="name">Tên xe:</label>
+                                <input type="text" id="name" name="name" /><br/>
 
-                <label for="category">Loại xe:</label>
-                <input type="text" id="category" name="category" /><br/>
+                                <label for="brand">Hãng xe:</label>
+                                <input type="text" id="brand" name="brand" /><br/>
 
-                <label for="totalPrice">Giá thuê:</label>
-                <input type="text" id="totalPrice" name="totalPrice" /><br/>
+                                <label for="category">Loại xe:</label>
+                                <input type="text" id="category" name="category" /><br/>
 
-                <label for="description">Mô tả:</label>
-                <textarea id="description" name="description"></textarea><br/>
+                                <label for="totalPrice">Giá thuê:</label>
+                                <input type="text" id="totalPrice" name="totalPrice" /><br/>
 
-                <label for="image">Hình ảnh</label>
-                <input type="text" id="image" name="image" /><br/>
+                                <label for="description">Mô tả:</label>
+                                <textarea id="description" name="description"></textarea><br/>
 
-                <label for="totalVehicles">Số lượng xe:</label>
-                <input type="number" id="totalVehicles" name="totalVehicles" /><br/>
+                                <label for="image">Hình ảnh</label>
+                                <input type="text" id="image" name="image" /><br/>
 
-                <label for="available">Có sẵn:</label>
-                <select id="available" name="available">
-                    <option value="1">Có sẵn</option>
-                    <option value="0">Không có sẵn</option>
-                </select><br/>
+                                <label for="totalVehicles">Số lượng xe:</label>
+                                <input type="number" id="totalVehicles" name="totalVehicles" /><br/>
 
-                <button type="submit">Cập nhật</button>
-                <button type="button" onclick="hideEditForm()">Hủy</button>
-            </form>
+                                <label for="available">Có sẵn:</label>
+                                <select id="available" name="available">
+                                    <option value="1">Có sẵn</option>
+                                    <option value="0">Không có sẵn</option>
+                                </select><br/>
+
+                                <button type="submit">Cập nhật</button>
+                                <button type="button" onclick="hideEditForm2()">Hủy</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
 
 
         <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -327,9 +394,15 @@
                 document.getElementById("available").value = isAvailable;
 
                 // Hiển thị form
-                document.getElementById("editForm").style.display = "block";
-            }
 
+                document.getElementById("configModal2").style.display = "flex";
+                document.getElementById("editForm").style.display = "block";
+                document.getElementById("configModal").style.display = "none";
+            }
+            function hideEditForm2() {
+                document.getElementById("configModal2").style.display = "none";
+                document.getElementById("editForm").style.display = "none";
+            }
             function hideEditForm() {
                 // Ẩn form khi hủy
                 document.getElementById("editForm").style.display = "none";

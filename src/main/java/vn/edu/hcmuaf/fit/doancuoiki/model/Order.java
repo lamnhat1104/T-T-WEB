@@ -12,7 +12,7 @@ public class Order {
     private String deliveryAddress;
     private String paymentMethod;
     private int promotionId;
-    private String status;
+    private int status;
     private double additionalFee;
     private String additionalFeeNote;
     private OrderDetail orderDetail;
@@ -29,7 +29,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, int customerId, Date createdDate, Date retalStarDate, Date expectedReturnDate, Date actualReturnDate, String deliveryAddress, String paymentMethod, int promotionId, String status, double additionalFee, String additionalFeeNote) {
+    public Order(int id, int customerId, Date createdDate, Date retalStarDate, Date expectedReturnDate, Date actualReturnDate, String deliveryAddress, String paymentMethod, int promotionId, int status, double additionalFee, String additionalFeeNote) {
         this.id = id;
         this.customerId = customerId;
         this.createdDate = createdDate;
@@ -116,11 +116,11 @@ public class Order {
         this.promotionId = promotionId;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
