@@ -115,6 +115,10 @@ public class AdminController extends HttpServlet {
             case "updateNew":
                 updateNew(request, response);
                 break;
+            case "changeNewsStatus":
+                changeNewsStatus(request, response);
+                break;
+
         }
     }
 // Quản lý khuyến mãi
@@ -257,6 +261,14 @@ public class AdminController extends HttpServlet {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
         }
+    }
+
+    private void changeNewsStatus(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("newsId"));
+        int isActive = Integer.parseInt(request.getParameter("isActive"));
+        NewDao dao = new NewDao();
+        dao.updateNewsStatus(id, isActive);
+        managerNew(request,response);
     }
 
     private void managerStatMotor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

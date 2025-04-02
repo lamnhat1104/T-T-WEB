@@ -267,7 +267,15 @@
                 <td><%= n.getContent() %></td>
                 <td><%= n.getImage() %></td>
                 <td><%= n.getCreatedDate() %></td>
-                <td><%= n.getIsActive() == 0 ? "Vô hiệu":"Kích hoạt" %></td>
+                <td>
+                    <form action="admin" method="post">
+                        <input type="hidden" name="action" value="changeNewsStatus"/>
+                        <input type="hidden" name="newsId" value="<%= n.getId() %>"/>
+                        <select name="isActive" onchange="this.form.submit()">
+                            <option value="1" <%= n.getIsActive() == 1 ? "selected" : "" %>>Kích hoạt</option>
+                            <option value="0" <%= n.getIsActive() == 0 ? "selected" : "" %>>Vô hiệu</option>
+                        </select>
+                    </form>
                 <td>
                     <button type="button" onclick="showEditNewForm(
                         <%= n.getId() %>,
