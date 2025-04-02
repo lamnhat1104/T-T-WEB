@@ -235,14 +235,17 @@
                       <td>${o.expectedReturnDate}</td>
                       <td>${o.orderDetail.licensePlate}</td>
                         <td>
-                            <c:choose>
-                                <c:when test="${o.status == 0}">Chờ xác nhận</c:when>
-                                <c:when test="${o.status == 1}">Đã xác nhận</c:when>
-                                <c:when test="${o.status == 2}">Đang giao</c:when>
-                                <c:when test="${o.status == 3}">Đã hoàn tất</c:when>
-                                <c:when test="${o.status == 4}">Đã hủy</c:when>
-                                <c:otherwise>Không rõ</c:otherwise>
-                            </c:choose>
+                            <form action="admin" method="post">
+                                <input type="hidden" name="action" value="updateOrderStatus" />
+                                <input type="hidden" name="orderId" value="${o.id}" />
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="0" ${o.status == 0 ? 'selected' : ''}>Chờ xác nhận</option>
+                                    <option value="1" ${o.status == 1 ? 'selected' : ''}>Đã xác nhận</option>
+                                    <option value="2" ${o.status == 2 ? 'selected' : ''}>Đang giao</option>
+                                    <option value="3" ${o.status == 3 ? 'selected' : ''}>Đã hoàn tất</option>
+                                    <option value="4" ${o.status == 4 ? 'selected' : ''}>Đã hủy</option>
+                                </select>
+                            </form>
                         </td>
                       <td>
                           <!-- Thêm một form sửa đơn hàng trong phần Hành động -->

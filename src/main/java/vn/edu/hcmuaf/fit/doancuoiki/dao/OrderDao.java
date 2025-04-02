@@ -175,6 +175,17 @@ public class OrderDao {
             e.printStackTrace();
         }
     }
+    public void updateOrderStatus(int orderId, int status) {
+        String sql = "UPDATE orders SET status = ? WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(sql)) {
+            pre.setInt(1, status);
+            pre.setInt(2, orderId);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
