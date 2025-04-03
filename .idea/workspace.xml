@@ -9,7 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #38 :trang tin tuc" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #38 :trang tin tuc">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" afterDir="false" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" afterDir="false" />
+main
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,21 +37,21 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="22130195-MaiLamNhat" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;history&quot;: [
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
     {
-      &quot;state&quot;: &quot;OPEN&quot;,
-      &quot;assignee&quot;: &quot;lamnhat1104&quot;,
-      &quot;author&quot;: &quot;thuylinh22130145&quot;
+      "state": "OPEN",
+      "assignee": "lamnhat1104",
+      "author": "thuylinh22130145"
     }
   ],
-  &quot;lastFilter&quot;: {}
-}</component>
+  "lastFilter": {}
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/lamnhat1104/T-T-WEB.git&quot;,
@@ -62,8 +73,8 @@
     </option>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
+    &quot;associatedIndex&quot;: 8
+    }</component>
   <component name="ProjectId" id="2ttS7m6eAoESVQAeTdN9rCw0G9R" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -77,6 +88,10 @@
     &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
     &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;22130145-TRanThiThuyLinh&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.tomcat.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130195-MaiLamNhat2&quot;,
+ main
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -122,6 +137,8 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="eea6d499-41f7-413e-b272-aa67dc0776f6" />
+        <option name="BASE_DIRECTORY_NAME" value="c6b98454-e3ef-4d34-847c-195a87bf6c5c" />
+        main
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -130,6 +147,8 @@
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="54899" />
+        <option name="DEBUG_PORT" value="59714" />
+ main
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -246,7 +265,17 @@
       <workItem from="1743356831392" duration="521000" />
       <workItem from="1743425024229" duration="4958000" />
       <workItem from="1743481393458" duration="1477000" />
-      <workItem from="1743657833160" duration="12186000" />
+      <workItem from="1743657833160" duration="6910000" />
+      <workItem from="1742805697371" duration="13324000" />
+      <workItem from="1742957488408" duration="5970000" />
+      <workItem from="1742973882346" duration="11667000" />
+      <workItem from="1743045131044" duration="5295000" />
+      <workItem from="1743051350328" duration="334000" />
+      <workItem from="1743143451090" duration="4549000" />
+      <workItem from="1743493642778" duration="3869000" />
+      <workItem from="1743524882349" duration="3771000" />
+      <workItem from="1743561421231" duration="2912000" />
+ main
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -424,23 +453,49 @@
       <option name="project" value="LOCAL" />
       <updated>1743356677609</updated>
     </task>
-    <task id="LOCAL-00023" summary="Fixes #38 :trang tin tuc">
+    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00022" summary="thêm chức năng liên hệ, xóa liên hệ">
       <option name="closed" value="true" />
-      <created>1743665441684</created>
+      <created>1742837376157</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1742837376157</updated>
+    </task>
+    <task id="LOCAL-00023" summary="thêm chức năng cập nhật khách hàng">
+      <option name="closed" value="true" />
+      <created>1743049238774</created>
       <option name="number" value="00023" />
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1743665441684</updated>
+      <updated>1743049238774</updated>
     </task>
-    <task id="LOCAL-00024" summary="Fixes #38 :trang tin tuc">
+    <task id="LOCAL-00024" summary="thêm chức năng cập nhật khách hàng">
       <option name="closed" value="true" />
-      <created>1743695204312</created>
+      <created>1743143502214</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1743695204312</updated>
+      <updated>1743143502214</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fixes #29: cập nhật user và xóa user trong admin">
+      <option name="closed" value="true" />
+      <created>1743433182766</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1743433182766</updated>
+    </task>
+    <task id="LOCAL-00026" summary="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
+      <option name="closed" value="true" />
+      <created>1743563627495</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1743563627495</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
+ main
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,5 +529,11 @@
     <MESSAGE value="chức năng thêm khuyến mãi, xóa khuyến mãi" />
     <MESSAGE value="Fixes #38 :trang tin tuc" />
     <option name="LAST_COMMIT_MESSAGE" value="Fixes #38 :trang tin tuc" />
+    <MESSAGE value="thêm chức năng liên hệ, xóa liên hệ" />
+    <MESSAGE value="thêm chức năng cập nhật khách hàng" />
+    <MESSAGE value="Fixes #29: cập nhật user và xóa user trong admin" />
+    <MESSAGE value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
+    <option name="LAST_COMMIT_MESSAGE" value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
+ main
   </component>
 </project>

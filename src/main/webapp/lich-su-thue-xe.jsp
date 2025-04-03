@@ -1,4 +1,8 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.dao.OrderDao" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.Order" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.OrderDetail" %><%--
   Created by IntelliJ IDEA.
   User: DELL
   Date: 1/10/2025
@@ -12,6 +16,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lịch Sử Thuê Xe Máy</title>
+  <script>
+    fetch('header.jsp')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+    // Chèn footer
+    fetch('footer.jsp')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    function filterBestSellers() {
+      window.location.href = 'ProductBestSeller';
+
+    }
+    function redirectToNewPage() {
+      window.location.href = 'ProductNew';
+    }
+
+  </script>
   <style>
     /* Tổng thể */
     body {
@@ -92,41 +114,38 @@
   </style>
 </head>
 <body>
+<header id="header"></header>
+<%
+  HttpSession sessionUser = request.getSession();
+  User user = (User) sessionUser.getAttribute("user");
+
+  if (user == null) {
+    response.sendRedirect("login.jsp");
+    return;
+  }
+
+  OrderDao orderDao = new OrderDao();
+  List<Order> orders = orderDao.getAllOrder();
+%>
 <div class="container">
   <h1>Lịch Sử Thuê Xe Máy</h1>
   <div class="rental-history">
+    <% for (Order order : orders) { %>
     <!-- Mục 1 -->
     <div class="rental-item">
       <img src="https://via.placeholder.com/100x70" alt="Yamaha Exciter">
       <div class="rental-details">
         <p><strong>Tên xe:</strong> Yamaha Exciter</p>
-        <p><strong>Ngày thuê:</strong> 2024-11-01</p>
-        <p><strong>Ngày trả:</strong> 2024-11-05</p>
+        <p><strong>Ngày thuê:</strong> <%= order.getRetalStarDate() %></p>
+        <p><strong>Ngày trả:</strong><%= order.getExpectedReturnDate() %></p>
       </div>
-      <div class="rental-price">200,000 VND/ngày</div>
+      <div class="rental-price"><%= order.getOrderDetail().getPriceAtOrder() %> VND</div>
     </div>
-    <!-- Mục 2 -->
-    <div class="rental-item">
-      <img src="https://via.placeholder.com/100x70" alt="Honda Wave Alpha">
-      <div class="rental-details">
-        <p><strong>Tên xe:</strong> Honda Wave Alpha</p>
-        <p><strong>Ngày thuê:</strong> 2024-11-10</p>
-        <p><strong>Ngày trả:</strong> 2024-11-12</p>
-      </div>
-      <div class="rental-price">100,000 VND/ngày</div>
-    </div>
-    <!-- Mục 3 -->
-    <div class="rental-item">
-      <img src="https://via.placeholder.com/100x70" alt="Suzuki Raider">
-      <div class="rental-details">
-        <p><strong>Tên xe:</strong> Suzuki Raider</p>
-        <p><strong>Ngày thuê:</strong> 2024-11-15</p>
-        <p><strong>Ngày trả:</strong> 2024-11-17</p>
-      </div>
-      <div class="rental-price">150,000 VND/ngày</div>
-    </div>
+   <% }%>
+
   </div>
 </div>
+<div id="footer"></div>
 </body>
 </html>
 

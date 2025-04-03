@@ -59,13 +59,13 @@
 
         /* Nút cập nhật */
         #editOrderForm button[type="submit"] {
-            background: #28a745;
+            background: #ee4d2d;
             color: white;
         }
 
         /* Nút hủy */
         #editOrderForm button[type="button"] {
-            background: #dc3545;
+            background: #999;
             color: white;
         }
 
@@ -80,6 +80,43 @@
                 transform: translate(-50%, 0);
                 height: 90vh;
             }
+        }
+        #status {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+            background-color: #fff;
+        }
+        /* Nút hành động */
+        button[type="submit"],
+        button[type="button"] {
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background-color: #ee4d2d;
+            color: #fff;
+        }
+        button[type="submit"]:hover {
+            background-color: #d74425;
+        }
+
+        button[type="button"] {
+            background-color: #999;
+            color: #fff;
+        }
+        button[type="button"]:hover {
+            background-color: #777;
         }
 
 
@@ -197,7 +234,19 @@
                       <td>${o.retalStarDate}</td>
                       <td>${o.expectedReturnDate}</td>
                       <td>${o.orderDetail.licensePlate}</td>
-                      <td>${o.status}</td>
+                        <td>
+                            <form action="admin" method="post">
+                                <input type="hidden" name="action" value="updateOrderStatus" />
+                                <input type="hidden" name="orderId" value="${o.id}" />
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="0" ${o.status == 0 ? 'selected' : ''}>Chờ xác nhận</option>
+                                    <option value="1" ${o.status == 1 ? 'selected' : ''}>Đã xác nhận</option>
+                                    <option value="2" ${o.status == 2 ? 'selected' : ''}>Đang giao</option>
+                                    <option value="3" ${o.status == 3 ? 'selected' : ''}>Đã hoàn tất</option>
+                                    <option value="4" ${o.status == 4 ? 'selected' : ''}>Đã hủy</option>
+                                </select>
+                            </form>
+                        </td>
                       <td>
                           <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
                               <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>
@@ -238,7 +287,13 @@
                   <input type="text" id="rentalPrice" name="rentalPrice" /><br/>
 
                   <label for="status">Trạng thái đơn:</label>
-                  <input type="text" id="status" name="status" /><br/>
+                  <select id="status" name="status" required>
+                      <option value="0">Chờ xác nhận</option>
+                      <option value="1">Đã xác nhận</option>
+                      <option value="2">Đang giao</option>
+                      <option value="3">Đã hoàn tất</option>
+                      <option value="4">Đã hủy</option>
+                  </select><br/>
 
                   <button type="submit">Cập nhật</button>
                   <button type="button" onclick="hideEditOrderForm()">Hủy</button>

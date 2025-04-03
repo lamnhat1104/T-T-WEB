@@ -58,7 +58,7 @@ public class UserDao {
                             rs.getString("password"),
                             ui,
                             rs.getInt("roleId"),
-                            rs.getBoolean("isActive"));
+                            rs.getInt("isActive"));
                 } else { return null;
                 }
             }
@@ -102,7 +102,7 @@ public class UserDao {
                 ps1.setString(1, user.getEmail());
                 ps1.setString(2, user.getPassword());
                 ps1.setInt(3, 2);
-                ps1.setBoolean(4, user.isActive());
+                ps1.setInt(4, user.isActive());
                 int rowsAffected1 = ps1.executeUpdate();
 
                 // Lấy user_id vừa được sinh ra
@@ -218,7 +218,7 @@ public class UserDao {
                         rs.getString("userEmail"),
                         userInfo,
                         rs.getInt("roleId"),
-                        rs.getBoolean("userStatus")));
+                        rs.getInt("userStatus")));
             }
 
         } catch (SQLException e) {
@@ -250,6 +250,7 @@ public class UserDao {
             e.printStackTrace();
         }
     }
+
     public void deleteCustomer(int customerId) {
         String deleteUserDetailsQuery = "DELETE FROM userdetails WHERE id = ?";
         String deleteUserQuery = "DELETE FROM users WHERE id = ?";
@@ -278,19 +279,20 @@ public class UserDao {
         }
     }
 
-    public boolean updateCustomer(int id, int userId, String fullName, String phoneNumber, Date birthDay, String email, String address, int roleId, int isActive) {
-        String sql1 = "UPDATE userdetails SET fullName = ?, phoneNumber = ?, birthDay = ?, address = ? WHERE userId = ?";
+    public boolean updateCustomer(int id, int userId, String fullName, String phoneNumber, Date birthDate, String email, String address, int roleId, int isActive) {
+        String sql1 = "UPDATE userdetails SET userId = ?, fullName = ?, phoneNumber = ?, birthDate = ?, address = ? WHERE id = ?";
         String sql2 = "UPDATE users SET email = ?, roleId = ?, isActive = ? WHERE id = ?";
 
         try (Connection conn = new DBContext().getConnection()) {
             conn.setAutoCommit(false); // Bắt đầu giao dịch
 
             try (PreparedStatement pre1 = conn.prepareStatement(sql1)) {
-                pre1.setString(1, fullName);
-                pre1.setString(2, phoneNumber);
-                pre1.setDate(3, birthDay);
-                pre1.setString(4, address);
-                pre1.setInt(5, userId);
+                pre1.setInt(1, id);
+                pre1.setString(2, fullName);
+                pre1.setString(3, phoneNumber);
+                pre1.setDate(4, birthDate);
+                pre1.setString(5, address);
+                pre1.setInt(6, id);
                 int rows1 = pre1.executeUpdate();
 
                 try (PreparedStatement pre2 = conn.prepareStatement(sql2)) {
@@ -319,11 +321,79 @@ public class UserDao {
         }
     }
 
+    public boolean updateUser(int userId, String fullName,  String email , String address, String phone) {
+        String queryUser = "UPDATE users SET email = ? WHERE id = ?";
+        String queryUserInfo = "UPDATE userdetails SET fullName = ?, phoneNumber = ?, address = ? WHERE userId = ?";
 
+        try (Connection conn = new DBContext().getConnection()) {
+            // Cập nhật bảng users (email)
+            try (PreparedStatement psUser = conn.prepareStatement(queryUser)) {
+                psUser.setString(1, email);
+                psUser.setInt(2, userId);
+                psUser.executeUpdate();
+            }
+
+            // Cập nhật bảng userDetails (fullName, phone, address)
+            try (PreparedStatement psUserInfo = conn.prepareStatement(queryUserInfo)) {
+                psUserInfo.setString(1, fullName);
+                psUserInfo.setString(2, phone);
+                psUserInfo.setString(3, address);
+                psUserInfo.setInt(4, userId);
+                psUserInfo.executeUpdate();
+            }
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return false;
+    }
+    public void insertLoginLog(String email, String roleName, String ipAddress, String deviceInfo, String status, String failReason) throws SQLException {
+        String sql = "INSERT INTO login_logs (email, roleName, ip_address, device_info, activity, status, fail_reason) VALUES (?, ?, ?, ?, 'Login', ?, ?)";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.setString(2, roleName);
+            stmt.setString(3, ipAddress);
+            stmt.setString(4, deviceInfo);
+            stmt.setString(5, status);
+            stmt.setString(6, failReason);
+            stmt.executeUpdate();
+        }
+    }
+    public String getUserRole(String email) throws SQLException {
+        String sql = "SELECT r.roleName FROM users u JOIN roles r ON u.roleId = r.id WHERE u.email = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("roleName"); // Lấy roleName từ kết quả truy vấn
+            }
+        }
+        return "Unknown"; // Nếu không tìm thấy, trả về "Unknown"
+    }
+    public void updateLogoutTime(String email) throws SQLException {
+        String sql = "UPDATE login_logs SET logout_time = NOW() WHERE email = ? AND activity = 'Login' AND status = 'Success' ORDER BY login_time DESC LIMIT 1";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.executeUpdate();
+        }
+    }
 
     public static void main(String[] args) throws SQLException {
-        UserDao dao = new UserDao();
-        for(User u : dao.getUsers())
-            System.out.println(u);
+        UserDao userDao = new UserDao();
+        try {
+            String email = "nhiihuynhh70@gamil.com"; // Thay bằng email có trong database
+            String role = userDao.getUserRole(email);
+            System.out.println("Role của " + email + " là: " + role);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 }
