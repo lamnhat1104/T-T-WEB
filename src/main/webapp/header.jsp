@@ -61,7 +61,7 @@
 
                     <ul class="header__navbar-user-menu">
                         <li class="header__navbar-user-item">
-                            <a href="">Tài khoản của tôi</a>
+                            <a href="account.jsp?id=<%= user.getId() %>">Tài khoản của tôi</a>
                         </li>
                         <li class="header__navbar-user-item">
                             <a href="">Địa chỉ của tôi</a>
@@ -71,7 +71,7 @@
                             <a href="admin/admin.jsp">Admin</a>
                         <% } %>
                         <li class="header__navbar-user-item">
-                            <a href="">Lịch sử thuê</a>
+                            <a href="lich-su-thue-xe.jsp?id=<%= user.getId() %>">Lịch sử thuê</a>
                         </li>
                         <li class="header__navbar-user-item header__navbar-user-item-separate">
                             <a href="logout">Đăng xuất</a>

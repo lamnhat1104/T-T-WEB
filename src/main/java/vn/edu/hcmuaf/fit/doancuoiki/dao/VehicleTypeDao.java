@@ -84,6 +84,18 @@ public class VehicleTypeDao {
         }
     }
 
+    public void updateAvailableStatus(int id, int isAvailable) {
+        String sql = "UPDATE vehicletypes SET isAvailable = ? WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(sql)) {
+            pre.setInt(1, isAvailable);
+            pre.setInt(2, id);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         VehicleTypeDao vehicleTypeDao = new VehicleTypeDao();
         for(VehicleType vehicleType : vehicleTypeDao.getAllVehicleType()) {

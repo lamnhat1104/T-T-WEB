@@ -21,85 +21,245 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-  <style>
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+    <style>
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
 
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto; /* Centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 50%; /* Smaller size */
-      max-width: 500px; /* Ensures it doesn't get too wide */
-    }
+        .modal-content {
+            background-color: #fff;
+            margin: 50px auto;
+            padding: 25px 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+        }
 
-    .invoice-modal {
-      width: 100%;
-      margin: 80px auto;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      padding: 20px;
-      position: relative;
-    }
+        .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    .invoice-header {
-      text-align: center;
-      position: relative;
-    }
+        .close-btn:hover {
+            color: #000;
+        }
 
-    .invoice-header h2 {
-      font-size: 24px;
-      margin: 0;
-    }
+        /* ===== FORM CONTAINER CHUNG ===== */
+        .admin-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10px;
+        }
 
-    .close-btn {
-      position: absolute;
-      right: 20px;
-      top: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #999;
-    }
+        .form-container {
+            width: 100%;
+        }
 
-    .invoice-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-    }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 20px;
+        }
 
-    .invoice-table th,
-    .invoice-table td {
-      color: black;
-      padding: 10px;
-      text-align: left;
-      border: 1px solid #ddd;
-    }
+        /* ===== FORM GROUP CHUNG (Thêm + Cập nhật) ===== */
+        .auth-form__group,
+        .form-container form .form-group {
+            margin-bottom: 15px;
+        }
 
-    .invoice-table th {
-      background-color: #f9f9f9;
-      font-weight: bold;
-    }
+        .auth-form__group label,
+        .form-group label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            display: block;
+            margin-bottom: 6px;
+        }
 
-    .invoice-total {
-      text-align: right;
-      margin-top: 20px;
-      font-size: 18px;
-      color: #ff9800;
-      font-weight: bold;
-    }
-  </style>
+        .auth-form__group input,
+        .auth-form__group select,
+        .auth-form__group textarea,
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .auth-form__group select,
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .auth-form__group textarea,
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        /* ===== BUTTONS ===== */
+        .auth-form__controls,
+        .form-container .form-actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .auth-form__controls button,
+        .form-container button[type="submit"],
+        .form-container button[type="button"] {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .auth-form__controls .btn--primary,
+        .form-container button[type="submit"] {
+            background-color: #ee4d2d;
+            color: white;
+        }
+
+        .auth-form__controls .btn--primary:hover,
+        .form-container button[type="submit"]:hover {
+            background-color: #d74425;
+        }
+
+        .form-container button[type="button"] {
+            background-color: #888;
+            color: white;
+        }
+
+        .form-container button[type="button"]:hover {
+            background-color: #666;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media screen and (max-width: 600px) {
+            .modal-content {
+                padding: 20px;
+            }
+
+            .auth-form__group input,
+            .form-group input,
+            .form-group select,
+            .auth-form__group select {
+                font-size: 16px;
+            }
+
+            .auth-form__controls button,
+            .form-container button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+        /* ====== BẢNG QUẢN LÝ KHÁCH HÀNG ====== */
+        table#customerTable td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        table#customerTable select {
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        /* Hành động Sửa / Xóa */
+
+
+        /* ====== FORM CẬP NHẬT KHÁCH HÀNG ====== */
+        #editCustomerForm {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 20px;
+            align-items: center;
+        }
+
+        #editCustomerForm label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        #editCustomerForm input,
+        #editCustomerForm select {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Chỉnh lại toàn form theo hàng dọc trên mobile */
+        @media (max-width: 600px) {
+            #editCustomerForm {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Nút hành động */
+        button[type="submit"],
+        button[type="button"] {
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background-color: #ee4d2d;
+            color: #fff;
+        }
+        button[type="submit"]:hover {
+            background-color: #d74425;
+        }
+
+        button[type="button"] {
+            background-color: #999;
+            color: #fff;
+        }
+        button[type="button"]:hover {
+            background-color: #777;
+        }
+
+    </style>
+
 </head>
 <body>
 <input type="checkbox" id="nav-toggle">
@@ -186,8 +346,8 @@
         <div class="card">
           <div class="card-header">
             <h3>Khách hàng</h3>
-            <button> Thêm khách hàng</button>
-            <button class="card-header-btn"> Xóa khách hàng</button>
+            <button onclick="openConfig()"> Thêm khách hàng</button>
+
 
           </div>
 
@@ -222,7 +382,7 @@
                           <input type="hidden" name="userId" value="${u.id}" />
                           <select name="roleId" onchange="this.form.submit()">
                             <option value="1" ${u.roleId == 1 ? 'selected' : ''}>Admin</option>
-                            <option value="2" ${u.roleId == 2 ? 'selected' : ''}>Người dùng thường</option>
+                            <option value="2" ${u.roleId == 2 ? 'selected' : ''}>User</option>
                           </select>
                         </form>
                       </td>
@@ -231,14 +391,14 @@
                           <input type="hidden" name="action" value="changeStatusUser" />
                           <input type="hidden" name="userId" value="${u.id}" />
                           <select name="status" onchange="this.form.submit()">
-                            <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
-                            <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
+                              <option value="1" ${u.active==1 ? 'selected' : ''}>Đang hoạt động</option>
+                              <option value="0" ${u.active==0 ? 'selected' : ''}>Bị khoá</option>
                           </select>
                         </form>
                       </td>
                       <td>
-                          <button type="button">Sửa</button>
-<%--                          <button type="button" onclick="showEditForm('${u.id}', '${u.userInfo.fullName}', '${u.userInfo.phoneNumber}', '${u.userInfo.birthDay}', '${u.email}', '${u.userInfo.address}', '${u.roleId}', '${u.isActive}')">Sửa</button>--%>
+
+                          <button type="button" onclick="showEditCustomerForm('${u.id}', '${u.userInfo.fullName}', '${u.userInfo.phoneNumber}', '${u.userInfo.birthday}', '${u.email}', '${u.userInfo.address}', '${u.roleId}', '${u.active}')">Sửa</button>
                                                                           <form action="admin?action=deleteCustomer" method="POST" style="display:inline;">
                                                                               <input type="hidden" name="customerId" value="${u.id}"/>
                                                                               <button type="submit" class="see-btn">Xóa</button>
@@ -258,134 +418,174 @@
           </div>
         </div>
       </div>
+        <div id="configModal" class="modal">
+            <div class="modal-content">
+                <div class="admin-container">
+                    <div class="form-container">
+
+                        <h2>Thêm Khách hàng</h2>
+                        <span class="close-btn" onclick="closeConfig()">&times;</span>
+                        <%--    Thêm khách hàng--%>
+                        <form class="auth-form__group" method="post" action="SignIn" >
+                            <div class="auth-form__form">
+                                <div class="auth-form__group">
+                                    <label for="email">Email </label>
+                                    <input type="email" id="email" name="email" class="auth-form__input" placeholder="Email của bạn" required>
+                                </div>
+                                <div class="auth-form__group">
+                                    <label for="name">Họ và tên của bạn</label>
+                                    <input type="text" id ="name" name="name" class="auth-form__input" placeholder="Họ và tên của bạn" required>
+                                </div>
+                                <div class="auth-form__group">
+                                    <label for="birthday">Sinh nhật</label>
+                                    <input type="date" id="birthday" name="birthday" class="auth-form__input" required>
+                                </div>
+                                <div class="auth-form__group">
+                                    <label for="address">Địa chỉ</label>
+                                    <input type="text" id="address" name="address" class="auth-form__input" placeholder="Địa chỉ của bạn"  required>
+                                </div>
+                                <div class="auth-form__group">
+                                    <label for="password">Mật khẩu</label>
+                                    <input type="password" id="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
+                                </div>
+                                <div class="auth-form__group">
+                                    <select name="roleId">
+                                        <option value="1" ${u.roleId == 1 ? 'selected' : ''}>Admin</option>
+                                        <option value="2" ${u.roleId == 2 ? 'selected' : ''}>User</option>
+                                    </select>
+                                </div>
+                                <div class="auth-form__group">
+                                    <select name="status">
+                                        <option value="1" ${u.active==1 ? 'selected' : ''}>Đang hoạt động</option>
+                                        <option value="0" ${u.active==0 ? 'selected' : ''}>Bị khoá</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="auth-form__controls">
+                                <button type="submit" class="btn btn--primary">Thêm khách hàng</button>
+                                <button type="button" onclick="hideEditCustomerForm()">Hủy</button>
+                            </div>
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="configModal2" class="modal">
+            <div class="modal-content">
+                <div class="admin-container">
+                    <div class="form-container">
+
+                        <%--        Cập nhật khách hàng--%>
+                        <div id="editCustomerForm" style="display:none;">
+                            <h2>Cập nhật Khách hàng</h2>
+                            <span class="close-btn" onclick="closeConfig()">&times;</span>
+                            <form action="admin?action=updateCustomer" method="post">
+                                <input type="hidden" id="customerId" name="customerId" />
+                                <label for="id">Mã khách hàng:</label>
+                                <input type="text" id="id" name="id" readonly /><br/>
+
+                                <label for="fullName">Họ và tên:</label>
+                                <input type="text" id="fullName" name="fullName" required /><br/>
+
+                                <label for="phoneNumber">Số điện thoại:</label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" required /><br/>
+
+                                <label for="birthDateCus">Ngày sinh:</label>
+                                <input type="date" id="birthDateCus" name="birthDateCus"  required />
+
+
+                                <label for="emailCus">Email:</label>
+                                <input type="email" id="emailCus" name="emailCus" required /><br/>
+
+                                <label for="addressCus">Địa chỉ:</label>
+                                <input type="text" id="addressCus" name="addressCus" required /><br/>
+
+                                <label for="roleId">Vai trò:</label>
+                                <select id="roleId" name="roleId" required>
+                                    <option value="2">User</option>
+                                    <option value="1">Admin</option>
+                                </select><br/>
+
+                                <label for="status">Trạng thái:</label>
+                                <select id="status"  name="status" required>
+                                    <option value="1" ${u.active==1 ? 'selected' : ''}>Đang hoạt động</option>
+                                    <option value="0" ${u.active==0 ? 'selected' : ''}>Bị khoá</option>
+                                </select><br/>
+
+                                <button type="submit">Cập nhật khách hàng</button>
+                                <button type="button" onclick="hideEditCustomerForm2()">Hủy</button>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-<%--    Thêm khách hàng--%>
-    <form class="auth-form__group" method="post" action="SignIn" >
-        <div class="auth-form__form">
-            <div class="auth-form__group">
-                <label for="email">Email </label>
-                <input type="email" id="email" name="email" class="auth-form__input" placeholder="Email của bạn" required>
-            </div>
-            <div class="auth-form__group">
-                <label for="name">Họ và tên của bạn</label>
-                <input type="text" id ="name" name="name" class="auth-form__input" placeholder="Họ và tên của bạn" required>
-            </div>
-            <div class="auth-form__group">
-                <label for="birthday">Sinh nhật</label>
-                <input type="date" id="birthday" name="birthday" class="auth-form__input" required>
-            </div>
-            <div class="auth-form__group">
-                <label for="address">Địa chỉ</label>
-                <input type="text" id="address" name="address" class="auth-form__input" placeholder="Địa chỉ của bạn"  required>
-            </div>
-            <div class="auth-form__group">
-                <label for="password">Mật khẩu</label>
-                <input type="password" id="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
-            </div>
-            <div class="auth-form__group">
-                <select name="roleId">
-                  <option value="1" ${u.roleId == 1 ? 'selected' : ''}>Admin</option>
-                  <option value="2" ${u.roleId == 2 ? 'selected' : ''}>Người dùng thường</option>
-                </select>
-            </div>
-            <div class="auth-form__group">
-                <select name="status">
-                    <option value="1" ${u.active ? 'selected' : ''}>Đang hoạt động</option>
-                    <option value="0" ${!u.active ? 'selected' : ''}>Bị khoá</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="auth-form__controls">
-            <button type="submit" class="btn btn--primary">Thêm khách hàng</button>
-        </div>
-
-<%--        Cập nhật khách hàng--%>
-    </form>
-      <div id="editCustomerForm" style="display:none;">
-          <form action="admin?action=updateCustomer" method="post">
-              <label for="customerId">Mã khách hàng:</label>
-              <input type="text" id="customerId" name="customerId" readonly /><br/>
-
-              <label for="fullName">Họ và tên:</label>
-              <input type="text" id="fullName" name="fullName" required /><br/>
-
-              <label for="phoneNumber">Số điện thoại:</label>
-              <input type="text" id="phoneNumber" name="phoneNumber" required /><br/>
-
-              <label for="birthDayCus">Ngày sinh:</label>
-              <input type="date" id="birthDayCus" name="birthDay" value="<fmt:formatDate value='${u.userInfo.birthDay}' pattern='yyyy-MM-dd'/>" required />
 
 
-              <label for="emailCus">Email:</label>
-              <input type="email" id="emailCus" name="email" required /><br/>
-
-              <label for="addressCus">Địa chỉ:</label>
-              <input type="text" id="addressCus" name="address" required /><br/>
-
-              <label for="roleId">Vai trò:</label>
-              <select id="roleId" name="roleId" required>
-                  <option value="1">Khách hàng</option>
-                  <option value="2">Quản trị viên</option>
-              </select><br/>
-
-              <label for="isActive">Trạng thái:</label>
-              <select id="isActive" name="isActive" required>
-                  <option value="1">Hoạt động</option>
-                  <option value="0">Bị khóa</option>
-              </select><br/>
-
-              <button type="submit">Cập nhật khách hàng</button>
-              <button type="button" onclick="hideEditCustomerForm()">Hủy</button>
-          </form>
-      </div>
   </main>
 </div>
-      <script>
-          function showEditCustomerForm(id, fullName, phoneNumber, birthDay, email, address, roleId, isActive) {
-              // Điền thông tin vào form
-              document.getElementById("customerId").value = id; // Không cho chỉnh sửa
-              document.getElementById("fullName").value = fullName;
-              document.getElementById("phoneNumber").value = phoneNumber;
-              document.getElementById("birthDayCus").value = birthDay;
-              document.getElementById("emailCus").value = email;
-              document.getElementById("addressCus").value = address;
-              document.getElementById("roleId").value = roleId;
-              document.getElementById("isActive").value = isActive;
+<script>
+    function showEditCustomerForm(userId, fullName, phone, birthDate, email, address, roleId, isActive) {
+        document.getElementById("id").value = userId; // id = userdetails.id
+        document.getElementById("customerId").value = userId; // id = users.id (nếu khác thì truyền riêng)
 
-              // Hiển thị form cập nhật khách hàng
-              document.getElementById("editCustomerForm").style.display = "block";
-          }
+        document.getElementById("fullName").value = fullName;
+        document.getElementById("phoneNumber").value = phone;
+        document.getElementById("birthDateCus").value = birthDate;
+        document.getElementById("emailCus").value = email;
+        document.getElementById("addressCus").value = address;
+        document.getElementById("roleId").value = roleId;
+        document.getElementById("status").value = isActive;
+// Hiển thị form
+        document.getElementById("configModal2").style.display = "flex";
+        document.getElementById("editCustomerForm").style.display = "block";
+        document.getElementById("configModal").style.display = "none";
 
-          function hideEditCustomerForm() {
-              // Ẩn form khi hủy
-              document.getElementById("editCustomerForm").style.display = "none";
-          }
-      </script>
+    }
+    function hideEditCustomerForm2() {
+        document.getElementById("configModal2").style.display = "none";
+        document.getElementById("editCustomerForm").style.display = "none";
+    }
+    function hideEditCustomerForm() {
+        // Ẩn form khi hủy
+        document.getElementById("configModal").style.display = "none";
+    }
+</script>
 
-      <script>
+<script>
     function openConfig() {
-      document.getElementById('configModal').style.display = 'flex';
+        document.getElementById('configModal').style.display = 'flex';
     }
 
     function closeConfig() {
-      document.getElementById('configModal').style.display = 'none';
+        document.getElementById('configModal').style.display = 'none';
+        document.getElementById('configModal2').style.display = 'none';
     }
 
-      $(document).ready(function() {
+    $(document).ready(function() {
         $('#customerTable').DataTable({
-          paging: true,        // Bật phân trang
-          searching: true,     // Bật tìm kiếm
-          ordering: true,      // Bật sắp xếp
-          info: true,          // Hiển thị thông tin số bản ghi
-          language: {
-            url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json" // Hiển thị tiếng Việt
-          }
+            paging: true,        // Bật phân trang
+            searching: true,     // Bật tìm kiếm
+            ordering: true,      // Bật sắp xếp
+            info: true,          // Hiển thị thông tin số bản ghi
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json" // Hiển thị tiếng Việt
+            }
         });
-      });
+    });
 
-  </script>
+</script>
 
 
 </body>

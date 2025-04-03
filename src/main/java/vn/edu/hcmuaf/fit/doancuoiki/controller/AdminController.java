@@ -11,7 +11,11 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+
 
 @WebServlet(name = "AdminController", value = "/admin")
 public class AdminController extends HttpServlet {
@@ -33,6 +37,9 @@ public class AdminController extends HttpServlet {
                 break;
             case "managerVehicleType":
                 managerVehicleType(request, response);
+                break;
+            case "changeStatusVehicle":
+                changeStatusVehicle(request, response);
                 break;
             case "managerOrder":
                 managerOrder(request, response);
@@ -74,6 +81,10 @@ public class AdminController extends HttpServlet {
             case "updateOrder":
                 updateOrder(request, response);
                 break;
+            case "updateOrderStatus":
+                updateOrderStatus(request, response);
+                break;
+
             case "deleteCustomer":
                 deleteCustomer(request, response);
                 break;
@@ -89,8 +100,20 @@ public class AdminController extends HttpServlet {
             case "deletePromotion":
                 deletePromotion(request, response);
                 break;
+            case "updatePromotion":
+                updatePromotion(request, response);
+                break;
             case "deleteContact":
                 deleteContact(request, response);
+                break;
+            case "deleteNew":
+                deleteNew(request, response);
+                break;
+            case "addNew":
+                addNew(request, response);
+                break;
+            case "updateNew":
+                updateNew(request, response);
                 break;
         }
     }
@@ -131,6 +154,34 @@ public class AdminController extends HttpServlet {
         managerPromotion(request,response);
     }
 
+    private void updatePromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Lấy các tham số từ form
+            int id = Integer.parseInt(request.getParameter("id")); // Lấy ID đơn hàng
+            String promotionName = request.getParameter("promotionName"); // Lấy mã khách hàng
+            String description = request.getParameter("descriptionName"); // Lấy địa chỉ giao xe
+            double discountValue = Double.parseDouble(request.getParameter("discountValue"));
+            String rentalStartDate = request.getParameter("startDate"); // Lấy ngày thuê
+            String expectedReturnDate = request.getParameter("endDate"); // Lấy ngày trả dự kiến
+            int isActive = Integer.parseInt(request.getParameter("isActive"));
+            int discountType = Integer.parseInt(request.getParameter("discountType"));
+
+            // Chuyển đổi ngày từ String sang Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
+            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
+            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+            PromotionDao promotionDao = new PromotionDao();
+            // Cập nhật đơn hàng
+            promotionDao.updatePromotion(id, promotionName, description, discountValue, startDate, endDate, isActive, discountType);
+            managerPromotion(request,response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+        }
+    }
+
 
 // Quản lý phản hồi khách hàng
     private void managerContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -149,12 +200,64 @@ public class AdminController extends HttpServlet {
 // Quản lý tin tức
     private void managerNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         NewDao newDao = new NewDao();
-        List<New> news = newDao.getAllNew();
-        request.setAttribute("news", news);
+        List<New> newsList = newDao.getAllNew();
+        request.setAttribute("news", newsList);
         request.getRequestDispatcher("admin/qltintuc.jsp").forward(request, response);
+
     }
 
+    private void deleteNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("new-id"));
+        NewDao newDao = new NewDao();
+        newDao.deleteNew(id);
+        managerNew(request,response);
+    }
 
+    private void addNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+        try {
+            String title = request.getParameter("title");
+            String content = request.getParameter("content");
+            String image = request.getParameter("image");
+            String startDate = request.getParameter("created-date");
+            int isActive = Integer.parseInt(request.getParameter("is-active"));
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date createdDate = new Date(dateFormat.parse(startDate).getTime());
+
+            NewDao newDao = new NewDao();
+            newDao.addNew(title, content, image, createdDate, isActive);
+            managerNew(request, response);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void updateNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Lấy các tham số từ form
+            int id = Integer.parseInt(request.getParameter("new-id")); // Lấy ID đơn hàng
+            String title = request.getParameter("new-title"); // Lấy mã khách hàng
+            String content = request.getParameter("new-content"); // Lấy địa chỉ giao xe
+            String image = request.getParameter("new-image"); // Lấy ngày thuê
+            String starDate = request.getParameter("new-createdDate"); // Lấy ngày trả dự kiến
+            int isActive = Integer.parseInt(request.getParameter("new-isActive"));
+
+
+            // Chuyển đổi ngày từ String sang Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date ceatedDate = new Date(dateFormat.parse(starDate).getTime());
+
+            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+            NewDao newDao = new NewDao();
+            // Cập nhật đơn hàng
+            newDao.updateNew(id, title, content, image, ceatedDate, isActive);
+            managerNew(request,response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+        }
+    }
 
     private void managerStatMotor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("admin/stats_motors.jsp").forward(request, response);
@@ -195,7 +298,7 @@ public class AdminController extends HttpServlet {
             String expectedReturnDate = request.getParameter("expectedReturnDate"); // Lấy ngày trả dự kiến
             String licensePlate = request.getParameter("licensePlate"); // Lấy biển số xe
             double rentalPrice = Double.parseDouble(request.getParameter("rentalPrice")); // Lấy giá thuê xe
-            String status = request.getParameter("status"); // Lấy trạng thái đơn hàng
+            int status = Integer.parseInt(request.getParameter("status")); // Lấy trạng thái đơn hàng
 
             // Chuyển đổi ngày từ String sang Date
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -211,6 +314,15 @@ public class AdminController extends HttpServlet {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
         }
+    }
+
+    private void updateOrderStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        int status = Integer.parseInt(request.getParameter("status"));
+        OrderDao dao = new OrderDao();
+        dao.updateOrderStatus(orderId, status);
+
+        managerOrder(request,response);
     }
 
 
@@ -268,21 +380,20 @@ public class AdminController extends HttpServlet {
             int userId = Integer.parseInt(request.getParameter("customerId"));
             String fullName = request.getParameter("fullName");
             String phoneNumber = request.getParameter("phoneNumber");
-            String email = request.getParameter("email");
-            String address = request.getParameter("address");
+            String email = request.getParameter("emailCus");
+            String address = request.getParameter("addressCus");
             int roleId = Integer.parseInt(request.getParameter("roleId"));
-            int isActive = Integer.parseInt(request.getParameter("isActive"));
-            String birthDayStr = request.getParameter("birthDay");
-            Date birthDay = null;
-            if (birthDayStr != null && !birthDayStr.isEmpty()) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                birthDay = new Date(dateFormat.parse(birthDayStr).getTime());
-            }
+            int isActive = Integer.parseInt(request.getParameter("status"));
+
+            String birthDayStr = request.getParameter("birthDateCus");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date birthDate = new Date(dateFormat.parse(birthDayStr).getTime());
+
 
             // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
             UserDao userDao = new UserDao();
             // Cập nhật đơn hàng
-            userDao.updateCustomer(id, userId, fullName, phoneNumber, birthDay, email, address, roleId, isActive);
+            userDao.updateCustomer(id, userId, fullName, phoneNumber, birthDate, email, address, roleId, isActive);
             managerCustomer(request,response);
 
         } catch (Exception e) {
@@ -336,6 +447,13 @@ public class AdminController extends HttpServlet {
 
         VehicleTypeDao dao = new VehicleTypeDao();
         dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available);
+        managerVehicleType(request, response);
+    }
+    private void changeStatusVehicle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        VehicleTypeDao dao = new VehicleTypeDao();
+        int id = Integer.parseInt(request.getParameter("vehicleId"));
+        int isAvailable = Integer.parseInt(request.getParameter("isAvailable"));
+        dao.updateAvailableStatus(id, isAvailable);
         managerVehicleType(request, response);
     }
 }

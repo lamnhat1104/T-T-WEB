@@ -18,101 +18,138 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
   <style>
     .modal {
-      display: none; /* Hidden by default */
+      display: none;
       position: fixed;
-      z-index: 1;
+      z-index: 1000;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      background-color: rgba(0,0,0,0.4);
     }
+
 
     .modal-content {
-      background-color: #fefefe;
-      margin: auto; /* Centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 50%; /* Smaller size */
-      max-width: 500px; /* Ensures it doesn't get too wide */
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-
-    /* Container cho toàn bộ trang */
-    .admin-container {
-      margin-top: 100px;
-      display: flex;
-      justify-content: center; /* Canh giữa theo chiều ngang */
-      align-items: center; /* Canh giữa theo chiều dọc */
-      height: 100vh; /* Chiều cao toàn màn hình */
-      background-color: #f4f4f9;
-    }
-
-    /* Container cho form */
-    .form-container {
-      width: 100%; /* Form vừa đủ rộng */
-      background-color: white;
-      padding: 20px 25px;
+      background-color: #fff;
+      margin: 50px auto;
+      padding: 25px 30px;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
       overflow-y: auto;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      z-index: 10000;
     }
 
-    /* Tiêu đề Form */
+    .close-btn {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      font-size: 24px;
+      color: #888;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .close-btn:hover {
+      color: #000;
+    }
+
+    /* Container bên trong modal */
+    .admin-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 10px;
+    }
+
+    /* Form container dùng chung cho cả 2 */
+    .form-container {
+      width: 100%;
+    }
+
     .form-container h2 {
       text-align: center;
       margin-bottom: 20px;
-      font-size: 20px;
       color: #333;
+      font-size: 20px;
     }
 
-    /* Các trường nhập liệu */
-    .promotion-form .form-group {
+    /* Input group */
+    .form-group {
       margin-bottom: 15px;
     }
 
-    .promotion-form .form-group label {
+    .form-group label {
       display: block;
-      font-size: 14px;
+      margin-bottom: 6px;
       font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .promotion-form .form-group input,
-    .promotion-form .form-group select,
-    .promotion-form .form-group textarea {
-      width: 100%;
-      padding: 8px;
       font-size: 14px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      color: #333;
     }
 
-    .promotion-form .form-group textarea {
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .form-group textarea {
       resize: vertical;
     }
 
-    /* Nút submit */
-    .submit-btn {
-      width: 100%;
-      padding: 10px;
-      background-color: #EE4D2D;
-      color: white;
+    /* Nút hành động */
+    button[type="submit"],
+    button[type="button"] {
+      padding: 10px 15px;
       font-size: 14px;
       font-weight: bold;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      margin-right: 8px;
       transition: background-color 0.3s ease;
     }
+
+    button[type="submit"] {
+      background-color: #ee4d2d;
+      color: #fff;
+    }
+    button[type="submit"]:hover {
+      background-color: #d74425;
+    }
+
+    button[type="button"] {
+      background-color: #999;
+      color: #fff;
+    }
+    button[type="button"]:hover {
+      background-color: #777;
+    }
+
+    /* Responsive nhỏ hơn 500px */
+    @media (max-width: 500px) {
+      .modal-content {
+        padding: 20px;
+      }
+
+      .form-container h2 {
+        font-size: 18px;
+      }
+
+      button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -214,6 +251,7 @@
                 <th>Mô tả</th>
                 <th>Giá trị giảm</th>
                 <th>Thời gian</th>
+                <th>Trạng thái</th>
                 <th>Hành động</th>
 
               </tr>
@@ -226,10 +264,11 @@
                 <td>${pm.description}</td>
                 <td>${pm.discountValue}${pm.discountType == '1' ? '%' : 'VND'}</td>
                 <td>${pm.startDate} - ${pm.endDate}</td>
+                <td>${pm.isActive == '1' ? 'Kích hoạt' : 'Vô hiệu hóa'}</td>
                 <td>
-                  <button class="see-btn">sửa</button>
+
                   <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
-<%--                  <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>--%>
+                  <button type="button" onclick="showEditPromotionForm('${pm.id}', '${pm.promotionName}', '${pm.description}', '${pm.discountValue}', '${pm.startDate}', '${pm.endDate}', '${pm.isActive}', '${pm.discountType}')">Sửa</button>
                   <form action="admin?action=deletePromotion" method="POST" style="display:inline;">
                     <input type="hidden" name="promo-id" value="${pm.id}"/>
                     <button type="submit" class="see-btn">Xóa</button>
@@ -292,6 +331,66 @@
                 </div>
                 <button type="submit" class="submit-promotion">Thêm Khuyến Mãi</button>
               </form>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="configModal2" class="modal">
+        <div class="modal-content">
+          <div class="admin-container">
+            <div class="form-container">
+
+              <%--              form thêm khuyến mãi--%>
+              <div id="editPromotionForm" style="display:none;">
+                <form action="admin?action=updatePromotion" method="post">
+                  <div class="form-group">
+                    <label for="id">Mã Khuyến Mãi:</label>
+                    <input type="text" id="id" name="id" placeholder="Nhập mã khuyến mãi" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="promotionName">Tên Khuyến Mãi:</label>
+                    <input type="text" id="promotionName" name="promotionName" placeholder="Nhập tên khuyến mãi" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="descriptionName">Mô Tả:</label>
+                    <textarea id="descriptionName" name="descriptionName" rows="3" placeholder="Mô tả chi tiết khuyến mãi"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="discountValue">Giá Trị Giảm:</label>
+                    <input type="number" id="discountValue" name="discountValue" placeholder="Nhập giá trị giảm" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="discountType">% hoặc VND:</label>
+                    <select id="discountType" name="discountType" required>
+                      <option value="">-- Chọn Loại Giá Trị Giảm --</option>
+                      <option value="1" ${pm.discountType==1 ? 'selected' : ''}>Phần Trăm (%)</option>
+                      <option value="2" ${pm.discountType==2 ? 'selected' : ''}>Giá Trị Thực (VND)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="startDate">Thời Gian Bắt Đầu:</label>
+                    <input type="date" id="startDate" name="startDate" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="endDate">Thời Gian Kết Thúc:</label>
+                    <input type="date" id="endDate" name="endDate" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="isActive">Hành Động:</label>
+                    <select id="isActive" name="isActive" required>
+                      <option value="">-- Chọn Trạng Thái --</option>
+                      <option value="1" ${pm.isActive==1 ? 'selected' : ''}>Kích hoạt</option>
+                      <option value="2" ${pm.isActive==2 ? 'selected' : ''}>Vô hiệu hóa</option>
+                    </select>
+                  </div>
+                  <button type="submit">Cập nhật khuyến mãi</button>
+                  <button type="button" onclick="hideEditPromotionForm2()">Hủy</button>
+                </form>
+              </div>
+
             </div>
           </div>
         </div>
@@ -299,13 +398,38 @@
     </div>
   </main>
   <script>
+    function showEditPromotionForm(id, promotionName, description, discountValue, startDate, endDate, isActive, discountType) {
+      // Điền thông tin vào form
+      document.getElementById("id").value = id;
+      document.getElementById("promotionName").value = promotionName;
+      document.getElementById("descriptionName").value = description;
+      document.getElementById("discountValue").value = discountValue;
+      document.getElementById("startDate").value = startDate;
+      document.getElementById("endDate").value = endDate;
+      document.getElementById("isActive").value = isActive;
+      document.getElementById("discountType").value = discountType;
+
+      // Hiển thị form
+      document.getElementById("configModal2").style.display = "flex";
+      document.getElementById("editPromotionForm").style.display = "block";
+      document.getElementById("configModal").style.display = "none";
+    }
+    function hideEditPromotionForm2() {
+      document.getElementById("configModal2").style.display = "none";
+      document.getElementById("editPromotionForm").style.display = "none";
+    }
+    function hideEditPromotionForm() {
+      // Ẩn form khi hủy
+      document.getElementById("editPromotionForm").style.display = "none";
+
+    }
     function openConfig() {
-      document.getElementById('configModal').style.display = 'flex';
+      document.getElementById("configModal").style.display = "block";
+    }
+    function closeConfig() {
+      document.getElementById("configModal").style.display = "none";
     }
 
-    function closeConfig() {
-      document.getElementById('configModal').style.display = 'none';
-    }
 
   </script>
 </div>
