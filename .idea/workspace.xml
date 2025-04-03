@@ -15,6 +15,18 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" afterDir="false" />
+
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #38 :trang tin tuc">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" afterDir="false" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" afterDir="false" />
+main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,27 +38,32 @@
       <list>
         <option value="Class" />
         <option value="Servlet" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="22130195-MaiLamNhat" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;lamnhat1104&quot;
-  }
-}</component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "state": "OPEN",
+      "assignee": "lamnhat1104",
+      "author": "thuylinh22130145"
+    }
+  ],
+  "lastFilter": {}
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/lamnhat1104/T-T-WEB.git&quot;,
-    &quot;accountId&quot;: &quot;a90c00fa-ccd9-4167-b5f4-a124eb5f6db7&quot;
+    &quot;accountId&quot;: &quot;2d98ba9b-cf9c-4d93-b35a-bc8a5e6f2a0f&quot;
   }
 }</component>
   <component name="LogFilters">
@@ -93,8 +110,33 @@
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
     "vue.rearranger.settings.migration": "true"
+
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130145-TRanThiThuyLinh&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.tomcat.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130195-MaiLamNhat2&quot;,
+ main
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\HK1_2024\T-T-WEB\DoAnCuoiKi" />
@@ -114,6 +156,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="T-T-WEB" />
       <method v="2">
@@ -128,16 +171,20 @@
       </method>
     </configuration>
     <configuration name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="tomcat" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+
+    <configuration name="Tomcat 10.1.39" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.39" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="demo:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/demo" />
+            <option name="CONTEXT_PATH" value="/demo_war" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="eea6d499-41f7-413e-b272-aa67dc0776f6" />
         <option name="BASE_DIRECTORY_NAME" value="c6b98454-e3ef-4d34-847c-195a87bf6c5c" />
+        main
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -145,7 +192,9 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54899" />
         <option name="DEBUG_PORT" value="59714" />
+ main
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -223,8 +272,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.39" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.39" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -259,6 +308,15 @@
       <workItem from="1742605788577" duration="7155000" />
       <workItem from="1742659929769" duration="1482000" />
       <workItem from="1742745244516" duration="1207000" />
+      <workItem from="1742805697371" duration="12520000" />
+      <workItem from="1743047903386" duration="4764000" />
+      <workItem from="1743081735489" duration="389000" />
+      <workItem from="1743353645204" duration="231000" />
+      <workItem from="1743353908896" duration="714000" />
+      <workItem from="1743356831392" duration="521000" />
+      <workItem from="1743425024229" duration="4958000" />
+      <workItem from="1743481393458" duration="1477000" />
+      <workItem from="1743657833160" duration="6910000" />
       <workItem from="1742805697371" duration="13324000" />
       <workItem from="1742957488408" duration="5970000" />
       <workItem from="1742973882346" duration="11667000" />
@@ -266,6 +324,12 @@
       <workItem from="1743051350328" duration="334000" />
       <workItem from="1743561538465" duration="5009000" />
       <workItem from="1743664195166" duration="6454000" />
+
+      <workItem from="1743143451090" duration="4549000" />
+      <workItem from="1743493642778" duration="3869000" />
+      <workItem from="1743524882349" duration="3771000" />
+      <workItem from="1743561421231" duration="2912000" />
+ main
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -435,6 +499,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742826364381</updated>
     </task>
+    <task id="LOCAL-00022" summary="chức năng thêm khuyến mãi, xóa khuyến mãi">
+      <option name="closed" value="true" />
+      <created>1743356677609</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1743356677609</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <task id="LOCAL-00022" summary="thêm chức năng liên hệ, xóa liên hệ">
       <option name="closed" value="true" />
       <created>1742837376157</created>
@@ -452,6 +525,32 @@
       <updated>1743049238774</updated>
     </task>
     <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="thêm chức năng cập nhật khách hàng">
+      <option name="closed" value="true" />
+      <created>1743143502214</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1743143502214</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Fixes #29: cập nhật user và xóa user trong admin">
+      <option name="closed" value="true" />
+      <created>1743433182766</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1743433182766</updated>
+    </task>
+    <task id="LOCAL-00026" summary="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
+      <option name="closed" value="true" />
+      <created>1743563627495</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1743563627495</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
+ main
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,8 +582,15 @@
     <MESSAGE value="quản lý khuyến mãi" />
     <MESSAGE value="liên kết admin, quản lý khuyến mãi" />
     <MESSAGE value="chức năng thêm khuyến mãi, xóa khuyến mãi" />
+    <MESSAGE value="Fixes #38 :trang tin tuc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #38 :trang tin tuc" />
     <MESSAGE value="thêm chức năng liên hệ, xóa liên hệ" />
     <MESSAGE value="thêm chức năng cập nhật khách hàng" />
     <option name="LAST_COMMIT_MESSAGE" value="thêm chức năng cập nhật khách hàng" />
+
+    <MESSAGE value="Fixes #29: cập nhật user và xóa user trong admin" />
+    <MESSAGE value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
+    <option name="LAST_COMMIT_MESSAGE" value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
+ main
   </component>
 </project>

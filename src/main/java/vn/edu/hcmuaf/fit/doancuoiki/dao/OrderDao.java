@@ -122,7 +122,7 @@ public class OrderDao {
                 order.setCreatedDate(rs.getDate("createdDate"));
                 order.setExpectedReturnDate(rs.getDate("expectedReturnDate"));
                 order.setRetalStarDate(rs.getDate("rentalStartDate"));
-                order.setStatus(rs.getString("status"));
+                order.setStatus(rs.getInt("status"));
 
 
                 order.setOrderDetail(orderDetail);
@@ -146,7 +146,7 @@ public class OrderDao {
         }
     }
 
-    public void updateOrder(int id, int customerId, String location, Date rentalStartDate, Date expectedReturnDate, String licensePlate, double priceAtOrder, String status) {
+    public void updateOrder(int id, int customerId, String location, Date rentalStartDate, Date expectedReturnDate, String licensePlate, double priceAtOrder, int status) {
         // SQL để cập nhật thông tin đơn hàng
         String sql1 = "UPDATE orders SET customerId = ?, rentalStartDate = ?, expectedReturnDate = ?, deliveryAddress = ?, status = ? WHERE id = ?";
         // SQL để cập nhật thông tin chi tiết đơn hàng
@@ -159,7 +159,7 @@ public class OrderDao {
                 pre1.setDate(2, rentalStartDate);
                 pre1.setDate(3, expectedReturnDate);
                 pre1.setString(4, location);
-                pre1.setString(5, status);
+                pre1.setInt(5, status);
                 pre1.setInt(6, id);  // Sử dụng customerId làm khóa để tìm đơn hàng cần cập nhật
                 pre1.executeUpdate();
 
@@ -171,6 +171,17 @@ public class OrderDao {
                     pre2.executeUpdate();
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateOrderStatus(int orderId, int status) {
+        String sql = "UPDATE orders SET status = ? WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(sql)) {
+            pre.setInt(1, status);
+            pre.setInt(2, orderId);
+            pre.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
