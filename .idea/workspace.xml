@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="chức năng thêm khuyến mãi, xóa khuyến mãi">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #38 :trang tin tuc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/db/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/db/DBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,12 +35,16 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;lamnhat1104&quot;
-  }
-}</component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "state": "OPEN",
+      "assignee": "lamnhat1104",
+      "author": "thuylinh22130145"
+    }
+  ],
+  "lastFilter": {}
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/lamnhat1104/T-T-WEB.git&quot;,
@@ -117,12 +120,12 @@
       <deployment>
         <artifact name="demo:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/demo" />
+            <option name="CONTEXT_PATH" value="/demo_war" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="317c48d4-cfd6-4b45-ba14-7b9a6b03b7a1" />
+        <option name="BASE_DIRECTORY_NAME" value="eea6d499-41f7-413e-b272-aa67dc0776f6" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -130,7 +133,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="59637" />
+        <option name="DEBUG_PORT" value="54899" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -203,8 +206,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -243,7 +246,11 @@
       <workItem from="1743047903386" duration="4764000" />
       <workItem from="1743081735489" duration="389000" />
       <workItem from="1743353645204" duration="231000" />
-      <workItem from="1743353908896" duration="605000" />
+      <workItem from="1743353908896" duration="714000" />
+      <workItem from="1743356831392" duration="521000" />
+      <workItem from="1743425024229" duration="4958000" />
+      <workItem from="1743481393458" duration="1477000" />
+      <workItem from="1743657833160" duration="6910000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -413,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742826364381</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="chức năng thêm khuyến mãi, xóa khuyến mãi">
+      <option name="closed" value="true" />
+      <created>1743356677609</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1743356677609</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,6 +460,7 @@
     <MESSAGE value="quản lý khuyến mãi" />
     <MESSAGE value="liên kết admin, quản lý khuyến mãi" />
     <MESSAGE value="chức năng thêm khuyến mãi, xóa khuyến mãi" />
-    <option name="LAST_COMMIT_MESSAGE" value="chức năng thêm khuyến mãi, xóa khuyến mãi" />
+    <MESSAGE value="Fixes #38 :trang tin tuc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #38 :trang tin tuc" />
   </component>
 </project>

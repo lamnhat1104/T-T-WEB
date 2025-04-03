@@ -6,13 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tin tức</title>
-  <link rel="stylesheet" href="../csstintuc/csstintuc.css">
+  <link rel="stylesheet" href="csstintuc.css">
+  <link rel="stylesheet" href="csschitiettintuc.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
@@ -20,13 +23,13 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
   <script>
     // Chèn header
-    fetch('header.html')
+    fetch('header.jsp')
 
             .then(response => response.text())
             .then(data => document.getElementById('header').innerHTML = data);
 
     // Chèn footer
-    fetch('footer.html')
+    fetch('footer.jsp')
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
   </script>
@@ -128,7 +131,7 @@
     <div class="news-item">
       <img src="https://chothuexemayhcm.com/upload/news/cong-vien-tao-dan-la-phoi-xanh-cua-thanh-pho-ho-chi-minh1724001515_385x205.jpg" alt="Thue xe Củ Chi đi Vũng Tàu">
       <h3>Công viên Tao Đàn - "Lá phổi xanh" của Thành phố Hồ Chí Minh</h3>
-      <p>du lịch, tổng hợp, cẩm nang, Sài Gòn/p>
+      <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
     </div>
     <div class="news-item">
       <img src="https://chothuexemayhcm.com/upload/news/mon-ngon-sai-gon-noi-tieng-bon-phuong1717603530_385x205.jpg" alt="Thue xe Củ Chi đi Vũng Tàu">
