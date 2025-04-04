@@ -151,6 +151,22 @@
               margin-bottom: 10px;
           }
       }
+      table#newTable select {
+          padding: 6px 12px;
+          font-size: 13px;
+          font-weight: 500;
+          border-radius: 6px;
+          border: 1px solid #bbb;
+          background-color: #fdfdfd;
+          color: #333;
+          transition: all 0.3s ease;
+      }
+
+      table#newTable select:hover {
+          border-color: #999;
+          box-shadow: 0 0 5px rgba(0,0,0,0.1);
+          background-color: #f9f9f9;
+      }
   </style>
 </head>
 <body>
@@ -242,7 +258,7 @@
           </div>
 
           <div class="card-body">
-            <table width="100%">
+            <table width="100%" id="newTable">
               <thead>
               <tr>
                 <th>Mã tin tức</th>
@@ -267,7 +283,15 @@
                 <td><%= n.getContent() %></td>
                 <td><%= n.getImage() %></td>
                 <td><%= n.getCreatedDate() %></td>
-                <td><%= n.getIsActive() == 0 ? "Vô hiệu":"Kích hoạt" %></td>
+                <td>
+                    <form action="admin" method="post">
+                        <input type="hidden" name="action" value="changeNewsStatus"/>
+                        <input type="hidden" name="newsId" value="<%= n.getId() %>"/>
+                        <select name="isActive" onchange="this.form.submit()">
+                            <option value="1" <%= n.getIsActive() == 1 ? "selected" : "" %>>Kích hoạt</option>
+                            <option value="0" <%= n.getIsActive() == 0 ? "selected" : "" %>>Vô hiệu</option>
+                        </select>
+                    </form>
                 <td>
                     <button type="button" onclick="showEditNewForm(
                         <%= n.getId() %>,

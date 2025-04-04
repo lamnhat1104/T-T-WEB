@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/css/product-detail.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="assets/js/ValidateAndCalculate.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -108,6 +109,64 @@
     <script>alert("Đặt xe thất bại. Vui lòng thử lại!");</script>
 </c:if>
 
+<div class="comments-section">
+    <h2>Bình luận về sản phẩm</h2>
+    <div id="comments-list">
+        <c:forEach var="comment" items="${comments}">
+            <div class="comment">
+                <p><strong>${comment.userName}</strong> (${comment.createdAt})</p>
+                <p>${comment.content}</p>
+            </div>
+        </c:forEach>
+    </div>
+
+    <!-- Form bình luận mới -->
+    <c:if test="${not empty user}">
+        <form id="comment-form" method="post">
+            <input type="hidden" name="productId" value="${p.id}">
+            <input type="hidden" name="parentId" value="0">
+            <label for="content">Bình luận của bạn</label>
+            <textarea id="content" name="content" required></textarea>
+            <button type="submit">Gửi bình luận</button>
+        </form>
+    </c:if>
+    <c:if test="${empty user}">
+        <p>Vui lòng <a href="login.jsp">đăng nhập</a> để bình luận.</p>
+    </c:if>
+</div>
+<script>
+    // Xử lý việc gửi bình luận qua AJAX
+    $(document).ready(function() {
+        $('#comment-form').submit(function(e) {
+            e.preventDefault();  // Ngăn chặn form gửi lại theo cách mặc định
+
+            var content = $('#content').val();
+            var productId = $("input[name='productId']").val();
+            var parentId = $("input[name='parentId']").val();
+
+            // Gửi yêu cầu AJAX đến server
+            $.ajax({
+                url: 'CommentController',  // Địa chỉ servlet xử lý
+                method: 'POST',
+                data: {
+                    productId: productId,
+                    parentId: parentId,
+                    content: content
+                },
+                success: function(response) {
+                    // Sau khi bình luận thành công, hiển thị bình luận mới
+                    var newComment = JSON.parse(response);  // Đảm bảo server trả về JSON
+                    var newCommentHTML = '<div class="comment"><p><strong>' + newComment.userName + '</strong> (' + newComment.createdAt + ')</p><p>' + newComment.content + '</p></div>';
+                    $('#comments-list').prepend(newCommentHTML);  // Thêm bình luận mới lên đầu danh sách
+                    $('#content').val('');  // Làm sạch textarea
+                },
+                error: function() {
+                    alert("Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.");
+                }
+            });
+        });
+    });
+</script>
 <%@ include file="footer.jsp" %>
 </body>
 </html>
