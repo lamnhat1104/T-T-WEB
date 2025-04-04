@@ -9,6 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #30 :đã làm, Fixes #37 cập nhật trạng thái tin tức">
+
     <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="update log dang nhạp dang xuat hien thi thong làm gì trên web">
       <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/CommentController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Comment.java" afterDir="false" />
@@ -21,12 +24,20 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" afterDir="false" />
     <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
+
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ContactDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ContactDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" afterDir="false" />
+
 main
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,8 +339,14 @@ main
       <workItem from="1743143451090" duration="4549000" />
       <workItem from="1743493642778" duration="3869000" />
       <workItem from="1743524882349" duration="3771000" />
+
+      <workItem from="1743561421231" duration="5192000" />
+      <workItem from="1743581128650" duration="3360000" />
+      <workItem from="1743609773749" duration="6125000" />
+
       <workItem from="1743561421231" duration="2912000" />
  main
+
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -549,8 +566,28 @@ main
       <option name="project" value="LOCAL" />
       <updated>1743563627495</updated>
     </task>
+
+    <task id="LOCAL-00027" summary="Fixes #2, Fixes #22, Fixes #31, Fixes #32:đã làm, Fixes #35 cập nhật trạng thái đơn hàng">
+      <option name="closed" value="true" />
+      <created>1743564576187</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1743564576187</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Fixes #30 :đã làm, Fixes #37 cập nhật trạng thái tin tức">
+      <option name="closed" value="true" />
+      <created>1743589608984</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1743589608984</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+
     <option name="localTasksCounter" value="27" />
  main
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +627,13 @@ main
 
     <MESSAGE value="Fixes #29: cập nhật user và xóa user trong admin" />
     <MESSAGE value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
+
+    <MESSAGE value="Fixes #2, Fixes #22, Fixes #31, Fixes #32:đã làm, Fixes #35 cập nhật trạng thái đơn hàng" />
+    <MESSAGE value="Fixes #30 :đã làm, Fixes #37 cập nhật trạng thái tin tức" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #30 :đã làm, Fixes #37 cập nhật trạng thái tin tức" />
+
     <option name="LAST_COMMIT_MESSAGE" value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
  main
+
   </component>
 </project>

@@ -118,6 +118,22 @@
         button[type="button"]:hover {
             background-color: #777;
         }
+        table#orderTable select {
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            border: 1px solid #bbb;
+            background-color: #fdfdfd;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        table#orderTable select:hover {
+            border-color: #999;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
+        }
 
 
     </style>
@@ -212,7 +228,7 @@
           </div>
 
           <div class="card-body">
-            <table id="order-table" width="100%">
+            <table id="orderTable" width="100%">
                 <thead>
                     <tr>
                         <th>Mã đơn hàng</th>
@@ -238,7 +254,7 @@
                             <form action="admin" method="post">
                                 <input type="hidden" name="action" value="updateOrderStatus" />
                                 <input type="hidden" name="orderId" value="${o.id}" />
-                                <select name="status" onchange="this.form.submit()">
+                                <select name="status" class="status-select status-${o.status}" onchange="this.form.submit()">
                                     <option value="0" ${o.status == 0 ? 'selected' : ''}>Chờ xác nhận</option>
                                     <option value="1" ${o.status == 1 ? 'selected' : ''}>Đã xác nhận</option>
                                     <option value="2" ${o.status == 2 ? 'selected' : ''}>Đang giao</option>
@@ -247,6 +263,8 @@
                                 </select>
                             </form>
                         </td>
+
+
                       <td>
                           <!-- Thêm một form sửa đơn hàng trong phần Hành động -->
                               <button type="button" onclick="showEditOrderForm('${o.id}', '${o.customerId}', '${o.deliveryAddress}', '${o.retalStarDate}', '${o.expectedReturnDate}', '${o.orderDetail.licensePlate}', '${o.status}', '${o.orderDetail.priceAtOrder}')">Sửa</button>

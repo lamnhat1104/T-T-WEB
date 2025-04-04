@@ -18,7 +18,22 @@
   <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
   <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
   <style>
-    
+    table#contactTable select {
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+      background-color: #fdfdfd;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    table#contactTable select:hover {
+      border-color: #999;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      background-color: #f9f9f9;
+    }
   </style>
 </head>
 <body>
@@ -109,7 +124,7 @@
             <button> Xem tất cả<span class="las la-arrow-right"></span> </button>
           </div>
 
-          <div class="card-body">
+          <div class="card-body" id="contactTable">
             <table width="100%">
               <thead>
               <tr>
@@ -134,7 +149,16 @@
                 <td><%= c.getEmail() %></td>
                 <td><%= c.getMessage() %></td>
                 <td><%= c.getCreateDate() %></td>
-                <td><%= c.getProcessingStatus() == 1 ? "chưa xử lý" : "đã xử lý" %></td>
+                <td>
+                  <form action="admin" method="post">
+                    <input type="hidden" name="action" value="changeContactStatus" />
+                    <input type="hidden" name="contactId" value="<%= c.getId() %>" />
+                    <select name="status" onchange="this.form.submit()">
+                      <option value="0" <%=c.getProcessingStatus() == 0 ? "selected" : ""%>>Chưa xử lý</option>
+                      <option value="1" <%=c.getProcessingStatus() == 1 ? "selected" : ""%>>Đã xử lý</option>
+                    </select>
+                  </form>
+                </td>
                 <td>
                   <button class="see-btn">sửa</button>
                   <form action="admin?action=deleteContact" method="POST" style="display:inline;">
