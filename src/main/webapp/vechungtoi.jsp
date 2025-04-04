@@ -16,7 +16,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Về chúng tôi </title>
   <link rel="stylesheet" href="csssp.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css"
+
+  <link rel="stylesheet" href="cssvechungtoi.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="${pageContext.request.contextPath}/admin/admin.js"></script>
   <script>
     // Chèn header
@@ -78,17 +80,14 @@
         <li>Phát triển bền vững và đổi mới</li>
       </ul>
     </div>
-    <div class="col-md-6">
-      <img src="https://citgroup.vn/wp-content/uploads/2021/08/gia-tri-cot-loi-cua-doanh-nghiep.jpg" class="img-fluid rounded" alt="Giá trị cốt lõi">
-    </div>
-  </div>
 
+  </div>
+  <h3>Phản Hồi Từ Khách Hàng</h3>
   <div class="row mt-4">
     <div class="col-md-6">
       <img src="https://th.bing.com/th/id/OIP.OA2QOrbTE0c93ZtIaCqcaQHaDt?w=303&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" class="img-fluid rounded" alt="Phản hồi khách hàng">
     </div>
     <div class="col-md-6">
-      <h3>Phản Hồi Từ Khách Hàng</h3>
       <p>Chúng tôi tự hào khi nhận được sự tin tưởng và đánh giá cao từ hàng ngàn khách hàng trên khắp cả nước.</p>
     </div>
   </div>

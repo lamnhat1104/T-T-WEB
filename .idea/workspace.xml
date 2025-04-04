@@ -9,7 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c72e3637-95e4-4427-ab19-1ff22ffd7e1b" name="Changes" comment="">
+    <list default="true" id="c72e3637-95e4-4427-ab19-1ff22ffd7e1b" name="Changes" comment="Fixes #42 :trang về chúng tôi">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/cssvechungtoi.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" afterDir="false" />
@@ -56,6 +57,7 @@ main
         <option value="Class" />
         <option value="Servlet" />
         <option value="Jsp File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -123,6 +125,7 @@ main
     "jdk.selected.JAVA_MODULE": "23",
 main
     "kotlin-language-version-configured": "true",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -306,9 +309,17 @@ main
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743735390385</updated>
-      <workItem from="1743735394645" duration="5353000" />
+      <workItem from="1743735394645" duration="6639000" />
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Fixes #42 :trang về chúng tôi">
+      <option name="closed" value="true" />
+      <created>1743743566848</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1743743566848</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
       <updated>1741169712923</updated>
       <workItem from="1741169714023" duration="239000" />
       <workItem from="1741169961877" duration="1777000" />
@@ -620,7 +631,8 @@ main
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #38 :trang tin tuc" />
+    <MESSAGE value="Fixes #42 :trang về chúng tôi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #42 :trang về chúng tôi" />
     <MESSAGE value="thêm chức năng liên hệ, xóa liên hệ" />
     <MESSAGE value="thêm chức năng cập nhật khách hàng" />
     <option name="LAST_COMMIT_MESSAGE" value="thêm chức năng cập nhật khách hàng" />
