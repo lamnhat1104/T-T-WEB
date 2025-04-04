@@ -5,16 +5,18 @@
   Time: 11:08 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Về Chúng Tôi</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
+  <title>Về chúng tôi </title>
+  <link rel="stylesheet" href="csssp.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css"
   <script src="${pageContext.request.contextPath}/admin/admin.js"></script>
   <script>
     // Chèn header
@@ -42,7 +44,7 @@
       <p>Thành lập từ năm 2010, chúng tôi đã không ngừng phát triển và mở rộng để trở thành một trong những đơn vị hàng đầu trong lĩnh vực phân phối xe máy chất lượng cao.</p>
     </div>
     <div class="col-md-6">
-      <img src="assets/img/history.jpg" class="img-fluid rounded" alt="Lịch sử phát triển">
+      <img src="https://th.bing.com/th/id/OIP.gBV_bL52rjVlZ2IRoKkWGgHaFd?w=221&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" class="img-fluid rounded" alt="Lịch sử phát triển">
     </div>
   </div>
 
@@ -52,13 +54,13 @@
       <p>Chúng tôi cam kết mang đến cho khách hàng những chiếc xe máy chất lượng, giá cả hợp lý và dịch vụ hậu mãi tốt nhất.</p>
     </div>
     <div class="col-md-6">
-      <img src="assets/img/mission.jpg" class="img-fluid rounded" alt="Sứ mệnh">
+      <img src="https://th.bing.com/th/id/OIP.ZFIPB7sR70N23HVLVPI-KwHaEo?w=213&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" class="img-fluid rounded" alt="Sứ mệnh">
     </div>
   </div>
 
   <div class="row mt-4">
     <div class="col-md-6">
-      <img src="assets/img/our-team.jpg" class="img-fluid rounded" alt="Đội ngũ">
+      <img src="https://th.bing.com/th/id/OIP.LZj-OEPb6VB6__mYovxLfAHaEh?w=292&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" class="img-fluid rounded" alt="Đội ngũ">
     </div>
     <div class="col-md-6">
       <h3>Đội Ngũ Của Chúng Tôi</h3>
@@ -77,13 +79,13 @@
       </ul>
     </div>
     <div class="col-md-6">
-      <img src="assets/img/values.jpg" class="img-fluid rounded" alt="Giá trị cốt lõi">
+      <img src="https://citgroup.vn/wp-content/uploads/2021/08/gia-tri-cot-loi-cua-doanh-nghiep.jpg" class="img-fluid rounded" alt="Giá trị cốt lõi">
     </div>
   </div>
 
   <div class="row mt-4">
     <div class="col-md-6">
-      <img src="assets/img/customer-feedback.jpg" class="img-fluid rounded" alt="Phản hồi khách hàng">
+      <img src="https://th.bing.com/th/id/OIP.OA2QOrbTE0c93ZtIaCqcaQHaDt?w=303&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" class="img-fluid rounded" alt="Phản hồi khách hàng">
     </div>
     <div class="col-md-6">
       <h3>Phản Hồi Từ Khách Hàng</h3>
