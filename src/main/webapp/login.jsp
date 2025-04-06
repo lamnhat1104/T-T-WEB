@@ -20,6 +20,75 @@
     String error = (String) request.getAttribute("error");
     error = error==null? "":error;
 %>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1222492126105891', // Thay bằng App ID thật của bạn
+            cookie: true,
+            xfbml: true,
+            version: 'v22.0'
+        });
+
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function loginWithFacebook() {
+        FB.login(function (response) {
+            if (response.status === 'connected') {
+                console.log("✅ Đăng nhập thành công với Facebook");
+                getUserInfo(response.authResponse.accessToken);
+            } else {
+                alert("❌ Đăng nhập không thành công hoặc người dùng đã từ chối.");
+                console.log("Người dùng từ chối đăng nhập hoặc có lỗi.");
+            }
+        }, { scope: 'public_profile,email' });
+    }
+
+    function getUserInfo(accessToken) {
+        FB.api('/me', { fields: 'id,name,email' }, function (response) {
+            if (response && !response.error) {
+                document.getElementById('user-info').innerHTML = `
+                    <div class="auth-form__welcome">
+                        <p>👋 Chào, <strong>${response.name}</strong></p>
+                        <p>Email: ${response.email}</p>
+                    </div>
+                `;
+                sendDataToServer(response.id, response.name, response.email, accessToken);
+            } else {
+                alert("Không thể lấy thông tin người dùng.");
+                console.error(response.error);
+            }
+        });
+    }
+
+    function sendDataToServer(id, name, email, accessToken) {
+        fetch("saveUser.jsp", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `id=${id}&name=${name}&email=${email}&token=${accessToken}`
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Dữ liệu đã gửi tới server:", data);
+                // Optional: redirect sau khi đăng nhập thành công
+                // window.location.href = "trangchu.jsp";
+            })
+            .catch(error => {
+                console.error("Lỗi khi gửi dữ liệu đến server:", error);
+            });
+    }
+</script>
+
+out.print("<br><a href='login.jsp'>Đăng nhập tại đây</a>");
 <div class="login">
     <div class="header">
         <div class="header__item">
@@ -90,15 +159,13 @@
                     </div>
                 </form>
 
-
-                <div class="social-container">
-                    <div class="auth-form__socials">
-                        <a href="" class="auth-form__socials--facebook btn btn__size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fa-brands fa-square-facebook"></i>
-                            <span class="auth-form__socials-title">
-                          Đăng nhập với Facebook
-                        </span>
-                        </a>
+                <a href="javascript:void(0);" onclick="loginWithFacebook()" class="auth-form__socials--facebook btn btn__size-s btn--with-icon">
+                    <i class="auth-form__socials-icon fa-brands fa-square-facebook"></i>
+                    <span class="auth-form__socials-title">
+      Đăng nhập với Facebook
+    </span>
+                </a>
+                <div id="user-info"></div>
                         <a href="" class="auth-form__socials--google btn btn__size-s btn--with-icon">
                             <i class="auth-form__socials-icon fa-brands fa-google"></i>
                             <span class="auth-form__socials-title">
@@ -109,7 +176,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 </body>
 </html>
