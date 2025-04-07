@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="fontawesome-free-6.6.0/css/all.css">
 </head>
 <body>
-<body>
 <div class="app">
   <header id="header"></header>
 
