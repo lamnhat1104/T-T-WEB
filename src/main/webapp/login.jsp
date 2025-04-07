@@ -80,7 +80,7 @@
             .then(data => {
                 console.log("Dữ liệu đã gửi tới server:", data);
                 // Optional: redirect sau khi đăng nhập thành công
-                // window.location.href = "trangchu.jsp";
+                window.location.href = "index.jsp";
             })
             .catch(error => {
                 console.error("Lỗi khi gửi dữ liệu đến server:", error);
