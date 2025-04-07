@@ -23,7 +23,7 @@
 <script>
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '1222492126105891', // Thay bằng App ID thật của bạn
+            appId: '1222492126105891',
             cookie: true,
             xfbml: true,
             version: 'v22.0'
@@ -79,7 +79,6 @@
             .then(response => response.text())
             .then(data => {
                 console.log("Dữ liệu đã gửi tới server:", data);
-                // Optional: redirect sau khi đăng nhập thành công
                 window.location.href = "index.jsp";
             })
             .catch(error => {
@@ -88,7 +87,6 @@
     }
 </script>
 
-out.print("<br><a href='login.jsp'>Đăng nhập tại đây</a>");
 <div class="login">
     <div class="header">
         <div class="header__item">
