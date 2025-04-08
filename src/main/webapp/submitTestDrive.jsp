@@ -7,6 +7,43 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="true" %>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: white;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        text-align: center;
+    }
+    h2 {
+        color: #2e7d32;
+    }
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    button:hover {
+        background-color: #1976d2;
+    }
+</style>
 <%
     // Lấy thông tin từ form đăng ký lái thử
     String fullName = request.getParameter("fullName");
@@ -31,6 +68,7 @@
         out.println("<p><strong>Email:</strong> " + email + "</p>");
         out.println("<p><strong>Xe muốn lái thử:</strong> " + bike + "</p>");
         out.println("<p><strong>Ngày lái thử:</strong> " + testDriveDate + "</p>");
+        out.println("<br><a href='index.jsp'><button>Quay lại trang chủ</button></a>");
 
         // Có thể gửi email xác nhận cho khách hàng tại đây
         // Chức năng gửi email sẽ yêu cầu cấu hình máy chủ SMTP

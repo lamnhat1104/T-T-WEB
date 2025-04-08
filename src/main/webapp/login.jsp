@@ -18,7 +18,7 @@
 <body>
 <%
     String error = (String) request.getAttribute("error");
-    error = error==null? "":error;
+    error = error == null ? "" : error;
 %>
 <script>
     window.fbAsyncInit = function () {
@@ -44,11 +44,9 @@
     function loginWithFacebook() {
         FB.login(function (response) {
             if (response.status === 'connected') {
-                console.log("✅ Đăng nhập thành công với Facebook");
                 getUserInfo(response.authResponse.accessToken);
             } else {
                 alert("❌ Đăng nhập không thành công hoặc người dùng đã từ chối.");
-                console.log("Người dùng từ chối đăng nhập hoặc có lỗi.");
             }
         }, { scope: 'public_profile,email' });
     }
@@ -65,7 +63,6 @@
                 sendDataToServer(response.id, response.name, response.email, accessToken);
             } else {
                 alert("Không thể lấy thông tin người dùng.");
-                console.error(response.error);
             }
         });
     }
@@ -78,14 +75,14 @@
         })
             .then(response => response.text())
             .then(data => {
-                console.log("Dữ liệu đã gửi tới server:", data);
                 window.location.href = "index.jsp";
             })
             .catch(error => {
-                console.error("Lỗi khi gửi dữ liệu đến server:", error);
+                alert("Lỗi khi gửi dữ liệu đến server.");
             });
     }
 </script>
+
 
 <div class="login">
     <div class="header">

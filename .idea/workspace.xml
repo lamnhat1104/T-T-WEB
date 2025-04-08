@@ -9,11 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ca72cee-c453-4ef6-97e3-d7d4d0478dff" name="Changes" comment="Fixes #49 :đăng nhập bằng facebook">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/submitTestDrive.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/testDriveRegistration.jsp" afterDir="false" />
+    <list default="true" id="2ca72cee-c453-4ef6-97e3-d7d4d0478dff" name="Changes" comment="Fixes #52 :đăng Ký lái thử">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/submitTestDrive.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/submitTestDrive.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +92,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Tomcat Server.Tomcat 10.1.39.executor": "Run",
-    "git-widget-placeholder": "#51 on 22130145-TRanThiThuyLinh",
+    "git-widget-placeholder": "22130145-TRanThiThuyLinh",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
@@ -219,7 +218,8 @@
       <workItem from="1743950328059" duration="1862000" />
       <workItem from="1744029635855" duration="309000" />
       <workItem from="1744029965530" duration="2692000" />
-      <workItem from="1744033320650" duration="5731000" />
+      <workItem from="1744033320650" duration="5972000" />
+      <workItem from="1744084279670" duration="1836000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes #42 :trang về chúng tôi và trang tin tức">
       <option name="closed" value="true" />
@@ -261,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744036871023</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixes #52 :đăng Ký lái thử">
+      <option name="closed" value="true" />
+      <created>1744039506120</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744039506120</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +290,7 @@
     <MESSAGE value="Fixes #42 :trang về chúng tôi và trang tin tức" />
     <MESSAGE value="Fixes #39 : sửa lại lỗi trang tin tức" />
     <MESSAGE value="Fixes #49 :đăng nhập bằng facebook" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #49 :đăng nhập bằng facebook" />
+    <MESSAGE value="Fixes #52 :đăng Ký lái thử" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #52 :đăng Ký lái thử" />
   </component>
 </project>
