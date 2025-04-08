@@ -16,73 +16,7 @@
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
 </head>
 <body>
-<%
-    String error = (String) request.getAttribute("error");
-    error = error == null ? "" : error;
-%>
-<script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '1222492126105891',
-            cookie: true,
-            xfbml: true,
-            version: 'v22.0'
-        });
-
-        FB.AppEvents.logPageView();
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    function loginWithFacebook() {
-        FB.login(function (response) {
-            if (response.status === 'connected') {
-                getUserInfo(response.authResponse.accessToken);
-            } else {
-                alert("❌ Đăng nhập không thành công hoặc người dùng đã từ chối.");
-            }
-        }, { scope: 'public_profile,email' });
-    }
-
-    function getUserInfo(accessToken) {
-        FB.api('/me', { fields: 'id,name,email' }, function (response) {
-            if (response && !response.error) {
-                document.getElementById('user-info').innerHTML = `
-                    <div class="auth-form__welcome">
-                        <p>👋 Chào, <strong>${response.name}</strong></p>
-                        <p>Email: ${response.email}</p>
-                    </div>
-                `;
-                sendDataToServer(response.id, response.name, response.email, accessToken);
-            } else {
-                alert("Không thể lấy thông tin người dùng.");
-            }
-        });
-    }
-
-    function sendDataToServer(id, name, email, accessToken) {
-        fetch("saveUser.jsp", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `id=${id}&name=${name}&email=${email}&token=${accessToken}`
-        })
-            .then(response => response.text())
-            .then(data => {
-                window.location.href = "index.jsp";
-            })
-            .catch(error => {
-                alert("Lỗi khi gửi dữ liệu đến server.");
-            });
-    }
-</script>
-
+<jsp:include page="login-facebook.jsp" />
 
 <div class="login">
     <div class="header">
@@ -128,7 +62,6 @@
                             required
                             autocomplete="current-password">
                     </div>
-                    <div style="color: red; text-align: center; size: 1.4rem" > <%= error %></div>
 
                     <!-- Links -->
                     <div class="auth-form__aside">
