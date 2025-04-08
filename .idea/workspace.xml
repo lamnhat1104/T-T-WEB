@@ -9,11 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ca72cee-c453-4ef6-97e3-d7d4d0478dff" name="Changes" comment="Fixes #52 :đăng Ký lái thử">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/login-facebook.jsp" afterDir="false" />
+    <list default="true" id="2ca72cee-c453-4ef6-97e3-d7d4d0478dff" name="Changes" comment="Fixes #49 :đăng nhâp bằng facebook">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/contact.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/saveUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/saveUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,11 +22,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Servlet" />
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -88,22 +87,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 10.1.39.executor": "Run",
-    "git-widget-placeholder": "#54 on 22130145-TRanThiThuyLinh",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130145-TRanThiThuyLinh&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\HK1_2024\T-T-WEB\DoAnCuoiKi" />
@@ -220,7 +219,9 @@
       <workItem from="1744029635855" duration="309000" />
       <workItem from="1744029965530" duration="2692000" />
       <workItem from="1744033320650" duration="5972000" />
-      <workItem from="1744084279670" duration="5788000" />
+      <workItem from="1744084279670" duration="6023000" />
+      <workItem from="1744091560944" duration="27000" />
+      <workItem from="1744092611125" duration="3045000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes #42 :trang về chúng tôi và trang tin tức">
       <option name="closed" value="true" />
@@ -278,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744086203987</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixes #49 :đăng nhâp bằng facebook">
+      <option name="closed" value="true" />
+      <created>1744090281060</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744090281061</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +309,7 @@
     <MESSAGE value="Fixes #39 : sửa lại lỗi trang tin tức" />
     <MESSAGE value="Fixes #49 :đăng nhập bằng facebook" />
     <MESSAGE value="Fixes #52 :đăng Ký lái thử" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #52 :đăng Ký lái thử" />
+    <MESSAGE value="Fixes #49 :đăng nhâp bằng facebook" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #49 :đăng nhâp bằng facebook" />
   </component>
 </project>
