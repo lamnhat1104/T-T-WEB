@@ -46,7 +46,7 @@
   <h1 class="title">TIN TỨC</h1>
   <div class="news-grid">
     <div class="news-item">
-      <a href="chitiettintuc.html">
+      <a href="chitiettintuc.jsp">
         <img src="https://th.bing.com/th/id/OIP.nOQuMNs1n87kELuyfZC2qgHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain" alt="KYMCO LIKE">
         <h3>KYMCO LIKE</h3>
         <p>Xe máy, thông tin, bảng giá</p>
