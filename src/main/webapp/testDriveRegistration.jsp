@@ -13,6 +13,7 @@
     <title>Đăng ký lái thử</title>
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="csstestdrive.css">
 </head>
 <body>
 <div class="test-drive-form">
