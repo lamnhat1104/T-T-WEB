@@ -1,4 +1,4 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %><%--
   Created by IntelliJ IDEA.
   User: phuc1
   Date: 1/10/2025
@@ -35,10 +35,11 @@
     }
     function showEditProfileForm(username, email, phone, address) {
       document.getElementById("editUsername").value = username;
-      document.getElementById("editEmail").value = email;
+      document.getElementById("editEmail" ).value = email;
       document.getElementById("editPhone").value = phone;
       document.getElementById("editAddress").value = address;
 
+      document.getElementById("editEmail").setAttribute("readonly", "true");
       document.getElementById("editProfileForm").style.display = "block";
     }
 
@@ -104,6 +105,14 @@
 </head>
 <body>
 <header id="header"></header>
+<%
+  Object obj = session.getAttribute("user");
+  User user = null;
+  if (obj instanceof User) {
+    user = (User) obj;
+  }
+  if (user != null) {
+%>
 <div class="container">
   <!-- Sidebar -->
   <aside class="sidebar">
@@ -113,14 +122,14 @@
         <a class="sidebar__item-link sidebar__item-choose" href="#">Hồ Sơ</a>
       </li>
       <li class="sidebar__item">
-        <a class="sidebar__item-link" href="#">Đổi Mật Khẩu</a>
+        <a class="sidebar__item-link" href="change_password.jsp?id=<%= user.getId() %>">Đổi Mật Khẩu</a>
       </li>
       <li class="sidebar__item">
-        <a class="sidebar__item-link" href="#">Lịch Sử Thuê Xe</a>
+        <a class="sidebar__item-link" href="lich-su-thue-xe.jsp?id=<%= user.getId() %>">Lịch Sử Thuê Xe</a>
       </li>
     </ul>
   </aside>
-
+  <% } %>
   <!-- Main Content -->
   <main class="main-content">
     <h1>Hồ Sơ Của Tôi</h1>
@@ -129,23 +138,23 @@
     <form class="profile-form" action="/demo/UpdateUser" method="post">
       <div class="form-group">
         <label for="username">Tên đăng nhập</label>
-        <input type="text" id="username" value="${user != null ? user.userInfo.fullName : ''}" required>
+        <input type="text" id="username" value="${user != null ? user.userInfo.fullName : ''}" disabled>
         <span class="note">Tên đăng nhập chỉ có thể thay đổi một lần.</span>
       </div>
 
       <div class="form-group" >
         <label for="email">Email</label>
-        <input type="email" id="email" value="${user != null ? user.email : ''}" required>
+        <input type="email" id="email" value="${user != null ? user.email : ''}" disabled>
 
       </div>
 
       <div class="form-group">
         <label >Số điện thoại</label>
-        <input type="text" id="sdt" value="${user != null ? user.userInfo.phoneNumber : ''}" required>
+        <input type="text" id="sdt" value="${user != null ? user.userInfo.phoneNumber : ''}" disabled>
       </div>
       <div class="form-group">
         <label >Địa chỉ</label>
-        <input type="text" id="address" value="${user != null ? user.userInfo.address : ''}" required>
+        <input type="text" id="address" value="${user != null ? user.userInfo.address : ''}" disabled>
       </div>
 
       <div class="alert">
