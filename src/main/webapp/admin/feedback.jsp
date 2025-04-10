@@ -34,6 +34,48 @@
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
       background-color: #f9f9f9;
     }
+    /* ===================== Buttons ===================== */
+    button[type="submit"],
+    button[type="button"] {
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"] {
+      background-color: #999;
+      color: #fff;
+    }
+    button[type="submit"]:hover {
+      background-color: #777;
+    }
+
+    button[type="button"] {
+      background-color: #999;
+      color: #fff;
+    }
+    button[type="button"]:hover {
+      background-color: #777;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea,
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
@@ -160,7 +202,6 @@
                   </form>
                 </td>
                 <td>
-                  <button class="see-btn">sửa</button>
                   <form action="admin?action=deleteContact" method="POST" style="display:inline;">
                     <input type="hidden" name="contact-id" value="<%= c.getId() %>"/>
                     <button type="submit" class="see-btn">Xóa</button>
