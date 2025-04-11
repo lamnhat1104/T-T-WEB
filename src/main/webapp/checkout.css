@@ -1,0 +1,66 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+}
+
+.payment-container {
+    max-width: 600px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.payment-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #a50064;
+}
+
+.payment-info {
+    margin-bottom: 30px;
+}
+
+.payment-info p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 8px 0;
+    color: #333;
+}
+
+.payment-info span {
+    font-weight: bold;
+    color: #e6005c;
+}
+
+.momo-button {
+    width: 100%;
+    background-color: #a50064;
+    color: white;
+    padding: 14px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.momo-button:hover {
+    background-color: #8e0057;
+}
+
+.cancel-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+}

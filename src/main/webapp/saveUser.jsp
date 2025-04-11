@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="true" %>
 <%
+    request.setCharacterEncoding("UTF-8");
     // Lấy thông tin người dùng từ request
     String id = request.getParameter("id");
     String name = request.getParameter("name");
@@ -32,6 +33,7 @@
         out.print("success");
     } else {
         // Nếu thiếu dữ liệu, trả về lỗi
+        response.setStatus(400);
         out.print("error: thiếu thông tin người dùng");
     }
 %>
