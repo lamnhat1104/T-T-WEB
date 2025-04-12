@@ -16,10 +16,8 @@
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
 </head>
 <body>
-<%
-    String error = (String) request.getAttribute("error");
-    error = error==null? "":error;
-%>
+<jsp:include page="login-facebook.jsp" />
+
 <div class="login">
     <div class="header">
         <div class="header__item">
@@ -64,7 +62,6 @@
                             required
                             autocomplete="current-password">
                     </div>
-                    <div style="color: red; text-align: center; size: 1.4rem" > <%= error %></div>
 
                     <!-- Links -->
                     <div class="auth-form__aside">
@@ -90,15 +87,13 @@
                     </div>
                 </form>
 
-
-                <div class="social-container">
-                    <div class="auth-form__socials">
-                        <a href="" class="auth-form__socials--facebook btn btn__size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fa-brands fa-square-facebook"></i>
-                            <span class="auth-form__socials-title">
-                          Đăng nhập với Facebook
-                        </span>
-                        </a>
+                <a href="javascript:void(0);" onclick="loginWithFacebook()" class="auth-form__socials--facebook btn btn__size-s btn--with-icon">
+                    <i class="auth-form__socials-icon fa-brands fa-square-facebook"></i>
+                    <span class="auth-form__socials-title">
+      Đăng nhập với Facebook
+    </span>
+                </a>
+                <div id="user-info"></div>
                         <a href="" class="auth-form__socials--google btn btn__size-s btn--with-icon">
                             <i class="auth-form__socials-icon fa-brands fa-google"></i>
                             <span class="auth-form__socials-title">
@@ -109,7 +104,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 </body>
 </html>
