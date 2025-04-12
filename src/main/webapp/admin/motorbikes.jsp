@@ -20,6 +20,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <style>
+        /* ===================== Modal ===================== */
         .modal {
             display: none;
             position: fixed;
@@ -31,7 +32,6 @@
             overflow: auto;
             background-color: rgba(0,0,0,0.4);
         }
-
 
         .modal-content {
             background-color: #fff;
@@ -47,6 +47,7 @@
             z-index: 10000;
         }
 
+        /* ===================== Close Button ===================== */
         .close-btn {
             position: absolute;
             right: 15px;
@@ -60,7 +61,7 @@
             color: #000;
         }
 
-        /* Container bên trong modal */
+        /* ===================== Form Container ===================== */
         .admin-container {
             display: flex;
             justify-content: center;
@@ -68,22 +69,20 @@
             padding: 10px;
         }
 
-        /* Form container dùng chung cho cả 2 */
         .form-container {
             width: 100%;
         }
 
-        .form-container h2 {
+        .form-container h3 {
             text-align: center;
             margin-bottom: 20px;
             color: #333;
             font-size: 20px;
         }
 
-        /* Input group */
-
-
-        .form-group label {
+        /* ===================== Input Group ===================== */
+        .form-group label,
+        form label {
             display: block;
             margin-bottom: 6px;
             font-weight: bold;
@@ -93,7 +92,10 @@
 
         .form-group input,
         .form-group select,
-        .form-group textarea {
+        .form-group textarea,
+        form input,
+        form select,
+        form textarea {
             width: 100%;
             padding: 10px;
             font-size: 14px;
@@ -102,11 +104,11 @@
             box-sizing: border-box;
         }
 
-        .form-group textarea {
+        textarea {
             resize: vertical;
         }
 
-        /* Nút hành động */
+        /* ===================== Buttons ===================== */
         button[type="submit"],
         button[type="button"] {
             padding: 10px 15px;
@@ -135,13 +137,13 @@
             background-color: #777;
         }
 
-        /* Responsive nhỏ hơn 500px */
+        /* ===================== Responsive (mobile) ===================== */
         @media (max-width: 500px) {
             .modal-content {
                 padding: 20px;
             }
 
-            .form-container h2 {
+            .form-container h3 {
                 font-size: 18px;
             }
 
@@ -150,6 +152,8 @@
                 margin-bottom: 10px;
             }
         }
+
+        /* ===================== Dropdown Trạng thái trong Bảng ===================== */
         table#vehicleTable select {
             padding: 6px 12px;
             font-size: 13px;
@@ -166,6 +170,7 @@
             box-shadow: 0 0 5px rgba(0,0,0,0.1);
             background-color: #f9f9f9;
         }
+
     </style>
 </head>
 <body>

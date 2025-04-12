@@ -94,6 +94,24 @@
                                 <th>Trạng thái</th>
                             </tr>
                             <% for (Order order : orders) { %>
+                            <%
+                                java.time.LocalDate start = new java.sql.Date(order.getRetalStarDate().getTime()).toLocalDate();
+                                java.time.LocalDate end = new java.sql.Date(order.getExpectedReturnDate().getTime()).toLocalDate();
+                                long days = java.time.temporal.ChronoUnit.DAYS.between(start, end);
+                                if (days <= 0) days = 1;
+
+                                double base = order.getOrderDetail().getPriceAtOrder() * days;
+                                double finalPrice = base;
+
+                                if (order.getPromotion() != null) {
+                                    int type = order.getPromotion().getDiscountType();
+                                    double value = order.getPromotion().getDiscountValue();
+                                    if (type == 1) finalPrice = base * (1 - value / 100);
+                                    else if (type == 2) finalPrice = base - value;
+                                    if (finalPrice < 0) finalPrice = 0;
+                                }
+                            %>
+
                             <tr>
                                 <td><%= order.getId() %></td>
                                 <td><% if (order.getVehicleType() != null && order.getVehicleType().getImage() != null) { %>
@@ -104,8 +122,10 @@
                                 <td><%= order.getCreatedDate() %></td>
                                 <td><%= order.getRetalStarDate() %></td>
                                 <td><%= order.getExpectedReturnDate() %></td>
-                                <td><%= order.getOrderDetail().getPriceAtOrder() %> VND</td>
-                                <td><%= order.getStatus() %></td>
+                                <td><%= (int) finalPrice %> VND</td>
+                                <td>
+                                    <%= order.getStatus() %>
+                                </td>
                             </tr>
                             <% } %>
                         </table>
