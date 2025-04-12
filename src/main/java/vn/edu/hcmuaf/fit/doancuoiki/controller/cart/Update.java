@@ -13,7 +13,7 @@ public class Update extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idStr = request.getParameter("id");
-        String quantityStr = request.getParameter("quanlity");
+        String quantityStr = request.getParameter("quantity");
         HttpSession session = request.getSession(true);
         Cart c = (Cart) session.getAttribute("cart");
         if (idStr == null || idStr.isEmpty() || quantityStr == null || quantityStr.isEmpty()) {
