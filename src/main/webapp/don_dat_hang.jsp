@@ -92,6 +92,7 @@
                                 <th>Ngày dự kiến trả</th>
                                 <th>Giá</th>
                                 <th>Trạng thái</th>
+                                <th>Hành động</th>
                             </tr>
                             <% for (Order order : orders) { %>
                             <%
@@ -123,8 +124,27 @@
                                 <td><%= order.getRetalStarDate() %></td>
                                 <td><%= order.getExpectedReturnDate() %></td>
                                 <td><%= (int) finalPrice %> VND</td>
+                                <%
+                                    int status = order.getStatus();
+                                    String statusText = "";
+                                    if (status == 0) {
+                                        statusText = "Chờ xác nhận";
+                                    } else if (status == 1) {
+                                        statusText = "Đã xác nhận";
+                                    } else if (status == 2) {
+                                        statusText = "Đang giao";
+                                    } else if (status == 3) {
+                                        statusText = "Đã hoàn tất";
+                                    } else {
+                                        statusText = "Đã hủy";
+                                    }
+                                %>
                                 <td>
-                                    <%= order.getStatus() %>
+                                    <%= statusText %>
+                                </td>
+                                <td>
+                                    <button type="button">Xem chi tiết</button>
+
                                 </td>
                             </tr>
                             <% } %>

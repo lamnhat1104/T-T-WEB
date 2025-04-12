@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,7 +17,16 @@
 </head>
 
 <body>
+<%
+  HttpSession sessionUser = request.getSession();
+  User user = (User) sessionUser.getAttribute("user");
 
+  if (user == null) {
+    response.sendRedirect("login.jsp");
+    return;
+  }
+
+%>
 
 <!-- section 1 -->
 <header id="header"></header>
@@ -53,13 +63,17 @@
                     <p><strong>${cp.title}</strong></p>
                   </td>
                   <td>
-                    <input type="number" class="form-control" value="${cp.quantity}" min="1" style="">
+                    <form action="update-cart" method="get" style="display:inline;">
+                      <input type="hidden" name="id" value="${cp.id}" />
+                      <input type="number" name="quantity" value="${cp.quantity}" min="1" />
+                      <button type="submit"><i class="fa-regular fa-pen-to-square"></i></button>
+                    </form>
                   </td>
                   <td>${cp.price}VND</td>
                   <td>${cp.price * cp.quantity}VND</td>
                   <td>
                     <a href="del-cart?pid=${cp.id}"><i class="cart-icon fa-solid fa-trash fa-xl"></i></a>
-                    <a href="update-cart?pid=${cp.id}"><i class="cart-icon fa-regular fa-pen-to-square fa-xl"></i></a>
+
 
 
                   </td>
