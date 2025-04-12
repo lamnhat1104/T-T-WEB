@@ -615,6 +615,36 @@ public boolean deleteProduct(int productId) {
         return false;
     }
 }
+    public List<Product> listTop8BestSelling() {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT *\n" +
+                "FROM vehicletypes\n" +
+                "WHERE isAvailable > 0\n" +
+                "ORDER BY totalVehicles DESC, id\n" +
+                "LIMIT 8;";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        0,
+                        rs.getString("brand"),
+                        rs.getString("category"),
+                        rs.getDouble("rentalPrice"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getInt("totalVehicles")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 
 
     public static void main(String[] args) {
