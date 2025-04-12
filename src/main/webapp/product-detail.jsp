@@ -1,4 +1,6 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.Comment" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.dao.CommentDao" %><%--
   Created by IntelliJ IDEA.
   User: PC
   Date: 12/22/2024
@@ -72,6 +74,30 @@
             </div>
         </div>
     </div>
+
+
+    <h3>Viết bình luận</h3>
+    <c:if test="${user != null}">
+        <form action="CommentController" method="post">
+            <input type="hidden" name="product_id" value="${productId}">
+            <textarea name="comment" placeholder="Viết bình luận..." required></textarea><br><br>
+            <button type="submit">Gửi bình luận</button>
+        </form>
+    </c:if>
+    <c:if test="${user == null}">
+        <p>Bạn cần <a href="login.jsp">đăng nhập</a> để bình luận.</p>
+    </c:if>
+
+    <h3>Các bình luận</h3>
+    <c:forEach var="c" items="${comments}">
+        <p><b>${c.username}</b>: ${c.comment} <i>(${c.createdAt})</i></p>
+        <hr>
+    </c:forEach>
+    <c:if test="${empty comments}">
+        <p>Chưa có bình luận nào cho sản phẩm này.</p>
+    </c:if>
+
+</div>
 </div>
 
 <%--<div class="cac-san-pham-khac">--%>
@@ -109,64 +135,7 @@
     <script>alert("Đặt xe thất bại. Vui lòng thử lại!");</script>
 </c:if>
 
-<div class="comments-section">
-    <h2>Bình luận về sản phẩm</h2>
-    <div id="comments-list">
-        <c:forEach var="comment" items="${comments}">
-            <div class="comment">
-                <p><strong>${comment.userName}</strong> (${comment.createdAt})</p>
-                <p>${comment.content}</p>
-            </div>
-        </c:forEach>
-    </div>
 
-    <!-- Form bình luận mới -->
-    <c:if test="${not empty user}">
-        <form id="comment-form" method="post">
-            <input type="hidden" name="productId" value="${p.id}">
-            <input type="hidden" name="parentId" value="0">
-            <label for="content">Bình luận của bạn</label>
-            <textarea id="content" name="content" required></textarea>
-            <button type="submit">Gửi bình luận</button>
-        </form>
-    </c:if>
-    <c:if test="${empty user}">
-        <p>Vui lòng <a href="login.jsp">đăng nhập</a> để bình luận.</p>
-    </c:if>
-</div>
-<script>
-    // Xử lý việc gửi bình luận qua AJAX
-    $(document).ready(function() {
-        $('#comment-form').submit(function(e) {
-            e.preventDefault();  // Ngăn chặn form gửi lại theo cách mặc định
-
-            var content = $('#content').val();
-            var productId = $("input[name='productId']").val();
-            var parentId = $("input[name='parentId']").val();
-
-            // Gửi yêu cầu AJAX đến server
-            $.ajax({
-                url: 'CommentController',  // Địa chỉ servlet xử lý
-                method: 'POST',
-                data: {
-                    productId: productId,
-                    parentId: parentId,
-                    content: content
-                },
-                success: function(response) {
-                    // Sau khi bình luận thành công, hiển thị bình luận mới
-                    var newComment = JSON.parse(response);  // Đảm bảo server trả về JSON
-                    var newCommentHTML = '<div class="comment"><p><strong>' + newComment.userName + '</strong> (' + newComment.createdAt + ')</p><p>' + newComment.content + '</p></div>';
-                    $('#comments-list').prepend(newCommentHTML);  // Thêm bình luận mới lên đầu danh sách
-                    $('#content').val('');  // Làm sạch textarea
-                },
-                error: function() {
-                    alert("Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.");
-                }
-            });
-        });
-    });
-</script>
 <%@ include file="footer.jsp" %>
 </body>
 </html>
