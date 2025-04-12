@@ -1,4 +1,6 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.Comment" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.dao.CommentDao" %><%--
   Created by IntelliJ IDEA.
   User: PC
   Date: 12/22/2024
@@ -71,6 +73,30 @@
             </div>
         </div>
     </div>
+
+
+    <h3>Viết bình luận</h3>
+    <c:if test="${user != null}">
+        <form action="CommentController" method="post">
+            <input type="hidden" name="product_id" value="${productId}">
+            <textarea name="comment" placeholder="Viết bình luận..." required></textarea><br><br>
+            <button type="submit">Gửi bình luận</button>
+        </form>
+    </c:if>
+    <c:if test="${user == null}">
+        <p>Bạn cần <a href="login.jsp">đăng nhập</a> để bình luận.</p>
+    </c:if>
+
+    <h3>Các bình luận</h3>
+    <c:forEach var="c" items="${comments}">
+        <p><b>${c.username}</b>: ${c.comment} <i>(${c.createdAt})</i></p>
+        <hr>
+    </c:forEach>
+    <c:if test="${empty comments}">
+        <p>Chưa có bình luận nào cho sản phẩm này.</p>
+    </c:if>
+
+</div>
 </div>
 
 <%--<div class="cac-san-pham-khac">--%>
@@ -107,6 +133,10 @@
 <c:if test="${param.message == 'fail'}">
     <script>alert("Đặt xe thất bại. Vui lòng thử lại!");</script>
 </c:if>
+
+
+
+
 
 <%@ include file="footer.jsp" %>
 </body>

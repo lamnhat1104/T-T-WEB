@@ -10,34 +10,28 @@
   </component>
   <component name="ChangeListManager">
 
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #30 :đã làm, Fixes #37 cập nhật trạng thái tin tức">
-
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="update log dang nhạp dang xuat hien thi thong làm gì trên web">
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/CommentController.java" afterDir="false" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm">
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/FeaturedProducts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/CommentDao.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" afterDir="false" />
 
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #38 :trang tin tuc">
+    <list default="true" id="2ca72cee-c453-4ef6-97e3-d7d4d0478dff" name="Changes" comment="Fixes #52: cập nhật đăng ký lái thử">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/checkout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/facebookSuccess.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/momoPayment.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/thanh-toan.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/xacnhanthanhtoan.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/trangtintuc.jsp" afterDir="false" />
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
-
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ContactDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ContactDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/PromotionDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/feedback.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/motorbikes.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/promotion.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/qltintuc.jsp" afterDir="false" />
-
-main
-
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/forgot_password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/forgot_password.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/saveUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/saveUser.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,34 +41,57 @@ main
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Servlet" />
+
+        <option value="JavaScript File" />
+        <option value="Class" />
         <option value="Jsp File" />
+        <option value="CSS File" />
+
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="22130195-MaiLamNhat" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;lamnhat1104&quot;
+  }
+  &quot;history&quot;: [
     {
-      "state": "OPEN",
-      "assignee": "lamnhat1104",
-      "author": "thuylinh22130145"
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;assignee&quot;: &quot;lamnhat1104&quot;,
+      &quot;author&quot;: &quot;thuylinh22130145&quot;
     }
   ],
-  "lastFilter": {}
-}]]></component>
+  &quot;lastFilter&quot;: {}
+}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/lamnhat1104/T-T-WEB.git&quot;,
+
+    &quot;accountId&quot;: &quot;a90c00fa-ccd9-4167-b5f4-a124eb5f6db7&quot;
+
     &quot;accountId&quot;: &quot;2d98ba9b-cf9c-4d93-b35a-bc8a5e6f2a0f&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;lamnhat1104&quot;,
+    &quot;repository&quot;: &quot;T-T-WEB&quot;
+
   }
 }</component>
   <component name="LogFilters">
@@ -100,51 +117,27 @@ main
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CommentDao.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 11.0.0.executor": "Run",
-    "Tomcat Server.tomcat.executor": "Run",
-    "git-widget-placeholder": "22130189-baonguyen",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "23",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "vue.rearranger.settings.migration": "true"
-
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.CommentDao.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;22130145-TRanThiThuyLinh&quot;,
+
     &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
     &quot;Tomcat Server.tomcat.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;22130195-MaiLamNhat2&quot;,
- main
+    &quot;git-widget-placeholder&quot;: &quot;22130189-baonguyen&quot;,
+
+    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130145-TRanThiThuyLinh&quot;,
+
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -153,7 +146,8 @@ main
       <recent name="D:\HK1_2024\T-T-WEB\DoAnCuoiKi" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CommentDao">
+
+  <component name="RunManager" selected="Tomcat Server.tomcat">
     <configuration name="CommentDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="vn.edu.hcmuaf.fit.doancuoiki.dao.CommentDao" />
       <module name="demo" />
@@ -167,7 +161,6 @@ main
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="T-T-WEB" />
       <method v="2">
@@ -183,19 +176,21 @@ main
     </configuration>
     <configuration name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="tomcat" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
 
+  <component name="RunManager">
     <configuration name="Tomcat 10.1.39" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.39" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="demo:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/demo_war" />
+            <option name="CONTEXT_PATH" value="/demo" />
           </settings>
         </artifact>
       </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="eea6d499-41f7-413e-b272-aa67dc0776f6" />
+
         <option name="BASE_DIRECTORY_NAME" value="c6b98454-e3ef-4d34-847c-195a87bf6c5c" />
-        main
+
+        <option name="BASE_DIRECTORY_NAME" value="0454c449-6211-4bce-809c-7753ab725a09" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -203,9 +198,9 @@ main
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="54899" />
         <option name="DEBUG_PORT" value="59714" />
- main
+
+        <option name="DEBUG_PORT" value="55752" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -274,25 +269,20 @@ main
         </option>
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.CommentDao" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.39" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.39" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="" />
-      <created>1741169712923</created>
+      <changelist id="2ca72cee-c453-4ef6-97e3-d7d4d0478dff" name="Changes" comment="" />
+      <created>1743745088672</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741169712923</updated>
@@ -319,15 +309,6 @@ main
       <workItem from="1742605788577" duration="7155000" />
       <workItem from="1742659929769" duration="1482000" />
       <workItem from="1742745244516" duration="1207000" />
-      <workItem from="1742805697371" duration="12520000" />
-      <workItem from="1743047903386" duration="4764000" />
-      <workItem from="1743081735489" duration="389000" />
-      <workItem from="1743353645204" duration="231000" />
-      <workItem from="1743353908896" duration="714000" />
-      <workItem from="1743356831392" duration="521000" />
-      <workItem from="1743425024229" duration="4958000" />
-      <workItem from="1743481393458" duration="1477000" />
-      <workItem from="1743657833160" duration="6910000" />
       <workItem from="1742805697371" duration="13324000" />
       <workItem from="1742957488408" duration="5970000" />
       <workItem from="1742973882346" duration="11667000" />
@@ -335,94 +316,104 @@ main
       <workItem from="1743051350328" duration="334000" />
       <workItem from="1743561538465" duration="5009000" />
       <workItem from="1743664195166" duration="6454000" />
+      <workItem from="1743692216814" duration="689000" />
+      <workItem from="1743744793980" duration="4668000" />
+      <workItem from="1743842254412" duration="673000" />
+      <workItem from="1743865327182" duration="330000" />
+      <workItem from="1743908015725" duration="2171000" />
+      <workItem from="1743912267620" duration="1197000" />
+      <workItem from="1744449699318" duration="2937000" />
 
-      <workItem from="1743143451090" duration="4549000" />
-      <workItem from="1743493642778" duration="3869000" />
-      <workItem from="1743524882349" duration="3771000" />
-
-      <workItem from="1743561421231" duration="5192000" />
-      <workItem from="1743581128650" duration="3360000" />
-      <workItem from="1743609773749" duration="6125000" />
-
-      <workItem from="1743561421231" duration="2912000" />
- main
-
+      <updated>1743745088672</updated>
+      <workItem from="1743745092318" duration="4760000" />
+      <workItem from="1743828841669" duration="4758000" />
+      <workItem from="1743950328059" duration="1862000" />
+      <workItem from="1744029635855" duration="309000" />
+      <workItem from="1744029965530" duration="2692000" />
+      <workItem from="1744033320650" duration="5972000" />
+      <workItem from="1744084279670" duration="6023000" />
+      <workItem from="1744091560944" duration="27000" />
+      <workItem from="1744092611125" duration="5874000" />
+      <workItem from="1744256047185" duration="4925000" />
+      <workItem from="1744261019722" duration="3821000" />
+      <workItem from="1744289180191" duration="150000" />
+      <workItem from="1744289365216" duration="7662000" />
     </task>
-    <task id="LOCAL-00001" summary="commit">
+    <task id="LOCAL-00001" summary="Fixes #42 :trang về chúng tôi và trang tin tức">
       <option name="closed" value="true" />
-      <created>1741169877186</created>
+      <created>1743745437506</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1741169877186</updated>
+      <updated>1743745437506</updated>
     </task>
-    <task id="LOCAL-00002" summary="commit">
+    <task id="LOCAL-00002" summary="Fixes #39 : sửa lại lỗi trang tin tức">
       <option name="closed" value="true" />
-      <created>1741170155068</created>
+      <created>1743745640737</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1741170155068</updated>
+      <updated>1743745640737</updated>
     </task>
-    <task id="LOCAL-00003" summary="thay đổi mật khẩu ưngs dụng">
+    <task id="LOCAL-00003" summary="Fixes #49 :đăng nhập bằng facebook">
       <option name="closed" value="true" />
-      <created>1741802091004</created>
+      <created>1743950901388</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1741802091004</updated>
+      <updated>1743950901388</updated>
     </task>
-    <task id="LOCAL-00004" summary="giỏ hàng">
+    <task id="LOCAL-00004" summary="Fixes #49 :đăng nhập bằng facebook">
       <option name="closed" value="true" />
-      <created>1741882405205</created>
+      <created>1744034383436</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1741882405205</updated>
+      <updated>1744034383436</updated>
     </task>
-    <task id="LOCAL-00005" summary="fix lỗi chuyển trang">
+    <task id="LOCAL-00005" summary="Fixes #49 :đăng nhập bằng facebook">
       <option name="closed" value="true" />
-      <created>1741887744975</created>
+      <created>1744036871023</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1741887744975</updated>
+      <updated>1744036871023</updated>
     </task>
-    <task id="LOCAL-00006" summary="fix lỗi chuyển trang">
+    <task id="LOCAL-00006" summary="Fixes #52 :đăng Ký lái thử">
       <option name="closed" value="true" />
-      <created>1741889633597</created>
+      <created>1744039506120</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1741889633597</updated>
+      <updated>1744039506120</updated>
     </task>
-    <task id="LOCAL-00007" summary="fix lỗi chuyển trang">
+    <task id="LOCAL-00007" summary="Fixes #52 :đăng Ký lái thử">
       <option name="closed" value="true" />
-      <created>1741889647356</created>
+      <created>1744086203986</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1741889647356</updated>
+      <updated>1744086203987</updated>
     </task>
-    <task id="LOCAL-00008" summary="fix lỗi chuyển trang">
+    <task id="LOCAL-00008" summary="Fixes #49 :đăng nhâp bằng facebook">
       <option name="closed" value="true" />
-      <created>1741890030046</created>
+      <created>1744090281060</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1741890030046</updated>
+      <updated>1744090281061</updated>
     </task>
-    <task id="LOCAL-00009" summary="css form đặt hàng">
+    <task id="LOCAL-00009" summary="Fixes #56 :chat trực tiếp với admin qua mess">
       <option name="closed" value="true" />
-      <created>1741891562458</created>
+      <created>1744102960882</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1741891562458</updated>
+      <updated>1744102960882</updated>
     </task>
-    <task id="LOCAL-00010" summary="fix lỗi">
+    <task id="LOCAL-00010" summary="Fixes #52: cập nhật đăng ký lái thử">
       <option name="closed" value="true" />
-      <created>1741975090141</created>
+      <created>1744260066574</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
@@ -516,15 +507,6 @@ main
       <option name="project" value="LOCAL" />
       <updated>1742826364381</updated>
     </task>
-    <task id="LOCAL-00022" summary="chức năng thêm khuyến mãi, xóa khuyến mãi">
-      <option name="closed" value="true" />
-      <created>1743356677609</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1743356677609</updated>
-    </task>
-    <option name="localTasksCounter" value="23" />
     <task id="LOCAL-00022" summary="thêm chức năng liên hệ, xóa liên hệ">
       <option name="closed" value="true" />
       <created>1742837376157</created>
@@ -541,53 +523,18 @@ main
       <option name="project" value="LOCAL" />
       <updated>1743049238774</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
-    <task id="LOCAL-00024" summary="thêm chức năng cập nhật khách hàng">
+    <task id="LOCAL-00024" summary="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm">
       <option name="closed" value="true" />
-      <created>1743143502214</created>
+      <created>1743692510480</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1743143502214</updated>
+      <updated>1743692510480</updated>
     </task>
-    <task id="LOCAL-00025" summary="Fixes #29: cập nhật user và xóa user trong admin">
-      <option name="closed" value="true" />
-      <created>1743433182766</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1743433182766</updated>
+    <option name="localTasksCounter" value="25" />
+      <updated>1744260066574</updated>
     </task>
-    <task id="LOCAL-00026" summary="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe">
-      <option name="closed" value="true" />
-      <created>1743563627495</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1743563627495</updated>
-    </task>
-
-    <task id="LOCAL-00027" summary="Fixes #2, Fixes #22, Fixes #31, Fixes #32:đã làm, Fixes #35 cập nhật trạng thái đơn hàng">
-      <option name="closed" value="true" />
-      <created>1743564576187</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1743564576187</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Fixes #30 :đã làm, Fixes #37 cập nhật trạng thái tin tức">
-      <option name="closed" value="true" />
-      <created>1743589608984</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1743589608984</updated>
-    </task>
-    <option name="localTasksCounter" value="29" />
-
-    <option name="localTasksCounter" value="27" />
- main
-
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,21 +566,18 @@ main
     <MESSAGE value="quản lý khuyến mãi" />
     <MESSAGE value="liên kết admin, quản lý khuyến mãi" />
     <MESSAGE value="chức năng thêm khuyến mãi, xóa khuyến mãi" />
-    <MESSAGE value="Fixes #38 :trang tin tuc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #38 :trang tin tuc" />
     <MESSAGE value="thêm chức năng liên hệ, xóa liên hệ" />
     <MESSAGE value="thêm chức năng cập nhật khách hàng" />
-    <option name="LAST_COMMIT_MESSAGE" value="thêm chức năng cập nhật khách hàng" />
+    <MESSAGE value="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm" />
 
-    <MESSAGE value="Fixes #29: cập nhật user và xóa user trong admin" />
-    <MESSAGE value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
-
-    <MESSAGE value="Fixes #2, Fixes #22, Fixes #31, Fixes #32:đã làm, Fixes #35 cập nhật trạng thái đơn hàng" />
-    <MESSAGE value="Fixes #30 :đã làm, Fixes #37 cập nhật trạng thái tin tức" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #30 :đã làm, Fixes #37 cập nhật trạng thái tin tức" />
-
-    <option name="LAST_COMMIT_MESSAGE" value="#2, #22, #31, #32:đã làm, Fixes #33 cập nhật trạng thái xe" />
- main
-
+    <MESSAGE value="Fixes #42 :trang về chúng tôi và trang tin tức" />
+    <MESSAGE value="Fixes #39 : sửa lại lỗi trang tin tức" />
+    <MESSAGE value="Fixes #49 :đăng nhập bằng facebook" />
+    <MESSAGE value="Fixes #52 :đăng Ký lái thử" />
+    <MESSAGE value="Fixes #49 :đăng nhâp bằng facebook" />
+    <MESSAGE value="Fixes #56 :chat trực tiếp với admin qua mess" />
+    <MESSAGE value="Fixes #52: cập nhật đăng ký lái thử" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #52: cập nhật đăng ký lái thử" />
   </component>
 </project>
