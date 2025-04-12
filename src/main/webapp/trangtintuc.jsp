@@ -9,18 +9,18 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tin tức</title>
+  <title>Tin tức </title>
+  <link rel="stylesheet" href="csssp.css">
   <link rel="stylesheet" href="csstintuc.css">
   <link rel="stylesheet" href="csschitiettintuc.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="${pageContext.request.contextPath}/admin/admin.js"></script>
   <script>
     // Chèn header
     fetch('header.jsp')
@@ -37,36 +37,8 @@
 
 <body>
 <header id="header"></header>
-<div class="slider">
-  <div id="carouselExample" class="carousel slide mb-4">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="../../anh/tintuc/11.jpg" class="d-block w-100" alt="Slide 1">
-        <div class="carousel-caption d-none d-md-block">
 
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="../../anh/tintuc/12.jpg" class="d-block w-100" alt="Slide 2">
-        <div class="carousel-caption d-none d-md-block">
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="../../anh/tintuc/12.jpg" class="d-block w-100" alt="Slide 3">
-        <div class="carousel-caption d-none d-md-block">
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
+
 <!-- Kết thúc Slider -->
 
 <div class="container">
@@ -74,49 +46,49 @@
   <h1 class="title">TIN TỨC</h1>
   <div class="news-grid">
     <div class="news-item">
-      <a href="chitiettintuc.html">
-        <img src="../../anh/tintuc/1.jpg" alt="KYMCO LIKE">
+      <a href="chitiettintuc.jsp">
+        <img src="https://th.bing.com/th/id/OIP.nOQuMNs1n87kELuyfZC2qgHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain" alt="KYMCO LIKE">
         <h3>KYMCO LIKE</h3>
         <p>Xe máy, thông tin, bảng giá</p>
       </a>
     </div>
     <div class="news-item">
       <a href="chitiettintuc2.html">
-        <img src="../../anh/tintuc/5.jpg" alt="Bảo tàng Chứng tích Chiến tranh">
+        <img src="https://toplist.vn/images/800px/bao-tang-chung-tich-chien-tranh-1047109.jpg" alt="Bảo tàng Chứng tích Chiến tranh">
         <h3>Bảo tàng Chứng tích Chiến tranh - TP HCM</h3>
         <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
       </a>
     </div>
     <div class="news-item">
       <a href="chitiettintuc4.html">
-        <img src="../../anh/tintuc/2.jpg" alt="Max Nhật huyền thoại">
+        <img src=https://th.bing.com/th/id/OIP.krL2Jq3yGKVOCu8srUu5ZAHaFj?w=287&h=215&c=7&r=0&o=5&dpr=2&pid=1.7" alt="Max Nhật huyền thoại">
         <h3>Max Nhật huyền thoại</h3>
         <p>Xe máy, thông tin, bảng giá</p>
       </a>
     </div>
     <div class="news-item">
-      <img src="../../anh/tintuc/6.jpg" alt="Phố đi bộ Nguyễn Huệ">
+      <img src="https://toplist.vn/images/800px/pho-di-bo-nguyen-hue-1039308.jpg" alt="Phố đi bộ Nguyễn Huệ">
       <h3>Phố đi bộ Nguyễn Huệ</h3>
       <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
     </div>
     <div class="news-item">
-      <img src="../../anh/tintuc/3.jpg" alt="Honda Air Blade">
+      <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/3/6/1020736/5682704_2.jpg" alt="Honda Air Blade">
       <h3>Honda Air Blade: Luôn là lựa chọn hoàn hảo</h3>
       <p>Xe máy, thông tin, bảng giá</p>
     </div>
     <div class="news-item">
-      <img src="../../anh/tintuc/7.jpg" alt="Honda Vision">
+      <img src="https://imageproxy.ub.net/https://kinhtechungkhoan.vn/stores/news_dataimages/2022/082022/28/16/in_article/7d9d5d482d65694696ac7f0c6084ea76.jpg?rt=20220828163413" alt="Honda Vision">
       <h3>Honda Vision - Mẫu xe "quốc dân"</h3>
       <p>Xe máy, thông tin, bảng giá</p>
     </div>
     <div class="news-item">
-      <img src="../../anh/tintuc/4.jpg" alt="Kinh nghiệm du lịch mùa Sài Gòn">
+      <img src="https://dulich9.com/wp-content/uploads/2020/06/Dia-diem-du-lich-Sai-Gon-noi-tieng-cho-Ben-Thanh.jpg" alt="Kinh nghiệm du lịch mùa Sài Gòn">
       <h3>Kinh nghiệm du lịch mùa Sài Gòn</h3>
       <p>du lịch, tổng hợp, cẩm nang, Sài Gòn</p>
     </div>
     <div class="news-item">
       <a href="chitiettintuc3.html">
-        <img src="../../anh/tintuc/9.jpg" alt="Honda Lead 125">
+        <img src="https://th.bing.com/th/id/OIP.tJkLrnvQiaANZLTo-hmA-QHaEp?w=254&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" alt="Honda Lead 125">
         <h3>Thuê xe Củ Chi đi Vũng Tàu</h3>
         <p>Xe máy, thông tin, bảng giá</p>
       </a>

@@ -150,6 +150,22 @@
                 margin-bottom: 10px;
             }
         }
+        table#vehicleTable select {
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            border: 1px solid #bbb;
+            background-color: #fdfdfd;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        table#vehicleTable select:hover {
+            border-color: #999;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>

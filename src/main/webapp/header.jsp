@@ -31,13 +31,16 @@
                     <a class="header__navbar-item-link" href="PagingProduct">Xe</a>
                 </li>
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="chitiettintuc.jsp">Tin tức</a>
+                    <a class="header__navbar-item-link" href="trangtintuc.jsp">Tin tức</a>
                 </li>
                 <li class="header__navbar-item ">
-                    <a class="header__navbar-item-link" href="">Về chúng tôi</a>
+                    <a class="header__navbar-item-link" href="vechungtoi.jsp">Về chúng tôi</a>
                 </li>
                 <li class="header__navbar-item ">
                     <a class="header__navbar-item-link" href="contact-us.jsp">Liên hệ</a>
+                </li>
+                <li class="header__navbar-item ">
+                    <a class="header__navbar-item-link" href="testDriveRegistration.jsp">Đăng ký lái thử</a>
                 </li>
                 <li class="header__navbar-item ">
                     <a class="header__navbar-item-link" href="don_dat_hang.jsp">Đơn hàng</a>
