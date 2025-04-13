@@ -3,21 +3,20 @@ package vn.edu.hcmuaf.fit.doancuoiki.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.doancuoiki.dao.ProductDao;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
-import vn.edu.hcmuaf.fit.doancuoiki.service.ProductService2;
 
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "add", value = "/add")
-public class Add extends HttpServlet {
+@WebServlet(name = "FeaturedProducts", value = "/FeaturedProducts")
+public class FeaturedProducts extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductService2 ps = new ProductService2();
-        Product pid = ps.getDetail(request.getParameter("pid"));
-        if(pid==null){
-            response.sendRedirect("page-product?addCart=false");
-        }
-        response.sendRedirect("page-product?addCart=true");
+        ProductDao dao = new ProductDao();
+        List<Product> top8List = dao.listTop8BestSelling();
+        request.setAttribute("top8Products", top8List);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     @Override

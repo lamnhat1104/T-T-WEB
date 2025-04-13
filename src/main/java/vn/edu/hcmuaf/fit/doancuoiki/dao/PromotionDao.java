@@ -24,7 +24,7 @@ public class PromotionDao {
                 promotion.setPromotionName(rs.getString("promotionName"));
                 promotion.setDescription(rs.getString("description"));
                 promotion.setDiscountValue(rs.getDouble("discountValue"));
-                promotion.setDiscountType(rs.getString("discountType"));
+                promotion.setDiscountType(rs.getInt("discountType"));
                 promotion.setStartDate(rs.getDate("startDate"));
                 promotion.setEndDate(rs.getDate("endDate"));
                 promotion.setIsActive(rs.getInt("isActive"));
@@ -91,4 +91,40 @@ public class PromotionDao {
             e.printStackTrace();
         }
     }
+    public Promotion getPromotionByCode(int id) {
+        String sql = "SELECT * FROM promotions WHERE id = ? AND isActive = 1";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Promotion promo = new Promotion();
+                promo.setId(rs.getInt("id"));
+                promo.setPromotionName(rs.getString("promotion-name"));
+                promo.setDiscountValue(rs.getInt("discount-value"));
+                promo.setStartDate(rs.getDate("start_date"));
+                promo.setEndDate(rs.getDate("end_date"));
+                promo.setIsActive(rs.getInt("is-active"));
+                return promo;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public int getIdByCode(String code) {
+        String sql = "SELECT id FROM promotions WHERE promotionName = ? AND isActive = 1 "
+                + "AND startDate <= CURDATE() AND endDate >= CURDATE()";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, code);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rs.getInt("id");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // Not found
+    }
+
+
 }

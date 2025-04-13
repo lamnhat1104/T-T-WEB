@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
 import vn.edu.hcmuaf.fit.doancuoiki.model.OrderDetail;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Promotion;
 import vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
 
 import java.sql.*;
@@ -19,22 +20,26 @@ import java.util.List;
 
 public class OrderDao {
 
-    public boolean createOrder(int id, String location, Date rentalStartDate, Date expectedReturnDate, String licensePlate, double priceAtOrder) {
-        String sql1 = "insert into orders (customerId, rentalStartDate, expectedReturnDate, deliveryAddress) values(?,?,?,?)";
-        String sql2 = "INSERT INTO orderdetails (orderId, licensePlate, priceAtOrder) values(?,?,?)";
-        if(licensePlate.equals(""))return false;
-        try(Connection conn = new DBContext().getConnection();
-            PreparedStatement pre = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS)){
+    public boolean createOrder(int id, String location, Date rentalStartDate, Date expectedReturnDate, String licensePlate, double priceAtOrder, int promotionId) {
+        String sql1 = "INSERT INTO orders (customerId, rentalStartDate, expectedReturnDate, deliveryAddress, promotionId) VALUES (?, ?, ?, ?, ?)";
+        String sql2 = "INSERT INTO orderdetails (orderId, licensePlate, priceAtOrder) VALUES (?, ?, ?)";
+        if (licensePlate.equals("")) return false;
+
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS)) {
             pre.setInt(1, id);
             pre.setDate(2, rentalStartDate);
             pre.setDate(3, expectedReturnDate);
             pre.setString(4, location);
 
-//            pre.executeUpdate();
+            if (promotionId != -1) {
+                pre.setInt(5, promotionId);
+            } else {
+                pre.setNull(5, java.sql.Types.INTEGER);
+            }
 
             int rowsAffected1 = pre.executeUpdate();
 
-            // Lấy user_id vừa được sinh ra
             int orderId = 0;
             if (rowsAffected1 > 0) {
                 try (ResultSet rs = pre.getGeneratedKeys()) {
@@ -45,17 +50,16 @@ public class OrderDao {
             }
 
             int rowsAffected2;
-            try (PreparedStatement pre2 = conn.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement pre2 = conn.prepareStatement(sql2)) {
                 pre2.setInt(1, orderId);
                 pre2.setString(2, licensePlate);
                 pre2.setDouble(3, priceAtOrder);
                 rowsAffected2 = pre2.executeUpdate();
             }
-            if (rowsAffected1 > 0 && rowsAffected2 > 0){
-                return true;
-            }
 
-        }catch (SQLException e){
+            return rowsAffected1 > 0 && rowsAffected2 > 0;
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
@@ -93,28 +97,46 @@ public class OrderDao {
         return licensePlate;
     }
 
-    public List<Order> getAllOrder(){
-        List<Order> orders = new ArrayList<Order>();
-        String sql = "SELECT * \n" +
-                "FROM orders \n" +
-                "JOIN orderdetails ON orders.id = orderdetails.orderId\n" +
-                "JOIN vehicles ON orderdetails.licensePlate = vehicles.licensePlate\n" +
-                "JOIN vehicletypes ON vehicletypes.id = vehicles.typeId;";
-        try(Connection con = new DBContext().getConnection();
-        PreparedStatement pre = con.prepareStatement(sql)){
+    public List<Order> getAllOrder() {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT orders.*, orderdetails.*, vehicles.*, vehicletypes.*, promotions.id AS promo_id, " +
+                "promotions.promotionName, promotions.discountType, promotions.discountValue\n " +
+                "FROM orders " +
+                "JOIN orderdetails ON orders.id = orderdetails.orderId " +
+                "JOIN vehicles ON orderdetails.licensePlate = vehicles.licensePlate " +
+                "JOIN vehicletypes ON vehicletypes.id = vehicles.typeId " +
+                "LEFT JOIN promotions ON promotions.id = orders.promotionId";
+
+        try (Connection con = new DBContext().getConnection();
+             PreparedStatement pre = con.prepareStatement(sql)) {
             ResultSet rs = pre.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
+                // Lấy order detail
                 OrderDetail orderDetail = new OrderDetail(
                         rs.getInt("orderId"),
                         rs.getString("licensePlate"),
                         rs.getString("name"),
-                        rs.getDouble("priceAtOrder"));
-
-                VehicleType vehicleType = new VehicleType(
-                        rs.getInt("id"),  // ID của VehicleType
-                        rs.getString("image") // Lấy hình ảnh từ cột image
+                        rs.getDouble("priceAtOrder")
                 );
 
+                // Lấy vehicle type
+                VehicleType vehicleType = new VehicleType(
+                        rs.getInt("vehicletypes.id"),
+                        rs.getString("image")
+                );
+
+                // Lấy promotion nếu có
+                Promotion promotion = null;
+                int promoId = rs.getInt("promo_id");
+                if (promoId > 0) {
+                    promotion = new Promotion();
+                    promotion.setId(promoId);
+                    promotion.setPromotionName(rs.getString("promotionName"));
+                    promotion.setDiscountType(rs.getInt("discountType"));
+                    promotion.setDiscountValue(rs.getDouble("discountValue"));
+                }
+
+                // Tạo đối tượng Order
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
                 order.setCustomerId(rs.getInt("customerId"));
@@ -123,10 +145,10 @@ public class OrderDao {
                 order.setExpectedReturnDate(rs.getDate("expectedReturnDate"));
                 order.setRetalStarDate(rs.getDate("rentalStartDate"));
                 order.setStatus(rs.getInt("status"));
-
-
                 order.setOrderDetail(orderDetail);
                 order.setVehicleType(vehicleType);
+                order.setPromotion(promotion);
+
                 orders.add(order);
             }
         } catch (SQLException e) {
@@ -134,6 +156,7 @@ public class OrderDao {
         }
         return orders;
     }
+
 
     public void deleteOrder(int orderId){
         String sql = "DELETE FROM orders WHERE id = ?";
@@ -183,6 +206,17 @@ public class OrderDao {
             pre.setInt(2, orderId);
             pre.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updatePromotionInOrder(int orderId, int promotionId) {
+        String sql = "UPDATE orders SET promotionId = ? WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, promotionId);
+            ps.setInt(2, orderId);
+            ps.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
