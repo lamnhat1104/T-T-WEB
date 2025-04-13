@@ -35,11 +35,10 @@ public class Cart {
     }
 
     public void update2(int id, int quantity){
-        for(CartProduct c : items){
-            if(c.getProduct().getId()==id){
-                c.setQuantity(quantity);
-                return;
-            }
+        if(data.containsKey(id)){
+            CartProduct cp = data.get(id);
+            cp.setQuantity(quantity);
+            data.put(id, cp); // Cập nhật lại nếu cần
         }
     }
 

@@ -17,6 +17,7 @@ public class Order {
     private String additionalFeeNote;
     private OrderDetail orderDetail;
     private VehicleType vehicleType;
+    private Promotion promotion;
 
     public VehicleType getVehicleType() {
         return vehicleType;
@@ -42,6 +43,14 @@ public class Order {
         this.status = status;
         this.additionalFee = additionalFee;
         this.additionalFeeNote = additionalFeeNote;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 
     public int getId() {
