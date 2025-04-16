@@ -16,7 +16,7 @@
 <body>
 <div class="container mt-5">
     <h2>Xác nhận thanh toán</h2>
-    <form action="xacnhanThanhToan.jsp" method="post">
+    <form action="xacnhanthanhtoan.jsp" method="post">
         <div class="mb-3">
             <label class="form-label">Tên xe:</label>
             <input type="text" class="form-control" name="tenXe" value="<%= request.getParameter("tenXe") %>" readonly>
@@ -43,7 +43,7 @@
         </div>
         <button type="submit" class="btn btn-success">Xác nhận thanh toán</button>
     </form>
-    <form action="thanhtoanMomo.jsp" method="post">
+    <form action="momoPayment.jsp" method="post">
         <input type="hidden" name="tenXe" value="<%= request.getParameter("tenXe") %>">
         <input type="hidden" name="giaThue" value="<%= request.getParameter("giaThue") %>">
         <input type="hidden" name="tongTien" value="<%= request.getParameter("tongTien") %>">
