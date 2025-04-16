@@ -17,6 +17,7 @@ import java.util.List;
 
 
 
+
 @WebServlet(name = "AdminController", value = "/admin")
 public class AdminController extends HttpServlet {
     @Override
@@ -61,6 +62,9 @@ public class AdminController extends HttpServlet {
                 break;
             case "managerSetting":
                 managerSetting(request, response);
+                break;
+            case "managerConditionRental":
+                managerConditionRental(request, response);
                 break;
         }
     }
@@ -124,7 +128,26 @@ public class AdminController extends HttpServlet {
             case "changeContactStatus":
                 changeContactStatus(request, response);
                 break;
+            case "updateConditionRental":
+                updateConditionRental(request, response);
+                break;
         }
+    }
+
+// Quản lý điều kiện đặt xe
+    private void managerConditionRental(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ConditionRentalDao dao = new ConditionRentalDao();
+        List<VehicleType> conditions = dao.getCondition();
+        request.setAttribute("conditions", conditions);
+        request.getRequestDispatcher("admin/condition_rental.jsp").forward(request, response);
+    }
+    private void updateConditionRental(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        double depositPrice = Double.parseDouble(request.getParameter("depositPrice"));
+        String requiredLicense = request.getParameter("requiredLicense");
+        ConditionRentalDao dao = new ConditionRentalDao();
+        dao.updateConditionType(id, depositPrice,requiredLicense);
+        managerConditionRental(request, response);
     }
 // Quản lý khuyến mãi
     private void managerPromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
