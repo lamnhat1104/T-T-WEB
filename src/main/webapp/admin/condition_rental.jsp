@@ -194,7 +194,7 @@
                     <span>Quản lý khách hàng</span></a>
             </li>
             <li>
-                <a href="/demo/admin?action=managerVehicleType" class="dashboard-active"><span class="las la-motorcycle"></span>
+                <a href="/demo/admin?action=managerVehicleType"><span class="las la-motorcycle"></span>
                     <span>Quản lý xe máy</span></a>
             </li>
             <li>
@@ -202,7 +202,7 @@
                     <span>Quản lý đơn hàng</span></a>
             </li>
             <li>
-                <a href="/demo/admin?action=managerConditionRental"><span class="las la-motorcycle"></span>
+                <a href="/demo/admin?action=managerConditionRental" class="dashboard-active"><span class="las la-motorcycle"></span>
                     <span>Điều kiện đặt xe</span></a>
             </li>
             <li>
@@ -268,44 +268,26 @@
                     <div class="card-body">
                         <table id="vehicleTable" width="100%" class="display">
                             <thead>
-                                <tr>
-                                    <th>ID Xe</th>
-                                    <th>Tên xe</th>
-                                    <th>Loại xe</th>
-                                    <th>Giá thuê</th>
-                                    <th>Tổng số xe</th>
-                                    <th>Trạng thái</th>
-                                    <th>Thao tác</th>
-                                </tr>
+                            <tr>
+                                <th>ID Xe</th>
+                                <th>Tên xe</th>
+                                <th>Giá cọc</th>
+                                <th>Bằng lái xe</th>
+                                <th>Hành động</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="v" items="${vehicleTypeList}">
-                                    <tr>
-                                        <td>${v.id}</td>
-                                        <td>${v.name}</td>
-                                        <td>${v.category}</td>
-                                        <td>${v.totalPrice}</td>
-                                        <td>${v.totalVehicles}</td>
-                                        <td>
-                                            <form action="admin" method="get">
-                                            <input type="hidden" name="action" value="changeStatusVehicle"/>
-                                            <input type="hidden" name="vehicleId" value="${v.id}"/>
-                                            <select name="isAvailable" onchange="this.form.submit()">
-                                                <option value="1" ${v.available == 1 ? 'selected' : ''}>Có sẵn</option>
-                                                <option value="0" ${v.available == 0 ? 'selected' : ''}>Không có sẵn</option>
-                                            </select>
-                                        </form>
-
-                                        </td>
-                                        <td>
-                                            <button type="button" onclick="showEditForm('${v.id}', '${v.name}', '${v.brand}', '${v.category}', '${v.totalPrice}', '${v.description}', '${v.image}', '${v.totalVehicles}', '${v.available}')">Sửa</button>
-                                            <form action="admin?action=deleteVehicleType" method="POST" style="display:inline;">
-                                                <input type="hidden" name="vehicleId" value="${v.id}"/>
-                                                <button type="submit" class="see-btn">Xóa</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
+                            <c:forEach var="cr" items="${conditions}">
+                                <tr>
+                                    <td>${cr.id}</td>
+                                    <td>${cr.name}</td>
+                                    <td>${cr.depositPrice}</td>
+                                    <td>${cr.requiredLicense}</td>
+                                    <td>
+                                        <button type="button" onclick="showEditForm('${cr.id}', '${cr.name}', '${cr.depositPrice}', '${cr.requiredLicense}')">Sửa</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -314,46 +296,6 @@
             </div>
         </div>
         <!-- Form thêm thông tin xe -->
-        <div id="configModal" class="modal">
-            <div class="modal-content">
-                <div class="form-container">
-                    <span class="close-btn" onclick="closeConfig()">&times;</span>
-                    <h3>Thêm Xe</h3>
-                    <form action="admin?action=addVehicleType" method="POST" >
-                        <label for="addName">Tên xe:</label>
-                        <input type="text" id="addName" name="addName" /><br/>
-
-                        <label for="addBrand">Hãng xe:</label>
-                        <input type="text" id="addBrand" name="addBrand" /><br/>
-
-                        <label for="addCategory">Loại xe:</label>
-                        <input type="text" id="addCategory" name="addCategory" /><br/>
-
-                        <label for="addTotalPrice">Giá thuê:</label>
-                        <input type="text" id="addTotalPrice" name="addTotalPrice" /><br/>
-
-                        <label for="addDescription">Mô tả:</label>
-                        <textarea id="addDescription" name="addDescription"></textarea><br/>
-
-                        <label for="addImage">Hình ảnh</label>
-                        <input type="text" id="addImage" name="addImage" /><br/>
-
-                        <label for="addTotalVehicles">Số lượng xe:</label>
-                        <input type="number" id="addTotalVehicles" name="addTotalVehicles" /><br/>
-
-                        <label for="addAvailable">Có sẵn:</label>
-                        <select id="addAvailable" name="addAvailable">
-                            <option value="1">Có sẵn</option>
-                            <option value="0">Không có sẵn</option>
-                        </select><br/>
-
-                        <button type="submit">Thêm Xe</button>
-                        <button type="button" onclick="closeConfig()">Hủy</button>
-                    </form>
-
-                </div>
-            </div>
-        </div>
         <div id="configModal2" class="modal">
             <div class="modal-content">
                 <div class="admin-container">
@@ -363,34 +305,16 @@
                         <div id="editForm" style="display:none;">
                             <span class="close-btn" onclick="hideEditForm2()">&times;</span>
                             <h3>Chỉnh sửa Xe</h3>
-                            <form action="admin?action=updateVehicleType" method="post">
+                            <form action="admin?action=updateConditionRental" method="post">
                                 <input type="hidden" name="id" id="id" />
                                 <label for="name">Tên xe:</label>
                                 <input type="text" id="name" name="name" /><br/>
 
-                                <label for="brand">Hãng xe:</label>
-                                <input type="text" id="brand" name="brand" /><br/>
+                                <label for="depositPrice">Giá thuê:</label>
+                                <input type="text" id="depositPrice" name="depositPrice" /><br/>
 
-                                <label for="category">Loại xe:</label>
-                                <input type="text" id="category" name="category" /><br/>
-
-                                <label for="totalPrice">Giá thuê:</label>
-                                <input type="text" id="totalPrice" name="totalPrice" /><br/>
-
-                                <label for="description">Mô tả:</label>
-                                <textarea id="description" name="description"></textarea><br/>
-
-                                <label for="image">Hình ảnh</label>
-                                <input type="text" id="image" name="image" /><br/>
-
-                                <label for="totalVehicles">Số lượng xe:</label>
-                                <input type="number" id="totalVehicles" name="totalVehicles" /><br/>
-
-                                <label for="available">Có sẵn:</label>
-                                <select id="available" name="available">
-                                    <option value="1">Có sẵn</option>
-                                    <option value="0">Không có sẵn</option>
-                                </select><br/>
+                                <label for="requiredLicense">Mô tả:</label>
+                                <textarea id="requiredLicense" name="requiredLicense"></textarea><br/>
 
                                 <button type="submit">Cập nhật</button>
                                 <button type="button" onclick="hideEditForm2()">Hủy</button>
@@ -406,17 +330,12 @@
 
         <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
-            function showEditForm(id, name, brand, category, totalPrice, description, image, totalVehicles, isAvailable) {
+            function showEditForm(id, name, depositPrice, requiredLicense) {
                 // Điền thông tin vào form
                 document.getElementById("id").value = id;
                 document.getElementById("name").value = name;
-                document.getElementById("brand").value = brand;
-                document.getElementById("category").value = category;
-                document.getElementById("totalPrice").value = totalPrice;
-                document.getElementById("description").value = description;
-                document.getElementById("image").value = image;
-                document.getElementById("totalVehicles").value = totalVehicles;
-                document.getElementById("available").value = isAvailable;
+                document.getElementById("depositPrice").value = depositPrice;
+                document.getElementById("requiredLicense").value = requiredLicense;
 
                 // Hiển thị form
 
@@ -444,25 +363,25 @@
         </script>
 
 
-    <script>
-        $(document).ready(function () {
-            $('#vehicleTable').DataTable({
-                "pageLength": 10, // Hiển thị 10 sản phẩm mỗi trang
-                "language": {
-                    "lengthMenu": "Hiển thị _MENU_ sản phẩm mỗi trang",
-                    "zeroRecords": "Không tìm thấy xe nào",
-                    "info": "Hiển thị trang _PAGE_ của _PAGES_",
-                    "infoEmpty": "Không có xe nào",
-                    "infoFiltered": "(lọc từ _MAX_ xe)",
-                    "search": "Tìm kiếm:",
-                    "paginate": {
-                        "next": "Trang tiếp",
-                        "previous": "Trang trước"
+        <script>
+            $(document).ready(function () {
+                $('#vehicleTable').DataTable({
+                    "pageLength": 10, // Hiển thị 10 sản phẩm mỗi trang
+                    "language": {
+                        "lengthMenu": "Hiển thị _MENU_ sản phẩm mỗi trang",
+                        "zeroRecords": "Không tìm thấy xe nào",
+                        "info": "Hiển thị trang _PAGE_ của _PAGES_",
+                        "infoEmpty": "Không có xe nào",
+                        "infoFiltered": "(lọc từ _MAX_ xe)",
+                        "search": "Tìm kiếm:",
+                        "paginate": {
+                            "next": "Trang tiếp",
+                            "previous": "Trang trước"
+                        }
                     }
-                }
+                });
             });
-        });
-    </script>
+        </script>
 
 </div>
 </body>

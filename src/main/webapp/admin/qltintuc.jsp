@@ -197,6 +197,10 @@
         <a href="/demo/admin?action=managerOrder"><span class="las la-shopping-bag"></span>
           <span>Quản lý đơn hàng</span></a>
       </li>
+        <li>
+            <a href="/demo/admin?action=managerConditionRental"><span class="las la-motorcycle"></span>
+                <span>Điều kiện đặt xe</span></a>
+        </li>
       <li>
         <a href="/demo/admin?action=managerNew" class="dashboard-active"><span class="las la-newspaper"></span>
           <span>Quản lý tin tức</span></a>
