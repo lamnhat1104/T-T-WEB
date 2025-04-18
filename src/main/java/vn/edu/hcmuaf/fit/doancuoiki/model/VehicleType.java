@@ -19,9 +19,6 @@ public class VehicleType {
     public VehicleType(int id, String image) {
     }
 
-    public VehicleType() {
-    }
-
     public VehicleType(int id, String name, String brand, String category, double totalPrice, String description, String image, int totalVehicles, int available) {
         this.id = id;
         this.name = name;

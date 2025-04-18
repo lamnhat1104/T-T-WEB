@@ -168,10 +168,6 @@
                   <span>Quản lý đơn hàng</span></a>
           </li>
           <li>
-              <a href="/demo/admin?action=managerConditionRental"><span class="las la-motorcycle"></span>
-                  <span>Điều kiện đặt xe</span></a>
-          </li>
-          <li>
               <a href="/demo/admin?action=managerNew"><span class="las la-newspaper"></span>
                   <span>Quản lý tin tức</span></a>
           </li>
