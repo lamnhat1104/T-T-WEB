@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDao {
-    public void addComment(Comment comment) {
-        String sql = "INSERT INTO comments (product_id, username, comment) VALUES (?, ?, ?)";
-        try (Connection conn = new DBContext().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, comment.getProductId());
-            stmt.setString(2, comment.getUsername());
-            stmt.setString(3, comment.getComment());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
+    public static void insertComment(int productId, String username, String content) {
+        try (Connection conn = new DBContext().getConnection()) {
+            String sql = "INSERT INTO comment (product_id, username, comment, created_at) VALUES (?, ?, ?, NOW())";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, productId);
+            ps.setString(2, username);
+            ps.setString(3, content);
+            ps.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -73,6 +73,8 @@ public class CommentDao {
 //        comment1.setComment("Tuyệt vời");
 //        dao.addComment(comment1);
 //        System.out.println(dao.getCommentsByProduct(1));
+        CommentDao dao = new CommentDao();
+        dao.deleteComment(1);
 
 
     }
