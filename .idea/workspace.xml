@@ -10,15 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm">
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/FeaturedProducts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/CommentDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/ProductDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,6 +269,9 @@
       <workItem from="1743908015725" duration="2171000" />
       <workItem from="1743912267620" duration="1197000" />
       <workItem from="1744449699318" duration="2937000" />
+      <workItem from="1745650136068" duration="60000" />
+      <workItem from="1745650215895" duration="88000" />
+      <workItem from="1745652898884" duration="318000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -505,6 +500,7 @@
     <MESSAGE value="thêm chức năng liên hệ, xóa liên hệ" />
     <MESSAGE value="thêm chức năng cập nhật khách hàng" />
     <MESSAGE value="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm" />
+    <MESSAGE value="đỗ dư liẹu lên trang chủ" />
+    <option name="LAST_COMMIT_MESSAGE" value="đỗ dư liẹu lên trang chủ" />
   </component>
 </project>

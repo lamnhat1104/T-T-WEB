@@ -13,7 +13,7 @@ import java.util.List;
 public class CommentDao {
     public static void insertComment(int productId, String username, String content) {
         try (Connection conn = new DBContext().getConnection()) {
-            String sql = "INSERT INTO comment (product_id, username, comment, created_at) VALUES (?, ?, ?, NOW())";
+            String sql = "INSERT INTO comments (product_id, username, comment, created_at) VALUES (?, ?, ?, NOW())";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, productId);
             ps.setString(2, username);
