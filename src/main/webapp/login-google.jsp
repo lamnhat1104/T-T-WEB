@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 4/27/2025
-  Time: 4:47 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,41 +5,59 @@
     <meta charset="UTF-8">
     <title>Đăng nhập bằng Google</title>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-        function handleCredentialResponse(response) {
-            console.log("ID Token: " + response.credential);
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
 
-            // Gửi ID Token về server để xác thực (ví dụ dùng fetch POST)
-            fetch('verify-token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: 'id_token=' + response.credential
-            }).then(res => res.text())
-                .then(data => {
-                    alert('Đăng nhập thành công: ' + data);
-                    // Có thể redirect hoặc xử lý tùy ý
-                });
+    <style>
+        .google-login-btn {
+            display: inline-block;
+            padding: 10px 159px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+
+        }
+
+    </style>
+
+
+    <script>
+        let googleClient;
+
+        window.onload = function () {
+            googleClient = google.accounts.oauth2.initTokenClient({
+                client_id: '187639617393-vnhadjbb0kqashuqki000k1dphrtn4au.apps.googleusercontent.com',
+                scope: 'profile email',
+                callback: (tokenResponse) => {
+                    fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                        headers: {
+                            'Authorization': 'Bearer ' + tokenResponse.access_token
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(user => {
+                            console.log("Thông tin người dùng từ Google:", user);
+
+                            window.location.href = 'index.jsp';
+                        });
+                }
+            });
+        };
+
+        function loginWithGoogle() {
+            googleClient.requestAccessToken();
         }
     </script>
 </head>
 <body>
 
-<div id="g_id_onload"
-     data-client_id="YOUR_CLIENT_ID.apps.googleusercontent.com"
-     data-callback="handleCredentialResponse"
-     data-auto_prompt="false">
-</div>
-
-<div class="g_id_signin"
-     data-type="standard"
-     data-size="large"
-     data-theme="outline"
-     data-text="sign_in_with"
-     data-shape="rectangular"
-     data-logo_alignment="left">
-</div>
+<!-- Nút đăng nhập Google -->
+<a href="javascript:void(0);" class="google-login-btn" onclick="loginWithGoogle()">
+    Đăng nhập với Google
+</a>
 
 </body>
 </html>
