@@ -14,6 +14,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/login-google.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login-google.jsp" afterDir="false" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +31,9 @@
         <option value="CSS File" />
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="Class" />
+        <option value="Servlet" />
+main
       </list>
     </option>
   </component>
@@ -48,6 +54,11 @@
     }
   ],
   &quot;lastFilter&quot;: {}
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;lamnhat1104&quot;
+  }
+ main
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -63,6 +74,8 @@
     },
     &quot;owner&quot;: &quot;lamnhat1104&quot;,
     &quot;repository&quot;: &quot;T-T-WEB&quot;
+    &quot;accountId&quot;: &quot;a90c00fa-ccd9-4167-b5f4-a124eb5f6db7&quot;
+ main
   }
 }</component>
   <component name="LogFilters">
@@ -98,14 +111,24 @@
     &quot;git-widget-placeholder&quot;: &quot;22130145-TRanThiThuyLinh&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.tomcat.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130189-baonguyen&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
+    main
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
+ main
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -115,6 +138,21 @@
     </key>
   </component>
   <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.tomcat">
+    <configuration name="CommentDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="vn.edu.hcmuaf.fit.doancuoiki.dao.CommentDao" />
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.hcmuaf.fit.doancuoiki.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    main
     <configuration default="true" type="JetRunConfigurationType">
       <module name="T-T-WEB" />
       <method v="2">
@@ -130,6 +168,8 @@
     </configuration>
     <configuration name="Tomcat 10.1.39" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.39" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
+    <configuration name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="tomcat" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      main
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="demo:war">
@@ -140,6 +180,8 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="3810932d-a968-402b-b870-29477767e09f" />
+        <option name="BASE_DIRECTORY_NAME" value="c6b98454-e3ef-4d34-847c-195a87bf6c5c" />
+main
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -148,6 +190,8 @@
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="59512" />
+        <option name="DEBUG_PORT" value="59714" />
+        main
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -216,6 +260,11 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CommentDao" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -230,6 +279,9 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm" />
       <created>1743745088672</created>
+      <changelist id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="" />
+      <created>1741169712923</created>
+ main
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743745088672</updated>
@@ -293,82 +345,86 @@
       <workItem from="1746023785944" duration="988000" />
       <workItem from="1746025894467" duration="1680000" />
       <workItem from="1746109260372" duration="6698000" />
+      <workItem from="1745650136068" duration="60000" />
+      <workItem from="1745650215895" duration="88000" />
+      <workItem from="1745652898884" duration="318000" />
+      main
     </task>
-    <task id="LOCAL-00001" summary="Fixes #42 :trang về chúng tôi và trang tin tức">
+    <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
-      <created>1743745437506</created>
+      <created>1741169877186</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1743745437506</updated>
+      <updated>1741169877186</updated>
     </task>
-    <task id="LOCAL-00002" summary="Fixes #39 : sửa lại lỗi trang tin tức">
+    <task id="LOCAL-00002" summary="commit">
       <option name="closed" value="true" />
-      <created>1743745640737</created>
+      <created>1741170155068</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1743745640737</updated>
+      <updated>1741170155068</updated>
     </task>
-    <task id="LOCAL-00003" summary="Fixes #49 :đăng nhập bằng facebook">
+    <task id="LOCAL-00003" summary="thay đổi mật khẩu ưngs dụng">
       <option name="closed" value="true" />
-      <created>1743950901388</created>
+      <created>1741802091004</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1743950901388</updated>
+      <updated>1741802091004</updated>
     </task>
-    <task id="LOCAL-00004" summary="Fixes #49 :đăng nhập bằng facebook">
+    <task id="LOCAL-00004" summary="giỏ hàng">
       <option name="closed" value="true" />
-      <created>1744034383436</created>
+      <created>1741882405205</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1744034383436</updated>
+      <updated>1741882405205</updated>
     </task>
-    <task id="LOCAL-00005" summary="Fixes #49 :đăng nhập bằng facebook">
+    <task id="LOCAL-00005" summary="fix lỗi chuyển trang">
       <option name="closed" value="true" />
-      <created>1744036871023</created>
+      <created>1741887744975</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1744036871023</updated>
+      <updated>1741887744975</updated>
     </task>
-    <task id="LOCAL-00006" summary="Fixes #52 :đăng Ký lái thử">
+    <task id="LOCAL-00006" summary="fix lỗi chuyển trang">
       <option name="closed" value="true" />
-      <created>1744039506120</created>
+      <created>1741889633597</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1744039506120</updated>
+      <updated>1741889633597</updated>
     </task>
-    <task id="LOCAL-00007" summary="Fixes #52 :đăng Ký lái thử">
+    <task id="LOCAL-00007" summary="fix lỗi chuyển trang">
       <option name="closed" value="true" />
-      <created>1744086203986</created>
+      <created>1741889647356</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1744086203987</updated>
+      <updated>1741889647356</updated>
     </task>
-    <task id="LOCAL-00008" summary="Fixes #49 :đăng nhâp bằng facebook">
+    <task id="LOCAL-00008" summary="fix lỗi chuyển trang">
       <option name="closed" value="true" />
-      <created>1744090281060</created>
+      <created>1741890030046</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1744090281061</updated>
+      <updated>1741890030046</updated>
     </task>
-    <task id="LOCAL-00009" summary="Fixes #56 :chat trực tiếp với admin qua mess">
+    <task id="LOCAL-00009" summary="css form đặt hàng">
       <option name="closed" value="true" />
-      <created>1744102960882</created>
+      <created>1741891562458</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1744102960882</updated>
+      <updated>1741891562458</updated>
     </task>
-    <task id="LOCAL-00010" summary="Fixes #52: cập nhật đăng ký lái thử">
+    <task id="LOCAL-00010" summary="fix lỗi">
       <option name="closed" value="true" />
-      <created>1744260066574</created>
+      <created>1741975090141</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
@@ -503,6 +559,8 @@
       <updated>1746026847008</updated>
     </task>
     <option name="localTasksCounter" value="27" />
+    <option name="localTasksCounter" value="25" />
+ main
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,5 +604,8 @@
     <MESSAGE value="Fixes #52: cập nhật đăng ký lái thử" />
     <MESSAGE value="Fixes #27 : xác minh tai khoan" />
     <option name="LAST_COMMIT_MESSAGE" value="Fixes #27 : xác minh tai khoan" />
+    <MESSAGE value="đỗ dư liẹu lên trang chủ" />
+    <option name="LAST_COMMIT_MESSAGE" value="đỗ dư liẹu lên trang chủ" />
+ main
   </component>
 </project>
