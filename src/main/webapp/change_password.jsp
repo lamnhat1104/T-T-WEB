@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,6 +94,7 @@
                     <div class="auth-form__form">
                         <div class="auth-form__group">
                             <input type="password" class="auth-form__input" name="password" placeholder="Mật khẩu mới" required>
+                            <input type="password" class="auth-form__input" name="confirmPassword" placeholder="Xác nhận mật khẩu" required>
                             <div id="message">
                                 <h3>Mật khẩu phải chứa các kí tự sau</h3>
                                 <p id="letter" class="invalid">Một kí tự <b>thường</b></p>
@@ -101,7 +104,11 @@
                             </div>
                         </div>
                     </div>
-                    <div style="color: red; text-align: center; size: 1.4rem" > <%= message %></div>
+
+                    <c:if test="${not empty message}">
+                        <div style="color: red; text-align: center; font-size: 1.4rem">${message}</div>
+                    </c:if>
+
                     <div class="auth-form__aside">
                         <div class="auth-form__helps">
                             <a href="" class="auth-form__helps-link auth-form__helps-forgot">Quên mật khẩu</a>
@@ -136,6 +143,11 @@
         </div>
     </div>
 </div>
+<script>
+    document.querySelector('.auth-form__controls-back').onclick = function() {
+        window.history.back();
+    };
+</script>
 
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/quit.js"></script>
