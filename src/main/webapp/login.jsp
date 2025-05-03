@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
 </head>
 <body>
-<jsp:include page="login-facebook.jsp" />
 
 <div class="login">
     <div class="header">
@@ -86,20 +85,9 @@
                         <button type="submit" class="btn btn--primary">ĐĂNG NHẬP</button>
                     </div>
                 </form>
+                <jsp:include page="login-facebook.jsp" />
 
-                <a href="javascript:void(0);" onclick="loginWithFacebook()" class="auth-form__socials--facebook btn btn__size-s btn--with-icon">
-                    <i class="auth-form__socials-icon fa-brands fa-square-facebook"></i>
-                    <span class="auth-form__socials-title">
-      Đăng nhập với Facebook
-    </span>
-                </a>
-                <div id="user-info"></div>
-                        <a href="" class="auth-form__socials--google btn btn__size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fa-brands fa-google"></i>
-                            <span class="auth-form__socials-title">
-                          Đăng nhập với Google
-                        </span>
-                        </a>
+                <jsp:include page="login-google.jsp" />
                     </div>
                 </div>
             </div>

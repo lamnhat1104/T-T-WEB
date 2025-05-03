@@ -154,27 +154,17 @@
                 </form>
             </div>
 
-            <div class="social-container">
-                <div class="auth-form__socials">
-                    <a href="" class="auth-form__socials--facebook btn btn__size-s btn--with-icon">
-                        <i class="auth-form__socials-icon fa-brands fa-square-facebook"></i>
-                        <span class="auth-form__socials-title">
-                  Kết nối với Facebook
-                </span>
-                    </a>
-                    <a href="" class="auth-form__socials--google btn btn__size-s btn--with-icon">
-                        <i class="auth-form__socials-icon fa-brands fa-google"></i>
-                        <span class="auth-form__socials-title">
-                        Kết nối với Google
-                </span>
-                    </a>
-                </div>
+            <jsp:include page="login-facebook.jsp" />
+
+            <jsp:include page="login-google.jsp" />
+
+
             </div>
         </div>
     </div>
 
 
-</div>
+
 <script src="assets/js/signin.js"></script>
 </body>
 </html>
