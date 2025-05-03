@@ -92,6 +92,7 @@
                     <div class="auth-form__form">
                         <div class="auth-form__group">
                             <input type="password" class="auth-form__input" name="password" placeholder="Mật khẩu mới" required>
+                            <input type="password" class="auth-form__input" name="confirmPassword" placeholder="Xác nhận mật khẩu" required>
                             <div id="message">
                                 <h3>Mật khẩu phải chứa các kí tự sau</h3>
                                 <p id="letter" class="invalid">Một kí tự <b>thường</b></p>

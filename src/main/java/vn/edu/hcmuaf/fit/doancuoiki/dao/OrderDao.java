@@ -121,7 +121,7 @@ public class OrderDao {
 
                 // Lấy vehicle type
                 VehicleType vehicleType = new VehicleType(
-                        rs.getInt("vehicletypes.id"),
+                        rs.getInt("id"),
                         rs.getString("image")
                 );
 
