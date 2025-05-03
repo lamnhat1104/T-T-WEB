@@ -180,18 +180,20 @@ public class UserDao {
     }
 
     public boolean resetPassword(String password, String token) {
-        String query = "UPDATE users SET password = ?, resetToken = NULL, tokenExpiry = NULL WHERE resetToken = ?";
-        try(Connection conn = new DBContext().getConnection();
-           PreparedStatement pre = conn.prepareStatement(query)) {
-               pre.setString(1, password);
-               pre.setString(2, token);
-               return pre.executeUpdate()>1;
+        String query = "UPDATE users SET password = ?, resetToken = NULL, tokenExpiry = NULL WHERE resetToken = ? AND tokenExpiry > ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(query)) {
+            pre.setString(1, password);
+            pre.setString(2, token);
+            pre.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+            return pre.executeUpdate() == 1;
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
+
 
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();

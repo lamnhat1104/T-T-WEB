@@ -23,7 +23,9 @@ public class ResetPasswordController extends HttpServlet {
         }
         else {
             request.setAttribute("message", "Token không hợp lệ");
+            request.getRequestDispatcher("change_password.jsp").forward(request, response);
         }
+
     }
 
     @Override
