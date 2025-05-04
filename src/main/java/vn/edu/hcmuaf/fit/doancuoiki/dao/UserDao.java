@@ -385,15 +385,45 @@ public class UserDao {
 
     public static void main(String[] args) throws SQLException {
         UserDao userDao = new UserDao();
-        try {
-            String email = "nhiihuynhh70@gamil.com"; // Thay bằng email có trong database
-            String role = userDao.getUserRole(email);
-            System.out.println("Role của " + email + " là: " + role);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+        // Test với ID là admin (ví dụ: ID = 1)
+        int testAdminId = 1;
+        boolean isAdmin = userDao.isAdmin(testAdminId);
+        System.out.println("ID " + testAdminId + " là admin? " + isAdmin);
+
+        // Test với ID không phải admin (ví dụ: ID = 2)
+        int testUserId = 2;
+        boolean isUserAdmin = userDao.isAdmin(testUserId);
+        System.out.println("ID " + testUserId + " là admin? " + isUserAdmin);
+
+        // Test với ID không tồn tại (ví dụ: ID = 100)
+        int invalidId = 7;
+        boolean isInvalidAdmin = userDao.isAdmin(invalidId);
+        System.out.println("ID " + invalidId + " là admin? " + isInvalidAdmin);
 
 
 
     }
+
+    public boolean isAdmin(Integer adminId) {
+        if (adminId == null) return false;
+
+        String sql = "SELECT roleId FROM users WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, adminId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int roleId = rs.getInt("roleId");
+                return roleId == 1; // 1 là quyền admin
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }
