@@ -9,8 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm">
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #40 : đã làm,">
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminLogProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/AdminLogDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/VehicleTypeDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +274,8 @@
       <workItem from="1744449699318" duration="2937000" />
       <workItem from="1745650136068" duration="60000" />
       <workItem from="1745650215895" duration="88000" />
-      <workItem from="1745652898884" duration="318000" />
+      <workItem from="1745652898884" duration="690000" />
+      <workItem from="1746330757877" duration="4914000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -465,7 +469,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743692510480</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fixes #40 : đã làm,">
+      <option name="closed" value="true" />
+      <created>1745653458658</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1745653458658</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,6 +513,7 @@
     <MESSAGE value="thêm chức năng cập nhật khách hàng" />
     <MESSAGE value="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm" />
     <MESSAGE value="đỗ dư liẹu lên trang chủ" />
-    <option name="LAST_COMMIT_MESSAGE" value="đỗ dư liẹu lên trang chủ" />
+    <MESSAGE value="Fixes #40 : đã làm," />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #40 : đã làm," />
   </component>
 </project>

@@ -95,6 +95,32 @@ public class VehicleTypeDao {
             e.printStackTrace();
         }
     }
+    public VehicleType getVehicleTypeById(int id) {
+        String sql = "SELECT * FROM vehicletypes WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                VehicleType vehicleType = new VehicleType(rs.getInt("id"), rs.getString("image"));
+                vehicleType.setId(rs.getInt("id"));
+                vehicleType.setName(rs.getString("name"));
+                vehicleType.setBrand(rs.getString("brand"));
+                vehicleType.setCategory(rs.getString("category"));
+                vehicleType.setTotalPrice(rs.getDouble("rentalPrice"));
+                vehicleType.setDescription(rs.getString("description"));
+                vehicleType.setImage(rs.getString("image"));
+                vehicleType.setTotalVehicles(rs.getInt("totalVehicles"));
+                vehicleType.setAvailable(rs.getInt("isAvailable"));
+                return vehicleType;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+
 
     public static void main(String[] args) {
         VehicleTypeDao vehicleTypeDao = new VehicleTypeDao();
@@ -102,4 +128,7 @@ public class VehicleTypeDao {
             System.out.println(vehicleType.getDescription());
         }
     }
+
+//    public void updateVehicleType(VehicleType updated) {
+//    }
 }
