@@ -3,7 +3,9 @@ package vn.edu.hcmuaf.fit.doancuoiki.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.doancuoiki.dao.CommentDao;
 import vn.edu.hcmuaf.fit.doancuoiki.dao.ProductDao;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Comment;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Product;
 import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 
@@ -26,6 +28,9 @@ public class ProductDetail extends HttpServlet {
             ProductDao productDao = new ProductDao();
             Product product = productDao.getUnbookedProductById(pid);
 
+            CommentDao cmDao = new CommentDao();
+            List<Comment> comments = cmDao.getCommentsByProduct(pid);
+
             if (product == null) {
                 throw new IllegalArgumentException("Không tìm thấy sản phẩm với ID: " + pid);
             }
@@ -36,6 +41,9 @@ public class ProductDetail extends HttpServlet {
             // Gửi sản phẩm và danh sách sản phẩm liên quan đến JSP
             request.setAttribute("p", product);
             request.setAttribute("relatedProducts", relatedProducts);
+            request.setAttribute("productId", pid);
+            request.setAttribute("comments", comments);
+
 
             request.getRequestDispatcher("product-detail.jsp").forward(request, response);
         } catch (NumberFormatException e) {
