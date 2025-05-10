@@ -57,25 +57,11 @@
                           <select name="paymentMethod" id="paymentMethod" required>
                               <option value="momo">Thanh toán bằng MoMo</option>
                               <option value="cod">Thanh toán khi nhận xe</option>
-                              <option value="vnpay"Thanh toán bằng Vnpay</option>
+                              <option value="vnpay">Thanh toán bằng Vnpay</option>
                           </select>
                       <div class="fill-in-item">
                           <h3 id="totalPrice">Tổng tiền thuê: 0 đ</h3>
-                      </div>
 
-                        <label for="coupon">Mã giảm giá</label>
-                        <input type="text" id="coupon" name="coupon">
-                        <label for="location">Địa điểm giao xe</label>
-                        <input type="text" id="location" name="location" required>
-                        <label for="rentalStartDate">Thời gian nhận xe</label>
-                        <input type="date" id="rentalStartDate" name="rentalStartDate" required>
-                        <label for="expectedReturnDate">Thời gian trả xe</label>
-                        <input type="date" id="expectedReturnDate" name="expectedReturnDate" required>
-                        <div class="fill-in-item">
-                            <h3 id="totalPrice">Tổng tiền thuê: 0 đ</h3>
-                        </div>
-
-                    </div>
                     <div class="button">
                         <button type="submit">Đặt xe</button>
                         <%--                        <a href="add-cart?pid=${p.id}"><button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')">Thêm vào giỏ hàng</button></a>--%>
@@ -93,8 +79,8 @@
             </div>
         </div>
     </div>
-
-
+</div>
+<div class="comment-section">
     <h3>Viết bình luận</h3>
     <c:if test="${user != null}">
         <form action="CommentController" method="post">
@@ -115,9 +101,8 @@
     <c:if test="${empty comments}">
         <p>Chưa có bình luận nào cho sản phẩm này.</p>
     </c:if>
+</div>
 
-</div>
-</div>
 
 <%--<div class="cac-san-pham-khac">--%>
 <%--    <h1>Các sản phẩm tương tự</h1>--%>
