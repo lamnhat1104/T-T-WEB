@@ -101,13 +101,4 @@ public class User implements Serializable {
                 ", isActive=" + active +
                 '}';
     }
-
-    public void getFacebookId(String id) {
-    }
-
-    public void setName(String name) {
-    }
-
-    public void setAvata(String picture) {
-    }
 }

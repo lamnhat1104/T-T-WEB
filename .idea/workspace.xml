@@ -9,23 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #70 : đăng nhập bằng google">
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/FacebookLoginServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/order-status.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/saveOrder.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/đat_xe_thanh_cong.jsp" afterDir="false" />
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #27 : xác minh tai khoan">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login-facebook.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login-facebook.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product-detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/saveUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/saveUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login-google.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login-google.jsp" afterDir="false" />
     <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="Fixes #18 : đã làm, Fixes #24 : Đã làm, Fixes #28 : đã làm">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 main
@@ -356,12 +344,7 @@ main
       <workItem from="1746023360425" duration="406000" />
       <workItem from="1746023785944" duration="988000" />
       <workItem from="1746025894467" duration="1680000" />
-      <workItem from="1746109260372" duration="6899000" />
-      <workItem from="1746329198249" duration="3211000" />
-      <workItem from="1746512159922" duration="844000" />
-      <workItem from="1746683162425" duration="7339000" />
-      <workItem from="1746711294071" duration="4020000" />
-      <workItem from="1746768815446" duration="6686000" />
+      <workItem from="1746109260372" duration="6698000" />
       <workItem from="1745650136068" duration="60000" />
       <workItem from="1745650215895" duration="88000" />
       <workItem from="1745652898884" duration="318000" />
@@ -575,15 +558,7 @@ main
       <option name="project" value="LOCAL" />
       <updated>1746026847008</updated>
     </task>
-    <task id="LOCAL-00027" summary="Fixes #70 : đăng nhập bằng google">
-      <option name="closed" value="true" />
-      <created>1746116254341</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1746116254343</updated>
-    </task>
-    <option name="localTasksCounter" value="28" />
+    <option name="localTasksCounter" value="27" />
     <option name="localTasksCounter" value="25" />
  main
     <servers />
@@ -603,6 +578,7 @@ main
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
     <MESSAGE value="thay đổi mật khẩu ưngs dụng" />
     <MESSAGE value="giỏ hàng" />
     <MESSAGE value="fix lỗi chuyển trang" />
@@ -627,8 +603,7 @@ main
     <MESSAGE value="Fixes #56 :chat trực tiếp với admin qua mess" />
     <MESSAGE value="Fixes #52: cập nhật đăng ký lái thử" />
     <MESSAGE value="Fixes #27 : xác minh tai khoan" />
-    <MESSAGE value="Fixes #70 : đăng nhập bằng google" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #70 : đăng nhập bằng google" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #27 : xác minh tai khoan" />
     <MESSAGE value="đỗ dư liẹu lên trang chủ" />
     <option name="LAST_COMMIT_MESSAGE" value="đỗ dư liẹu lên trang chủ" />
  main

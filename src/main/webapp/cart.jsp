@@ -121,12 +121,12 @@
 <footer id="footer"></footer>
 <script>
   // Chèn header
-  fetch('header.jsp')
+  fetch('header.html')
           .then(response => response.text())
           .then(data => document.getElementById('header').innerHTML = data);
 
   // Chèn footer
-  fetch('footer.jsp')
+  fetch('footer.html')
           .then(response => response.text())
           .then(data => document.getElementById('footer').innerHTML = data);
 </script>

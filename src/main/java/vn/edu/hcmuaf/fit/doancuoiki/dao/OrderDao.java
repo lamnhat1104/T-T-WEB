@@ -20,10 +20,6 @@ import java.util.List;
 
 public class OrderDao {
 
-    public static List<Order> getOrdersByUser(String userId) {
-        return new ArrayList<>();
-    }
-
     public boolean createOrder(int id, String location, Date rentalStartDate, Date expectedReturnDate, String licensePlate, double priceAtOrder, int promotionId) {
         String sql1 = "INSERT INTO orders (customerId, rentalStartDate, expectedReturnDate, deliveryAddress, promotionId) VALUES (?, ?, ?, ?, ?)";
         String sql2 = "INSERT INTO orderdetails (orderId, licensePlate, priceAtOrder) VALUES (?, ?, ?)";
@@ -224,63 +220,6 @@ public class OrderDao {
             e.printStackTrace();
         }
     }
-    public Order getOrderById(int orderId) {
-        String sql = "SELECT orders.*, orderdetails.*, vehicles.*, vehicletypes.*, promotions.id AS promo_id, " +
-                "promotions.promotionName, promotions.discountType, promotions.discountValue " +
-                "FROM orders " +
-                "JOIN orderdetails ON orders.id = orderdetails.orderId " +
-                "JOIN vehicles ON orderdetails.licensePlate = vehicles.licensePlate " +
-                "JOIN vehicletypes ON vehicletypes.id = vehicles.typeId " +
-                "LEFT JOIN promotions ON promotions.id = orders.promotionId " +
-                "WHERE orders.id = ?";
-        try (Connection con = new DBContext().getConnection();
-             PreparedStatement pre = con.prepareStatement(sql)) {
-            pre.setInt(1, orderId);
-            ResultSet rs = pre.executeQuery();
-            if (rs.next()) {
-                // Chuyển dữ liệu ResultSet thành đối tượng Order
-                OrderDetail orderDetail = new OrderDetail(
-                        rs.getInt("orderId"),
-                        rs.getString("licensePlate"),
-                        rs.getString("name"),
-                        rs.getDouble("priceAtOrder")
-                );
-
-                VehicleType vehicleType = new VehicleType(
-                        rs.getInt("vehicletypes.id"),
-                        rs.getString("image")
-                );
-
-                Promotion promotion = null;
-                int promoId = rs.getInt("promo_id");
-                if (promoId > 0) {
-                    promotion = new Promotion();
-                    promotion.setId(promoId);
-                    promotion.setPromotionName(rs.getString("promotionName"));
-                    promotion.setDiscountType(rs.getInt("discountType"));
-                    promotion.setDiscountValue(rs.getDouble("discountValue"));
-                }
-
-                Order order = new Order();
-                order.setId(rs.getInt("id"));
-                order.setCustomerId(rs.getInt("customerId"));
-                order.setDeliveryAddress(rs.getString("deliveryAddress"));
-                order.setCreatedDate(rs.getDate("createdDate"));
-                order.setExpectedReturnDate(rs.getDate("expectedReturnDate"));
-                order.setRetalStarDate(rs.getDate("rentalStartDate"));
-                order.setStatus(rs.getInt("status"));
-                order.setOrderDetail(orderDetail);
-                order.setVehicleType(vehicleType);
-                order.setPromotion(promotion);
-
-                return order;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 
 
 }
