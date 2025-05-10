@@ -8,8 +8,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -36,34 +36,17 @@
                 <input type="hidden" name="price" value="${p.price}">
                 <div class="info">
                     <h1 class="name-moto" style="text-align: center">${p.name}</h1>
-                    <h3 id="price-per-day">Giá thuê: <f:formatNumber value="${p.price}" />đ/ngày</h3>
+                    <h3 id="price-per-day">Giá thuê: <f:formatNumber value="${p.price}"/>đ/ngày</h3>
                     <h3 id="manufacturer">Nhà sản xuất: ${p.brand}</h3>
                     <h3 id="year-of-manufacture">Năm sản xuất: ${p.year}</h3>
                     <h3 id="type">Loại xe: Xe số</h3>
-                    <p class="note">* Giá thuê chưa bao gồm: Xăng phục vụ suốt chuyến đi, Bảo hiểm hành khách, Thuế VAT, Phụ thu dịp Lễ Tết.</p>
+                    <p class="note">* Giá thuê chưa bao gồm: Xăng phục vụ suốt chuyến đi, Bảo hiểm hành khách, Thuế VAT,
+                        Phụ thu dịp Lễ Tết.</p>
                 </div>
                 <div class="fill-in-info">
                     <div class="fill-in-item">
 
-                      <%--@declare id="paymentmethods"--%><label for="coupon">Mã giảm giá</label>
-                      <input type="text" id="coupon" name="coupon">
-                      <label for="location">Địa điểm giao xe</label>
-                      <input type="text" id="location" name="location" required>
-                      <label for="rentalStartDate">Thời gian nhận xe</label>
-                      <input type="date" id="rentalStartDate" name="rentalStartDate" required>
-                      <label for="expectedReturnDate">Thời gian trả xe</label>
-                      <input type="date" id="expectedReturnDate" name="expectedReturnDate" required>
-                          <label for="paymentMethod">Phương thức thanh toán</label>
-                          <select name="paymentMethod" id="paymentMethod" required>
-                              <option value="momo">Thanh toán bằng MoMo</option>
-                              <option value="cod">Thanh toán khi nhận xe</option>
-                              <option value="vnpay"Thanh toán bằng Vnpay</option>
-                          </select>
-                      <div class="fill-in-item">
-                          <h3 id="totalPrice">Tổng tiền thuê: 0 đ</h3>
-                      </div>
-
-                        <label for="coupon">Mã giảm giá</label>
+                        <%--@declare id="paymentmethods"--%><label for="coupon">Mã giảm giá</label>
                         <input type="text" id="coupon" name="coupon">
                         <label for="location">Địa điểm giao xe</label>
                         <input type="text" id="location" name="location" required>
@@ -71,15 +54,31 @@
                         <input type="date" id="rentalStartDate" name="rentalStartDate" required>
                         <label for="expectedReturnDate">Thời gian trả xe</label>
                         <input type="date" id="expectedReturnDate" name="expectedReturnDate" required>
+                        <label for="deliveryOption">Đơn vị vận chuyển</label>
+                        <select name="deliveryOption" id="deliveryOption" onchange="updateDeliveryFee()" required>
+                            <option value="grab">Tiết kiệm - 30.000đ</option>
+                            <option value="ghn">Giao Hàng Nhanh - 35.000đ</option>
+                            <option value="pickup">Nhận tại cửa hàng - Miễn phí</option>
+                        </select>
+
+                        <label for="deliveryFee">Phí vận chuyển</label>
+                        <input type="text" id="deliveryFee" name="deliveryFee" readonly value="30000">
+
+                        <label for="paymentMethod">Phương thức thanh toán</label>
+                        <select name="paymentMethod" id="paymentMethod" required>
+                            <option value="cod">Thanh toán khi nhận xe</option>
+                        </select>
                         <div class="fill-in-item">
-                            <h3 id="totalPrice">Tổng tiền thuê: 0 đ</h3>
+                            <h3 id="totalPrice">Tổng tiền thuê + vận chuyển: 0 đ</h3>
                         </div>
+
 
                     </div>
                     <div class="button">
                         <button type="submit">Đặt xe</button>
                         <%--                        <a href="add-cart?pid=${p.id}"><button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')">Thêm vào giỏ hàng</button></a>--%>
-                        <button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')"><a href="add-cart?pid=${p.id}">Thêm vào giỏ hàng</a></button>
+                        <button type="button" onclick="alert('Bạn đã thêm vào giỏ hàng thành công.')"><a
+                                href="add-cart?pid=${p.id}">Thêm vào giỏ hàng</a></button>
                     </div>
                 </div>
             </form>
@@ -148,15 +147,52 @@
 <%--</div>--%>
 
 <c:if test="${param.message == 'success'}">
-    <script>alert("Đặt xe thành công!");</script>
+    <script>
+        alert("Đặt xe thành công!");
+        // Sau khi thông báo, tự động chuyển trang sau 2 giây
+        setTimeout(function() {
+            window.location.href = "order-status.jsp?userId=${user.id}";
+        }, 2000);
+    </script>
 </c:if>
 <c:if test="${param.message == 'fail'}">
     <script>alert("Đặt xe thất bại. Vui lòng thử lại!");</script>
 </c:if>
 
+<script>
+    function updateDeliveryFee() {
+        var deliveryOption = document.getElementById("deliveryOption").value;
+        var deliveryFeeInput = document.getElementById("deliveryFee");
 
+        if (deliveryOption === "grab") {
+            deliveryFeeInput.value = 30000;
+        } else if (deliveryOption === "ghn") {
+            deliveryFeeInput.value = 35000;
+        } else {
+            deliveryFeeInput.value = 0;
+        }
 
+        updateTotalPrice();
+    }
 
+    function updateTotalPrice() {
+        const pricePerDay = parseFloat(document.querySelector('input[name="price"]').value);
+        const deliveryFee = parseFloat(document.getElementById("deliveryFee").value);
+        const start = new Date(document.getElementById("rentalStartDate").value);
+        const end = new Date(document.getElementById("expectedReturnDate").value);
+
+        if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
+            const days = Math.max(1, (end - start) / (1000 * 3600 * 24));
+            const total = pricePerDay * days + deliveryFee;
+
+            document.getElementById("totalPrice").textContent = "Tổng tiền thuê: " + total.toLocaleString('vi-VN') + " đ";
+        }
+    }
+
+    // Tự động cập nhật khi chọn ngày
+    document.getElementById("rentalStartDate").addEventListener("change", updateTotalPrice);
+    document.getElementById("expectedReturnDate").addEventListener("change", updateTotalPrice);
+</script>
 
 <%@ include file="footer.jsp" %>
 </body>
