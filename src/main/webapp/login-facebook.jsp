@@ -39,15 +39,16 @@
     }
 
     function getUserInfo(accessToken) {
-        FB.api('/me', { fields: 'id,name,email' }, function (response) {
+        FB.api('/me', { fields: 'id,name,email,picture.type(large)' }, function (response) {
             if (response && !response.error) {
                 document.getElementById('user-info').innerHTML = `
                     <div class="auth-form__welcome">
                         <p>👋 Chào, <strong>${response.name}</strong></p>
                         <p>Email: ${response.email}</p>
+                        <img src="${response.picture.data.url}" style="width:100px;border-radius:50%;margin-top:10px;">
                     </div>
                 `;
-                sendDataToServer(response.id, response.name, response.email, accessToken);
+                sendDataToServer(response.id, response.name, response.email, accessToken, response.picture.data.url);
             } else {
                 alert("Không thể lấy thông tin người dùng.");
             }

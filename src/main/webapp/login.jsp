@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
 </head>
 <body>
-
 <div class="login">
     <div class="header">
         <div class="header__item">

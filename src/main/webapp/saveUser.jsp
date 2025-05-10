@@ -5,35 +5,27 @@
   Time: 12:48 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page session="true" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="vn.edu.hcmuaf.fit.doancuoiki.model.User"%>
+<%@page import="vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo"%>
+<%@page import="vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao"%>
+<%@page import="java.time.LocalDate"%>
+
 <%
-    request.setCharacterEncoding("UTF-8");
-    // Lấy thông tin người dùng từ request
-    String id = request.getParameter("id");
-    String name = request.getParameter("name");
     String email = request.getParameter("email");
-    String token = request.getParameter("token");
+    String name = request.getParameter("name");
 
-    // Kiểm tra dữ liệu đầu vào
-    if (id != null && name != null && email != null) {
-        // Lưu thông tin người dùng vào session
-        session.setAttribute("facebook_id", id);
-        session.setAttribute("name", name);
-        session.setAttribute("email", email);
-        session.setAttribute("access_token", token);
+    UserDao dao = new UserDao();
+    User user;
 
-        // Ghi log server (có thể bỏ)
-        System.out.println("✅ Người dùng Facebook đăng nhập:");
-        System.out.println("ID: " + id);
-        System.out.println("Tên: " + name);
-        System.out.println("Email: " + email);
-
-        // Trả về phản hồi cho JavaScript biết là OK
-        out.print("success");
-    } else {
-        // Nếu thiếu dữ liệu, trả về lỗi
-        response.setStatus(400);
-        out.print("error: thiếu thông tin người dùng");
+    if (!dao.isEmailExists(email)) {
+        UserInfo userInfo = new UserInfo(name, "", "", LocalDate.now());
+        user = new User(0, email, "", userInfo, 2, 1); // roleId 2 = user
+        dao.addUser(user);
     }
+
+    user = dao.getUserByEmail(email);
+
+    session.setAttribute("user", user);
+    response.sendRedirect("index.jsp");
 %>
