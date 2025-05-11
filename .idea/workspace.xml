@@ -9,10 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="lam log admin">
+    <list default="true" id="afc77a48-b48e-48b7-9561-ce0e97a73903" name="Changes" comment="lm logadmin">
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/LogDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/VehicleLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/AdminLogProductController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/AdminLogDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/VehicleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/VehicleType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Servlet" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -70,30 +73,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CommentDao.executor": "Run",
-    "Application.UserDao.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 11.0.0.executor": "Run",
-    "Tomcat Server.tomcat.executor": "Run",
-    "git-widget-placeholder": "22130189-baonguyen",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "23",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CommentDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserDao.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.0.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.tomcat.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130189-baonguyen&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\HK1_2024\T-T-WEB\DoAnCuoiKi" />
@@ -289,7 +292,14 @@
       <workItem from="1745650136068" duration="60000" />
       <workItem from="1745650215895" duration="88000" />
       <workItem from="1745652898884" duration="690000" />
-      <workItem from="1746330757877" duration="9147000" />
+      <workItem from="1746330757877" duration="13008000" />
+      <workItem from="1746379256107" duration="589000" />
+      <workItem from="1746382034592" duration="588000" />
+      <workItem from="1746409202883" duration="587000" />
+      <workItem from="1746410416542" duration="596000" />
+      <workItem from="1746416999054" duration="330000" />
+      <workItem from="1746418597140" duration="1202000" />
+      <workItem from="1746895983663" duration="12993000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -499,7 +509,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746335782851</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="lm logadmin">
+      <option name="closed" value="true" />
+      <created>1746353913894</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1746353913894</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,6 +555,7 @@
     <MESSAGE value="đỗ dư liẹu lên trang chủ" />
     <MESSAGE value="Fixes #40 : đã làm," />
     <MESSAGE value="lam log admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="lam log admin" />
+    <MESSAGE value="lm logadmin" />
+    <option name="LAST_COMMIT_MESSAGE" value="lm logadmin" />
   </component>
 </project>

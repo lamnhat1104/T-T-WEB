@@ -17,6 +17,8 @@ public class VehicleType {
     private int available;
 
     public VehicleType(int id, String image) {
+        this.id = id;
+        this.image = image;
     }
 
     public VehicleType(int id, String name, String brand, String category, double totalPrice, String description, String image, int totalVehicles, int available) {
@@ -135,7 +137,19 @@ public class VehicleType {
     @Override
     public String toString() {
         return "VehicleType{" +
-                "description='" + description + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", manufactureYear=" + manufactureYear +
+                ", brand='" + brand + '\'' +
+                ", category='" + category + '\'' +
+                ", depositPrice=" + depositPrice +
+                ", totalPrice=" + totalPrice +
+                ", requiredLicense='" + requiredLicense + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", totalVehicles=" + totalVehicles +
+                ", available=" + available +
                 '}';
     }
+
 }
