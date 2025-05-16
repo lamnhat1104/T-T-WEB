@@ -396,6 +396,41 @@ public class UserDao {
 
 
     }
+    public boolean addUserByGoogle(String email, String fullName) {
+        String query1 = "INSERT INTO users (email, password, roleId, isActive) VALUES (?, NULL, 2, 1)";
+        String query2 = "INSERT INTO userdetails (userId, fullName, phoneNumber, birthdate, address) VALUES (?, ?, '', NULL, '')";
+
+        try (Connection conn = new DBContext().getConnection()) {
+            conn.setAutoCommit(false); // Bắt đầu transaction
+
+            int userId = -1;
+            try (PreparedStatement ps1 = conn.prepareStatement(query1, PreparedStatement.RETURN_GENERATED_KEYS)) {
+                ps1.setString(1, email);
+                ps1.executeUpdate();
+                try (ResultSet rs = ps1.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        userId = rs.getInt(1);
+                    }
+                }
+            }
+
+            if (userId != -1) {
+                try (PreparedStatement ps2 = conn.prepareStatement(query2)) {
+                    ps2.setInt(1, userId);
+                    ps2.setString(2, fullName);
+                    int rows2 = ps2.executeUpdate();
+                    if (rows2 > 0) {
+                        conn.commit();
+                        return true;
+                    }
+                }
+            }
+            conn.rollback();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public User getUserByEmail(String email) {
         String query = "SELECT * FROM users WHERE email = ?";
         try (Connection conn = new DBContext().getConnection();

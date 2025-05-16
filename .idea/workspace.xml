@@ -9,10 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486d6482-6590-42ee-9aae-867f8fbd6ecd" name="Changes" comment="Fixes #76 : Xem tình trạng đơn hàng">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/saveUserGoogle.jsp" afterDir="false" />
+    <list default="true" id="486d6482-6590-42ee-9aae-867f8fbd6ecd" name="Changes" comment="Fixes #70 : lưu user đăng nhập bằng google">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login-google.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login-google.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/saveUserGoogle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/saveUserGoogle.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -83,18 +85,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 10.1.39.executor": "Run",
-    "git-widget-placeholder": "22130145-TRanThiThuyLinh",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#78 on 22130145-TRanThiThuyLinh&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.json" />
@@ -215,9 +217,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1747021994344</updated>
-      <workItem from="1747021999724" duration="5570000" />
+      <workItem from="1747021999724" duration="6295000" />
+      <workItem from="1747383708107" duration="4356000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixes #70 : lưu user đăng nhập bằng google">
+      <option name="closed" value="true" />
+      <created>1747036053438</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747036053439</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +248,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge remote-tracking branch 'origin/22130145-TRanThiThuyLinh' into 22130145-TRanThiThuyLinh" />
     <MESSAGE value="Fixes #76 : Xem tình trạng đơn hàng" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #76 : Xem tình trạng đơn hàng" />
+    <MESSAGE value="Fixes #70 : lưu user đăng nhập bằng google" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #70 : lưu user đăng nhập bằng google" />
   </component>
 </project>
