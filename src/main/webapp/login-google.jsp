@@ -39,9 +39,25 @@
                     })
                         .then(res => res.json())
                         .then(user => {
-                            console.log("Thông tin người dùng từ Google:", user);
+                            // Tạo form và gửi về saveUserGoogle.jsp
+                            const form = document.createElement("form");
+                            form.method = "POST";
+                            form.action = "saveUserGoogle.jsp";
 
-                            window.location.href = 'index.jsp';
+                            const emailInput = document.createElement("input");
+                            emailInput.type = "hidden";
+                            emailInput.name = "email";
+                            emailInput.value = user.email;
+
+                            const nameInput = document.createElement("input");
+                            nameInput.type = "hidden";
+                            nameInput.name = "fullName";
+                            nameInput.value = user.name;
+
+                            form.appendChild(emailInput);
+                            form.appendChild(nameInput);
+                            document.body.appendChild(form);
+                            form.submit();
                         });
                 }
             });
