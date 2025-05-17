@@ -25,7 +25,7 @@ public class OrderDao {
     }
 
     public boolean createOrder(int id, String location, Date rentalStartDate, Date expectedReturnDate, String licensePlate, double priceAtOrder, int promotionId) {
-        String sql1 = "INSERT INTO orders (customerId, rentalStartDate, expectedReturnDate, deliveryAddress, promotionId) VALUES (?, ?, ?, ?, ?)";
+        String sql1 = "INSERT INTO orders (customerId, rentalStartDate, expectedReturnDate, deliveryAddress, promotionId, createdDate) VALUES (?, ?, ?, ?, ?, ?)";
         String sql2 = "INSERT INTO orderdetails (orderId, licensePlate, priceAtOrder) VALUES (?, ?, ?)";
         if (licensePlate.equals("")) return false;
 
@@ -41,6 +41,7 @@ public class OrderDao {
             } else {
                 pre.setNull(5, java.sql.Types.INTEGER);
             }
+            pre.setDate(6, new java.sql.Date(System.currentTimeMillis()));
 
             int rowsAffected1 = pre.executeUpdate();
 

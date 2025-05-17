@@ -86,9 +86,7 @@ public class User implements Serializable {
         return active;
     }
 
-    public void setActive(int active) {
-        active = active;
-    }
+    public void setActive(int active) {this.active = active;}
 
     @Override
     public String toString() {

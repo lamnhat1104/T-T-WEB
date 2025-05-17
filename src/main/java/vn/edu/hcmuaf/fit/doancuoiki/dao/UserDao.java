@@ -194,6 +194,20 @@ public class UserDao {
         return false;
     }
 
+    public boolean updatePassword(int userId, String newPassword) {
+        String query = "UPDATE users SET password = ? WHERE id = ?";
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement pre = conn.prepareStatement(query)) {
+            pre.setString(1, newPassword);
+            pre.setInt(2, userId);
+            return pre.executeUpdate() == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
