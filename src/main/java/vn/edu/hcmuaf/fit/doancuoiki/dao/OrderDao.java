@@ -29,11 +29,8 @@ public class OrderDao {
             pre.setDate(2, rentalStartDate);
             pre.setDate(3, expectedReturnDate);
             pre.setString(4, location);
-
 //            pre.executeUpdate();
-
             int rowsAffected1 = pre.executeUpdate();
-
             // Lấy user_id vừa được sinh ra
             int orderId = 0;
             if (rowsAffected1 > 0) {
@@ -43,7 +40,6 @@ public class OrderDao {
                     }
                 }
             }
-
             int rowsAffected2;
             try (PreparedStatement pre2 = conn.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS)) {
                 pre2.setInt(1, orderId);
@@ -109,12 +105,10 @@ public class OrderDao {
                         rs.getString("licensePlate"),
                         rs.getString("name"),
                         rs.getDouble("priceAtOrder"));
-
                 VehicleType vehicleType = new VehicleType(
                         rs.getInt("id"),  // ID của VehicleType
                         rs.getString("image") // Lấy hình ảnh từ cột image
                 );
-
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
                 order.setCustomerId(rs.getInt("customerId"));
@@ -123,8 +117,6 @@ public class OrderDao {
                 order.setExpectedReturnDate(rs.getDate("expectedReturnDate"));
                 order.setRetalStarDate(rs.getDate("rentalStartDate"));
                 order.setStatus(rs.getInt("status"));
-
-
                 order.setOrderDetail(orderDetail);
                 order.setVehicleType(vehicleType);
                 orders.add(order);

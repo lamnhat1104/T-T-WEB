@@ -54,6 +54,7 @@
                       <label for="expectedReturnDate">Thời gian trả xe</label>
                       <input type="date" id="expectedReturnDate" name="expectedReturnDate" required>
                       <div class="fill-in-item">
+                          <h3 id="shippingFee">Phí vận chuyển: 0 đ</h3>
                           <h3 id="totalPrice">Tổng tiền thuê: 0 đ</h3>
                       </div>
                     </div>
@@ -138,5 +139,53 @@
 
 <%@ include file="footer.jsp" %>
 </body>
+<script>
+    const pricePerDay = ${p.price};
+    let shippingFee = 0;
+
+    const startInput = document.getElementById("rentalStartDate");
+    const endInput = document.getElementById("expectedReturnDate");
+    const locationInput = document.getElementById("location");
+
+    function updateTotal() {
+        const start = new Date(startInput.value);
+        const end = new Date(endInput.value);
+
+        if (!isNaN(start) && !isNaN(end) && end > start) {
+            const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+            const total = days * pricePerDay + shippingFee;
+            document.getElementById("totalPrice").textContent = `Tổng tiền thuê: ${total.toLocaleString()} đ`;
+        } else {
+            document.getElementById("totalPrice").textContent = "Tổng tiền thuê: 0 đ";
+        }
+    }
+
+    startInput.addEventListener("change", updateTotal);
+    endInput.addEventListener("change", updateTotal);
+
+    locationInput.addEventListener("blur", function () {
+        const address = locationInput.value.trim();
+        if (address === "") return;
+
+        fetch("ShippingFeeServlet?address=" + encodeURIComponent(address))
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    shippingFee = data.fee;
+                    document.getElementById("shippingFee").textContent = `Phí vận chuyển: ${shippingFee.toLocaleString()} đ`;
+                } else {
+                    shippingFee = 0;
+                    document.getElementById("shippingFee").textContent = "Không tính được phí vận chuyển.";
+                }
+                updateTotal();
+            })
+            .catch(err => {
+                console.error(err);
+                shippingFee = 0;
+                document.getElementById("shippingFee").textContent = "Lỗi khi tính phí.";
+                updateTotal();
+            });
+    });
+</script>
 </html>
 
