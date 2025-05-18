@@ -108,4 +108,7 @@ public class User implements Serializable {
 
     public void setAvata(String picture) {
     }
+
+    public void setFullname(String name) {
+    }
 }
