@@ -163,8 +163,10 @@
     <div class="user-wrapper">
       <img src="../assets/img/home_img/user.png" height="40" width="40">
       <div>
-        <h4>admin</h4>
-        <small>NNP</small>
+        <small>
+          <%= (user.getRoleId() == 1) ? "Admin" : "User" %> <br>
+          <%= user.getUserInfo().getFullName()%>
+        </small>
       </div>
     </div>
   </header>
