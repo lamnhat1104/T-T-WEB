@@ -1,4 +1,4 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %><%--
   Created by IntelliJ IDEA.
   User: DELL
   Date: 1/10/2025
@@ -262,6 +262,14 @@
 
 </head>
 <body>
+<%
+
+    User user = (User) session.getAttribute("user");
+    if (user == null || user.getRoleId() != 1) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
+    }
+%>
 <input type="checkbox" id="nav-toggle">
 
 <div class="sidebar">
