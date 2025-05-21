@@ -263,7 +263,6 @@
 </head>
 <body>
 <%
-
     User user = (User) session.getAttribute("user");
     if (user == null || user.getRoleId() != 1) {
         response.sendRedirect(request.getContextPath() + "/login.jsp");
