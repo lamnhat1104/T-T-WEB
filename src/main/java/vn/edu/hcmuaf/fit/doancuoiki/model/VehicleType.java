@@ -141,4 +141,20 @@ public class VehicleType {
                 "description='" + description + '\'' +
                 '}';
     }
+    // In package vn.edu.hcmuaf.fit.doancuoiki.model.VehicleType;
+// Add this method to your VehicleType class
+    public String toLogString() {
+        return String.format(
+                "ID: %d, Name: '%s', Brand: '%s', Category: '%s', RentalPrice: %.2f, Description: '%s', Image: '%s', TotalVehicles: %d, IsAvailable: %d",
+                this.getId(), // Assuming getId() exists
+                this.getName(), // Assuming getName() exists
+                this.getBrand(), // Assuming getBrand() exists
+                this.getCategory(), // Assuming getCategory() exists
+                this.getTotalPrice(), // Assuming getTotalPrice() for rentalPrice
+                this.getDescription(), // Assuming getDescription() exists
+                this.getImage(), // Assuming getImage() exists
+                this.getTotalVehicles(), // Assuming getTotalVehicles() exists
+                this.getAvailable() // Assuming getAvailable() for isAvailable
+        );
+    }
 }

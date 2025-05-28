@@ -21,6 +21,30 @@ import java.util.List;
 
 @WebServlet(name = "AdminController", value = "/admin")
 public class AdminController extends HttpServlet {
+    private int getLoggedInAdminId(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            // Assuming your admin object is stored in session with key "adminAccount" or "admin"
+            // And assuming Admin class has a getId() method. Adjust if necessary.
+            Object adminObj = session.getAttribute("adminAccount"); // Or "admin" or your specific key
+            if (adminObj instanceof vn.edu.hcmuaf.fit.doancuoiki.model.User) { // Example if admin is a type of User
+                User adminUser = (User) adminObj;
+                // Ensure this user is indeed an admin if User model is polymorphic for roles
+                // For now, assuming if it's in "adminAccount", it's an admin's ID.
+                return adminUser.getId(); // Assuming User has getId() and it's the admin's ID
+            }
+            // If you have a separate Admin model:
+            // if (adminObj instanceof Admin) {
+            //     Admin admin = (Admin) adminObj;
+            //     return admin.getId();
+            // }
+        }
+        // Fallback: If no admin is found in session or ID cannot be determined.
+        // In a real application, you might throw an error or redirect to login.
+        // For logging purposes, using a placeholder ID like 0 or -1 might indicate an issue.
+        System.err.println("WARN: Admin ID not found in session. Using placeholder ID 0 for logging.");
+        return 0; // Or -1, indicating system/unknown actor
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -460,21 +484,23 @@ public class AdminController extends HttpServlet {
 
 
 // Quản lý xe máy
-    private void managerVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        VehicleTypeDao dao = new VehicleTypeDao();
-        List<VehicleType> vehicleTypeList = dao.getAllVehicleType();
-        request.setAttribute("vehicleTypeList", vehicleTypeList);
-        request.getRequestDispatcher("admin/motorbikes.jsp").forward(request, response);
-    }
+private void managerVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    VehicleTypeDao dao = new VehicleTypeDao();
+    List<VehicleType> vehicleTypeList = dao.getAllVehicleType();
+    request.setAttribute("vehicleTypeList", vehicleTypeList);
+    request.getRequestDispatcher("admin/motorbikes.jsp").forward(request, response);
+}
 
     private void deleteVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request); // Get admin ID
         int id = Integer.parseInt(request.getParameter("vehicleId"));
         VehicleTypeDao dao = new VehicleTypeDao();
-        dao.deleteVehicleType(id);
+        dao.deleteVehicleType(id, adminId); // Pass adminId
         managerVehicleType(request, response);
     }
 
     private void updateVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request); // Get admin ID
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String brand = request.getParameter("brand");
@@ -486,11 +512,12 @@ public class AdminController extends HttpServlet {
         int available = Integer.parseInt(request.getParameter("available"));
 
         VehicleTypeDao dao = new VehicleTypeDao();
-        dao.updateVehicleType(id, name, brand, category, totalPrice, description, image, totalVehicles, available);
+        dao.updateVehicleType(id, name, brand, category, totalPrice, description, image, totalVehicles, available, adminId); // Pass adminId
         managerVehicleType(request, response);
     }
 
-    private void addVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+    private void addVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request); // Get admin ID
         String name = request.getParameter("addName");
         String brand = request.getParameter("addBrand");
         String category = request.getParameter("addCategory");
@@ -501,14 +528,15 @@ public class AdminController extends HttpServlet {
         int available = Integer.parseInt(request.getParameter("addAvailable"));
 
         VehicleTypeDao dao = new VehicleTypeDao();
-        dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available);
+        dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available, adminId); // Pass adminId
         managerVehicleType(request, response);
     }
     private void changeStatusVehicle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request); // Get admin ID
         VehicleTypeDao dao = new VehicleTypeDao();
         int id = Integer.parseInt(request.getParameter("vehicleId"));
-        int isAvailable = Integer.parseInt(request.getParameter("isAvailable"));
-        dao.updateAvailableStatus(id, isAvailable);
+        int isAvailable = Integer.parseInt(request.getParameter("isAvailable")); // This is the new status
+        dao.updateAvailableStatus(id, isAvailable, adminId); // Pass adminId
         managerVehicleType(request, response);
     }
 }
