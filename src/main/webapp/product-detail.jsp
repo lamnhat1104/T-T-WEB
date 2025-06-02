@@ -47,22 +47,7 @@
                     <div class="fill-in-item">
 
 
-                      <%--@declare id="paymentmethods"--%><label for="coupon">Mã giảm giá</label>
-                      <input type="text" id="coupon" name="coupon">
-                      <label for="location">Địa điểm giao xe</label>
-                      <input type="text" id="location" name="location" required>
-                      <label for="rentalStartDate">Thời gian nhận xe</label>
-                      <input type="date" id="rentalStartDate" name="rentalStartDate" required>
-                      <label for="expectedReturnDate">Thời gian trả xe</label>
-                      <input type="date" id="expectedReturnDate" name="expectedReturnDate" required>
-                          <label for="paymentMethod">Phương thức thanh toán</label>
-                          <select name="paymentMethod" id="paymentMethod" required>
-                              <option value="momo">Thanh toán bằng MoMo</option>
-                              <option value="cod">Thanh toán khi nhận xe</option>
-                              <option value="vnpay">Thanh toán bằng Vnpay</option>
-                          </select>
-                      <div class="fill-in-item">
-                          <h3 id="totalPrice">Tổng tiền thuê: 0 đ</h3>
+
 
 
                         <%--@declare id="paymentmethods"--%><label for="coupon">Mã giảm giá</label>
@@ -85,7 +70,9 @@
 
                         <label for="paymentMethod">Phương thức thanh toán</label>
                         <select name="paymentMethod" id="paymentMethod" required>
+                            <option value="momo">Thanh toán bằng MoMo</option>
                             <option value="cod">Thanh toán khi nhận xe</option>
+                            <option value="vnpay">Thanh toán bằng Vnpay</option>
                         </select>
                         <div class="fill-in-item">
                             <h3 id="totalPrice">Tổng tiền thuê + vận chuyển: 0 đ</h3>
