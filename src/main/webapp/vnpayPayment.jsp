@@ -12,7 +12,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Thanh toán MoMo</title>
+    <title>Thanh toán VNPAY</title>
     <link rel="stylesheet" href="checkout.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
 <%@ include file="header.jsp" %>
 
 <div class="payment-container">
-    <h1>Xác nhận thanh toán MoMo</h1>
+    <h1>Xác nhận thanh toán VNPAY</h1>
     <div class="payment-info">
         <p><strong>Tên xe:</strong> ${sessionScope.p.name}</p>
         <p><strong>Giá thuê/ngày:</strong> <f:formatNumber value="${sessionScope.p.price}" /> đ</p>
@@ -30,14 +30,13 @@
         <p><strong>Tổng tiền:</strong> <span style="color:red;"><f:formatNumber value="${sessionScope.totalPrice}" /> đ</span></p>
     </div>
 
-    <form action="MoMoHandler" method="post" accept-charset="UTF-8">
-        <input type="hidden" name="amount" value="${sessionScope.totalPrice}">
-        <input type="hidden" name="orderInfo" value="Thanh toan bang momo - ${sessionScope.p.name}">
-        <input type="hidden" name="orderId" value="${sessionScope.orderId}">
-        <!-- Thêm dòng này để test orderInfo -->
-        <input type="hidden" name="orderInfo" value="Thanh toán thuê xe bằng MoMo - Honda Wave Alpha" />
-        <button type="submit" class="momo-button">Thanh toán với MoMo</button>
+    <form action="VnPayHandler" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="amount" value="${sessionScope.totalPrice}" />
+        <input type="hidden" name="orderInfo" value="Thanh toán thuê xe bằng VNPAY - ${sessionScope.p.name}" />
+        <input type="hidden" name="orderId" value="${sessionScope.orderId}" />
+        <button type="submit" class="momo-button">Thanh toán với VNPAY</button>
     </form>
+
 
     <a href="product-detail.jsp" class="cancel-link">Huỷ thanh toán</a>
 </div>

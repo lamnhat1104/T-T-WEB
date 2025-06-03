@@ -31,7 +31,7 @@
             <div class="product-image">
                 <img src="${p.img}" alt="${p.name}">
             </div>
-            <form class="rental-information" action="OrderController" method="post">
+            <form id="rentalForm" class="rental-information" action="OrderController" method="post">
                 <input type="hidden" name="pid" value="${param.pid}">
                 <input type="hidden" name="price" value="${p.price}">
                 <div class="info">
@@ -151,6 +151,24 @@
 <%--    </div >--%>
 <%--</c:forEach>--%>
 <%--</div>--%>
+<script>
+    document.getElementById("rentalForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // Ngăn form gửi mặc định
+
+        const method = document.getElementById("paymentMethod").value;
+
+        // Gán lại action theo phương thức thanh toán
+        if (method === "momo") {
+            this.action = "momoPayment";
+        } else if (method === "vnpay") {
+            this.action = "vnpayPayment";
+        } else {
+            this.action = "OrderController"; // COD
+        }
+
+        this.submit(); // Gửi lại form
+    });
+</script>
 
 <c:if test="${param.message == 'success'}">
     <script>
