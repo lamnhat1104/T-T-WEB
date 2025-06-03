@@ -10,7 +10,7 @@ import vn.edu.hcmuaf.fit.doancuoiki.model.Order; // Already imported
 import vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.sql.Date; // Keep this for request parameter parsing
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 // import java.time.LocalDate; // Not directly used here but through model
@@ -22,7 +22,8 @@ import java.util.List;
 
 @WebServlet(name = "AdminController", value = "/admin")
 public class AdminController extends HttpServlet {
-    private AdminLogUserDao adminLogDao = new AdminLogUserDao(); // Instantiate logger
+    private AdminLogUserDao adminLogDao = new AdminLogUserDao(); // For user actions
+    private AdminLogOrderDao adminLogOrderDao = new AdminLogOrderDao(); // For order actions
 
     private int getLoggedInAdminId(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -34,8 +35,45 @@ public class AdminController extends HttpServlet {
             }
         }
         System.err.println("WARN: Admin ID not found in session for logging. Using placeholder ID 0.");
-        return 0;
+        return 0; // Should ideally handle this more gracefully, e.g., by denying action
     }
+
+    // Helper method to format Order data for logging
+    private String formatOrderDataForLog(Order order) {
+        if (order == null) {
+            return "Order not found or details unavailable.";
+        }
+        // Use java.text.SimpleDateFormat because Order model uses java.util.Date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("OrderID: %d, CustomerID: %d, ", order.getId(), order.getCustomerId()));
+        sb.append(String.format("DeliveryAddress: '%s', ", order.getDeliveryAddress()));
+        sb.append(String.format("CreatedDate: %s, ", order.getCreatedDate() != null ? sdf.format(order.getCreatedDate()) : "N/A"));
+        sb.append(String.format("RentalStartDate: %s, ", order.getRetalStarDate() != null ? sdf.format(order.getRetalStarDate()) : "N/A"));
+        sb.append(String.format("ExpectedReturnDate: %s, ", order.getExpectedReturnDate() != null ? sdf.format(order.getExpectedReturnDate()) : "N/A"));
+        sb.append(String.format("Status: %d, ", order.getStatus()));
+        if (order.getOrderDetail() != null) {
+            sb.append(String.format("OrderDetail (LicensePlate: '%s', VehicleName: '%s', PriceAtOrder: %.2f), ",
+                    order.getOrderDetail().getLicensePlate(),
+                    order.getOrderDetail().getVehicleName(),
+                    order.getOrderDetail().getPriceAtOrder()));
+        } else {
+            sb.append("OrderDetail: N/A, ");
+        }
+        if (order.getPromotion() != null) {
+            sb.append(String.format("Promotion (ID: %d, Name: '%s', DiscountValue: %.2f, DiscountType: %d)",
+                    order.getPromotion().getId(),
+                    order.getPromotion().getPromotionName(),
+                    order.getPromotion().getDiscountValue(),
+                    order.getPromotion().getDiscountType()));
+        } else {
+            sb.append("Promotion: N/A");
+        }
+        return sb.toString();
+    }
+
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -199,8 +237,12 @@ public class AdminController extends HttpServlet {
             int discountType = Integer.parseInt(request.getParameter("discount-type"));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate = new Date(dateFormat.parse(startDatee).getTime());
-            Date endDate = new Date(dateFormat.parse(endDatee).getTime());
+            // Parse to java.util.Date first, then convert to java.sql.Date for DAO
+            java.util.Date parsedStartDate = dateFormat.parse(startDatee);
+            java.util.Date parsedEndDate = dateFormat.parse(endDatee);
+            Date startDate = new Date(parsedStartDate.getTime());
+            Date endDate = new Date(parsedEndDate.getTime());
+
 
             PromotionDao promotionDao = new PromotionDao();
             promotionDao.addPromotion(promotionName, description, discountValue, discountType, startDate, endDate, isActive);
@@ -223,14 +265,17 @@ public class AdminController extends HttpServlet {
             String promotionName = request.getParameter("promotionName");
             String description = request.getParameter("descriptionName");
             double discountValue = Double.parseDouble(request.getParameter("discountValue"));
-            String rentalStartDate = request.getParameter("startDate");
-            String expectedReturnDate = request.getParameter("endDate");
+            String rentalStartDateStr = request.getParameter("startDate");
+            String expectedReturnDateStr = request.getParameter("endDate");
             int isActive = Integer.parseInt(request.getParameter("isActive"));
             int discountType = Integer.parseInt(request.getParameter("discountType"));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
-            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
+            java.util.Date parsedStartDate = dateFormat.parse(rentalStartDateStr);
+            java.util.Date parsedEndDate = dateFormat.parse(expectedReturnDateStr);
+            Date startDate = new Date(parsedStartDate.getTime());
+            Date endDate = new Date(parsedEndDate.getTime());
+
             PromotionDao promotionDao = new PromotionDao();
             promotionDao.updatePromotion(id, promotionName, description, discountValue, startDate, endDate, isActive, discountType);
             managerPromotion(request,response);
@@ -291,11 +336,13 @@ public class AdminController extends HttpServlet {
             String title = request.getParameter("title");
             String content = request.getParameter("content");
             String image = request.getParameter("image");
-            String startDate = request.getParameter("created-date");
+            String startDateStr = request.getParameter("created-date");
             int isActive = Integer.parseInt(request.getParameter("is-active"));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date createdDate = new Date(dateFormat.parse(startDate).getTime());
+            java.util.Date parsedDate = dateFormat.parse(startDateStr);
+            Date createdDate = new Date(parsedDate.getTime());
+
 
             NewDao newDao = new NewDao();
             newDao.addNew(title, content, image, createdDate, isActive);
@@ -311,11 +358,13 @@ public class AdminController extends HttpServlet {
             String title = request.getParameter("new-title");
             String content = request.getParameter("new-content");
             String image = request.getParameter("new-image");
-            String starDate = request.getParameter("new-createdDate");
+            String starDateStr = request.getParameter("new-createdDate");
             int isActive = Integer.parseInt(request.getParameter("new-isActive"));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date ceatedDate = new Date(dateFormat.parse(starDate).getTime());
+            java.util.Date parsedDate = dateFormat.parse(starDateStr);
+            Date ceatedDate = new Date(parsedDate.getTime());
+
 
             NewDao newDao = new NewDao();
             newDao.updateNew(id, title, content, image, ceatedDate, isActive);
@@ -355,41 +404,134 @@ public class AdminController extends HttpServlet {
     }
 
     private void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        int adminId = getLoggedInAdminId(request);
+        int orderId = -1;
+        String oldData = "N/A";
         OrderDao orderDao = new OrderDao();
-        orderDao.deleteOrder(orderId);
+
+        try {
+            orderId = Integer.parseInt(request.getParameter("orderId"));
+            Order oldOrder = orderDao.getOrderById(orderId); // Fetch before delete
+            if (oldOrder != null) {
+                oldData = formatOrderDataForLog(oldOrder);
+            } else {
+                oldData = "Order with ID " + orderId + " not found before deletion.";
+            }
+
+            orderDao.deleteOrder(orderId);
+            adminLogOrderDao.addLogEntry(adminId, "DELETE_ORDER", orderId, oldData, "Order data deleted successfully.");
+
+        } catch (NumberFormatException e) {
+            adminLogOrderDao.addLogEntry(adminId, "DELETE_ORDER_FAILED", orderId, oldData, "Invalid Order ID format: " + request.getParameter("orderId"));
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Order ID.");
+            return;
+        } catch (Exception e) {
+            adminLogOrderDao.addLogEntry(adminId, "DELETE_ORDER_ERROR", orderId, oldData, "Error deleting order: " + e.getMessage());
+            e.printStackTrace(); // For server logs
+            // Optionally send an error to client, or just log and proceed
+        }
         managerOrder(request,response);
     }
 
     private void updateOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request);
+        int orderId = -1;
+        String oldData = "N/A";
+        OrderDao dao = new OrderDao();
+
         try {
-            int orderId = Integer.parseInt(request.getParameter("orderId"));
+            orderId = Integer.parseInt(request.getParameter("orderId"));
+            Order oldOrder = dao.getOrderById(orderId); // Fetch before update
+            if (oldOrder != null) {
+                oldData = formatOrderDataForLog(oldOrder);
+            } else {
+                oldData = "Order with ID " + orderId + " not found before update.";
+            }
+
             int customerId = Integer.parseInt(request.getParameter("customerId"));
             String deliveryAddress = request.getParameter("deliveryAddress");
-            String rentalStartDate = request.getParameter("rentalStartDate");
-            String expectedReturnDate = request.getParameter("expectedReturnDate");
+            String rentalStartDateStr = request.getParameter("rentalStartDate");
+            String expectedReturnDateStr = request.getParameter("expectedReturnDate");
             String licensePlate = request.getParameter("licensePlate");
             double rentalPrice = Double.parseDouble(request.getParameter("rentalPrice"));
             int status = Integer.parseInt(request.getParameter("status"));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
-            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
-            OrderDao dao = new OrderDao();
-            dao.updateOrder(orderId, customerId, deliveryAddress, startDate, endDate, licensePlate, rentalPrice, status);
-            managerOrder(request,response);
+            // Parse to java.util.Date first for SimpleDateFormat
+            java.util.Date utilStartDate = dateFormat.parse(rentalStartDateStr);
+            java.util.Date utilEndDate = dateFormat.parse(expectedReturnDateStr);
+            // Convert to java.sql.Date for DAO
+            Date startDate = new Date(utilStartDate.getTime());
+            Date endDate = new Date(utilEndDate.getTime());
 
-        } catch (Exception e) {
+            dao.updateOrder(orderId, customerId, deliveryAddress, startDate, endDate, licensePlate, rentalPrice, status);
+
+            Order newOrder = dao.getOrderById(orderId); // Fetch after update
+            String newData = "N/A";
+            if (newOrder != null) {
+                newData = formatOrderDataForLog(newOrder);
+            } else {
+                newData = "Order with ID " + orderId + " not found after update (update might have failed silently or ID changed).";
+            }
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER", orderId, oldData, newData);
+
+        } catch (ParseException e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_ERROR", orderId, oldData, "Date parsing error: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Định dạng ngày không hợp lệ.");
+            return;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_ERROR", orderId, oldData, "Number parsing error: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Dữ liệu số không hợp lệ.");
+            return;
         }
+        catch (Exception e) {
+            e.printStackTrace();
+            String attemptedData = String.format("OrderID:%d, CustID:%s, Addr:%s", orderId, request.getParameter("customerId"), request.getParameter("deliveryAddress"));
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_ERROR", orderId, oldData, "General error during update. Attempted: " + attemptedData + ". Exception: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi cập nhật đơn hàng.");
+            return;
+        }
+        managerOrder(request,response);
     }
 
     private void updateOrderStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int orderId = Integer.parseInt(request.getParameter("orderId"));
-        int status = Integer.parseInt(request.getParameter("status"));
+        int adminId = getLoggedInAdminId(request);
+        int orderId = -1;
+        String oldData = "N/A";
         OrderDao dao = new OrderDao();
-        dao.updateOrderStatus(orderId, status);
+
+        try {
+            orderId = Integer.parseInt(request.getParameter("orderId"));
+            int newStatus = Integer.parseInt(request.getParameter("status"));
+
+            Order oldOrder = dao.getOrderById(orderId); // Fetch before update
+            if (oldOrder != null) {
+                oldData = formatOrderDataForLog(oldOrder);
+            } else {
+                oldData = "Order with ID " + orderId + " not found before status update.";
+            }
+
+            dao.updateOrderStatus(orderId, newStatus);
+
+            Order newOrder = dao.getOrderById(orderId); // Fetch after update
+            String newData = "N/A";
+            if (newOrder != null) {
+                newData = formatOrderDataForLog(newOrder);
+            } else {
+                newData = "Order with ID " + orderId + " not found after status update.";
+            }
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_STATUS", orderId, oldData, newData);
+
+        } catch (NumberFormatException e) {
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_STATUS_FAILED", orderId, oldData, "Invalid Order ID or Status format. OrderID: " + request.getParameter("orderId") + ", Status: " + request.getParameter("status") );
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Order ID or Status.");
+            return;
+        } catch (Exception e) {
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_STATUS_ERROR", orderId, oldData, "Error updating order status: " + e.getMessage());
+            e.printStackTrace();
+        }
         managerOrder(request,response);
     }
 
@@ -402,13 +544,21 @@ public class AdminController extends HttpServlet {
             return "User not found or details unavailable.";
         }
         UserInfo info = user.getUserInfo();
+        // Using java.text.SimpleDateFormat for birthDate if it's java.util.Date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String birthDateStr = "N/A";
+        if (info != null && info.getBirthday() != null) {
+            // Assuming getBirthday() in UserInfo returns java.util.Date
+            birthDateStr = sdf.format(info.getBirthday());
+        }
+
         return String.format("ID: %d, Email: %s, FullName: %s, Phone: %s, Address: %s, BirthDate: %s, RoleID: %d, IsActive: %d",
                 user.getId(),
                 user.getEmail(),
                 (info != null ? info.getFullName() : "N/A"),
                 (info != null ? info.getPhoneNumber() : "N/A"),
                 (info != null ? info.getAddress() : "N/A"),
-                (info != null && info.getBirthday() != null ? info.getBirthday().toString() : "N/A"),
+                birthDateStr,
                 user.getRoleId(),
                 user.isActive()
         );
@@ -460,37 +610,53 @@ public class AdminController extends HttpServlet {
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String customerIdStr = request.getParameter("customerId");
         int adminId = getLoggedInAdminId(request);
+        int customerIdToDelete = -1; // For logging in case of parse failure
+        String oldData = "N/A";
+        UserDao dao = new UserDao();
+
 
         if (customerIdStr == null || customerIdStr.trim().isEmpty()) {
+            adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER_FAILED", -1, "Attempted with missing ID", "Customer ID is missing or invalid");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Customer ID is missing or invalid");
             return;
         }
 
         try {
-            int customerIdToDelete = Integer.parseInt(customerIdStr);
-            UserDao dao = new UserDao();
-
+            customerIdToDelete = Integer.parseInt(customerIdStr);
             User oldUser = dao.getUserById(customerIdToDelete);
-            String oldData = formatUserDataForLog(oldUser);
-
+            if(oldUser != null) {
+                oldData = formatUserDataForLog(oldUser);
+            } else {
+                oldData = "User with ID " + customerIdToDelete + " not found before deletion.";
+            }
             dao.deleteCustomer(customerIdToDelete);
-
             adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER", customerIdToDelete, oldData, "User data deleted successfully.");
-            managerCustomer(request,response);
+
         } catch (NumberFormatException e) {
-            adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER_FAILED", -1, "Invalid ID: " + customerIdStr, "NumberFormatException: " + e.getMessage());
+            adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER_FAILED", customerIdToDelete, oldData, "Invalid ID format: " + customerIdStr + ". Error: " + e.getMessage());
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Customer ID format");
+            return;
+        }  catch (Exception e) {
+            adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER_ERROR", customerIdToDelete, oldData, "Error deleting customer: " + e.getMessage());
+            e.printStackTrace();
         }
+        managerCustomer(request,response);
     }
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int adminId = getLoggedInAdminId(request);
-        // The 'id' parameter from the form is assumed to be users.id based on UserDao.updateCustomer's usage.
-        int userRecordId = -1; // For logging in case of early failure
+        int userRecordId = -1;
+        String oldData = "N/A";
+        UserDao userDao = new UserDao();
 
         try {
-            userRecordId = Integer.parseInt(request.getParameter("id")); // This should be users.id
-            // int customerIdParam = Integer.parseInt(request.getParameter("customerId")); // This is passed to DAO but DAO's logic ignores it.
+            userRecordId = Integer.parseInt(request.getParameter("id"));
+            User oldUser = userDao.getUserById(userRecordId);
+            if(oldUser != null) {
+                oldData = formatUserDataForLog(oldUser);
+            } else {
+                oldData = "User with ID " + userRecordId + " not found before update.";
+            }
 
             String fullName = request.getParameter("fullName");
             String phoneNumber = request.getParameter("phoneNumber");
@@ -501,34 +667,47 @@ public class AdminController extends HttpServlet {
             String birthDayStr = request.getParameter("birthDateCus");
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            // This should be java.sql.Date for the DAO method
             Date birthDate = null;
             if (birthDayStr != null && !birthDayStr.trim().isEmpty()) {
-                birthDate = new Date(dateFormat.parse(birthDayStr).getTime());
+                java.util.Date utilBirthDate = dateFormat.parse(birthDayStr);
+                birthDate = new Date(utilBirthDate.getTime());
             }
 
-            UserDao userDao = new UserDao();
-            User oldUser = userDao.getUserById(userRecordId);
-            String oldData = formatUserDataForLog(oldUser);
-
-            // The second parameter to userDao.updateCustomer (userId) is not effectively used by the current DAO logic.
-            // The first parameter (id) is used for all WHERE clauses and SET userdetails.userId.
             boolean success = userDao.updateCustomer(userRecordId, userRecordId, fullName, phoneNumber, birthDate, email, address, roleId, isActive);
-
+            String newData = "N/A";
             if (success) {
                 User newUser = userDao.getUserById(userRecordId);
-                String newData = formatUserDataForLog(newUser);
+                if (newUser != null) {
+                    newData = formatUserDataForLog(newUser);
+                } else {
+                    newData = "User with ID " + userRecordId + " not found after update.";
+                }
                 adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS", userRecordId, oldData, newData);
             } else {
-                adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_FAILED", userRecordId, oldData, "DAO returned false. New data attempted: " + String.format("FN:%s, E:%s, R:%d, A:%d", fullName, email, roleId, isActive));
+                newData = "DAO returned false. New data attempted: " + String.format("FN:%s, E:%s, R:%d, A:%d", fullName, email, roleId, isActive);
+                adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_FAILED", userRecordId, oldData, newData);
             }
-            managerCustomer(request,response);
 
-        } catch (Exception e) {
+        } catch (ParseException e) {
+            e.printStackTrace();
+            adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_ERROR", userRecordId, oldData, "Date parsing error: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Định dạng ngày sinh không hợp lệ.");
+            return;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_ERROR", userRecordId, oldData, "Number parsing error: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Dữ liệu số không hợp lệ.");
+            return;
+        }
+        catch (Exception e) {
             e.printStackTrace();
             String attemptedData = String.format("ID:%d, FullName:%s, Email:%s", userRecordId, request.getParameter("fullName"), request.getParameter("emailCus"));
-            adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_ERROR", userRecordId, "Error during update. Attempted: " + attemptedData , "Exception: " + e.getMessage());
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ. " + e.getMessage());
+            adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_ERROR", userRecordId, oldData , "Exception: " + e.getMessage() + ". Attempted: " + attemptedData);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi cập nhật thông tin khách hàng.");
+            return;
         }
+        managerCustomer(request,response);
     }
 
     private void managerVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -542,6 +721,7 @@ public class AdminController extends HttpServlet {
         int adminId = getLoggedInAdminId(request);
         int id = Integer.parseInt(request.getParameter("vehicleId"));
         VehicleTypeDao dao = new VehicleTypeDao();
+        // Note: VehicleTypeDao.deleteVehicleType already handles its own logging via AdminLogVehicleDao
         dao.deleteVehicleType(id, adminId);
         managerVehicleType(request, response);
     }
@@ -559,6 +739,7 @@ public class AdminController extends HttpServlet {
         int available = Integer.parseInt(request.getParameter("available"));
 
         VehicleTypeDao dao = new VehicleTypeDao();
+        // Note: VehicleTypeDao.updateVehicleType already handles its own logging
         dao.updateVehicleType(id, name, brand, category, totalPrice, description, image, totalVehicles, available, adminId);
         managerVehicleType(request, response);
     }
@@ -575,6 +756,7 @@ public class AdminController extends HttpServlet {
         int available = Integer.parseInt(request.getParameter("addAvailable"));
 
         VehicleTypeDao dao = new VehicleTypeDao();
+        // Note: VehicleTypeDao.addVehicleType already handles its own logging
         dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available, adminId);
         managerVehicleType(request, response);
     }
@@ -583,6 +765,7 @@ public class AdminController extends HttpServlet {
         VehicleTypeDao dao = new VehicleTypeDao();
         int id = Integer.parseInt(request.getParameter("vehicleId"));
         int isAvailable = Integer.parseInt(request.getParameter("isAvailable"));
+        // Note: VehicleTypeDao.updateAvailableStatus already handles its own logging
         dao.updateAvailableStatus(id, isAvailable, adminId);
         managerVehicleType(request, response);
     }

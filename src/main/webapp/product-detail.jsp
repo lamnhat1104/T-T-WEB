@@ -11,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> <%-- Added JSTL functions --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -20,11 +20,182 @@
     <title>${p.name}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/product-detail.css"> <%-- Your main CSS for this page --%>
+    <link rel="stylesheet" href="assets/css/product-detail.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="assets/js/ValidateAndCalculate.js"></script>
-    <%-- Add a link to Font Awesome if not already in header.jsp or base.css for icons --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* (Your existing CSS here) */
+        .comment-section-wrapper.container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .comment-section-wrapper h3 {
+            font-size: 1.4em;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .comment-section-wrapper h3 i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+        .comment-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            resize: vertical;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .comment-form textarea:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        .comment-form button.btn.btn-primary {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: inline-block;
+        }
+        .comment-form button.btn.btn-primary:hover {
+            background-color: #0056b3;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        .comment-form button.btn.btn-primary:active {
+            background-color: #004085;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .login-prompt {
+            background-color: #e9ecef;
+            border-left: 4px solid #007bff;
+            padding: 15px 20px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        .login-prompt a {
+            color: #0056b3;
+            font-weight: 500;
+        }
+        .comments-list-section .no-comments-message {
+            color: #6c757d;
+            font-style: italic;
+            text-align: center;
+            padding: 25px 20px;
+            background-color: #f8f9fa;
+            border: 1px dashed #ced4da;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        .comment-item {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            transition: box-shadow 0.2s ease-in-out;
+        }
+        .comment-item:hover {
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        .comment-item:last-child {
+            margin-bottom: 0;
+        }
+        .comment-avatar {
+            margin-right: 18px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 2px;
+        }
+        .avatar-initials {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: #6c757d;
+            color: white;
+            font-weight: 500;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+        .comment-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .comment-username {
+            font-weight: 600;
+            color: #212529;
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+        .comment-timestamp {
+            font-size: 0.78rem;
+            color: #6c757d;
+            white-space: nowrap;
+        }
+        .comment-timestamp i {
+            margin-right: 5px;
+            font-size: 0.75rem;
+        }
+        .comment-body p {
+            margin: 0;
+            line-height: 1.65;
+            color: #495057;
+            font-size: 0.9rem;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            .comment-username { font-size: 0.95rem; }
+            .comment-timestamp { font-size: 0.75rem; }
+            .comment-body p { font-size: 0.88rem; }
+        }
+        @media (max-width: 600px) {
+            .comment-header { flex-direction: column; align-items: flex-start; }
+            .comment-timestamp { margin-top: 5px; }
+            .comment-item { padding: 12px 15px; }
+            .avatar-initials { width: 38px; height: 38px; font-size: 1.1em; }
+            .comment-form-section { margin-bottom: 30px; }
+            .comment-section-wrapper.container { gap: 20px; }
+        }
+        #comment-error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 
 <body>
@@ -111,11 +282,13 @@
     <div class="comment-form-section">
         <h3><i class="fas fa-pencil-alt"></i> Viết bình luận</h3>
         <c:if test="${sessionScope.user != null}">
-            <form action="CommentController" method="post" class="comment-form">
+            <%-- Changed form action to # and added id="commentForm" --%>
+            <form id="commentForm" action="#" method="post" class="comment-form">
                 <input type="hidden" name="product_id" value="${p.id}">
-                <textarea name="comment" placeholder="Chia sẻ ý kiến của bạn..." required rows="4"></textarea>
+                <textarea name="comment" id="commentText" placeholder="Chia sẻ ý kiến của bạn..." required rows="4"></textarea>
                 <button type="submit" class="btn btn-primary">Gửi bình luận</button>
             </form>
+            <div id="comment-error-message"></div>
         </c:if>
         <c:if test="${sessionScope.user == null}">
             <p class="login-prompt">Bạn cần <a href="login.jsp">đăng nhập</a> để bình luận.</p>
@@ -123,69 +296,39 @@
     </div>
 
     <div class="comments-list-section">
-        <h3><i class="fas fa-comments"></i> Các bình luận (${fn:length(comments)})</h3>
-        <c:choose>
-            <c:when test="${not empty comments}">
-                <c:forEach var="c" items="${comments}">
-                    <div class="comment-item">
-                        <div class="comment-avatar">
-                                <%-- Placeholder for avatar - first letter of username --%>
-                            <span class="avatar-initials">${fn:toUpperCase(fn:substring(c.username, 0, 1))}</span>
-                        </div>
-                        <div class="comment-content">
-                            <div class="comment-header">
-                                <span class="comment-username">${c.username}</span>
-                                <span class="comment-timestamp">
-                                    <i class="far fa-clock"></i> <f:formatDate value="${c.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
-                                </span>
+        <h3 id="comments-title"><i class="fas fa-comments"></i> Các bình luận (<span id="commentCount">${fn:length(comments)}</span>)</h3>
+        <%-- Added id="commentsListContainer" --%>
+        <div id="commentsListContainer">
+            <c:choose>
+                <c:when test="${not empty comments}">
+                    <c:forEach var="c" items="${comments}">
+                        <div class="comment-item">
+                            <div class="comment-avatar">
+                                <span class="avatar-initials">${fn:toUpperCase(fn:substring(c.username, 0, 1))}</span>
                             </div>
-                            <div class="comment-body">
-                                <p>${c.comment}</p>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <span class="comment-username">${c.username}</span>
+                                    <span class="comment-timestamp">
+                                        <i class="far fa-clock"></i> <f:formatDate value="${c.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
+                                    </span>
+                                </div>
+                                <div class="comment-body">
+                                    <p>${c.comment}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
-            </c:when>
-            <c:otherwise>
-                <p class="no-comments-message">Chưa có bình luận nào cho sản phẩm này. Hãy là người đầu tiên!</p>
-            </c:otherwise>
-        </c:choose>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <p class="no-comments-message" id="noCommentsMessage">Chưa có bình luận nào cho sản phẩm này. Hãy là người đầu tiên!</p>
+                </c:otherwise>
+            </c:choose>
+        </div>
     </div>
 </div>
 
-
-<%-- Related Products Section --%>
-<%--<div class="cac-san-pham-khac container">--%>
-<%--    <h1>Các sản phẩm tương tự</h1>--%>
-<%--    <div class="products-section">--%>
-<%--        <c:choose>--%>
-<%--            <c:when test="${not empty relatedProducts}">--%>
-<%--                <ul class="products">--%>
-<%--                    <c:forEach var="relatedProduct" items="${relatedProducts}">--%>
-<%--                        <li>--%>
-<%--                            <div class="product-item">--%>
-<%--                                <div class="product-top">--%>
-<%--                                    <a href="product?pid=${relatedProduct.id}" class="product-thumb">--%>
-<%--                                        <img src="${relatedProduct.img}" alt="${relatedProduct.name}">--%>
-<%--                                    </a>--%>
-<%--                                    <a href="product?pid=${relatedProduct.id}" class="buy-now">Xem chi tiết</a>--%>
-<%--                                </div>--%>
-<%--                                <div class="product-info">--%>
-<%--                                    <a href="product?pid=${relatedProduct.id}" class="product-cat">${relatedProduct.type}</a>--%>
-<%--                                    <a href="product?pid=${relatedProduct.id}" class="product-name">${relatedProduct.name}</a>--%>
-<%--                                    <div class="product-price"><f:formatNumber value="${relatedProduct.price}"/> đ</div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </li>--%>
-<%--                    </c:forEach>--%>
-<%--                </ul>--%>
-<%--            </c:when>--%>
-<%--            <c:otherwise>--%>
-<%--                <p style="text-align: center; margin-top: 20px;">Không có sản phẩm tương tự nào.</p>--%>
-<%--            </c:otherwise>--%>
-<%--        </c:choose>--%>
-<%--    </div>--%>
-<%--</div>--%>
+<%-- (Related Products Section - unchanged) --%>
 
 <c:if test="${param.message == 'success'}">
     <script>
@@ -202,6 +345,7 @@
 </c:if>
 
 <script>
+    // Function to update delivery fee (unchanged)
     function updateDeliveryFee() {
         var deliveryOption = document.getElementById("deliveryOption").value;
         var deliveryFeeInput = document.getElementById("deliveryFee");
@@ -216,6 +360,7 @@
         updateTotalPrice();
     }
 
+    // Function to update total price (unchanged)
     function updateTotalPrice() {
         const pricePerDayElement = document.querySelector('input[name="price"]');
         const deliveryFeeElement = document.getElementById("deliveryFee");
@@ -250,28 +395,10 @@
                 }
                 let rentalDays = 0;
                 if (end.getTime() >= start.getTime()) {
-                    // Calculate the difference in days
-                    const diffInMilliseconds = end.getTime() - start.getTime();
-                    // If start and end are the same day, it's 1 day.
-                    // Otherwise, it's the number of 24-hour periods rounded up, plus one.
-                    if (start.toDateString() === end.toDateString()) {
-                        rentalDays = 1;
-                    } else {
-                        // Number of full 24-hour periods
-                        rentalDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24)) +1 ;
-                        // This logic ensures that even a few hours into the next day counts as an additional day if that's the business rule.
-                        // Or more simply, for rental days inclusive of start and end:
-                        // rentalDays = Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24)) + 1;
-                        // The user's original `Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;`
-                        // with same day check `rentalDays = 1;` is generally fine for counting calendar days involved.
-                        // Let's use a clear version for "inclusive days":
-                        const oneDay = 1000 * 60 * 60 * 24;
-                        rentalDays = Math.floor(diffInMilliseconds / oneDay) + 1;
-                        if (start.toDateString() === end.toDateString()) { rentalDays = 1;}
-
-
-                    }
-                } else { // This case should not be reached if end < start is already checked
+                    const oneDay = 1000 * 60 * 60 * 24;
+                    rentalDays = Math.floor((end.getTime() - start.getTime()) / oneDay) + 1;
+                    if (start.toDateString() === end.toDateString()) { rentalDays = 1;}
+                } else {
                     totalPriceElement.textContent = "Tổng tiền thuê + vận chuyển: Ngày trả không hợp lệ";
                     return;
                 }
@@ -284,7 +411,7 @@
                 totalPriceElement.textContent = "Tổng tiền thuê + vận chuyển: Ngày không hợp lệ";
             }
         } else {
-            const grandTotal = deliveryFee;
+            const grandTotal = deliveryFee; // If dates are not set, only show delivery fee
             totalPriceElement.textContent = "Tổng tiền thuê + vận chuyển: " + grandTotal.toLocaleString('vi-VN') + " đ (chưa tính ngày thuê)";
         }
     }
@@ -293,230 +420,116 @@
     document.getElementById("expectedReturnDate").addEventListener("change", updateTotalPrice);
 
     document.addEventListener('DOMContentLoaded', function() {
-        updateDeliveryFee();
+        updateDeliveryFee(); // Initial call to set delivery fee and total price
+
+        // AJAX for comment submission
+        const commentForm = document.getElementById('commentForm');
+        if (commentForm) {
+            commentForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(commentForm);
+                const commentText = formData.get('comment').trim();
+                const commentErrorMessage = document.getElementById('comment-error-message');
+                commentErrorMessage.textContent = ''; // Clear previous error
+
+                if (!commentText) {
+                    commentErrorMessage.textContent = 'Nội dung bình luận không được để trống.';
+                    return;
+                }
+
+                fetch('CommentController', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData) // Sends data as application/x-www-form-urlencoded
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            // Try to parse error from JSON if server sends it
+                            return response.json().then(err => { throw err; });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success && data.comment) {
+                            prependComment(data.comment);
+                            document.getElementById('commentText').value = ''; // Clear textarea
+                            updateCommentCount(1); // Increment count
+                            const noCommentsMsg = document.getElementById('noCommentsMessage');
+                            if (noCommentsMsg) {
+                                noCommentsMsg.style.display = 'none'; // Hide "no comments" message
+                            }
+                        } else {
+                            commentErrorMessage.textContent = data.message || 'Không thể gửi bình luận.';
+                            console.error('Error submitting comment:', data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                        let msg = 'Lỗi kết nối hoặc lỗi từ server.';
+                        if (error && error.message) { // If error is an object with a message property
+                            msg = error.message;
+                        } else if (typeof error === 'string') { // If error is just a string
+                            msg = error;
+                        }
+                        commentErrorMessage.textContent = msg;
+                    });
+            });
+        }
     });
+
+    function prependComment(commentData) {
+        const commentsListContainer = document.getElementById('commentsListContainer');
+        if (!commentsListContainer) return;
+
+        // Sanitize comment text - simple HTML entity encoding
+        const sanitizedCommentText = commentData.comment.replace(/</g, "<").replace(/>/g, ">");
+        const sanitizedUsername = commentData.username.replace(/</g, "<").replace(/>/g, ">");
+
+        const commentItemHTML = `
+            <div class="comment-item">
+                <div class="comment-avatar">
+                    <span class="avatar-initials">${sanitizedUsername.substring(0, 1).toUpperCase()}</span>
+                </div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-username">${sanitizedUsername}</span>
+                        <span class="comment-timestamp">
+                            <i class="far fa-clock"></i> ${commentData.createdAt}
+                        </span>
+                    </div>
+                    <div class="comment-body">
+                        <p>${sanitizedCommentText}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        commentsListContainer.insertAdjacentHTML('afterbegin', commentItemHTML); // Prepend
+    }
+
+    function updateCommentCount(change) {
+        const countSpan = document.getElementById('commentCount');
+        if (countSpan) {
+            let currentCount = parseInt(countSpan.textContent) || 0;
+            countSpan.textContent = currentCount + change;
+        }
+    }
+
+    // Scroll to top button (unchanged)
+    let mybutton = document.getElementById("myBtn");
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 </script>
 
 <%@ include file="footer.jsp" %>
 </body>
-<style>
-    /* Comment Section Styling */
-    .comment-section-wrapper.container { /* Thêm .container nếu nó là class của wrapper */
-        display: flex; /* Sử dụng flexbox cho layout tổng thể của wrapper */
-        flex-direction: column; /* Xếp các section con theo chiều dọc */
-        gap: 30px; /* Khoảng cách giữa form-section và list-section */
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid #e0e0e0;
-        width: 100%; /* Đảm bảo wrapper chiếm đủ không gian */
-        box-sizing: border-box;
-    }
-
-    /* Không cần đặt width:100% cho các section con nữa nếu wrapper là flex column */
-    .comment-form-section {
-        /* margin-bottom: 40px;  Đã dùng gap ở wrapper */
-    }
-    .comments-list-section {
-        /* margin-bottom: 30px; Đã dùng gap ở wrapper */
-    }
-
-    .comment-section-wrapper h3 {
-        font-size: 1.4em; /* Có thể giảm nhẹ nếu 1.5em quá lớn */
-        color: #333;
-        margin-top: 0;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #f0f0f0;
-    }
-
-    .comment-section-wrapper h3 i {
-        margin-right: 10px; /* Tăng nhẹ khoảng cách icon */
-        color: #007bff;
-    }
-
-    /* Comment Form */
-    .comment-form textarea {
-        width: 100%;
-        padding: 12px 15px; /* Tăng padding ngang một chút */
-        border: 1px solid #ced4da; /* Màu viền Bootstrap-like */
-        border-radius: 5px;
-        margin-bottom: 15px;
-        font-family: 'Roboto', sans-serif;
-        font-size: 1rem; /* Sử dụng rem cho font-size */
-        line-height: 1.5;
-        resize: vertical;
-        box-sizing: border-box;
-        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
-
-    .comment-form textarea:focus {
-        border-color: #80bdff;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        outline: none;
-    }
-
-    .comment-form button.btn.btn-primary {
-        background-color: #007bff;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: 500; /* Làm nút chữ đậm hơn chút */
-        transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        display: inline-block;
-    }
-
-    .comment-form button.btn.btn-primary:hover {
-        background-color: #0056b3;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-    }
-    .comment-form button.btn.btn-primary:active {
-        background-color: #004085;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
-    }
-
-    .login-prompt {
-        background-color: #e9ecef; /* Màu nền nhẹ nhàng hơn */
-        border-left: 4px solid #007bff;
-        padding: 15px 20px;
-        margin-top: 10px;
-        border-radius: 4px;
-        font-size: 0.95rem;
-    }
-    .login-prompt a {
-        color: #0056b3;
-        font-weight: 500;
-    }
-
-    /* Comments List */
-    .comments-list-section .no-comments-message {
-        color: #6c757d;
-        font-style: italic;
-        text-align: center;
-        padding: 25px 20px;
-        background-color: #f8f9fa;
-        border: 1px dashed #ced4da; /* Thêm viền dashed nhẹ */
-        border-radius: 5px;
-        font-size: 0.95rem;
-    }
-
-    .comment-item {
-        display: flex;
-        background-color: #ffffff;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 18px 20px; /* Tăng padding cho comment item */
-        margin-bottom: 18px; /* Giảm nhẹ margin bottom */
-        box-shadow: 0 1px 3px rgba(0,0,0,0.04); /* Shadow rất nhẹ */
-        transition: box-shadow 0.2s ease-in-out;
-    }
-    .comment-item:hover {
-        box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-    }
-    .comment-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .comment-avatar {
-        margin-right: 18px; /* Tăng khoảng cách avatar */
-        flex-shrink: 0;
-        display: flex;
-        align-items: flex-start; /* Căn avatar lên trên nếu nội dung dài */
-        padding-top: 2px; /* Căn chỉnh nhỏ cho avatar */
-    }
-
-    .avatar-initials {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 42px; /* Giảm nhẹ kích thước avatar nếu cần */
-        height: 42px;
-        border-radius: 50%;
-        background-color: #6c757d;
-        color: white;
-        font-weight: 500;
-        font-size: 1.2em;
-        text-transform: uppercase;
-    }
-
-    .comment-content {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column; /* Sắp xếp header và body theo chiều dọc */
-    }
-
-    .comment-header {
-        display: flex;
-        justify-content: space-between; /* Giữ nguyên */
-        align-items: center;
-        margin-bottom: 6px; /* Giảm nhẹ margin bottom */
-    }
-
-    .comment-username {
-        font-weight: 600;
-        color: #212529; /* Màu đen đậm hơn cho username */
-        font-size: 1rem; /* Kích thước font username */
-        margin-right: 10px; /* Khoảng cách với timestamp nếu chúng sát nhau trên mobile */
-    }
-
-    .comment-timestamp {
-        font-size: 0.78rem; /* Font nhỏ hơn cho timestamp */
-        color: #6c757d;
-        white-space: nowrap; /* Ngăn timestamp xuống dòng */
-    }
-    .comment-timestamp i {
-        margin-right: 5px; /* Khoảng cách icon đồng hồ */
-        font-size: 0.75rem; /* Kích thước icon đồng hồ */
-    }
-
-    .comment-body p {
-        margin: 0;
-        line-height: 1.65; /* Tăng line-height cho dễ đọc */
-        color: #495057;
-        font-size: 0.9rem; /* Kích thước font nội dung comment */
-        word-wrap: break-word;
-    }
-
-    /* Responsive adjustments for comments if needed */
-    @media (max-width: 768px) { /* Điều chỉnh breakpoint nếu cần */
-        .comment-header {
-            /* flex-direction: column; Giữ nguyên hoặc đổi tùy ý */
-            /* align-items: flex-start; */
-        }
-        .comment-username {
-            font-size: 0.95rem;
-        }
-        .comment-timestamp {
-            font-size: 0.75rem;
-        }
-        .comment-body p {
-            font-size: 0.88rem;
-        }
-    }
-    @media (max-width: 600px) {
-        .comment-header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .comment-timestamp {
-            margin-top: 5px;
-        }
-        .comment-item {
-            padding: 12px 15px;
-        }
-        .avatar-initials {
-            width: 38px;
-            height: 38px;
-            font-size: 1.1em;
-        }
-        .comment-form-section {
-            margin-bottom: 30px;
-        }
-        .comment-section-wrapper.container {
-            gap: 20px;
-        }
-    }
-</style>
 </html>
