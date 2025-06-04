@@ -6,14 +6,15 @@ import jakarta.servlet.annotation.*;
 
 import vn.edu.hcmuaf.fit.doancuoiki.dao.*;
 import vn.edu.hcmuaf.fit.doancuoiki.model.*;
-import vn.edu.hcmuaf.fit.doancuoiki.model.Order;
+import vn.edu.hcmuaf.fit.doancuoiki.model.Order; // Already imported
+import vn.edu.hcmuaf.fit.doancuoiki.model.UserInfo;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.sql.Date; // Keep this for request parameter parsing
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+// import java.time.LocalDate; // Not directly used here but through model
+// import java.time.format.DateTimeFormatter; // Not directly used here
 import java.util.List;
 
 
@@ -21,9 +22,66 @@ import java.util.List;
 
 @WebServlet(name = "AdminController", value = "/admin")
 public class AdminController extends HttpServlet {
+    private AdminLogUserDao adminLogDao = new AdminLogUserDao(); // For user actions
+    private AdminLogOrderDao adminLogOrderDao = new AdminLogOrderDao(); // For order actions
+
+    private int getLoggedInAdminId(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            Object adminObj = session.getAttribute("adminAccount");
+            if (adminObj instanceof vn.edu.hcmuaf.fit.doancuoiki.model.User) {
+                User adminUser = (User) adminObj;
+                return adminUser.getId();
+            }
+        }
+        System.err.println("WARN: Admin ID not found in session for logging. Using placeholder ID 0.");
+        return 0; // Should ideally handle this more gracefully, e.g., by denying action
+    }
+
+    // Helper method to format Order data for logging
+    private String formatOrderDataForLog(Order order) {
+        if (order == null) {
+            return "Order not found or details unavailable.";
+        }
+        // Use java.text.SimpleDateFormat because Order model uses java.util.Date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("OrderID: %d, CustomerID: %d, ", order.getId(), order.getCustomerId()));
+        sb.append(String.format("DeliveryAddress: '%s', ", order.getDeliveryAddress()));
+        sb.append(String.format("CreatedDate: %s, ", order.getCreatedDate() != null ? sdf.format(order.getCreatedDate()) : "N/A"));
+        sb.append(String.format("RentalStartDate: %s, ", order.getRetalStarDate() != null ? sdf.format(order.getRetalStarDate()) : "N/A"));
+        sb.append(String.format("ExpectedReturnDate: %s, ", order.getExpectedReturnDate() != null ? sdf.format(order.getExpectedReturnDate()) : "N/A"));
+        sb.append(String.format("Status: %d, ", order.getStatus()));
+        if (order.getOrderDetail() != null) {
+            sb.append(String.format("OrderDetail (LicensePlate: '%s', VehicleName: '%s', PriceAtOrder: %.2f), ",
+                    order.getOrderDetail().getLicensePlate(),
+                    order.getOrderDetail().getVehicleName(),
+                    order.getOrderDetail().getPriceAtOrder()));
+        } else {
+            sb.append("OrderDetail: N/A, ");
+        }
+        if (order.getPromotion() != null) {
+            sb.append(String.format("Promotion (ID: %d, Name: '%s', DiscountValue: %.2f, DiscountType: %d)",
+                    order.getPromotion().getId(),
+                    order.getPromotion().getPromotionName(),
+                    order.getPromotion().getDiscountValue(),
+                    order.getPromotion().getDiscountType()));
+        } else {
+            sb.append("Promotion: N/A");
+        }
+        return sb.toString();
+    }
+
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if (action == null) {
+            // Handle null action, perhaps redirect to a default admin page or show error
+            response.sendRedirect(request.getContextPath() + "/admin?action=dashboard"); // Example
+            return;
+        }
         switch (action) {
             case "dashboard":
                 managerDashboard(request, response);
@@ -67,12 +125,19 @@ public class AdminController extends HttpServlet {
             case "managerConditionRental":
                 managerConditionRental(request, response);
                 break;
+            default:
+                response.sendRedirect(request.getContextPath() + "/admin?action=dashboard"); // Example for unknown action
+                break;
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if (action == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action parameter missing.");
+            return;
+        }
         switch (action) {
             case "updateVehicleType":
                 updateVehicleType(request, response);
@@ -132,10 +197,13 @@ public class AdminController extends HttpServlet {
             case "updateConditionRental":
                 updateConditionRental(request, response);
                 break;
+            default:
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unknown action: " + action);
+                break;
         }
     }
 
-// Quản lý điều kiện đặt xe
+    // Quản lý điều kiện đặt xe
     private void managerConditionRental(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConditionRentalDao dao = new ConditionRentalDao();
         List<VehicleType> conditions = dao.getCondition();
@@ -150,7 +218,7 @@ public class AdminController extends HttpServlet {
         dao.updateConditionType(id, depositPrice,requiredLicense);
         managerConditionRental(request, response);
     }
-// Quản lý khuyến mãi
+    // Quản lý khuyến mãi
     private void managerPromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PromotionDao promotionDao = new PromotionDao();
         List<Promotion> promotions = promotionDao.getAllPromotion();
@@ -169,8 +237,12 @@ public class AdminController extends HttpServlet {
             int discountType = Integer.parseInt(request.getParameter("discount-type"));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate = new Date(dateFormat.parse(startDatee).getTime());
-            Date endDate = new Date(dateFormat.parse(endDatee).getTime());
+            // Parse to java.util.Date first, then convert to java.sql.Date for DAO
+            java.util.Date parsedStartDate = dateFormat.parse(startDatee);
+            java.util.Date parsedEndDate = dateFormat.parse(endDatee);
+            Date startDate = new Date(parsedStartDate.getTime());
+            Date endDate = new Date(parsedEndDate.getTime());
+
 
             PromotionDao promotionDao = new PromotionDao();
             promotionDao.addPromotion(promotionName, description, discountValue, discountType, startDate, endDate, isActive);
@@ -189,23 +261,22 @@ public class AdminController extends HttpServlet {
 
     private void updatePromotion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Lấy các tham số từ form
-            int id = Integer.parseInt(request.getParameter("id")); // Lấy ID đơn hàng
-            String promotionName = request.getParameter("promotionName"); // Lấy mã khách hàng
-            String description = request.getParameter("descriptionName"); // Lấy địa chỉ giao xe
+            int id = Integer.parseInt(request.getParameter("id"));
+            String promotionName = request.getParameter("promotionName");
+            String description = request.getParameter("descriptionName");
             double discountValue = Double.parseDouble(request.getParameter("discountValue"));
-            String rentalStartDate = request.getParameter("startDate"); // Lấy ngày thuê
-            String expectedReturnDate = request.getParameter("endDate"); // Lấy ngày trả dự kiến
+            String rentalStartDateStr = request.getParameter("startDate");
+            String expectedReturnDateStr = request.getParameter("endDate");
             int isActive = Integer.parseInt(request.getParameter("isActive"));
             int discountType = Integer.parseInt(request.getParameter("discountType"));
 
-            // Chuyển đổi ngày từ String sang Date
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
-            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
-            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+            java.util.Date parsedStartDate = dateFormat.parse(rentalStartDateStr);
+            java.util.Date parsedEndDate = dateFormat.parse(expectedReturnDateStr);
+            Date startDate = new Date(parsedStartDate.getTime());
+            Date endDate = new Date(parsedEndDate.getTime());
+
             PromotionDao promotionDao = new PromotionDao();
-            // Cập nhật đơn hàng
             promotionDao.updatePromotion(id, promotionName, description, discountValue, startDate, endDate, isActive, discountType);
             managerPromotion(request,response);
 
@@ -223,7 +294,7 @@ public class AdminController extends HttpServlet {
 
     }
 
-// Quản lý phản hồi khách hàng
+    // Quản lý phản hồi khách hàng
     private void managerContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ContactDao contactDao = new ContactDao();
         List<Contact> contacts = contactDao.getAllContact();
@@ -244,7 +315,7 @@ public class AdminController extends HttpServlet {
         managerContact(request,response);
     }
 
-// Quản lý tin tức
+    // Quản lý tin tức
     private void managerNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         NewDao newDao = new NewDao();
         List<New> newsList = newDao.getAllNew();
@@ -265,11 +336,13 @@ public class AdminController extends HttpServlet {
             String title = request.getParameter("title");
             String content = request.getParameter("content");
             String image = request.getParameter("image");
-            String startDate = request.getParameter("created-date");
+            String startDateStr = request.getParameter("created-date");
             int isActive = Integer.parseInt(request.getParameter("is-active"));
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date createdDate = new Date(dateFormat.parse(startDate).getTime());
+            java.util.Date parsedDate = dateFormat.parse(startDateStr);
+            Date createdDate = new Date(parsedDate.getTime());
+
 
             NewDao newDao = new NewDao();
             newDao.addNew(title, content, image, createdDate, isActive);
@@ -281,22 +354,19 @@ public class AdminController extends HttpServlet {
 
     private void updateNew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Lấy các tham số từ form
-            int id = Integer.parseInt(request.getParameter("new-id")); // Lấy ID đơn hàng
-            String title = request.getParameter("new-title"); // Lấy mã khách hàng
-            String content = request.getParameter("new-content"); // Lấy địa chỉ giao xe
-            String image = request.getParameter("new-image"); // Lấy ngày thuê
-            String starDate = request.getParameter("new-createdDate"); // Lấy ngày trả dự kiến
+            int id = Integer.parseInt(request.getParameter("new-id"));
+            String title = request.getParameter("new-title");
+            String content = request.getParameter("new-content");
+            String image = request.getParameter("new-image");
+            String starDateStr = request.getParameter("new-createdDate");
             int isActive = Integer.parseInt(request.getParameter("new-isActive"));
 
-
-            // Chuyển đổi ngày từ String sang Date
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date ceatedDate = new Date(dateFormat.parse(starDate).getTime());
+            java.util.Date parsedDate = dateFormat.parse(starDateStr);
+            Date ceatedDate = new Date(parsedDate.getTime());
 
-            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
+
             NewDao newDao = new NewDao();
-            // Cập nhật đơn hàng
             newDao.updateNew(id, title, content, image, ceatedDate, isActive);
             managerNew(request,response);
 
@@ -329,9 +399,6 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher("admin/setting.jsp").forward(request, response);
     }
 
-
-
-// Quanr lý đơn hàng
     private void managerOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrderDao orderDao = new OrderDao();
         List<Order> orders = orderDao.getAllOrder();
@@ -340,56 +407,166 @@ public class AdminController extends HttpServlet {
     }
 
     private void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        int adminId = getLoggedInAdminId(request);
+        int orderId = -1;
+        String oldData = "N/A";
         OrderDao orderDao = new OrderDao();
-        orderDao.deleteOrder(orderId);
+
+        try {
+            orderId = Integer.parseInt(request.getParameter("orderId"));
+            Order oldOrder = orderDao.getOrderById(orderId); // Fetch before delete
+            if (oldOrder != null) {
+                oldData = formatOrderDataForLog(oldOrder);
+            } else {
+                oldData = "Order with ID " + orderId + " not found before deletion.";
+            }
+
+            orderDao.deleteOrder(orderId);
+            adminLogOrderDao.addLogEntry(adminId, "DELETE_ORDER", orderId, oldData, "Order data deleted successfully.");
+
+        } catch (NumberFormatException e) {
+            adminLogOrderDao.addLogEntry(adminId, "DELETE_ORDER_FAILED", orderId, oldData, "Invalid Order ID format: " + request.getParameter("orderId"));
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Order ID.");
+            return;
+        } catch (Exception e) {
+            adminLogOrderDao.addLogEntry(adminId, "DELETE_ORDER_ERROR", orderId, oldData, "Error deleting order: " + e.getMessage());
+            e.printStackTrace(); // For server logs
+            // Optionally send an error to client, or just log and proceed
+        }
         managerOrder(request,response);
     }
 
     private void updateOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            // Lấy các tham số từ form
-            int orderId = Integer.parseInt(request.getParameter("orderId")); // Lấy ID đơn hàng
-            int customerId = Integer.parseInt(request.getParameter("customerId")); // Lấy mã khách hàng
-            String deliveryAddress = request.getParameter("deliveryAddress"); // Lấy địa chỉ giao xe
-            String rentalStartDate = request.getParameter("rentalStartDate"); // Lấy ngày thuê
-            String expectedReturnDate = request.getParameter("expectedReturnDate"); // Lấy ngày trả dự kiến
-            String licensePlate = request.getParameter("licensePlate"); // Lấy biển số xe
-            double rentalPrice = Double.parseDouble(request.getParameter("rentalPrice")); // Lấy giá thuê xe
-            int status = Integer.parseInt(request.getParameter("status")); // Lấy trạng thái đơn hàng
-
-            // Chuyển đổi ngày từ String sang Date
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate = new Date(dateFormat.parse(rentalStartDate).getTime());
-            Date endDate = new Date(dateFormat.parse(expectedReturnDate).getTime());
-            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
-            OrderDao dao = new OrderDao();
-            // Cập nhật đơn hàng
-            dao.updateOrder(orderId, customerId, deliveryAddress, startDate, endDate, licensePlate, rentalPrice, status);
-            managerOrder(request,response);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
-        }
-    }
-
-    private void updateOrderStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int orderId = Integer.parseInt(request.getParameter("orderId"));
-        int status = Integer.parseInt(request.getParameter("status"));
+        int adminId = getLoggedInAdminId(request);
+        int orderId = -1;
+        String oldData = "N/A";
         OrderDao dao = new OrderDao();
-        dao.updateOrderStatus(orderId, status);
 
+        try {
+            orderId = Integer.parseInt(request.getParameter("orderId"));
+            Order oldOrder = dao.getOrderById(orderId); // Fetch before update
+            if (oldOrder != null) {
+                oldData = formatOrderDataForLog(oldOrder);
+            } else {
+                oldData = "Order with ID " + orderId + " not found before update.";
+            }
+
+            int customerId = Integer.parseInt(request.getParameter("customerId"));
+            String deliveryAddress = request.getParameter("deliveryAddress");
+            String rentalStartDateStr = request.getParameter("rentalStartDate");
+            String expectedReturnDateStr = request.getParameter("expectedReturnDate");
+            String licensePlate = request.getParameter("licensePlate");
+            double rentalPrice = Double.parseDouble(request.getParameter("rentalPrice"));
+            int status = Integer.parseInt(request.getParameter("status"));
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            // Parse to java.util.Date first for SimpleDateFormat
+            java.util.Date utilStartDate = dateFormat.parse(rentalStartDateStr);
+            java.util.Date utilEndDate = dateFormat.parse(expectedReturnDateStr);
+            // Convert to java.sql.Date for DAO
+            Date startDate = new Date(utilStartDate.getTime());
+            Date endDate = new Date(utilEndDate.getTime());
+
+            dao.updateOrder(orderId, customerId, deliveryAddress, startDate, endDate, licensePlate, rentalPrice, status);
+
+            Order newOrder = dao.getOrderById(orderId); // Fetch after update
+            String newData = "N/A";
+            if (newOrder != null) {
+                newData = formatOrderDataForLog(newOrder);
+            } else {
+                newData = "Order with ID " + orderId + " not found after update (update might have failed silently or ID changed).";
+            }
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER", orderId, oldData, newData);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_ERROR", orderId, oldData, "Date parsing error: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Định dạng ngày không hợp lệ.");
+            return;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_ERROR", orderId, oldData, "Number parsing error: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Dữ liệu số không hợp lệ.");
+            return;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            String attemptedData = String.format("OrderID:%d, CustID:%s, Addr:%s", orderId, request.getParameter("customerId"), request.getParameter("deliveryAddress"));
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_ERROR", orderId, oldData, "General error during update. Attempted: " + attemptedData + ". Exception: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi cập nhật đơn hàng.");
+            return;
+        }
         managerOrder(request,response);
     }
 
+    private void updateOrderStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request);
+        int orderId = -1;
+        String oldData = "N/A";
+        OrderDao dao = new OrderDao();
+
+        try {
+            orderId = Integer.parseInt(request.getParameter("orderId"));
+            int newStatus = Integer.parseInt(request.getParameter("status"));
+
+            Order oldOrder = dao.getOrderById(orderId); // Fetch before update
+            if (oldOrder != null) {
+                oldData = formatOrderDataForLog(oldOrder);
+            } else {
+                oldData = "Order with ID " + orderId + " not found before status update.";
+            }
+
+            dao.updateOrderStatus(orderId, newStatus);
+
+            Order newOrder = dao.getOrderById(orderId); // Fetch after update
+            String newData = "N/A";
+            if (newOrder != null) {
+                newData = formatOrderDataForLog(newOrder);
+            } else {
+                newData = "Order with ID " + orderId + " not found after status update.";
+            }
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_STATUS", orderId, oldData, newData);
+
+        } catch (NumberFormatException e) {
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_STATUS_FAILED", orderId, oldData, "Invalid Order ID or Status format. OrderID: " + request.getParameter("orderId") + ", Status: " + request.getParameter("status") );
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Order ID or Status.");
+            return;
+        } catch (Exception e) {
+            adminLogOrderDao.addLogEntry(adminId, "UPDATE_ORDER_STATUS_ERROR", orderId, oldData, "Error updating order status: " + e.getMessage());
+            e.printStackTrace();
+        }
+        managerOrder(request,response);
+    }
 
     private void managerDashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("admin/admin.jsp").forward(request, response);
     }
 
+    private String formatUserDataForLog(User user) {
+        if (user == null) {
+            return "User not found or details unavailable.";
+        }
+        UserInfo info = user.getUserInfo();
+        // Using java.text.SimpleDateFormat for birthDate if it's java.util.Date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String birthDateStr = "N/A";
+        if (info != null && info.getBirthday() != null) {
+            // Assuming getBirthday() in UserInfo returns java.util.Date
+            birthDateStr = sdf.format(info.getBirthday());
+        }
 
-// Quản lý khách hàng
+        return String.format("ID: %d, Email: %s, FullName: %s, Phone: %s, Address: %s, BirthDate: %s, RoleID: %d, IsActive: %d",
+                user.getId(),
+                user.getEmail(),
+                (info != null ? info.getFullName() : "N/A"),
+                (info != null ? info.getPhoneNumber() : "N/A"),
+                (info != null ? info.getAddress() : "N/A"),
+                birthDateStr,
+                user.getRoleId(),
+                user.isActive()
+        );
+    }
+
     private void managerCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao dao = new UserDao();
         List<User> users = dao.getUsers();
@@ -399,70 +576,143 @@ public class AdminController extends HttpServlet {
 
     private void changeStatusUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao dao = new UserDao();
-        int id = Integer.parseInt(request.getParameter("userId"));
-        int status = Integer.parseInt(request.getParameter("status")); // "true" hoặc "false"
-        dao.changeActive(id, status);
+        int adminId = getLoggedInAdminId(request);
+        int userIdToChange = Integer.parseInt(request.getParameter("userId"));
+        int newStatus = Integer.parseInt(request.getParameter("status"));
+
+        User oldUser = dao.getUserById(userIdToChange);
+        String oldData = formatUserDataForLog(oldUser);
+
+        dao.changeActive(userIdToChange, newStatus);
+
+        User newUser = dao.getUserById(userIdToChange); // Fetch updated user
+        String newData = formatUserDataForLog(newUser); // Or more simply: "Status changed to: " + newStatus
+
+        adminLogDao.addLogEntry(adminId, "CHANGE_USER_STATUS", userIdToChange, oldData, newData);
         managerCustomer(request, response);
     }
 
     private void changeRoleUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao dao = new UserDao();
-        int id = Integer.parseInt(request.getParameter("userId"));
-        int role = Integer.parseInt(request.getParameter("roleId"));
-        dao.changeRole(id, role);
+        int adminId = getLoggedInAdminId(request);
+        int userIdToChange = Integer.parseInt(request.getParameter("userId"));
+        int newRoleId = Integer.parseInt(request.getParameter("roleId"));
+
+        User oldUser = dao.getUserById(userIdToChange);
+        String oldData = formatUserDataForLog(oldUser);
+
+        dao.changeRole(userIdToChange, newRoleId);
+
+        User newUser = dao.getUserById(userIdToChange); // Fetch updated user
+        String newData = formatUserDataForLog(newUser); // Or more simply: "RoleID changed to: " + newRoleId
+
+        adminLogDao.addLogEntry(adminId, "CHANGE_USER_ROLE", userIdToChange, oldData, newData);
         managerCustomer(request, response);
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String customerIdStr = request.getParameter("customerId");
+        int adminId = getLoggedInAdminId(request);
+        int customerIdToDelete = -1; // For logging in case of parse failure
+        String oldData = "N/A";
+        UserDao dao = new UserDao();
+
 
         if (customerIdStr == null || customerIdStr.trim().isEmpty()) {
+            adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER_FAILED", -1, "Attempted with missing ID", "Customer ID is missing or invalid");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Customer ID is missing or invalid");
             return;
         }
 
         try {
-            int customerId = Integer.parseInt(customerIdStr);
-            UserDao dao = new UserDao();
-            dao.deleteCustomer(customerId);
-            managerCustomer(request,response);
+            customerIdToDelete = Integer.parseInt(customerIdStr);
+            User oldUser = dao.getUserById(customerIdToDelete);
+            if(oldUser != null) {
+                oldData = formatUserDataForLog(oldUser);
+            } else {
+                oldData = "User with ID " + customerIdToDelete + " not found before deletion.";
+            }
+            dao.deleteCustomer(customerIdToDelete);
+            adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER", customerIdToDelete, oldData, "User data deleted successfully.");
+
         } catch (NumberFormatException e) {
+            adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER_FAILED", customerIdToDelete, oldData, "Invalid ID format: " + customerIdStr + ". Error: " + e.getMessage());
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Customer ID format");
+            return;
+        }  catch (Exception e) {
+            adminLogDao.addLogEntry(adminId, "DELETE_CUSTOMER_ERROR", customerIdToDelete, oldData, "Error deleting customer: " + e.getMessage());
+            e.printStackTrace();
         }
+        managerCustomer(request,response);
     }
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request);
+        int userRecordId = -1;
+        String oldData = "N/A";
+        UserDao userDao = new UserDao();
+
         try {
-            // Lấy các tham số từ form
-            int id = Integer.parseInt(request.getParameter("id"));
-            int userId = Integer.parseInt(request.getParameter("customerId"));
+            userRecordId = Integer.parseInt(request.getParameter("id"));
+            User oldUser = userDao.getUserById(userRecordId);
+            if(oldUser != null) {
+                oldData = formatUserDataForLog(oldUser);
+            } else {
+                oldData = "User with ID " + userRecordId + " not found before update.";
+            }
+
             String fullName = request.getParameter("fullName");
             String phoneNumber = request.getParameter("phoneNumber");
             String email = request.getParameter("emailCus");
             String address = request.getParameter("addressCus");
             int roleId = Integer.parseInt(request.getParameter("roleId"));
             int isActive = Integer.parseInt(request.getParameter("status"));
-
             String birthDayStr = request.getParameter("birthDateCus");
+
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date birthDate = new Date(dateFormat.parse(birthDayStr).getTime());
+            // This should be java.sql.Date for the DAO method
+            Date birthDate = null;
+            if (birthDayStr != null && !birthDayStr.trim().isEmpty()) {
+                java.util.Date utilBirthDate = dateFormat.parse(birthDayStr);
+                birthDate = new Date(utilBirthDate.getTime());
+            }
 
+            boolean success = userDao.updateCustomer(userRecordId, userRecordId, fullName, phoneNumber, birthDate, email, address, roleId, isActive);
+            String newData = "N/A";
+            if (success) {
+                User newUser = userDao.getUserById(userRecordId);
+                if (newUser != null) {
+                    newData = formatUserDataForLog(newUser);
+                } else {
+                    newData = "User with ID " + userRecordId + " not found after update.";
+                }
+                adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS", userRecordId, oldData, newData);
+            } else {
+                newData = "DAO returned false. New data attempted: " + String.format("FN:%s, E:%s, R:%d, A:%d", fullName, email, roleId, isActive);
+                adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_FAILED", userRecordId, oldData, newData);
+            }
 
-            // Tạo đối tượng OrderDao để thực hiện cập nhật đơn hàng
-            UserDao userDao = new UserDao();
-            // Cập nhật đơn hàng
-            userDao.updateCustomer(id, userId, fullName, phoneNumber, birthDate, email, address, roleId, isActive);
-            managerCustomer(request,response);
-
-        } catch (Exception e) {
+        } catch (ParseException e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin không hợp lệ.");
+            adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_ERROR", userRecordId, oldData, "Date parsing error: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Định dạng ngày sinh không hợp lệ.");
+            return;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_ERROR", userRecordId, oldData, "Number parsing error: " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Dữ liệu số không hợp lệ.");
+            return;
         }
+        catch (Exception e) {
+            e.printStackTrace();
+            String attemptedData = String.format("ID:%d, FullName:%s, Email:%s", userRecordId, request.getParameter("fullName"), request.getParameter("emailCus"));
+            adminLogDao.addLogEntry(adminId, "UPDATE_CUSTOMER_DETAILS_ERROR", userRecordId, oldData , "Exception: " + e.getMessage() + ". Attempted: " + attemptedData);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi cập nhật thông tin khách hàng.");
+            return;
+        }
+        managerCustomer(request,response);
     }
 
-
-
-// Quản lý xe máy
     private void managerVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         VehicleTypeDao dao = new VehicleTypeDao();
         List<VehicleType> vehicleTypeList = dao.getAllVehicleType();
@@ -471,13 +721,16 @@ public class AdminController extends HttpServlet {
     }
 
     private void deleteVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request);
         int id = Integer.parseInt(request.getParameter("vehicleId"));
         VehicleTypeDao dao = new VehicleTypeDao();
-        dao.deleteVehicleType(id);
+        // Note: VehicleTypeDao.deleteVehicleType already handles its own logging via AdminLogVehicleDao
+        dao.deleteVehicleType(id, adminId);
         managerVehicleType(request, response);
     }
 
     private void updateVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request);
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String brand = request.getParameter("brand");
@@ -489,11 +742,13 @@ public class AdminController extends HttpServlet {
         int available = Integer.parseInt(request.getParameter("available"));
 
         VehicleTypeDao dao = new VehicleTypeDao();
-        dao.updateVehicleType(id, name, brand, category, totalPrice, description, image, totalVehicles, available);
+        // Note: VehicleTypeDao.updateVehicleType already handles its own logging
+        dao.updateVehicleType(id, name, brand, category, totalPrice, description, image, totalVehicles, available, adminId);
         managerVehicleType(request, response);
     }
 
-    private void addVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+    private void addVehicleType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request);
         String name = request.getParameter("addName");
         String brand = request.getParameter("addBrand");
         String category = request.getParameter("addCategory");
@@ -504,14 +759,17 @@ public class AdminController extends HttpServlet {
         int available = Integer.parseInt(request.getParameter("addAvailable"));
 
         VehicleTypeDao dao = new VehicleTypeDao();
-        dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available);
+        // Note: VehicleTypeDao.addVehicleType already handles its own logging
+        dao.addVehicleType(name, brand, category, totalPrice, description, image, totalVehicles, available, adminId);
         managerVehicleType(request, response);
     }
     private void changeStatusVehicle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int adminId = getLoggedInAdminId(request);
         VehicleTypeDao dao = new VehicleTypeDao();
         int id = Integer.parseInt(request.getParameter("vehicleId"));
         int isAvailable = Integer.parseInt(request.getParameter("isAvailable"));
-        dao.updateAvailableStatus(id, isAvailable);
+        // Note: VehicleTypeDao.updateAvailableStatus already handles its own logging
+        dao.updateAvailableStatus(id, isAvailable, adminId);
         managerVehicleType(request, response);
     }
 }

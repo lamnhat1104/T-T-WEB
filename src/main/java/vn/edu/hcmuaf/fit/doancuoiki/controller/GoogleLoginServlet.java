@@ -4,29 +4,34 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.doancuoiki.dao.UserDao;
 import vn.edu.hcmuaf.fit.doancuoiki.model.User;
 
 import java.io.IOException;
 
-@WebServlet("/facebook-login")
-public class FacebookLoginServlet extends HttpServlet {
+@WebServlet("/google-login")
+public class GoogleLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String id = req.getParameter("id");
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String picture = req.getParameter("picture");
 
+        // Tạo user object
         User user = new User();
-        user.setEmail(email);
         user.setFullname(name);
+        user.setEmail(email);
         user.setAvatar(picture);
-        user.setRole("user"); // hoặc "facebook_user" nếu bạn muốn tách biệt
+        user.setRole("user"); // default role
 
-        // Lưu thông tin user vào session
+        // Lưu vào DB (nếu cần)
+        UserDao dao = new UserDao();
+        dao.insertGoogleUser(user); // cần kiểm tra trùng email thì tốt hơn
+
+        // Lưu vào session
         req.getSession().setAttribute("user", user);
 
-        // Chuyển hướng về trang chính
+        // Redirect về trang chính
         resp.sendRedirect("index.jsp");
     }
 }
