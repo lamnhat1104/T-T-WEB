@@ -10,12 +10,12 @@ public class User implements Serializable {
     private int roleId;
     private int active;
 
-    public int getActive() {
-        return active;
-    }
+    // ✅ Thêm các trường dùng cho Google login
+    private String fullname;
+    private String avatar;
+    private String role;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String email, String password, UserInfo userInfo, int active) {
         this.email = email;
@@ -86,7 +86,42 @@ public class User implements Serializable {
         return active;
     }
 
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    // ✅ Getter/setter cho fullname, avatar, role
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
     public void setActive(int active) {this.active = active;}
+ main
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    // Không cần các hàm tạm dưới này nữa nếu đã có hàm đúng
+    // public void setName(String name) {}
+    // public void setAvata(String picture) {}
+    // public void getFacebookId(String id) {}
 
     @Override
     public String toString() {
@@ -96,9 +131,13 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", userInfo=" + userInfo +
                 ", roleId=" + roleId +
-                ", isActive=" + active +
+                ", active=" + active +
+                ", fullname='" + fullname + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
+}
 
     public void getFacebookId(String id) {
     }
@@ -113,3 +152,4 @@ public class User implements Serializable {
     }
 
 }
+main
