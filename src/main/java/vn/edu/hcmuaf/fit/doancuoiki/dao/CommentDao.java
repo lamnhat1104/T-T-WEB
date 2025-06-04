@@ -3,25 +3,51 @@ package vn.edu.hcmuaf.fit.doancuoiki.dao;
 import vn.edu.hcmuaf.fit.doancuoiki.db.DBContext;
 import vn.edu.hcmuaf.fit.doancuoiki.model.Comment;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*; // Import Timestamp
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDao {
-    public static void insertComment(int productId, String username, String content) {
+    // Modified to return the inserted Comment object
+    public static Comment insertComment(int productId, String username, String content) {
+        String sql = "INSERT INTO comments (product_id, username, comment, created_at) VALUES (?, ?, ?, NOW())";
+        String selectSql = "SELECT * FROM comments WHERE id = ?";
+        Comment newComment = null;
+
         try (Connection conn = new DBContext().getConnection()) {
-            String sql = "INSERT INTO comments (product_id, username, comment, created_at) VALUES (?, ?, ?, NOW())";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, productId);
-            ps.setString(2, username);
-            ps.setString(3, content);
-            ps.executeUpdate();
+            // Use PreparedStatement.RETURN_GENERATED_KEYS to get the auto-generated ID
+            try (PreparedStatement psInsert = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                psInsert.setInt(1, productId);
+                psInsert.setString(2, username);
+                psInsert.setString(3, content);
+                int affectedRows = psInsert.executeUpdate();
+
+                if (affectedRows > 0) {
+                    try (ResultSet generatedKeys = psInsert.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int commentId = generatedKeys.getInt(1);
+                            // Now fetch the full comment object including the DB-generated timestamp
+                            try (PreparedStatement psSelect = conn.prepareStatement(selectSql)) {
+                                psSelect.setInt(1, commentId);
+                                try (ResultSet rs = psSelect.executeQuery()) {
+                                    if (rs.next()) {
+                                        newComment = new Comment();
+                                        newComment.setId(rs.getInt("id"));
+                                        newComment.setProductId(rs.getInt("product_id"));
+                                        newComment.setUsername(rs.getString("username"));
+                                        newComment.setComment(rs.getString("comment"));
+                                        newComment.setCreatedAt(rs.getTimestamp("created_at"));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return newComment; // Will be null if insertion failed or fetching failed
     }
 
     // Lấy danh sách bình luận theo ID sản phẩm
@@ -61,21 +87,16 @@ public class CommentDao {
 
     public static void main(String[] args) {
 //        CommentDao dao = new CommentDao();
-//        Comment comment = new Comment();
-//        comment.setProductId(2);
-//        comment.setUsername("chimm");
-//        comment.setComment("san phảm tốt");
-//        dao.addComment(comment);
-//        System.out.println(dao.getCommentsByProduct(2));
-//        Comment comment1 = new Comment();
-//        comment1.setProductId(1);
-//        comment1.setUsername("chimm");
-//        comment1.setComment("Tuyệt vời");
-//        dao.addComment(comment1);
-//        System.out.println(dao.getCommentsByProduct(1));
-        CommentDao dao = new CommentDao();
-        dao.deleteComment(1);
-
-
+//        Comment newC = CommentDao.insertComment(2, "ajaxUser", "Test comment from AJAX idea.");
+//        if (newC != null) {
+//            System.out.println("Inserted: " + newC);
+//        } else {
+//            System.out.println("Insertion failed.");
+//        }
+//
+//        List<Comment> product2Comments = dao.getCommentsByProduct(2);
+//        System.out.println("Comments for product 2: " + product2Comments);
+//
+//        dao.deleteComment(1); // Example: Assuming comment with ID 1 exists
     }
 }

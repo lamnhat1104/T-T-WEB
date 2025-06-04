@@ -1,4 +1,4 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %><%--
   Created by IntelliJ IDEA.
   User: DELL
   Date: 1/10/2025
@@ -16,6 +16,13 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admin.css">
 </head>
 <body>
+<%
+  User user = (User) session.getAttribute("user");
+  if (user == null || user.getRoleId() != 1) {
+    response.sendRedirect(request.getContextPath() + "/login.jsp");
+    return;
+  }
+%>
 <input type="checkbox" id="nav-toggle">
 
 <div class="sidebar">
@@ -75,7 +82,27 @@
   </div>
 </div>
 <div class="main-content">
+  <header>
+    <h2>
+      <label for="nav-toggle" >
+        <span class="las la-bars"></span>
+      </label>
+      Cài đặt
+    </h2>
 
+    <div class="search-wrapper">
+      <span class="las la-search"></span>
+      <input type="search" placeholder="Tìm kiếm tại đây"/>
+    </div>
+
+    <div class="user-wrapper">
+      <img src="../assets/img/home_img/user.png" height="40" width="40"/>
+      <small>
+        <%= (user.getRoleId() == 1) ? "Admin" : "User" %> <br>
+        <%= user.getUserInfo().getFullName()%>
+      </small>
+    </div>
+  </header>
   <h2>Thống kê doanh thu</h2>
   <div class="charts">
     <canvas id="revenueChart" width="400" height="200"></canvas>

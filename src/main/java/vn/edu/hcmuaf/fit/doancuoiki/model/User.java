@@ -107,6 +107,8 @@ public class User implements Serializable {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+    public void setActive(int active) {this.active = active;}
+ main
 
     public String getRole() {
         return role;
@@ -136,3 +138,18 @@ public class User implements Serializable {
                 '}';
     }
 }
+
+    public void getFacebookId(String id) {
+    }
+
+    public void setName(String name) {
+    }
+
+    public void setAvata(String picture) {
+    }
+
+    public void setFullname(String name) {
+    }
+
+}
+main

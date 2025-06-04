@@ -1,5 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.New" %>
 <%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.doancuoiki.model.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
@@ -170,6 +171,13 @@
   </style>
 </head>
 <body>
+<%
+    User user = (User) session.getAttribute("user");
+    if (user == null || user.getRoleId() != 1) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
+    }
+%>
 <input type="checkbox" id="nav-toggle">
 
 <div class="sidebar">
@@ -246,8 +254,10 @@
     <div class="user-wrapper">
       <img src="../assets/img/home_img/user.png" height="40" width="40"/>
       <div>
-        <h4>Admin</h4>
-        <small>NNP</small>
+          <small>
+              <%= (user.getRoleId() == 1) ? "Admin" : "User" %> <br>
+              <%= user.getUserInfo().getFullName()%>
+          </small>
       </div>
     </div>
   </header>
