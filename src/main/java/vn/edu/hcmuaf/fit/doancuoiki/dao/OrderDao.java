@@ -281,6 +281,29 @@ public class OrderDao {
         }
         return null;
     }
+    public int getBookedVehiclesCount(int vehicleTypeId, Date rentalStartDate, Date rentalEndDate) {
+        String sql = "SELECT SUM(od.quantity) FROM orderdetails od " +
+                "JOIN orders o ON od.orderId = o.id " +
+                "WHERE od.vehicleTypeId = ? " +
+                "AND o.rentalStartDate <= ? " +
+                "AND o.expectedReturnDate >= ? " +
+                "AND o.status != 'Đã huỷ'"; // Loại trừ đơn hàng đã hủy
+
+        int bookedCount = 0;
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, vehicleTypeId);
+            ps.setDate(2, rentalEndDate);
+            ps.setDate(3, rentalStartDate);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                bookedCount = rs.getInt(1); // Số xe đã đặt
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookedCount;
+    }
 
 
 

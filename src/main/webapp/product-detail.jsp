@@ -210,7 +210,11 @@
                 <img src="${p.img}" alt="${p.name}">
             </div>
 
+            <form id="rentalForm" class="rental-information" action="OrderController" method="post">
+
+
             <form class="rental-information" action="OrderController" method="post">
+
                 <input type="hidden" name="pid" value="${param.pid}">
                 <input type="hidden" name="price" value="${p.price}">
 
@@ -226,7 +230,16 @@
 
                 <div class="fill-in-info">
                     <div class="fill-in-item">
+
+
+
+
+
+
+                        <%--@declare id="paymentmethods"--%><label for="coupon">Mã giảm giá</label>
+
                         <label for="coupon">Mã giảm giá</label>
+
                         <input type="text" id="coupon" name="coupon">
 
                         <label for="location">Địa điểm giao xe</label>
@@ -250,8 +263,12 @@
 
                         <label for="paymentMethod">Phương thức thanh toán</label>
                         <select name="paymentMethod" id="paymentMethod" required>
-                            <option value="cod">Thanh toán khi nhận xe</option>
                             <option value="momo">Thanh toán bằng MoMo</option>
+                            <option value="cod">Thanh toán khi nhận xe</option>
+
+
+                            <option value="momo">Thanh toán bằng MoMo</option>
+
                             <option value="vnpay">Thanh toán bằng Vnpay</option>
                         </select>
                     </div>
@@ -295,6 +312,53 @@
         </c:if>
     </div>
 
+
+<%--<div class="cac-san-pham-khac">--%>
+<%--    <h1>Các sản phẩm tương tự</h1>--%>
+<%--<c:forEach var="relatedProduct" items="${relatedProducts}">--%>
+<%--    <div id="wrapper">--%>
+<%--        <div class="headline">--%>
+<%--            <ul class="products">--%>
+<%--                <li>--%>
+<%--                    <div class="product-item">--%>
+<%--                        <div class="product-top">--%>
+<%--                            <a href="" class="product-thumb">--%>
+<%--                                <img src="${relatedProduct.img}" alt="">--%>
+<%--                            </a>--%>
+<%--                            <!--Mua ngay-->--%>
+<%--                            <a href="/product?pid=${relatedProduct.id}" class="buy-now">Đặt ngay</a>--%>
+<%--                          </div>--%>
+<%--                        <div class="product-info">--%>
+<%--                            <a href="" class="product-cat"> ${relatedProduct.type}</a>--%>
+<%--                            <a href="" class="product-name"> ${relatedProduct.name}</a>--%>
+<%--                            <div class="product-price"><f:formatNumber value="${relatedProduct.price}"/></div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div >--%>
+<%--</c:forEach>--%>
+<%--</div>--%>
+<script>
+    document.getElementById("rentalForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // Ngăn form gửi mặc định
+
+        const method = document.getElementById("paymentMethod").value;
+
+        // Gán lại action theo phương thức thanh toán
+        if (method === "momo") {
+            this.action = "momoPayment";
+        } else if (method === "vnpay") {
+            this.action = "vnpayPayment";
+        } else {
+            this.action = "OrderController"; // COD
+        }
+
+        this.submit(); // Gửi lại form
+    });
+</script>
+
     <div class="comments-list-section">
         <h3 id="comments-title"><i class="fas fa-comments"></i> Các bình luận (<span id="commentCount">${fn:length(comments)}</span>)</h3>
         <%-- Added id="commentsListContainer" --%>
@@ -329,6 +393,7 @@
 </div>
 
 <%-- (Related Products Section - unchanged) --%>
+
 
 <c:if test="${param.message == 'success'}">
     <script>

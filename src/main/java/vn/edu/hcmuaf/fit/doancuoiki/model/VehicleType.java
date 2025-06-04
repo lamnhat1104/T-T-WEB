@@ -7,6 +7,15 @@ public class VehicleType {
     private String name;
     private Date manufactureYear;
     private String brand;
+
+    public int getRemainingVehicles() {
+        return remainingVehicles;
+    }
+
+    public void setRemainingVehicles(int remainingVehicles) {
+        this.remainingVehicles = remainingVehicles;
+    }
+
     private String category;
     private double depositPrice;
     private double totalPrice;
@@ -15,6 +24,7 @@ public class VehicleType {
     private String image;
     private int totalVehicles;
     private int available;
+    private int remainingVehicles;
 
     public VehicleType(int id, String image) {
     }

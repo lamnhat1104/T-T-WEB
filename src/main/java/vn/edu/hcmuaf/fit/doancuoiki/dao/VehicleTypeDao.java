@@ -14,6 +14,47 @@ import java.util.List;
 public class VehicleTypeDao {
     private LogDao logDao;
 
+
+    public int getRentedVehiclesCount(int vehicleTypeId) {
+        String sql = "SELECT COUNT(*) FROM orderdetails od " +
+                "JOIN orders o ON od.orderId = o.id " +
+                "JOIN vehicles v ON v.licensePlate = od.licensePlate " +
+                "WHERE v.typeId = ? AND  o.status != 'Đã huỷ' AND o.rentalStartDate <= CURDATE() AND o.expectedReturnDate >= CURDATE()";
+
+        int rentedCount = 0;
+        try (Connection conn = new DBContext().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, vehicleTypeId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                rentedCount = rs.getInt(1); // Số xe đang được thuê
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rentedCount;
+    }
+
+
+    public List<VehicleType> getAllVehicleType () {
+        List<VehicleType> vehicleTypeList = new ArrayList<VehicleType>();
+        try(Connection conn = new DBContext().getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM vehicletypes");){
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int vehicleTypeId = rs.getInt("id");
+                int totalVehicles = rs.getInt("totalVehicles");
+
+                // Tính số xe đang được thuê
+                int rentedVehicles = getRentedVehiclesCount(vehicleTypeId);
+
+                // Tính số xe còn lại
+                int remainingVehicles = totalVehicles - rentedVehicles;
+
+                VehicleType vehicleType = new VehicleType(vehicleTypeId, rs.getString("image"));
+                vehicleType.setId(vehicleTypeId);
+
     public VehicleTypeDao() {
         this.logDao = new LogDao(); // Initialize LogDao
     }
@@ -51,14 +92,22 @@ public class VehicleTypeDao {
             while (rs.next()) {
                 VehicleType vehicleType = new VehicleType(rs.getInt("id"), rs.getString("image"));
                 vehicleType.setId(rs.getInt("id")); // Potentially redundant if constructor sets it
+
                 vehicleType.setName(rs.getString("name"));
                 vehicleType.setBrand(rs.getString("brand"));
                 vehicleType.setCategory(rs.getString("category"));
                 vehicleType.setTotalPrice(rs.getDouble("rentalPrice")); // Use getDouble
                 vehicleType.setDescription(rs.getString("description"));
+
+                vehicleType.setImage(rs.getString("image"));
+                vehicleType.setTotalVehicles(totalVehicles);
+
                 vehicleType.setImage(rs.getString("image")); // Potentially redundant
                 vehicleType.setTotalVehicles(rs.getInt("totalVehicles"));
+
                 vehicleType.setAvailable(rs.getInt("isAvailable"));
+                vehicleType.setRemainingVehicles(remainingVehicles);  // Thêm số xe còn lại vào đối tượng
+
                 vehicleTypeList.add(vehicleType);
             }
         } catch (SQLException e) {
@@ -67,9 +116,14 @@ public class VehicleTypeDao {
         return vehicleTypeList;
     }
 
+
+
+    public void deleteVehicleType(int id){
+
     public void deleteVehicleType(int id, int adminId) { // Added adminId
         VehicleType oldVehicleType = getVehicleTypeById(id);
         String oldData = (oldVehicleType != null) ? oldVehicleType.toLogString() : "ID: " + id + " (data not available pre-delete)";
+
 
         String sql = "DELETE FROM vehicletypes WHERE id = ?";
         try (Connection conn = new DBContext().getConnection();

@@ -159,7 +159,7 @@
             </li>
             <li>
                 <a href="/demo/admin?action=managerStatMotor"><span class="las la-circle"></span>
-                    <span>Thống kê xe máy</span></a>
+                    <span>Quản lý tồn kho</span></a>
             </li>
             <li>
                 <a href="/demo/admin?action=managerStatIncome"><span class="las la-clipboard-list"></span>
