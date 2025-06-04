@@ -454,4 +454,43 @@ public class UserDao {
         }
         return null;
     }
+
+    public User findByEmail(String email) {
+        User user = null;
+        try {
+            Connection conn = DBContext.getConnection();
+            String sql = "SELECT * FROM Users WHERE email = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setEmail(rs.getString("email"));
+                user.setFullname(rs.getString("fullname"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setRole(rs.getString("role"));
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public void insertGoogleUser(User user) {
+        try {
+            Connection conn = DBContext.getConnection();
+            String sql = "INSERT INTO Users(email, fullname, avatar, role) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, user.getEmail());
+            stmt.setString(2, user.getFullname());
+            stmt.setString(3, user.getAvatar());
+            stmt.setString(4, user.getRole());
+            stmt.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

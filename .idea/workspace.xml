@@ -9,7 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486d6482-6590-42ee-9aae-867f8fbd6ecd" name="Changes" comment="Fixes #70 :hoàn thành lưu user đăng nhập bằng google" />
+    <list default="true" id="486d6482-6590-42ee-9aae-867f8fbd6ecd" name="Changes" comment="Fixes #70 :hoàn thành lưu user đăng nhập bằng google">
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/GoogleLoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_10_2025_11_16_AM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_10_2025_11_16_AM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/FacebookLoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/controller/FacebookLoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/hcmuaf/fit/doancuoiki/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/contactUS.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/contactUS.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/momoPayment.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/xacnhanthanhtoan.jsp" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -83,7 +94,8 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Tomcat Server.Tomcat 10.1.39.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#78 on 22130145-TRanThiThuyLinh&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;22130145-TRanThiThuyLinh&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -213,6 +225,10 @@
       <updated>1747021994344</updated>
       <workItem from="1747021999724" duration="6295000" />
       <workItem from="1747383708107" duration="4811000" />
+      <workItem from="1747389078642" duration="930000" />
+      <workItem from="1747724014137" duration="166000" />
+      <workItem from="1748925838573" duration="4473000" />
+      <workItem from="1749041325112" duration="2160000" />
     </task>
     <task id="LOCAL-00002" summary="Fixes #70 : lưu user đăng nhập bằng google">
       <option name="closed" value="true" />
@@ -254,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747388971857</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixes #70 :hoàn thành lưu user đăng nhập bằng google">
+      <option name="closed" value="true" />
+      <created>1747389121031</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747389121031</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
