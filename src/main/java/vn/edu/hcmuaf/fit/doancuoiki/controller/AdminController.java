@@ -315,6 +315,9 @@ public class AdminController extends HttpServlet {
     }
 
     private void managerStatMotor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        VehicleTypeDao dao = new VehicleTypeDao();
+        List<VehicleType> vehicleTypeList = dao.getAllVehicleType();
+        request.setAttribute("vehicleTypeList", vehicleTypeList);
         request.getRequestDispatcher("admin/stats_motors.jsp").forward(request, response);
     }
 
