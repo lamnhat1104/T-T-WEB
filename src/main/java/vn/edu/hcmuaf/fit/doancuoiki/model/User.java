@@ -111,4 +111,5 @@ public class User implements Serializable {
 
     public void setFullname(String name) {
     }
+
 }
